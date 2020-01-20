@@ -6,19 +6,29 @@
 /*----------------------------------------------------------------------------*/
 
 #include "RobotContainer.h"
+#include "frc/Joystick.h"
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+RobotContainer::RobotContainer(): 
+  tankDrive{}, 
+  driverJoystick{0},
+  driveCommand{&tankDrive}
+{
   // Initialize all of your commands and subsystems here
-
+  //drive
   // Configure the button bindings
   ConfigureButtonBindings();
+
+  tankDrive.SetDefaultCommand(std::move(driveCommand));
+  tankDrive.setDriverJoystick(&driverJoystick);
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
+  
 }
+
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  return &m_autonomousCommand;
+ // return &m_autonomousCommand;
 }
