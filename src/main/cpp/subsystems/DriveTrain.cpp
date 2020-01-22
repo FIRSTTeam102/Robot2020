@@ -11,10 +11,10 @@
 
 
 DriveTrain::DriveTrain():
-    driveLeft1{0}, 
-    driveLeft2{1}, 
-    driveRight1{2}, 
-    driveRight2{3}
+    driveLeft1{1}, 
+    driveLeft2{2}, 
+    driveRight1{3}, 
+    driveRight2{4}
  {
 
 }
