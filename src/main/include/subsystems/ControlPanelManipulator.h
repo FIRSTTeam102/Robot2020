@@ -9,11 +9,14 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/Phoenix.h>
+#include "Constants.h"
 
 class ControlPanelManipulator : public frc2::SubsystemBase {
  public:
   ControlPanelManipulator();
-  void turnControlPanel(char currentColor, char targetColor);
+//  void turnControlPanel(char currentColor, char targetColor);
+  void rotationControl(char currentColor);
+  void positionControl(char currentColor, char targetColor);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
