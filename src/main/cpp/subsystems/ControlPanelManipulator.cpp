@@ -5,9 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 #include "subsystems/ControlPanelManipulator.h"
+#include "rev/ColorSensorV3.h"
+
 
 ControlPanelManipulator::ControlPanelManipulator():
     controlMotor{controlPanelMotorIndex}
+	colorSensor{frc::I2C::Port::kOnboard}
 {
     turnCounter = 0;
 	previousColor = 0;
@@ -44,7 +47,10 @@ void ControlPanelManipulator::rotationControl(char currentColor) { //rotate 3 ti
 	if(currentColor != previousColor){ //if new color reached
 		turnCounter += 1; //+1 1/8th of a rotation
 	}
-	if(turnCounter >= 24){ //turnCounter starts at 0; if rotated >= 3 times
+	if (turnCounter < 24) {
+		controlMotor.Set(0.75);
+	}
+	else { //turnCounter starts at 0; if rotated >= 3 times
 		controlMotor.Set(0); //stop motor
 		turnCounter = 0; //reset turnCounter
 		//run is finished

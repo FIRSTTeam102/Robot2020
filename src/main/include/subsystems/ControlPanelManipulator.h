@@ -24,6 +24,7 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
 
  private:
   WPI_TalonSRX controlMotor;
+  rev::ColorSensorV3 colorSensor;
   char previousColor;
   int turnCounter;
   // Components (e.g. motor controllers and sensors) should generally be
