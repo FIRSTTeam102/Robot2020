@@ -36,6 +36,13 @@ void DriveTrain::driveWithXboxController(){
 
 }
 
+void DriveTrain::arcadeDrive(){
+    double speed = p_driverJoystick->GetRawAxis(1); //Cap: 690rpm
+    double rotation = p_driverJoystick->GetRawAxis(4); //Cap: 697rpm
+
+    Drive.ArcadeDrive(speed,rotation);
+}
+
 void DriveTrain::toggleDrive(){
     printf("On: %d\n", on);
     if (on == true) {
