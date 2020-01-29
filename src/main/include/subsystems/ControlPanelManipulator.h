@@ -10,23 +10,36 @@
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/Phoenix.h>
 #include "Constants.h"
+#include <rev/ColorSensorV3.h>
+#include <rev/ColorMatch.h>
 
 class ControlPanelManipulator : public frc2::SubsystemBase {
  public:
   ControlPanelManipulator();
 //  void turnControlPanel(char currentColor, char targetColor);
-  void rotationControl(char currentColor);
-  void positionControl(char currentColor, char targetColor);
+  void rotationControl();
+  void positionControl(char targetColor);
+  void printColor();
+  bool getFinished();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic();
 
  private:
+  char getReadColor(); //Returns R for red, G for green, B for blue, Y for yellow, or X for other
   WPI_TalonSRX controlMotor;
-  rev::ColorSensorV3 colorSensor;
   char previousColor;
+  char currentColor;
   int turnCounter;
+  rev::ColorSensorV3 colorSensor;
+  rev::ColorMatch matching;
+  frc::Color blue;
+  frc::Color red;
+  frc::Color yellow;
+  frc::Color green;
+  double confidence;
+  bool finished;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

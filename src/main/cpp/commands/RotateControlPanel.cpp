@@ -5,32 +5,30 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DriveWithXbox.h"
-#include "subsystems/DriveTrain.h"
-#include "RobotContainer.h"
-#include "Robot.h"
+#include "commands/RotateControlPanel.h"
+#include "subsystems/ControlPanelManipulator.h"
 
-DriveWithXbox::DriveWithXbox(DriveTrain* subsystemDrive): tankDrive(subsystemDrive)
- {
+RotateControlPanel::RotateControlPanel(ControlPanelManipulator *m_ControlPanel) {
+  AddRequirements({m_ControlPanel});
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements({subsystemDrive});
-
+  p_ControlPanel = m_ControlPanel;
 }
 
 // Called when the command is initially scheduled.
-void DriveWithXbox::Initialize() {}
-
+void RotateControlPanel::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void DriveWithXbox::Execute() {
-
-tankDrive->driveWithXboxController();
-  //printf("running drive!");
-
+void RotateControlPanel::Execute() {
+  p_ControlPanel->rotationControl();
+  printf("Running Rot\n");
 }
 
 // Called once the command ends or is interrupted.
-void DriveWithXbox::End(bool interrupted) {}
+void RotateControlPanel::End(bool interrupted) {
+  printf("Rotation complete!\n");
+}
 
 // Returns true when the command should end.
-bool DriveWithXbox::IsFinished() { return false; }
+bool RotateControlPanel::IsFinished() {
+  return p_ControlPanel->getFinished();
+}

@@ -4,10 +4,8 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 #pragma once
 
-const int controlPanelMotorIndex = 4;
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -17,3 +15,5 @@ const int controlPanelMotorIndex = 4;
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+
+const int controlPanelMotorIndex = 4;

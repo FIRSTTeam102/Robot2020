@@ -11,7 +11,12 @@
 
 #include "commands/DriveWithXbox.h"
 #include "subsystems/DriveTrain.h"
+#include "subsystems/ControlPanelManipulator.h"
+#include "commands/RotateControlPanel.h"
+#include "commands/PositionControlPanel.h"
 #include "frc/Joystick.h"
+#include <frc2/command/button/JoystickButton.h>
+#include <frc2/command/button/Button.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -32,10 +37,17 @@ class RobotContainer {
   
 
  private:
+ 
   // The robot's subsystems and commands are defined here...
   DriveTrain tankDrive;
   DriveWithXbox driveCommand;
   frc::Joystick driverJoystick;
+  frc2::Button driverButtonA{[&] { return driverJoystick.GetRawButton(1);}}; 
+  frc2::Button driverButtonB{[&] { return driverJoystick.GetRawButton(2);}};  
+  
+  ControlPanelManipulator m_ControlPanel;
+  RotateControlPanel m_RotateCommand{&m_ControlPanel};
+  PositionControlPanel m_PositionCommand{&m_ControlPanel};
 
   void ConfigureButtonBindings();
 };

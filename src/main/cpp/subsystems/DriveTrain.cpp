@@ -32,7 +32,7 @@ void DriveTrain::driveWithXboxController(){
     double rightSpeed = p_driverJoystick->GetRawAxis(5); //Cap: 697rpm
     
     Drive.TankDrive(-leftSpeed,-rightSpeed,true);
-    printf("%f, %f\n", leftSpeed, rightSpeed);
+    //printf("%f, %f\n", leftSpeed, rightSpeed);
 
 }
 

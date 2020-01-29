@@ -9,6 +9,8 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
+#include <rev/ColorMatch.h>
+
 
 void Robot::RobotInit() {}
 
