@@ -21,6 +21,7 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
   void positionControl(char targetColor);
   void printColor();
   bool getFinished();
+  void resetFinished();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -30,6 +31,7 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
   char getReadColor(); //Returns R for red, G for green, B for blue, Y for yellow, or X for other
   WPI_TalonSRX controlMotor;
   char previousColor;
+  char prevColors[5] = { 0 };
   char currentColor;
   int turnCounter;
   rev::ColorSensorV3 colorSensor;

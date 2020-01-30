@@ -14,12 +14,38 @@ PositionControlPanel::PositionControlPanel(ControlPanelManipulator *m_ControlPan
 }
 
 // Called when the command is initially scheduled.
-void PositionControlPanel::Initialize() {}
+void PositionControlPanel::Initialize() {
+  p_ControlPanel->resetFinished();
+}
 
 // Called repeatedly when this Command is scheduled to run
 void PositionControlPanel::Execute() {
-  p_ControlPanel->positionControl();
-  printf("Running Pos\n");}
+  if(gameData.length() > 0)
+  {
+    switch (gameData[0])
+    {
+    case 'B' :
+      p_ControlPanel->positionControl('R');
+      break;
+    case 'G' :
+      p_ControlPanel->positionControl('Y');
+      break;
+    case 'R' :
+      p_ControlPanel->positionControl('B');
+      break;
+    case 'Y' :
+      p_ControlPanel->positionControl('G');
+      break;
+    default :
+      printf("BAD GAME DATA\n");
+      break;
+    }
+  }
+  else {
+    p_ControlPanel->positionControl('Y');
+  }
+  printf("Running Pos\n");
+}
 
 // Called once the command ends or is interrupted.
 void PositionControlPanel::End(bool interrupted) {

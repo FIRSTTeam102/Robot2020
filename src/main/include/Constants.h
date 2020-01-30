@@ -16,4 +16,4 @@
  * they are needed.
  */
 
-const int controlPanelMotorIndex = 4;
+const int controlPanelMotorIndex = 0;

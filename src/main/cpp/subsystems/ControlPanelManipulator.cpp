@@ -8,7 +8,8 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 ControlPanelManipulator::ControlPanelManipulator():
-    controlMotor{controlPanelMotorIndex},
+    //controlMotor{controlPanelMotorIndex},
+	controlMotor{0},
 	colorSensor{frc::I2C::Port::kOnboard}
 {
     turnCounter = 0;
@@ -33,6 +34,10 @@ ControlPanelManipulator::ControlPanelManipulator():
 	finished = false;
 }
 
+void ControlPanelManipulator::resetFinished() {
+	finished = false;
+}
+
 /* turns to a color specified by "targetColor" */
 void ControlPanelManipulator::positionControl(char targetColor) { //land on color after 3 rotations
 	/*
@@ -51,13 +56,18 @@ void ControlPanelManipulator::positionControl(char targetColor) { //land on colo
 
 	//new code
 	currentColor = getReadColor();
-	if (targetColor != currentColor) { //if not on target color
+	if (targetColor != currentColor || currentColor != prevColors[4]) { //if not on target color
 		controlMotor.Set(0.75); //spin motor?
-	} else {
+	}
+	else {
 		controlMotor.Set(0); //stop motor?
 		finished = true;//run "is finished"
 	}
-	
+	printf("%c vs %c (prev %c)\n", currentColor, targetColor, prevColors[4]);
+	for (int i = 3; i >= 0; i--) {
+		prevColors[i+1] = prevColors[i];
+	}
+	prevColors[0] = currentColor;
 }
 
 /* rotates the control panel >= 3 times */
@@ -66,7 +76,7 @@ void ControlPanelManipulator::rotationControl() { //rotate 3 times
 	if(currentColor != previousColor){ //if new color reached
 		turnCounter += 1; //+1 1/8th of a rotation
 	}
-	if (turnCounter < 24) {
+	if (turnCounter < 30) { //10 colors per rotation counting yellow in between red/green
 		controlMotor.Set(0.75);
 	}
 	else { //turnCounter starts at 0; if rotated >= 3 times

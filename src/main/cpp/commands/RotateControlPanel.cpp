@@ -15,7 +15,9 @@ RotateControlPanel::RotateControlPanel(ControlPanelManipulator *m_ControlPanel) 
 }
 
 // Called when the command is initially scheduled.
-void RotateControlPanel::Initialize() {}
+void RotateControlPanel::Initialize() {
+  p_ControlPanel->resetFinished();
+}
 
 // Called repeatedly when this Command is scheduled to run
 void RotateControlPanel::Execute() {
