@@ -20,6 +20,8 @@ class DriveTrain : public frc2::SubsystemBase {
   DriveTrain();
 
   void driveWithXboxController();
+  void arcadeDrive();
+  void toggleDrive();
   void setDriverJoystick(frc::Joystick* driverJoystick){
     p_driverJoystick = driverJoystick;
   };
@@ -33,17 +35,19 @@ class DriveTrain : public frc2::SubsystemBase {
 
  private:
 
-frc::Joystick* p_driverJoystick;
+  frc::Joystick* p_driverJoystick;
 
- WPI_TalonSRX driveLeft1;
- WPI_TalonSRX driveLeft2;
- WPI_TalonSRX driveRight1;
- WPI_TalonSRX driveRight2;
+  WPI_TalonSRX driveLeft1;
+  WPI_TalonSRX driveLeft2;
+  WPI_TalonSRX driveRight1;
+  WPI_TalonSRX driveRight2;
 
- frc::SpeedControllerGroup left{driveLeft1, driveLeft2};
- frc::SpeedControllerGroup right{driveRight1, driveRight2};
+  frc::SpeedControllerGroup left{driveLeft1, driveLeft2};
+  frc::SpeedControllerGroup right{driveRight1, driveRight2};
 
- frc::DifferentialDrive Drive{left, right};
+  frc::DifferentialDrive Drive{left, right};
+ 
+  bool on = false;
 
 
   // Components (e.g. motor controllers and sensors) should generally be

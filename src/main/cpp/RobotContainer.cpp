@@ -7,6 +7,7 @@
 
 #include "RobotContainer.h"
 #include "frc/Joystick.h"
+#include <frc2/command/button/JoystickButton.h>
 
 RobotContainer::RobotContainer(): 
   tankDrive{}, 
@@ -24,7 +25,8 @@ RobotContainer::RobotContainer():
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  
+  frc2::JoystickButton(&driverJoystick, 2)
+    .WhenPressed(TestCommand(), false);
 }
 
 
