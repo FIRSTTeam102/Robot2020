@@ -29,7 +29,7 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
 
  private:
   char getReadColor(); //Returns R for red, G for green, B for blue, Y for yellow, or X for other
-  bool isValidColor();
+  bool hasMovedColors();
   WPI_TalonSRX controlMotor;
   char previousColor;
   char prevColors[5] = { 0 };

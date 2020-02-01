@@ -44,16 +44,18 @@ void ControlPanelManipulator::positionControl(char targetColor) { //land on colo
 	if (targetColor != currentColor || !hasMovedColors()) { //if not on target color
 		controlMotor.Set(0.75); //spin motor?
 		//Stage previous colors (used to be in the middle)
-		for (int i = 3; i >= 0; i--) {
+		/*for (int i = 3; i >= 0; i--) {
 			prevColors[i+1] = prevColors[i];
 		}
-		prevColors[0] = currentColor;
+		prevColors[0] = currentColor;*/
+		previousColor = currentColor;
 	}
 	else {
 		controlMotor.Set(0); //stop motor?
 		finished = true; //run "is finished"
 	}
-	printf("%c vs %c (prev %c)\n", currentColor, targetColor, prevColors[4]);
+	//printf("%c vs %c (prev %c)\n", currentColor, targetColor, prevColors[4]);
+	printf("%c vs %c (prev %c)\n", currentColor, targetColor, previousColor);
 }
 
 /* rotates the control panel >= 3 times */
@@ -61,8 +63,9 @@ void ControlPanelManipulator::rotationControl() { //rotate 3 times
 	currentColor = getReadColor();
 	if(hasMovedColors()){ //if new color reached
 		turnCounter += 1; //+1 1/8th of a rotation
+		previousColor = currentColor;
 	}
-	if (turnCounter < 30) { //10 colors per rotation counting yellow in between red/green
+	if (turnCounter < 24) { //8 colors per rotation (x3)
 		controlMotor.Set(0.75);
 	}
 	else { //turnCounter starts at 0; if rotated >= 3 times
@@ -70,12 +73,13 @@ void ControlPanelManipulator::rotationControl() { //rotate 3 times
 		turnCounter = 0; //reset turnCounter
 		finished = true;//run is finished
 	}
-	previousColor = currentColor; //see comment on other func
+	printf("Has moved: %d\nCurrent color: %c", hasMovedColors(), currentColor);
+	printColor();
 }
 
 bool ControlPanelManipulator::hasMovedColors() {
 	switch(previousColor){
-		case 'Y':		
+		case 'Y':
 			if(currentColor == 'B'){
 				return true;
 			}
