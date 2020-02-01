@@ -40,40 +40,26 @@ void ControlPanelManipulator::resetFinished() {
 
 /* turns to a color specified by "targetColor" */
 void ControlPanelManipulator::positionControl(char targetColor) { //land on color after 3 rotations
-	/*
-	//old code
-	if(currentColor != previousColor){ //if new color reached
-		turnCounter += 1; //+1 1/8th of a rotation
-	}
-	
-	if(turnCounter >= 24 && currentColor == targetColor){ //if control panel spun 3 times and reached target color
-		controlMotor.Set(0.75); //shouldn't the motor stop now?
-		turnCounter = 0; //reset turnCounter
-	}
-	previousColor = currentColor; //prep for nex color (if they are different, sensor is now on the current color so the previous color becomes the current one for the next check)
-
-	*/
-
-	//new code
 	currentColor = getReadColor();
-	if (targetColor != currentColor || currentColor != prevColors[4]) { //if not on target color
+	if (targetColor != currentColor || !hasMovedColors()) { //if not on target color
 		controlMotor.Set(0.75); //spin motor?
+		//Stage previous colors (used to be in the middle)
+		for (int i = 3; i >= 0; i--) {
+			prevColors[i+1] = prevColors[i];
+		}
+		prevColors[0] = currentColor;
 	}
 	else {
 		controlMotor.Set(0); //stop motor?
-		finished = true;//run "is finished"
+		finished = true; //run "is finished"
 	}
 	printf("%c vs %c (prev %c)\n", currentColor, targetColor, prevColors[4]);
-	for (int i = 3; i >= 0; i--) {
-		prevColors[i+1] = prevColors[i];
-	}
-	prevColors[0] = currentColor;
 }
 
 /* rotates the control panel >= 3 times */
 void ControlPanelManipulator::rotationControl() { //rotate 3 times
 	currentColor = getReadColor();
-	if(currentColor != previousColor){ //if new color reached
+	if(hasMovedColors()){ //if new color reached
 		turnCounter += 1; //+1 1/8th of a rotation
 	}
 	if (turnCounter < 30) { //10 colors per rotation counting yellow in between red/green
@@ -85,6 +71,29 @@ void ControlPanelManipulator::rotationControl() { //rotate 3 times
 		finished = true;//run is finished
 	}
 	previousColor = currentColor; //see comment on other func
+}
+
+bool ControlPanelManipulator::hasMovedColors() {
+	switch(previousColor){
+		case 'Y':		
+			if(currentColor == 'B'){
+				return true;
+			}
+		case 'B':
+			if(currentColor == 'G'){
+				return true;
+			}
+		case 'G':
+			if(currentColor == 'R'){
+				return true;
+			}
+		case 'R':
+			if(currentColor == 'Y'){
+				return true;
+			}
+	}
+
+	return false;
 }
 
 void ControlPanelManipulator::printColor() {
