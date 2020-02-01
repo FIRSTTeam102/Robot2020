@@ -41,6 +41,7 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
   frc::Color red;
   frc::Color yellow;
   frc::Color green;
+  frc::Color rawColor;
   double confidence;
   bool finished;
   // Components (e.g. motor controllers and sensors) should generally be
