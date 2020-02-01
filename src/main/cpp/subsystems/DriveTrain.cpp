@@ -11,10 +11,10 @@
 
 
 DriveTrain::DriveTrain():
-    driveLeft1{0}, 
-    driveLeft2{1}, 
-    driveRight1{2}, 
-    driveRight2{3}
+    driveLeft1{k_topLeftMotor}, 
+    driveLeft2{k_bottomLeftMotor}, 
+    driveRight1{k_topRightMotor}, 
+    driveRight2{k_bottomRightMotor}
  {
 
 }

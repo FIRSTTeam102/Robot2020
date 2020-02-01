@@ -16,3 +16,19 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+
+//motor controllers
+int constexpr k_topLeftMotor = 0;
+int constexpr k_topRightMotor = 1;
+int constexpr k_bottomLeftMotor = 2;
+int constexpr k_bottomRightMotor = 3;
+
+//OI Indexes (joysticks/buttons)
+int constexpr k_driverJoystick = 0;
+int constexpr k_operatorJoystick = 1;
+
+
+
+
+
+

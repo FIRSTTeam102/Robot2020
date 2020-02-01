@@ -13,7 +13,7 @@
 DriveWithXbox::DriveWithXbox(DriveTrain* subsystemDrive): tankDrive(subsystemDrive)
  {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements({subsystemDrive});
+  AddRequirements(subsystemDrive);
 
 }
 
