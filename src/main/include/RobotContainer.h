@@ -46,8 +46,8 @@ class RobotContainer {
   frc2::Button driverButtonB{[&] { return driverJoystick.GetRawButton(2);}};  
   
   ControlPanelManipulator m_ControlPanel;
-  RotateControlPanel m_RotateCommand{&m_ControlPanel};
-  PositionControlPanel m_PositionCommand{&m_ControlPanel};
+  RotateControlPanel m_RotateCommand{&m_ControlPanel, &tankDrive};
+  PositionControlPanel m_PositionCommand{&m_ControlPanel, &tankDrive};
 
   void ConfigureButtonBindings();
 };

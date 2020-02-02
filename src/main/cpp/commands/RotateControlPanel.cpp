@@ -8,10 +8,12 @@
 #include "commands/RotateControlPanel.h"
 #include "subsystems/ControlPanelManipulator.h"
 
-RotateControlPanel::RotateControlPanel(ControlPanelManipulator *m_ControlPanel) {
+RotateControlPanel::RotateControlPanel(ControlPanelManipulator *m_ControlPanel, DriveTrain *m_SubsystemDrive) {
   AddRequirements({m_ControlPanel});
+  AddRequirements({m_SubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
   p_ControlPanel = m_ControlPanel;
+  p_SubsystemDrive = m_SubsystemDrive;
 }
 
 // Called when the command is initially scheduled.
@@ -22,6 +24,7 @@ void RotateControlPanel::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void RotateControlPanel::Execute() {
   p_ControlPanel->rotationControl();
+  p_SubsystemDrive->slowlyDriveForwards();
   printf("Running Rot\n");
 }
 

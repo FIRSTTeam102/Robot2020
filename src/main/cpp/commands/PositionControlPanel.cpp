@@ -7,10 +7,12 @@
 
 #include "commands/PositionControlPanel.h"
 
-PositionControlPanel::PositionControlPanel(ControlPanelManipulator *m_ControlPanel) {
+PositionControlPanel::PositionControlPanel(ControlPanelManipulator *m_ControlPanel, DriveTrain *m_SubsystemDrive) {
   AddRequirements({m_ControlPanel});
+  AddRequirements({m_SubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
   p_ControlPanel = m_ControlPanel;
+  p_SubsystemDrive = m_SubsystemDrive;
 }
 
 // Called when the command is initially scheduled.
@@ -44,6 +46,7 @@ void PositionControlPanel::Execute() {
   else {
     p_ControlPanel->positionControl('Y');
   }
+  p_SubsystemDrive->slowlyDriveForwards();
   printf("Running Pos\n");
 }
 

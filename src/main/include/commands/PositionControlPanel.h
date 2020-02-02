@@ -10,6 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <subsystems/ControlPanelManipulator.h>
+#include <subsystems/DriveTrain.h>
 #include <frc/DriverStation.h>
 
 /**
@@ -22,7 +23,7 @@
 class PositionControlPanel
     : public frc2::CommandHelper<frc2::CommandBase, PositionControlPanel> {
  public:
-  PositionControlPanel(ControlPanelManipulator* m_ControlPanel);
+  PositionControlPanel(ControlPanelManipulator* m_ControlPanel, DriveTrain* m_SubsystemDrive);
 
   void Initialize() override;
 
@@ -33,5 +34,6 @@ class PositionControlPanel
   bool IsFinished() override;
   private:
   ControlPanelManipulator* p_ControlPanel;
+  DriveTrain* p_SubsystemDrive;
   std::string gameData;
 };
