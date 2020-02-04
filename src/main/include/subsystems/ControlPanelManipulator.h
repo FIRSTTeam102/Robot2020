@@ -22,6 +22,8 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
   void printColor();
   bool getFinished();
   void resetFinished();
+  void stopMotor();
+  void runMotor();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */

@@ -19,6 +19,7 @@ class DriveTrain : public frc2::SubsystemBase {
  public:
   DriveTrain();
   void slowlyDriveForwards();
+  void stop();
   void driveWithXboxController();
   void toggleDrive();
   void setDriverJoystick(frc::Joystick* driverJoystick){

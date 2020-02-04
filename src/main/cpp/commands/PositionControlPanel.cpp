@@ -53,6 +53,7 @@ void PositionControlPanel::Execute() {
 // Called once the command ends or is interrupted.
 void PositionControlPanel::End(bool interrupted) {
   printf("Position complete!\n");
+  p_SubsystemDrive->stop();
 }
 
 // Returns true when the command should end.

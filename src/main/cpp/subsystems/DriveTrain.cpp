@@ -40,6 +40,10 @@ void DriveTrain::slowlyDriveForwards(){
     Drive.TankDrive(0.2, 0.2, false);
 }
 
+void DriveTrain::stop(){
+    Drive.TankDrive(0, 0, false);
+}
+
 void DriveTrain::toggleDrive(){
     printf("On: %d\n", on);
     if (on == true) {

@@ -40,6 +40,14 @@ void ControlPanelManipulator::resetFinished() {
 	previousColor = getReadColor();
 }
 
+void ControlPanelManipulator::stopMotor() {
+	controlMotor.Set(0);
+}
+
+void ControlPanelManipulator::runMotor() {
+	controlMotor.Set(1);
+}
+
 /* turns to a color specified by "targetColor" */
 void ControlPanelManipulator::positionControl(char targetColor) { //land on color after 3 rotations
 	currentColor = getReadColor();

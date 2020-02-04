@@ -14,6 +14,8 @@
 #include "subsystems/ControlPanelManipulator.h"
 #include "commands/RotateControlPanel.h"
 #include "commands/PositionControlPanel.h"
+#include "commands/StopControlPanel.h"
+#include "commands/ManualControlPanel.h"
 #include "frc/Joystick.h"
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
@@ -42,12 +44,16 @@ class RobotContainer {
   DriveTrain tankDrive;
   DriveWithXbox driveCommand;
   frc::Joystick driverJoystick;
-  frc2::Button driverButtonA{[&] { return driverJoystick.GetRawButton(1);}}; 
-  frc2::Button driverButtonB{[&] { return driverJoystick.GetRawButton(2);}};  
+  frc2::Button driverButtonA{[&] { return driverJoystick.GetRawButton(1);}};
+  frc2::Button driverButtonB{[&] { return driverJoystick.GetRawButton(2);}};
+  frc2::Button driverButtonX{[&] { return driverJoystick.GetRawButton(3);}};
+  frc2::Button driverButtonY{[&] { return driverJoystick.GetRawButton(4);}};
   
   ControlPanelManipulator m_ControlPanel;
   RotateControlPanel m_RotateCommand{&m_ControlPanel, &tankDrive};
   PositionControlPanel m_PositionCommand{&m_ControlPanel, &tankDrive};
+  StopControlPanel m_StopPanelCommand{&m_ControlPanel, &tankDrive};
+  ManualControlPanel m_ManualPanelCommand{&m_ControlPanel};
 
   void ConfigureButtonBindings();
 };
