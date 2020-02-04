@@ -28,4 +28,4 @@ void StopControlPanel::Execute() {
 void StopControlPanel::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool StopControlPanel::IsFinished() { return true; }
+bool StopControlPanel::IsFinished() { return false; }
