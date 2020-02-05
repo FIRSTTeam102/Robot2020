@@ -4,7 +4,6 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 #pragma once
 
 /**
@@ -22,13 +21,10 @@ int constexpr k_topLeftMotor = 0;
 int constexpr k_topRightMotor = 1;
 int constexpr k_bottomLeftMotor = 2;
 int constexpr k_bottomRightMotor = 3;
+int constexpr k_controlPanelMotor = 4;
+
 
 //OI Indexes (joysticks/buttons)
 int constexpr k_driverJoystick = 0;
 int constexpr k_operatorJoystick = 1;
-
-
-
-
-
 

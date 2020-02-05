@@ -32,7 +32,7 @@ void DriveTrain::driveWithXboxController(){
     double rightSpeed = p_driverJoystick->GetRawAxis(5); //Cap: 697rpm
     
     Drive.TankDrive(-leftSpeed,-rightSpeed,true);
-    printf("%f, %f\n", leftSpeed, rightSpeed);
+    printf("Driving: %f, %f\n", leftSpeed, rightSpeed);
 
 }
 
@@ -41,6 +41,14 @@ void DriveTrain::arcadeDrive(){
     double rotation = p_driverJoystick->GetRawAxis(4); //Cap: 697rpm
 
     Drive.ArcadeDrive(speed,rotation);
+}
+
+void DriveTrain::slowlyDriveForwards(){
+    Drive.TankDrive(0.2, 0.2, false);
+}
+
+void DriveTrain::stop(){
+    Drive.TankDrive(0, 0, false);
 }
 
 void DriveTrain::toggleDrive(){
