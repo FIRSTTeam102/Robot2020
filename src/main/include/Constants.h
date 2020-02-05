@@ -16,4 +16,4 @@
  * they are needed.
  */
 
-const int controlPanelMotorIndex = 0;
+int constexpr k_controlPanelMotorIndex = 0;

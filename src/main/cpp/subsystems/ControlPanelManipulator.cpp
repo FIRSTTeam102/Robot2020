@@ -9,8 +9,8 @@
 
 ControlPanelManipulator::ControlPanelManipulator():
     //controlMotor{controlPanelMotorIndex},
-	controlMotor{0},
-	colorSensor{frc::I2C::Port::kOnboard}
+	mControlMotor{k_controlPanelMotorIndex},
+	mColorSensor{frc::I2C::Port::kOnboard}
 {
     turnCounter = 0;
 	previousColor = 0;
@@ -32,7 +32,7 @@ ControlPanelManipulator::ControlPanelManipulator():
 	matching.AddColorMatch(yellow);
 	matching.AddColorMatch(green);
 	finished = false;
-	colorSensor.ConfigureColorSensor(rev::ColorSensorV3::ColorResolution::k13bit, rev::ColorSensorV3::ColorMeasurementRate::k25ms);
+	mColorSensor.ConfigureColorSensor(rev::ColorSensorV3::ColorResolution::k13bit, rev::ColorSensorV3::ColorMeasurementRate::k25ms);
 }
 
 void ControlPanelManipulator::resetFinished() {
@@ -41,18 +41,18 @@ void ControlPanelManipulator::resetFinished() {
 }
 
 void ControlPanelManipulator::stopMotor() {
-	controlMotor.Set(0);
+	mControlMotor.Set(0);
 }
 
 void ControlPanelManipulator::runMotor() {
-	controlMotor.Set(1);
+	mControlMotor.Set(1);
 }
 
 /* turns to a color specified by "targetColor" */
 void ControlPanelManipulator::positionControl(char targetColor) { //land on color after 3 rotations
 	currentColor = getReadColor();
 	if (targetColor != currentColor || !hasMovedColors()) { //if not on target color
-		controlMotor.Set(1); //spin motor?
+		mControlMotor.Set(1); //spin motor?
 		//Stage previous colors (used to be in the middle)
 		/*for (int i = 3; i >= 0; i--) {
 			prevColors[i+1] = prevColors[i];
@@ -61,7 +61,7 @@ void ControlPanelManipulator::positionControl(char targetColor) { //land on colo
 		previousColor = currentColor;
 	}
 	else {
-		controlMotor.Set(0); //stop motor?
+		mControlMotor.Set(0); //stop motor?
 		finished = true; //run "is finished"
 	}
 	//printf("%c vs %c (prev %c)\n", currentColor, targetColor, prevColors[4]);
@@ -77,10 +77,10 @@ void ControlPanelManipulator::rotationControl() { //rotate 3 times
 		previousColor = currentColor;
 	}
 	if (turnCounter < 24) { //8 colors per rotation (x3)
-		controlMotor.Set(1);
+		mControlMotor.Set(1);
 	}
 	else { //turnCounter starts at 0; if rotated >= 3 times
-		controlMotor.Set(0); //stop motor
+		mControlMotor.Set(0); //stop motor
 		turnCounter = 0; //reset turnCounter
 		finished = true;//run is finished
 	}
@@ -118,16 +118,16 @@ bool ControlPanelManipulator::hasMovedColors() {
 }
 
 void ControlPanelManipulator::printColor() {
-	frc::SmartDashboard::PutNumber("Red", matching.MatchClosestColor(colorSensor.GetColor(), confidence).red);
-	frc::SmartDashboard::PutNumber("Green", matching.MatchClosestColor(colorSensor.GetColor(), confidence).green);
-	frc::SmartDashboard::PutNumber("Blue", matching.MatchClosestColor(colorSensor.GetColor(), confidence).blue);
+	frc::SmartDashboard::PutNumber("Red", matching.MatchClosestColor(mColorSensor.GetColor(), confidence).red);
+	frc::SmartDashboard::PutNumber("Green", matching.MatchClosestColor(mColorSensor.GetColor(), confidence).green);
+	frc::SmartDashboard::PutNumber("Blue", matching.MatchClosestColor(mColorSensor.GetColor(), confidence).blue);
 	frc::SmartDashboard::PutNumber("Confidence", confidence);
 	frc::SmartDashboard::PutNumber("Color", getReadColor());
 	printf("Printing color\n");
 }
 
 char ControlPanelManipulator::getReadColor() {
-	rawColor = matching.MatchClosestColor(colorSensor.GetColor(), confidence);
+	rawColor = matching.MatchClosestColor(mColorSensor.GetColor(), confidence);
 	if (rawColor == blue) {
 		return 'B';
 	}

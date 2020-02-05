@@ -7,17 +7,17 @@
 
 #include "commands/PositionControlPanel.h"
 
-PositionControlPanel::PositionControlPanel(ControlPanelManipulator *m_ControlPanel, DriveTrain *m_SubsystemDrive) {
-  AddRequirements({m_ControlPanel});
-  AddRequirements({m_SubsystemDrive});
+PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
+  AddRequirements({pControlPanel});
+  AddRequirements({pSubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
-  p_ControlPanel = m_ControlPanel;
-  p_SubsystemDrive = m_SubsystemDrive;
+  mpControlPanel = pControlPanel;
+  mpSubsystemDrive = pSubsystemDrive;
 }
 
 // Called when the command is initially scheduled.
 void PositionControlPanel::Initialize() {
-  p_ControlPanel->resetFinished();
+  mpControlPanel->resetFinished();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -27,16 +27,16 @@ void PositionControlPanel::Execute() {
     switch (gameData[0])
     {
     case 'B' :
-      p_ControlPanel->positionControl('R');
+      mpControlPanel->positionControl('R');
       break;
     case 'G' :
-      p_ControlPanel->positionControl('Y');
+      mpControlPanel->positionControl('Y');
       break;
     case 'R' :
-      p_ControlPanel->positionControl('B');
+      mpControlPanel->positionControl('B');
       break;
     case 'Y' :
-      p_ControlPanel->positionControl('G');
+      mpControlPanel->positionControl('G');
       break;
     default :
       printf("BAD GAME DATA\n");
@@ -44,19 +44,19 @@ void PositionControlPanel::Execute() {
     }
   }
   else {
-    p_ControlPanel->positionControl('Y');
+    mpControlPanel->positionControl('Y');
   }
-  p_SubsystemDrive->slowlyDriveForwards();
+  mpSubsystemDrive->slowlyDriveForwards();
   printf("Running Pos\n");
 }
 
 // Called once the command ends or is interrupted.
 void PositionControlPanel::End(bool interrupted) {
   printf("Position complete!\n");
-  p_SubsystemDrive->stop();
+  mpSubsystemDrive->stop();
 }
 
 // Returns true when the command should end.
 bool PositionControlPanel::IsFinished() {
-  return p_ControlPanel->getFinished();
+  return mpControlPanel->getFinished();
 }

@@ -7,12 +7,12 @@
 
 #include "commands/StopControlPanel.h"
 
-StopControlPanel::StopControlPanel(ControlPanelManipulator *m_ControlPanel, DriveTrain *m_SubsystemDrive) {
-  AddRequirements({m_ControlPanel});
-  AddRequirements({m_SubsystemDrive});
+StopControlPanel::StopControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
+  AddRequirements({pControlPanel});
+  AddRequirements({pSubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
-  p_ControlPanel = m_ControlPanel;
-  p_SubsystemDrive = m_SubsystemDrive;
+  mpControlPanel = pControlPanel;
+  mpSubsystemDrive = pSubsystemDrive;
 }
 
 // Called when the command is initially scheduled.
@@ -20,8 +20,8 @@ void StopControlPanel::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void StopControlPanel::Execute() {
-  p_ControlPanel->stopMotor();
-  p_SubsystemDrive->stop();
+  mpControlPanel->stopMotor();
+  mpSubsystemDrive->stop();
 }
 
 // Called once the command ends or is interrupted.

@@ -7,10 +7,10 @@
 
 #include "commands/ManualControlPanel.h"
 
-ManualControlPanel::ManualControlPanel(ControlPanelManipulator *m_ControlPanel) {
-  AddRequirements({m_ControlPanel});
+ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel) {
+  AddRequirements({pControlPanel});
   // Use addRequirements() here to declare subsystem dependencies.
-  p_ControlPanel = m_ControlPanel;
+  mpControlPanel = pControlPanel;
 }
 
 // Called when the command is initially scheduled.
@@ -18,12 +18,12 @@ void ManualControlPanel::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void ManualControlPanel::Execute() {
-  p_ControlPanel->runMotor();
+  mpControlPanel->runMotor();
 }
 
 // Called once the command ends or is interrupted.
 void ManualControlPanel::End(bool interrupted) {
-  p_ControlPanel->stopMotor();
+  mpControlPanel->stopMotor();
 }
 
 // Returns true when the command should end.

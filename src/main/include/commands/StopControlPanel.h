@@ -22,7 +22,7 @@
 class StopControlPanel
     : public frc2::CommandHelper<frc2::CommandBase, StopControlPanel> {
  public:
-  StopControlPanel(ControlPanelManipulator* m_ControlPanel, DriveTrain* m_SubsystemDrive);
+  StopControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive);
 
   void Initialize() override;
 
@@ -32,6 +32,6 @@ class StopControlPanel
 
   bool IsFinished() override;
   private:
-  ControlPanelManipulator* p_ControlPanel;
-  DriveTrain* p_SubsystemDrive;
+  ControlPanelManipulator* mpControlPanel;
+  DriveTrain* mpSubsystemDrive;
 };

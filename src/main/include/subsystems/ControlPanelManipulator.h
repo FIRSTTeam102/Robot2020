@@ -32,12 +32,12 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
  private:
   char getReadColor(); //Returns R for red, G for green, B for blue, Y for yellow, or X for other
   bool hasMovedColors();
-  WPI_TalonSRX controlMotor;
+  WPI_TalonSRX mControlMotor;
   char previousColor;
   char prevColors[5] = { 0 };
   char currentColor;
   int turnCounter;
-  rev::ColorSensorV3 colorSensor;
+  rev::ColorSensorV3 mColorSensor;
   rev::ColorMatch matching;
   frc::Color blue;
   frc::Color red;
