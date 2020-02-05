@@ -10,8 +10,12 @@
 #include <frc2/command/Command.h>
 
 #include "commands/DriveWithXbox.h"
+#include "commands/ReadyShooter.h"
 #include "subsystems/DriveTrain.h"
+#include "subsystems/Shooter.h"
 #include "frc/Joystick.h"
+
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -38,4 +42,13 @@ class RobotContainer {
   frc::Joystick driverJoystick;
 
   void ConfigureButtonBindings();
+
+
+  //frc::Joystick LeftStick{1};
+  //frc::XBoxController IndexerController{2}
+  //frc2::JoystickButton RightTriggerButton(&exampleStick, 1);
+  frc2::Trigger mRightTrigger{[&] { return driverJoystick.GetRawAxis(3);}};
+
+  Shooter mShooter;
+  ReadyShooter mReadyShooterCommand{&mShooter};
 };
