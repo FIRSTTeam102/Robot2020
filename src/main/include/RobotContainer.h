@@ -16,6 +16,7 @@
 #include "commands/PositionControlPanel.h"
 #include "commands/StopControlPanel.h"
 #include "commands/ManualControlPanel.h"
+#include "commands/PrintAnalogInput.h"
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
@@ -54,6 +55,9 @@ class RobotContainer {
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
+
+  AnalogInput mAnalogInput;
+  PrintAnalogInput mPrintAnalogCommand{&mAnalogInput};
 
   void ConfigureButtonBindings();
 };
