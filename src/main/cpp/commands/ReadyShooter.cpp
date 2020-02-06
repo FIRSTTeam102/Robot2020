@@ -8,10 +8,10 @@
 #include "commands/ReadyShooter.h"
 #include "subsystems/Shooter.h"
 
-ReadyShooter::ReadyShooter(Shooter* pShooter) {
-  AddRequirements({pShooter});
+ReadyShooter::ReadyShooter(Shooter* subsystemShooter) {
+  AddRequirements({subsystemShooter});
   // Use addRequirements() here to declare subsystem dependencies.
-  mpShooter = pShooter;
+  mpShooter = subsystemShooter;
 }
 
 // Called when the command is initially scheduled.

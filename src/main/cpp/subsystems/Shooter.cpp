@@ -5,31 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-
-#include <frc2/command/SubsystemBase.h>
-#include <ctre/Phoenix.h>
-
-class IntakeMechanism : public frc2::SubsystemBase {
- public:
-  IntakeMechanism();
-  
+#include "subsystems/Shooter.h"
+#include "RobotContainer.h"
+#include "Constants.h"
 
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic();
+Shooter::Shooter():
+   m_Hood{k_hoodMotor},
+   m_Flywheel{k_flyWheelMotor}
+{
+}
 
+// This method will be called once per scheduler run
+void Shooter::Periodic() {
 
- void lowerIntakeArm();
- void  StartROllers();
- 
- private:
-  
-  WPI_TalonSRX m_IntakeArmMotor;
-  WPI_TalonSRX m_IntakeRollerMotor;
-
- 
-
-};
+}

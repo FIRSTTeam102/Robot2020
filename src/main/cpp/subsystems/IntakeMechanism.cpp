@@ -5,31 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-
-#include <frc2/command/SubsystemBase.h>
-#include <ctre/Phoenix.h>
-
-class IntakeMechanism : public frc2::SubsystemBase {
- public:
-  IntakeMechanism();
-  
+#include "subsystems/IntakeMechanism.h"
+#include <ctre/phoenix.h>
+#include "RobotContainer.h"
+#include "Constants.h"
 
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic();
+IntakeMechanism::IntakeMechanism():
+    m_IntakeArmMotor{k_IntakeMotor},
+    m_IntakeRollerMotor{k_IntakeRollerMotor},
+    mArmIsDown{false}
+ {
+}
 
-
- void lowerIntakeArm();
- void  StartROllers();
- 
- private:
-  
-  WPI_TalonSRX m_IntakeArmMotor;
-  WPI_TalonSRX m_IntakeRollerMotor;
-
- 
-
-};
+// This method will be called once per scheduler run
+void IntakeMechanism::Periodic() {}

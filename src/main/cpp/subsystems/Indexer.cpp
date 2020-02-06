@@ -5,31 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-
-#include <frc2/command/SubsystemBase.h>
-#include <ctre/Phoenix.h>
-
-class IntakeMechanism : public frc2::SubsystemBase {
- public:
-  IntakeMechanism();
-  
+#include "RobotContainer.h"
+#include "Constants.h"
+#include "subsystems/Indexer.h"
 
 
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic();
+Indexer::Indexer():
+    m_IndexerConveyer{kIndexChannel,frc::Relay::kBothDirections},
+    m_IntakeSensor{kDIOIntake},
+    m_BottomSensor{kDIOBottom},
+    m_TopSensor{kDIOTop}
+ {
+
+}
+
+// This method will be called once per scheduler run
+void Indexer::Periodic() {
 
 
- void lowerIntakeArm();
- void  StartROllers();
- 
- private:
-  
-  WPI_TalonSRX m_IntakeArmMotor;
-  WPI_TalonSRX m_IntakeRollerMotor;
 
- 
-
-};
+}

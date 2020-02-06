@@ -21,7 +21,7 @@
 class ReadyShooter
     : public frc2::CommandHelper<frc2::CommandBase, ReadyShooter> {
  public:
-  ReadyShooter();
+  ReadyShooter(Shooter* subsystemShooter);
 
   void Initialize() override;
 

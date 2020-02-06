@@ -8,15 +8,12 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/Talon.h>
-#include <crte/Pheonix.h>
+#include <ctre/Phoenix.h>
 
-class Shooter : private frc2::SubsystemBase {
- private:
+class Shooter : public frc2::SubsystemBase {
+ public:
   Shooter();
 
-  WPI_TalonSRX Hood;
-  WPI_TalonSRX Flywheel;
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -26,4 +23,6 @@ class Shooter : private frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+  WPI_TalonSRX m_Hood;
+  WPI_TalonSRX m_Flywheel;
 };

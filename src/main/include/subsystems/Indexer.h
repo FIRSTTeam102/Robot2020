@@ -13,14 +13,10 @@
 
 
 
-class Indexer : private frc2::SubsystemBase {
- private:
+class Indexer : public frc2::SubsystemBase {
+ public:
   Indexer();
 
-  frc::Relay IndexerConveyer;
-  frc::DigitalInput EntranceSensor;
-  frc::DigitalInput InteriorSensor;
-  frc::DigitalInput ExitSensor;
 
 
 
@@ -37,4 +33,8 @@ class Indexer : private frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+  frc::Relay m_IndexerConveyer;
+  frc::DigitalInput m_EntranceSensor;
+  frc::DigitalInput m_InteriorSensor;
+  frc::DigitalInput m_ExitSensor;
 };
