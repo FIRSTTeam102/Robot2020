@@ -7,9 +7,10 @@
 
 #include "commands/MoveServo.h"
 #include "subsystems/ServoCamera.h"
-MoveServo::MoveServo() {
-
+MoveServo::MoveServo(ServoCamera *m_ServoCamera) {
+  AddRequirements({m_ServoCamera});
   // Use addRequirements() here to declare subsystem dependencies.
+  p_ServoCamera = m_ServoCamera;
 }
 
 // Called when the command is initially scheduled.
@@ -17,7 +18,9 @@ void MoveServo::Initialize() {
 }
 
 // Called repeatedly when this Command is scheduled to run
-void MoveServo::Execute() {}
+void MoveServo::Execute() {
+  p_ServoCamera->controlServoWithJoystick();
+}
 
 // Called once the command ends or is interrupted.
 void MoveServo::End(bool interrupted) {}

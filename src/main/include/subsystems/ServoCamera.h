@@ -13,13 +13,19 @@ class ServoCamera : public frc2::SubsystemBase {
   ServoCamera();
 
   void setPosition(float x);
+  void controlServoWithJoystick();
+  void setServoJoystick(frc::Joystick* servoJoystick){
+    p_servoJoystick = servoJoystick;
+  };
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic();
 
  private:
-  frc::Servo exampleServo;
+  frc::Servo bottomServo;
+  frc::Servo topServo;
+  frc::Joystick* p_servoJoystick;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

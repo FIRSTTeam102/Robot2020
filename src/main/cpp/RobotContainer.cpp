@@ -25,9 +25,9 @@ RobotContainer::RobotContainer():
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  frc2::JoystickButton(&driverJoystick, 2)
-    .WhenPressed(TestCommand(), false);
-}
+  driverButtonX.WhenPressed(&m_ServoCommand, true);
+  
+}\
 
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

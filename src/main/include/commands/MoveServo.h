@@ -10,6 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc/Servo.h>
+#include "subsystems/ServoCamera.h"
 /**
  * An example command.
  *
@@ -20,7 +21,7 @@
 class MoveServo
     : public frc2::CommandHelper<frc2::CommandBase, MoveServo> {
  public:
-  MoveServo();
+  MoveServo(ServoCamera *m_ServoCamera);
 
   void Initialize() override;
 
@@ -29,4 +30,7 @@ class MoveServo
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+  private:
+  ServoCamera* p_ServoCamera;
+  frc::Joystick* p_servoJoystick;
 };

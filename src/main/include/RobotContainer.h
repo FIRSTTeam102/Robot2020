@@ -10,8 +10,11 @@
 #include <frc2/command/Command.h>
 
 #include "commands/DriveWithXbox.h"
+#include "commands/MoveServo.h"
 #include "subsystems/DriveTrain.h"
+#include "subsystems/ServoCamera.h"
 #include "frc/Joystick.h"
+#include <frc2/command/button/Button.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -36,6 +39,10 @@ class RobotContainer {
   DriveTrain tankDrive;
   DriveWithXbox driveCommand;
   frc::Joystick driverJoystick;
+  frc2::Button driverButtonX{[&] { return driverJoystick.GetRawButton(3); }};
+  
+  ServoCamera m_ServoCamera;
+  MoveServo m_ServoCommand{&m_ServoCamera};
 
   void ConfigureButtonBindings();
 };

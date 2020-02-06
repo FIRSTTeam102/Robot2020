@@ -8,15 +8,36 @@
 #include "subsystems/ServoCamera.h"
 #include <frc/Servo.h>
 ServoCamera::ServoCamera():
-    exampleServo{1}
+    bottomServo{1},
+    topServo{2}
+
 {
 
 
 }
 
 // This method will be called once per scheduler run
-void ServoCamera::Periodic() {}
+void ServoCamera::Periodic() {
+    //exampleServo.Set(0.5);
+}
 
 void ServoCamera::setPosition(float x){
-    exampleServo.Set(x);
+    bottomServo.Set(x);
+}
+
+void ServoCamera::controlServoWithJoystick(){
+    if(topServoPosition < 0 || topServoPositoon > 1){
+        return;
+    }
+    if(bottomServoPosition < 0 || bottomServoPositoon > 1){
+        return;
+    }
+    double verticlePower = (p_servoJoystick->GetRawAxis(1))/50; 
+    double horizontalPower = ((p_servoJoystick->GetRawAxis(0))/50);
+    double topServoPosition = topServo.GetPosition();
+    double bottomServoPosition = bottomServo.GetPosition();
+
+    topServo.Set(topServoPosition + verticlePower);
+    bottomServo.Set(bottomServoPosition + horizontalPower);
+    
 }
