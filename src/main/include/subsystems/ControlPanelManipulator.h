@@ -38,7 +38,7 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
   char currentColor;
   int turnCounter;
   rev::ColorSensorV3 mColorSensor;
-  rev::ColorMatch matching;
+  rev::ColorMatch mMatching;
   frc::Color blue;
   frc::Color red;
   frc::Color yellow;

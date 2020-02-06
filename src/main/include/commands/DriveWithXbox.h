@@ -21,7 +21,7 @@
 class DriveWithXbox
     : public frc2::CommandHelper<frc2::CommandBase, DriveWithXbox> {
  public:
- explicit DriveWithXbox(DriveTrain* subsystemDrive);
+ explicit DriveWithXbox(DriveTrain* pTankDrive);
 
   void Initialize() override;
 
@@ -31,7 +31,7 @@ class DriveWithXbox
 
   bool IsFinished() override;
   private:
-  DriveTrain* tankDrive;
-  frc::Joystick* driverJoystick;
+  DriveTrain* mpTankDrive;
+  frc::XboxController* mpDriverJoystick;
 
 };

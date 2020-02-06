@@ -9,7 +9,7 @@
 
 ControlPanelManipulator::ControlPanelManipulator():
     //controlMotor{controlPanelMotorIndex},
-	mControlMotor{k_controlPanelMotor},
+	mControlMotor{kControlPanelMotor},
 	mColorSensor{frc::I2C::Port::kOnboard}
 {
     turnCounter = 0;
@@ -27,10 +27,10 @@ ControlPanelManipulator::ControlPanelManipulator():
   	green.red = 0.14;
   	green.green = 0.60;
   	green.blue = 0.26;
-	matching.AddColorMatch(blue);
-	matching.AddColorMatch(red);
-	matching.AddColorMatch(yellow);
-	matching.AddColorMatch(green);
+	mMatching.AddColorMatch(blue);
+	mMatching.AddColorMatch(red);
+	mMatching.AddColorMatch(yellow);
+	mMatching.AddColorMatch(green);
 	finished = false;
 	mColorSensor.ConfigureColorSensor(rev::ColorSensorV3::ColorResolution::k13bit, rev::ColorSensorV3::ColorMeasurementRate::k25ms);
 }
@@ -118,16 +118,16 @@ bool ControlPanelManipulator::hasMovedColors() {
 }
 
 void ControlPanelManipulator::printColor() {
-	frc::SmartDashboard::PutNumber("Red", matching.MatchClosestColor(mColorSensor.GetColor(), confidence).red);
-	frc::SmartDashboard::PutNumber("Green", matching.MatchClosestColor(mColorSensor.GetColor(), confidence).green);
-	frc::SmartDashboard::PutNumber("Blue", matching.MatchClosestColor(mColorSensor.GetColor(), confidence).blue);
+	frc::SmartDashboard::PutNumber("Red", mMatching.MatchClosestColor(mColorSensor.GetColor(), confidence).red);
+	frc::SmartDashboard::PutNumber("Green", mMatching.MatchClosestColor(mColorSensor.GetColor(), confidence).green);
+	frc::SmartDashboard::PutNumber("Blue", mMatching.MatchClosestColor(mColorSensor.GetColor(), confidence).blue);
 	frc::SmartDashboard::PutNumber("Confidence", confidence);
 	frc::SmartDashboard::PutNumber("Color", getReadColor());
 	printf("Printing color\n");
 }
 
 char ControlPanelManipulator::getReadColor() {
-	rawColor = matching.MatchClosestColor(mColorSensor.GetColor(), confidence);
+	rawColor = mMatching.MatchClosestColor(mColorSensor.GetColor(), confidence);
 	if (rawColor == blue) {
 		return 'B';
 	}

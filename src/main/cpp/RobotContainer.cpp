@@ -6,31 +6,31 @@
 /*----------------------------------------------------------------------------*/
 
 #include "RobotContainer.h"
-#include "frc/Joystick.h"
+#include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
 
 RobotContainer::RobotContainer(): 
-  tankDrive{}, 
-  driverJoystick{0},
-  driveCommand{&tankDrive}
+  mTankDrive{}, 
+  mDriverController{0},
+  mDriveCommand{&mTankDrive}
 {
   // Initialize all of your commands and subsystems here
   //drive
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  tankDrive.SetDefaultCommand(std::move(driveCommand));
-  tankDrive.setDriverJoystick(&driverJoystick);
+  mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
+  mTankDrive.setDriverJoystick(&mDriverController);
 
 
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  driverButtonA.WhenPressed(&mRotateCommand, true);
-  driverButtonB.WhenPressed(&mPositionCommand, true);
-  driverButtonX.WhenHeld(&mStopPanelCommand, false);
-  driverButtonY.WhenHeld(&mManualPanelCommand, true);
+  mDriverButtonA.WhenPressed(&mRotateCommand, true);
+  mDriverButtonB.WhenPressed(&mPositionCommand, true);
+  mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
+  mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
 }
 
 

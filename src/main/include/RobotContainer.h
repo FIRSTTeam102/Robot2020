@@ -16,7 +16,7 @@
 #include "commands/PositionControlPanel.h"
 #include "commands/StopControlPanel.h"
 #include "commands/ManualControlPanel.h"
-#include "frc/Joystick.h"
+#include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
 
@@ -33,26 +33,26 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand();
 
-  frc::Joystick* GetDriverJoystick(){
-    return &driverJoystick;
+  frc::XboxController* GetDriverJoystick(){
+    return &mDriverController;
   }
   
 
  private:
  
   // The robot's subsystems and commands are defined here...
-  DriveTrain tankDrive;
-  DriveWithXbox driveCommand;
-  frc::Joystick driverJoystick;
-  frc2::Button driverButtonA{[&] { return driverJoystick.GetRawButton(1);}};
-  frc2::Button driverButtonB{[&] { return driverJoystick.GetRawButton(2);}};
-  frc2::Button driverButtonX{[&] { return driverJoystick.GetRawButton(3);}};
-  frc2::Button driverButtonY{[&] { return driverJoystick.GetRawButton(4);}};
+  DriveTrain mTankDrive;
+  DriveWithXbox mDriveCommand;
+  frc::XboxController mDriverController;
+  frc2::Button mDriverButtonA{[&] { return mDriverController.GetRawButton(1);}};
+  frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
+  frc2::Button mDriverButtonX{[&] { return mDriverController.GetRawButton(3);}};
+  frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
   
   ControlPanelManipulator mControlPanel;
-  RotateControlPanel mRotateCommand{&mControlPanel, &tankDrive};
-  PositionControlPanel mPositionCommand{&mControlPanel, &tankDrive};
-  StopControlPanel mStopPanelCommand{&mControlPanel, &tankDrive};
+  RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};
+  PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
+  StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
   void ConfigureButtonBindings();
