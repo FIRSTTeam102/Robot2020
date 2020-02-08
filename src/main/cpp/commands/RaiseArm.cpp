@@ -16,10 +16,9 @@ void RaiseArm::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void RaiseArm::Execute() {
-if (armup != 1)
+//if (armup != 1)
   //Arm up 90 degrees
-  armup = 0;
-return
+ // armup = 0;
 }
 
 // Called once the command ends or is interrupted.

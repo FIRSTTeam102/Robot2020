@@ -5,18 +5,33 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <frc/Relay.h>
 #include "subsystems/IntakeMechanism.h"
-#include <ctre/phoenix.h>
 #include "RobotContainer.h"
 #include "Constants.h"
 
 
 IntakeMechanism::IntakeMechanism():
-    m_IntakeArmMotor{k_IntakeMotor},
-    m_IntakeRollerMotor{k_IntakeRollerMotor},
+    m_IntakeArmMotor{k_IntakeMotor, Direction::kBothDirections},
+    m_IntakeRollerMotor{k_IntakeRollerMotor, Directions:: kBothDirections},
     mArmIsDown{false}
  {
+
 }
+
+void IntakeMechanism::lowerIntakeArm(){
+ motor.Set (-k_ArmSpeed);
+
+}
+
+void IntakeMechanism::raiseIntakeArm(){
+ motor.Set (k_ArmSpeed);
+}
+
+void IntakeMechanism::StartROllers(){
+
+}
+
 
 // This method will be called once per scheduler run
 void IntakeMechanism::Periodic() {}

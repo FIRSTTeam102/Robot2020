@@ -9,6 +9,8 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/Phoenix.h>
+#include <frc/Relay.h>
+#include "Constants.h"
 
 class IntakeMechanism : public frc2::SubsystemBase {
  public:
@@ -23,12 +25,13 @@ class IntakeMechanism : public frc2::SubsystemBase {
 
 
  void lowerIntakeArm();
- void  StartROllers();
+ void raiseIntakeArm();
+ void StartROllers();
  
  private:
   
-  WPI_TalonSRX m_IntakeArmMotor;
-  WPI_TalonSRX m_IntakeRollerMotor;
+  Relay m_IntakeArmMotor;
+  Relay m_IntakeRollerMotor;
 
  
 

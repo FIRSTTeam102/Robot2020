@@ -30,8 +30,9 @@ int constexpr k_controlPanelMotor = 4;
 int constexpr k_hoodMotor = 5;
 int constexpr k_flyWheelMotor = 6;
 
-//Intake Arm & Roller Motor Controllers (TalonSRX)
+//Intake Arm & Roller Motor Controllers (SpikeRelay)
 int constexpr k_IntakeMotor = 7;
+double constexpr k_ArmSpeed = 0.3;
 int constexpr k_IntakeRollerMotor = 8;
 
 
