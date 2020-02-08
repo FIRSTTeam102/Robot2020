@@ -11,10 +11,10 @@
 
 
 DriveTrain::DriveTrain():
-    driveLeft1{k_topLeftMotor}, 
-    driveLeft2{k_bottomLeftMotor}, 
-    driveRight1{k_topRightMotor}, 
-    driveRight2{k_bottomRightMotor}
+    mDriveLeft1{kTopLeftMotor}, 
+    mDriveLeft2{kBottomLeftMotor}, 
+    mDriveRight1{kTopRightMotor}, 
+    mDriveRight2{kBottomRightMotor}
  {
 
 }
@@ -28,33 +28,41 @@ void DriveTrain::Periodic() {
 
 void DriveTrain::driveWithXboxController(){
     
-    double leftSpeed = p_driverJoystick->GetRawAxis(1); //Cap: 690rpm
-    double rightSpeed = p_driverJoystick->GetRawAxis(5); //Cap: 697rpm
+    double leftSpeed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
+    double rightSpeed = mpDriverJoystick->GetRawAxis(5); //Cap: 697rpm
     
-    Drive.TankDrive(-leftSpeed,-rightSpeed,true);
-    printf("%f, %f\n", leftSpeed, rightSpeed);
+    mDrive.TankDrive(-leftSpeed,-rightSpeed,true);
+    printf("Driving: %f, %f\n", leftSpeed, rightSpeed);
 
 }
 
 void DriveTrain::arcadeDrive(){
-    double speed = p_driverJoystick->GetRawAxis(1); //Cap: 690rpm
-    double rotation = p_driverJoystick->GetRawAxis(4); //Cap: 697rpm
+    double speed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
+    double rotation = mpDriverJoystick->GetRawAxis(4); //Cap: 697rpm
 
-    Drive.ArcadeDrive(speed,rotation);
+    mDrive.ArcadeDrive(speed,rotation);
+}
+
+void DriveTrain::slowlyDriveForwards(){
+    mDrive.TankDrive(0.2, 0.2, false);
+}
+
+void DriveTrain::stop(){
+    mDrive.TankDrive(0, 0, false);
 }
 
 void DriveTrain::toggleDrive(){
     printf("On: %d\n", on);
     if (on == true) {
-        Drive.TankDrive(-1, -1, true);
-        if (p_driverJoystick->GetRawButton(1) == 1) {
+        mDrive.TankDrive(-1, -1, true);
+        if (mpDriverJoystick->GetRawButton(1) == 1) {
             //while (p_driverJoystick->GetRawButton(1) == 1);
             on = false;
         }
     }
     else {
-        Drive.TankDrive(0, 0, true);
-        if (p_driverJoystick->GetRawButton(1) == 1) {
+        mDrive.TankDrive(0, 0, true);
+        if (mpDriverJoystick->GetRawButton(1) == 1) {
             //while (p_driverJoystick->GetRawButton(1) == 1);
             on = true;
         }

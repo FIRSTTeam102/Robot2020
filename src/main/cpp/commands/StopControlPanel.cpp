@@ -5,32 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DriveWithXbox.h"
-#include "subsystems/DriveTrain.h"
-#include "RobotContainer.h"
-#include "Robot.h"
+#include "commands/StopControlPanel.h"
 
-DriveWithXbox::DriveWithXbox(DriveTrain* pTankDrive): mpTankDrive(pTankDrive)
- {
+StopControlPanel::StopControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
+  AddRequirements({pControlPanel});
+  AddRequirements({pSubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pTankDrive);
-
+  mpControlPanel = pControlPanel;
+  mpSubsystemDrive = pSubsystemDrive;
 }
 
 // Called when the command is initially scheduled.
-void DriveWithXbox::Initialize() {}
-
+void StopControlPanel::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void DriveWithXbox::Execute() {
-
-  mpTankDrive->arcadeDrive();
-  printf("running drive!");
-
+void StopControlPanel::Execute() {
+  mpControlPanel->stopMotor();
+  mpSubsystemDrive->stop();
 }
 
 // Called once the command ends or is interrupted.
-void DriveWithXbox::End(bool interrupted) {}
+void StopControlPanel::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool DriveWithXbox::IsFinished() { return false; }
+bool StopControlPanel::IsFinished() { return false; }

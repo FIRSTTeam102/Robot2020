@@ -11,19 +11,20 @@
 #include <frc/SpeedControllerGroup.h>
 #include <ctre/Phoenix.h>
 #include <frc/drive/DifferentialDrive.h>
-#include <frc/Joystick.h>
+#include <frc/XboxController.h>
 
 
 
 class DriveTrain : public frc2::SubsystemBase {
  public:
   DriveTrain();
-
+  void slowlyDriveForwards();
+  void stop();
   void driveWithXboxController();
   void arcadeDrive();
   void toggleDrive();
-  void setDriverJoystick(frc::Joystick* driverJoystick){
-    p_driverJoystick = driverJoystick;
+  void setDriverJoystick(frc::XboxController* pDriverJoystick){
+    mpDriverJoystick = pDriverJoystick;
   };
 
   /**
@@ -35,17 +36,17 @@ class DriveTrain : public frc2::SubsystemBase {
 
  private:
 
-  frc::Joystick* p_driverJoystick;
+  frc::XboxController* mpDriverJoystick;
 
-  WPI_TalonSRX driveLeft1;
-  WPI_TalonSRX driveLeft2;
-  WPI_TalonSRX driveRight1;
-  WPI_TalonSRX driveRight2;
+  WPI_TalonSRX mDriveLeft1;
+  WPI_TalonSRX mDriveLeft2;
+  WPI_TalonSRX mDriveRight1;
+  WPI_TalonSRX mDriveRight2;
 
-  frc::SpeedControllerGroup left{driveLeft1, driveLeft2};
-  frc::SpeedControllerGroup right{driveRight1, driveRight2};
+  frc::SpeedControllerGroup mLeft{mDriveLeft1, mDriveLeft2};
+  frc::SpeedControllerGroup mRight{mDriveRight1, mDriveRight2};
 
-  frc::DifferentialDrive Drive{left, right};
+  frc::DifferentialDrive mDrive{mLeft, mRight};
  
   bool on = false;
 
