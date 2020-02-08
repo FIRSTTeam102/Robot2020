@@ -10,27 +10,32 @@
 #include "RobotContainer.h"
 #include "Robot.h"
 
-DriveWithXbox::DriveWithXbox(DriveTrain* pTankDrive): mpTankDrive(pTankDrive)
+DriveWithXbox::DriveWithXbox(DriveTrain* pTankDrive, Lights* pLights): mpTankDrive(pTankDrive), mpLights(pLights)
  {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(pTankDrive);
-
+  AddRequirements(pLights);
 }
 
 // Called when the command is initially scheduled.
-void DriveWithXbox::Initialize() {}
+void DriveWithXbox::Initialize() {
+  mpLights->setMode(1); //auto on init
+}
 
 
 // Called repeatedly when this Command is scheduled to run
 void DriveWithXbox::Execute() {
 
   mpTankDrive->arcadeDrive();
-  printf("running drive!");
+  //printf("running drive!");
+  mpLights->setMode(4); //enabled on drive
 
 }
 
 // Called once the command ends or is interrupted.
-void DriveWithXbox::End(bool interrupted) {}
+void DriveWithXbox::End(bool interrupted) {
+  mpLights->setMode(0); //turn off on interrupt
+}
 
 // Returns true when the command should end.
 bool DriveWithXbox::IsFinished() { return false; }

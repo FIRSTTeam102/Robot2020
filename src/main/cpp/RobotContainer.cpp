@@ -12,7 +12,7 @@
 RobotContainer::RobotContainer(): 
   mTankDrive{}, 
   mDriverController{0},
-  mDriveCommand{&mTankDrive}
+  mDriveCommand{&mTankDrive, &mLights}
 {
   // Initialize all of your commands and subsystems here
   //drive

@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/Lights.h"
+#define _GLIBCXX_USE_CXX11_ABI 0
 
 
 Lights::Lights() : mSP{9600, frc::SerialPort::kUSB} {
@@ -19,5 +20,15 @@ void Lights::Periodic() {
 }
 
 void Lights::setMode(int mode) {
-    mSP.Write((char*)mode, 1);
+    //mSP.Write((char*)mode, 1);
+
+    if (mode >= 0 || mode <= 8) {
+        strMode[0] = mode + '0';
+        mSP.Write(strMode, 1);
+        printf("Writing serial- mode %c\n", strMode[0]);
+    } else {
+        mSP.Write("0", 8);
+        printf("Serial input unknown\n");
+    }
+
 }

@@ -42,6 +42,8 @@ class RobotContainer {
  private:
  
   // The robot's subsystems and commands are defined here...
+  Lights mLights;
+
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
   frc::XboxController mDriverController;

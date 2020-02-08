@@ -9,6 +9,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/SerialPort.h>
+#define _GLIBCXX_USE_CXX11_ABI 0
 
 
 
@@ -32,4 +33,5 @@ class Lights : public frc2::SubsystemBase {
   // great we're done
 
   frc::SerialPort mSP;
+  char strMode[1];
 };
