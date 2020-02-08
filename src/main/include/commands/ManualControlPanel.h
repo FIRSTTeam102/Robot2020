@@ -9,7 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <subsystems/DriveTrain.h>
+#include <subsystems/ControlPanelManipulator.h>
 
 /**
  * An example command.
@@ -18,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class DriveWithXbox
-    : public frc2::CommandHelper<frc2::CommandBase, DriveWithXbox> {
+class ManualControlPanel
+    : public frc2::CommandHelper<frc2::CommandBase, ManualControlPanel> {
  public:
- explicit DriveWithXbox(DriveTrain* pTankDrive);
+  ManualControlPanel(ControlPanelManipulator *pControlPanel);
 
   void Initialize() override;
 
@@ -31,7 +31,5 @@ class DriveWithXbox
 
   bool IsFinished() override;
   private:
-  DriveTrain* mpTankDrive;
-  frc::XboxController* mpDriverJoystick;
-
+  ControlPanelManipulator* mpControlPanel;
 };

@@ -17,14 +17,14 @@
  */
 
 // Talon SRX motor controllers
-//Drive Motor Controllers (TalonSRX)
-int constexpr k_topLeftMotor = 0;
-int constexpr k_topRightMotor = 1;
-int constexpr k_bottomLeftMotor = 2;
-int constexpr k_bottomRightMotor = 3;
+// Drive motor controllers
+int constexpr kTopLeftMotor = 0;
+int constexpr kTopRightMotor = 1;
+int constexpr kBottomLeftMotor = 2;
+int constexpr kBottomRightMotor = 3;
 
-//Control Panel Motor Controller (TalonSRX)
-int constexpr k_controlPanelMotor = 4;
+// Control panel motor controller (TalonSRx)
+int constexpr kControlPanelMotor = 4;
 
 //Shooter Motor Controllers (TalonSRX)
 int constexpr k_hoodMotor = 5;
@@ -36,10 +36,6 @@ double constexpr k_ArmSpeed = 0.3;
 int constexpr k_IntakeRollerMotor = 8;
 
 
-//OI Indexes (joysticks/buttons)
-int constexpr k_driverJoystick = 0;
-int constexpr k_operatorJoystick = 1;
-
 //Digital IO channels
 //Indexer Distance Sensors (Digital Input)
  int constexpr kDIOIntake = 0;
@@ -48,4 +44,8 @@ int constexpr k_operatorJoystick = 1;
 
 //Index Relay
  int constexpr kIndexChannel = 0;
+
+//OI Indexes (joysticks/buttons)
+int constexpr kDriverJoystick = 0;
+int constexpr kOperatorJoystick = 1;
 
