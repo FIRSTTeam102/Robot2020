@@ -11,8 +11,9 @@
 
 RobotContainer::RobotContainer(): 
   tankDrive{}, 
-  driverJoystick{0},
-  driveCommand{&tankDrive}
+  driverJoystick{1},
+  driveCommand{&tankDrive},
+  servoJoystick{0}
 {
   // Initialize all of your commands and subsystems here
   //drive
@@ -21,13 +22,15 @@ RobotContainer::RobotContainer():
 
   tankDrive.SetDefaultCommand(std::move(driveCommand));
   tankDrive.setDriverJoystick(&driverJoystick);
+  m_ServoCamera.SetDefaultCommand(std::move(m_ServoCommand));
+  m_ServoCamera.setServoJoystick(&servoJoystick);
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  driverButtonX.WhenPressed(&m_ServoCommand, true);
+  //driverButtonX.WhenPressed(&m_ServoCommand, true);
   
-}\
+}
 
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

@@ -26,18 +26,23 @@ void ServoCamera::setPosition(float x){
 }
 
 void ServoCamera::controlServoWithJoystick(){
-    if(topServoPosition < 0 || topServoPositoon > 1){
-        return;
-    }
-    if(bottomServoPosition < 0 || bottomServoPositoon > 1){
-        return;
-    }
-    double verticlePower = (p_servoJoystick->GetRawAxis(1))/50; 
-    double horizontalPower = ((p_servoJoystick->GetRawAxis(0))/50);
-    double topServoPosition = topServo.GetPosition();
-    double bottomServoPosition = bottomServo.GetPosition();
+    verticlePower = (p_servoJoystick->GetRawAxis(1)/50); 
+    horizontalPower = (p_servoJoystick->GetRawAxis(0)/50);
+    topServoPosition = topServo.GetPosition();
+    bottomServoPosition = bottomServo.GetPosition();
 
-    topServo.Set(topServoPosition + verticlePower);
+    if(topServoPosition <= 0 && verticlePower > 0){ //Prevents servo position from exceeding range
+        return;
+    }
+    if(topServoPosition >= 1 && verticlePower < 0){
+        return;
+    }
+    if(bottomServoPosition <= 0 && horizontalPower < 0){
+        return;
+    }
+    if(bottomServoPosition >= 1 && horizontalPower > 0){
+        return;
+    }
+    topServo.Set(topServoPosition - verticlePower);
     bottomServo.Set(bottomServoPosition + horizontalPower);
-    
 }

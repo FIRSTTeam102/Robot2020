@@ -8,6 +8,7 @@
 #pragma once
 #include <frc/Servo.h>
 #include <frc2/command/SubsystemBase.h>
+#include <frc/Joystick.h>
 class ServoCamera : public frc2::SubsystemBase {
  public:
   ServoCamera();
@@ -26,6 +27,10 @@ class ServoCamera : public frc2::SubsystemBase {
   frc::Servo bottomServo;
   frc::Servo topServo;
   frc::Joystick* p_servoJoystick;
+  double verticlePower;
+  double horizontalPower;
+  double topServoPosition;
+  double bottomServoPosition;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

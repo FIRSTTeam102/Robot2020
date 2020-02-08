@@ -42,6 +42,7 @@ class RobotContainer {
   frc2::Button driverButtonX{[&] { return driverJoystick.GetRawButton(3); }};
   
   ServoCamera m_ServoCamera;
+  frc::Joystick servoJoystick;
   MoveServo m_ServoCommand{&m_ServoCamera};
 
   void ConfigureButtonBindings();
