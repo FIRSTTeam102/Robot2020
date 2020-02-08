@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 #pragma once
 
+#include <frc/Encoder.h>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -22,9 +24,15 @@ int constexpr kTopRightMotor = 1;
 int constexpr kBottomLeftMotor = 2;
 int constexpr kBottomRightMotor = 3;
 int constexpr kControlPanelMotor = 4;
+int constexpr kFlyMotor = 5;
 
 
 //OI Indexes (joysticks/buttons)
 int constexpr kDriverJoystick = 0;
 int constexpr kOperatorJoystick = 1;
 
+//Flywheel encoder indexes
+int constexpr kFlyEncA = 0;
+int constexpr kFlyEncB = 1;
+bool constexpr kReverseFlyEnc = false;
+frc::Encoder::EncodingType constexpr kFlyEncType = frc::Encoder::EncodingType::k4X;
