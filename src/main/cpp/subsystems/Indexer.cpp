@@ -11,10 +11,10 @@
 
 
 Indexer::Indexer():
-    m_IndexerConveyer{kIndexChannel,frc::Relay::kBothDirections},
-    m_IntakeSensor{kDIOIntake},
-    m_BottomSensor{kDIOBottom},
-    m_TopSensor{kDIOTop}
+    mIndexerConveyer{kIndexChannel,frc::Relay::kBothDirections},
+    mIntakeSensor{kDIOIntake},
+    mBottomSensor{kDIOBottom},
+    mTopSensor{kDIOTop}
  {
 
 }

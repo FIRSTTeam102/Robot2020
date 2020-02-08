@@ -31,9 +31,11 @@ int constexpr k_hoodMotor = 5;
 int constexpr k_flyWheelMotor = 6;
 
 //Intake Arm & Roller Motor Controllers (SpikeRelay)
-int constexpr k_IntakeMotor = 7;
-double constexpr k_ArmSpeed = 0.3;
-int constexpr k_IntakeRollerMotor = 8;
+int constexpr kIntakeMotor = 7;
+int constexpr kIntakeRollerMotor = 8;
+int constexpr kIntakeTopSensor = 9;
+int constexpr kIntakeBottomSensor = 10;
+
 
 
 //Digital IO channels

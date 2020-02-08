@@ -62,12 +62,5 @@ class RobotContainer {
 
   void ConfigureButtonBindings();
 
-
-  //frc::Joystick LeftStick{1};
-  //frc::XBoxController IndexerController{2}
-  //frc2::JoystickButton RightTriggerButton(&exampleStick, 1);
-  frc2::Trigger mRightTrigger{[&] { return driverJoystick.GetRawAxis(3);}};
-
-  Shooter mShooter;
-  ReadyShooter mReadyShooterCommand{&mShooter};
+  
 };

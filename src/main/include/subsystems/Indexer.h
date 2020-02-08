@@ -9,21 +9,13 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Relay.h>
-#include <DigitalInput.h>
+#include <frc/DigitalInput.h>
 
 
 
 class Indexer : public frc2::SubsystemBase {
  public:
   Indexer();
-
-
-
-
-
-  //indexerintakesensor;
-  //indexerbottomsensor;
-  //indexertopsensor;
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -33,8 +25,8 @@ class Indexer : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  frc::Relay m_IndexerConveyer;
-  frc::DigitalInput m_EntranceSensor;
-  frc::DigitalInput m_InteriorSensor;
-  frc::DigitalInput m_ExitSensor;
+  frc::Relay mIndexerConveyer;
+  frc::DigitalInput mIntakeSensor;
+  frc::DigitalInput mBottomSensor;
+  frc::DigitalInput mTopSensor;
 };

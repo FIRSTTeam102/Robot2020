@@ -12,25 +12,30 @@
 
 
 IntakeMechanism::IntakeMechanism():
-    m_IntakeArmMotor{k_IntakeMotor, Direction::kBothDirections},
-    m_IntakeRollerMotor{k_IntakeRollerMotor, Directions:: kBothDirections}
+    mIntakeArmMotor{kIntakeMotor,frc::Relay::kBothDirections},
+    mIntakeRollerMotor{kIntakeRollerMotor, frc::Relay::kBothDirections},
+    mUpSensor{kIntakeTopSensor},
+    mDownSensor{kIntakeBottomSensor}
  {
 
 }
 
 void IntakeMechanism::lowerIntakeArm(){
- motor.Set (-k_ArmSpeed);
+ mIntakeArmMotor.Set (frc::Relay::kOn);
 
 }
 
 void IntakeMechanism::raiseIntakeArm(){
- motor.Set (k_ArmSpeed);
+ mIntakeArmMotor.Set (frc::Relay::kOn);
 }
 
-void IntakeMechanism::StartROllers(){
+void IntakeMechanism::StartRollers(){
+
 
 }
+void IntakeMechanism::StopRollers(){
 
+}
 
 // This method will be called once per scheduler run
 void IntakeMechanism::Periodic() {}

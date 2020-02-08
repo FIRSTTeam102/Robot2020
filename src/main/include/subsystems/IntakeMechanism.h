@@ -8,9 +8,11 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <frc/DigitalInput.h>
 #include <ctre/Phoenix.h>
 #include <frc/Relay.h>
 #include "Constants.h"
+
 
 class IntakeMechanism : public frc2::SubsystemBase {
  public:
@@ -26,12 +28,18 @@ class IntakeMechanism : public frc2::SubsystemBase {
 
  void lowerIntakeArm();
  void raiseIntakeArm();
- void StartROllers();
+ void StartRollers();
+ void StopRollers();
+ 
  
  private:
   
-  frc::Relay m_IntakeArmMotor;
-  frc::Relay m_IntakeRollerMotor;
+  frc::Relay mIntakeArmMotor;
+  frc::Relay mIntakeRollerMotor;
+  frc::DigitalInput mUpSensor;
+  frc::DigitalInput mDownSensor;
+
+
 
  
 
