@@ -11,6 +11,7 @@
 
 #include "commands/DriveWithXbox.h"
 #include "subsystems/DriveTrain.h"
+#include "subsystems/Lights.h"
 #include "frc/Joystick.h"
 
 /**
@@ -38,4 +39,5 @@ class RobotContainer {
   frc::Joystick driverJoystick;
 
   void ConfigureButtonBindings();
+  Lights mArduinoJBLights;
 };

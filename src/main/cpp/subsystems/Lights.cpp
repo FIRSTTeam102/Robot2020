@@ -7,7 +7,12 @@
 
 #include "subsystems/Lights.h"
 
-Lights::Lights() {}
+
+Lights::Lights() : mSP{9600, frc::SerialPort::kOnboard} {
+
+}
 
 // This method will be called once per scheduler run
-void Lights::Periodic() {}
+void Lights::Periodic() {
+    mSP.Write("1", 1);
+}

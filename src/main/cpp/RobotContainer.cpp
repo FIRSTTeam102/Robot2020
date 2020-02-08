@@ -12,7 +12,7 @@
 RobotContainer::RobotContainer(): 
   tankDrive{}, 
   driverJoystick{0},
-  driveCommand{&tankDrive}
+  driveCommand{&tankDrive, &mArduinoJBLights}
 {
   // Initialize all of your commands and subsystems here
   //drive
@@ -25,8 +25,8 @@ RobotContainer::RobotContainer():
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  frc2::JoystickButton(&driverJoystick, 2)
-    .WhenPressed(TestCommand(), false);
+  //frc2::JoystickButton(&driverJoystick, 2)
+    //.WhenPressed(TestCommand(), false);
 }
 
 

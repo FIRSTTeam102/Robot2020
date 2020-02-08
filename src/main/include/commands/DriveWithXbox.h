@@ -10,6 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <subsystems/DriveTrain.h>
+#include <subsystems/Lights.h>
 
 /**
  * An example command.
@@ -21,7 +22,7 @@
 class DriveWithXbox
     : public frc2::CommandHelper<frc2::CommandBase, DriveWithXbox> {
  public:
- explicit DriveWithXbox(DriveTrain* subsystemDrive);
+ explicit DriveWithXbox(DriveTrain* subsystemDrive, Lights* pLights);
 
   void Initialize() override;
 
@@ -33,5 +34,6 @@ class DriveWithXbox
   private:
   DriveTrain* tankDrive;
   frc::Joystick* driverJoystick;
+  Lights* mpLights;
 
 };

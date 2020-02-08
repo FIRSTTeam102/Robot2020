@@ -10,10 +10,11 @@
 #include "RobotContainer.h"
 #include "Robot.h"
 
-DriveWithXbox::DriveWithXbox(DriveTrain* subsystemDrive): tankDrive(subsystemDrive)
+DriveWithXbox::DriveWithXbox(DriveTrain* subsystemDrive, Lights* pLights): tankDrive(subsystemDrive)
  {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subsystemDrive);
+  AddRequirements(pLights);
 
 }
 
@@ -23,7 +24,7 @@ void DriveWithXbox::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void DriveWithXbox::Execute() {
-
+  mpLights->Periodic();
   tankDrive->arcadeDrive();
   printf("running drive!");
 

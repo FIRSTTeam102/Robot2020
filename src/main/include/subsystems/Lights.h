@@ -8,7 +8,9 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <SerialPort.h>
+#include <frc/SerialPort.h>
+
+
 
 class Lights : public frc2::SubsystemBase {
  public:
@@ -22,4 +24,11 @@ class Lights : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+
+  // cool it's a serial port
+  // write some stuff
+
+  // great we're done
+
+  frc::SerialPort mSP;
 };
