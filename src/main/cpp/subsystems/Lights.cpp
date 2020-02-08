@@ -8,7 +8,7 @@
 #include "subsystems/Lights.h"
 
 
-Lights::Lights() : mSP{9600, frc::SerialPort::kOnboard, 8, frc::SerialPort::kParity_None, frc::SerialPort::kStopBits_One} {
+Lights::Lights() : mSP{9600, frc::SerialPort::kUSB} {
     mSP.DisableTermination();
     mSP.Reset();
 }
