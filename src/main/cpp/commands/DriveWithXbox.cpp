@@ -24,7 +24,7 @@ void DriveWithXbox::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void DriveWithXbox::Execute() {
-  mpLights->Periodic();
+  mpLights->setMode(1);
   tankDrive->arcadeDrive();
   printf("running drive!");
 

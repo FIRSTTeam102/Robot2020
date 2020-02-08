@@ -8,11 +8,16 @@
 #include "subsystems/Lights.h"
 
 
-Lights::Lights() : mSP{9600, frc::SerialPort::kOnboard} {
-
+Lights::Lights() : mSP{9600, frc::SerialPort::kOnboard, 8, frc::SerialPort::kParity_None, frc::SerialPort::kStopBits_One} {
+    mSP.DisableTermination();
+    mSP.Reset();
 }
 
 // This method will be called once per scheduler run
 void Lights::Periodic() {
-    mSP.Write("1", 1);
+    //mSP.Write("1", 1);
+}
+
+void Lights::setMode(int mode) {
+    mSP.Write((char*)mode, 1);
 }
