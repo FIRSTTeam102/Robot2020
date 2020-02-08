@@ -5,20 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/StopShootingPowerCells.h"
+#include "commands/powercell/ReadyShooter.h"
+#include "subsystems/Shooter.h"
 
-StopShootingPowerCells::StopShootingPowerCells() {
-  // Use addRequirements() here to declare subsystem dependencies.
+ReadyShooter::ReadyShooter(Shooter* pShooter): mpShooter{pShooter} {
+  //update subsystem dependencies so we know if the shooter is in use
+  AddRequirements(pShooter);
 }
 
 // Called when the command is initially scheduled.
-void StopShootingPowerCells::Initialize() {}
+void ReadyShooter::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void StopShootingPowerCells::Execute() {}
+void ReadyShooter::Execute() {}
 
 // Called once the command ends or is interrupted.
-void StopShootingPowerCells::End(bool interrupted) {}
+void ReadyShooter::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool StopShootingPowerCells::IsFinished() { return false; }
+bool ReadyShooter::IsFinished() { return false; }

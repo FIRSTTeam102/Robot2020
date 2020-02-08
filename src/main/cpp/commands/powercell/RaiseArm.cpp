@@ -4,23 +4,27 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+/*
+   Stop the intake mechanisms rollers and raise the arm
+*/
+#include "commands/powercell/RaiseArm.h"
+#include "subsystems/Intake.h"
 
-#include "commands/BallJam.h"
-
-//BallJam is called in the event a Power cell ball gets jammed in the
-//  shooter mechanisms fly wheel
-BallJam::BallJam() {
+RaiseArm::RaiseArm(Intake* pIntake): mpIntake{pIntake} {
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(pIntake);
 }
 
 // Called when the command is initially scheduled.
-void BallJam::Initialize() {}
-
+void RaiseArm::Initialize() {
+  mpIntake->stopRollers();
+}
+  
 // Called repeatedly when this Command is scheduled to run
-void BallJam::Execute() {}
+void RaiseArm::Execute() {}
 
 // Called once the command ends or is interrupted.
-void BallJam::End(bool interrupted) {}
+void RaiseArm::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool BallJam::IsFinished() { return false; }
+bool RaiseArm::IsFinished() { return false; }

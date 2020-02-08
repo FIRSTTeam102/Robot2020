@@ -5,20 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/ShootPowerCells.h"
+#include "commands/controlpanel/StopControlPanel.h"
 
-ShootPowerCells::ShootPowerCells() {
+StopControlPanel::StopControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
+  AddRequirements({pControlPanel});
+  AddRequirements({pSubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
+  mpControlPanel = pControlPanel;
+  mpSubsystemDrive = pSubsystemDrive;
 }
 
 // Called when the command is initially scheduled.
-void ShootPowerCells::Initialize() {}
+void StopControlPanel::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void ShootPowerCells::Execute() {}
+void StopControlPanel::Execute() {
+  mpControlPanel->stopMotor();
+  mpSubsystemDrive->stop();
+}
 
 // Called once the command ends or is interrupted.
-void ShootPowerCells::End(bool interrupted) {}
+void StopControlPanel::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool ShootPowerCells::IsFinished() { return false; }
+bool StopControlPanel::IsFinished() { return false; }

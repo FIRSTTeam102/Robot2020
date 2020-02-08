@@ -14,37 +14,27 @@
 #include "Constants.h"
 
 
-class IntakeMechanism : public frc2::SubsystemBase {
+class Intake : public frc2::SubsystemBase {
  public:
-  IntakeMechanism();
-  
+  Intake();
 
+  void lowerIntakeArm();
+  void raiseIntakeArm();
+  void stopIntakeArm();
+  void startRollers();
+  void startReverseRollers();
+  void stopRollers();
+  bool isArmUp() { return(mUpSensor.Get()); }
+  bool isArmDown() { return(mDownSensor.Get()); }
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic();
 
-
- void lowerIntakeArm();
- void raiseIntakeArm();
- void StopIntakeArm();
- void StartRollers();
- void StopRollers();
- void StartReverseRollers();
- bool ArmisUp(){return(mUpSensor.Get());}
- bool ArmisDown(){return(mDownSensor.Get());}
- 
- 
  private:
-  
   frc::Relay mIntakeArmMotor;
   frc::Relay mIntakeRollerMotor;
   frc::DigitalInput mUpSensor;
   frc::DigitalInput mDownSensor;
-
-
-
- 
-
 };

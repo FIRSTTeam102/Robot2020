@@ -18,9 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class DisengageShooter: public frc2::CommandHelper<frc2::CommandBase, DisengageShooter> {
+class ReadyShooter
+    : public frc2::CommandHelper<frc2::CommandBase, ReadyShooter> {
  public:
-  DisengageShooter(Shooter* subsystemShooter);
+  ReadyShooter(Shooter* pShooter);
 
   void Initialize() override;
 
@@ -29,6 +30,6 @@ class DisengageShooter: public frc2::CommandHelper<frc2::CommandBase, DisengageS
   void End(bool interrupted) override;
 
   bool IsFinished() override;
- private:
-   Shooter* mpShooter;
+  private:
+  Shooter* mpShooter;
 };

@@ -9,7 +9,7 @@
       intake arm motors. If a ball is detected by the indexer, the indexer
       should take the ball in.
 */
-#include "commands/PickupPowerCells.h"
+#include "commands/powercell/PickupPowerCells.h"
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:

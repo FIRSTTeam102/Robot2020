@@ -6,13 +6,13 @@
 /*----------------------------------------------------------------------------*/
 
 #include <frc/Relay.h>
-#include "subsystems/IntakeMechanism.h"
+#include "subsystems/Intake.h"
 #include "RobotContainer.h"
 #include "Constants.h"
 #include <frc/DigitalInput.h>
 
 
-IntakeMechanism::IntakeMechanism():
+Intake::Intake():
     mIntakeArmMotor{kIntakeMotor,frc::Relay::kBothDirections},
     mIntakeRollerMotor{kIntakeRollerMotor, frc::Relay::kBothDirections},
     mUpSensor{kIntakeTopSensor},
@@ -21,29 +21,28 @@ IntakeMechanism::IntakeMechanism():
 
 }
 
-void IntakeMechanism::lowerIntakeArm(){
- mIntakeArmMotor.Set (frc::Relay::kForward);
-    
+void Intake::lowerIntakeArm() {
+    mIntakeArmMotor.Set(frc::Relay::kForward);
 }
 
-void IntakeMechanism::raiseIntakeArm(){
- mIntakeArmMotor.Set (frc::Relay::kReverse);
+void Intake::raiseIntakeArm() {
+    mIntakeArmMotor.Set(frc::Relay::kReverse);
 }
 
-void IntakeMechanism::StartRollers(){
-    mIntakeArmMotor.Set (frc::Relay::kForward);
-
-
-}
-void IntakeMechanism::StopRollers(){
-    mIntakeRollerMotor.Set (frc::Relay::kOff);
-}
-void IntakeMechanism::StartReverseRollers(){
-    mIntakeRollerMotor.Set (frc::Relay::kReverse);
-
-}
-void IntakeMechanism::StopIntakeArm(){
+void Intake::stopIntakeArm(){
     mIntakeArmMotor.Set (frc::Relay::kOff);
 }
+
+void Intake::startRollers() {
+    mIntakeArmMotor.Set(frc::Relay::kForward);
+}
+
+void Intake::startReverseRollers(){
+    mIntakeRollerMotor.Set(frc::Relay::kReverse);
+}
+
+void Intake::stopRollers() {
+    mIntakeRollerMotor.Set(frc::Relay::kOff);
+}
 // This method will be called once per scheduler run
-void IntakeMechanism::Periodic() {}
+void Intake::Periodic() {}

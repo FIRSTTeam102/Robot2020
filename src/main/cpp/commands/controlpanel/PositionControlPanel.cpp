@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/PositionControlPanel.h"
+#include "commands/controlpanel/PositionControlPanel.h"
 
 PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
   AddRequirements({pControlPanel});

@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/Reset.h"
+#include "commands/powercell/Reset.h"
 
 Reset::Reset() {
   // Use addRequirements() here to declare subsystem dependencies.

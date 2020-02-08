@@ -9,7 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/Shooter.h"
+#include "subsystems/Intake.h"
 
 /**
  * An example command.
@@ -18,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ReadyShooter
-    : public frc2::CommandHelper<frc2::CommandBase, ReadyShooter> {
+class LowerArm
+    : public frc2::CommandHelper<frc2::CommandBase, LowerArm> {
  public:
-  ReadyShooter(Shooter* subsystemShooter);
+  LowerArm(Intake* pIntake);
 
   void Initialize() override;
 
@@ -31,5 +31,5 @@ class ReadyShooter
 
   bool IsFinished() override;
   private:
-  Shooter* mpShooter;
+    Intake* mpIntake;
 };

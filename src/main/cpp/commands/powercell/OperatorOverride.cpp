@@ -5,26 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/ManualControlPanel.h"
+#include "commands/powercell/OperatorOverride.h"
 
-ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel) {
-  AddRequirements({pControlPanel});
+OperatorOverride::OperatorOverride() {
   // Use addRequirements() here to declare subsystem dependencies.
-  mpControlPanel = pControlPanel;
 }
 
 // Called when the command is initially scheduled.
-void ManualControlPanel::Initialize() {}
+void OperatorOverride::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void ManualControlPanel::Execute() {
-  mpControlPanel->runMotor();
-}
+void OperatorOverride::Execute() {}
 
 // Called once the command ends or is interrupted.
-void ManualControlPanel::End(bool interrupted) {
-  mpControlPanel->stopMotor();
-}
+void OperatorOverride::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool ManualControlPanel::IsFinished() { return false; }
+bool OperatorOverride::IsFinished() { return false; }

@@ -20,8 +20,4 @@ Indexer::Indexer():
 }
 
 // This method will be called once per scheduler run
-void Indexer::Periodic() {
-
-
-
-}
+void Indexer::Periodic() {}

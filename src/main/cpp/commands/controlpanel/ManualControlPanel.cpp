@@ -5,23 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/ReadyShooter.h"
-#include "subsystems/Shooter.h"
+#include "commands/controlpanel/ManualControlPanel.h"
 
-ReadyShooter::ReadyShooter(Shooter* pShooter): mpShooter{pShooter} {
-  //update subsystem dependencies so we know if the shooter is in use
-  AddRequirements(pShooter);
+ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel) {
+  AddRequirements({pControlPanel});
+  // Use addRequirements() here to declare subsystem dependencies.
+  mpControlPanel = pControlPanel;
 }
 
 // Called when the command is initially scheduled.
-void ReadyShooter::Initialize() {}
+void ManualControlPanel::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void ReadyShooter::Execute() {
+void ManualControlPanel::Execute() {
+  mpControlPanel->runMotor();
 }
 
 // Called once the command ends or is interrupted.
-void ReadyShooter::End(bool interrupted) {}
+void ManualControlPanel::End(bool interrupted) {
+  mpControlPanel->stopMotor();
+}
 
 // Returns true when the command should end.
-bool ReadyShooter::IsFinished() { return false; }
+bool ManualControlPanel::IsFinished() { return false; }

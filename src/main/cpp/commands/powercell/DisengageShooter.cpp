@@ -5,31 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 /*
-   Stop the intake mechanisms rollers and raise the arm
+    Disengage Shooter - Stop the Shooter mechanisms fly wheel
+    but leave the hood in whatever position it is already in
 */
-#include "commands/RaiseArm.h"
-#include "subsystems/IntakeMechanism.h"
+#include "commands/powercell/DisengageShooter.h"
+#include "subsystems/Shooter.h"
 
-RaiseArm::RaiseArm(IntakeMechanism* psubsysIntake): mpsubsysIntake{psubsysIntake} {
+DisengageShooter::DisengageShooter(Shooter* pShooter): mpShooter{pShooter} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(psubsysIntake);
+  AddRequirements(pShooter);
 }
 
 // Called when the command is initially scheduled.
-void RaiseArm::Initialize() {
-  mpsubsysIntake->StopRollers();
+void DisengageShooter::Initialize() {
+  mpShooter->stopMotor();
+}
 
-}
-  
 // Called repeatedly when this Command is scheduled to run
-void RaiseArm::Execute() {
-  
-}
+void DisengageShooter::Execute() {}
 
 // Called once the command ends or is interrupted.
-void RaiseArm::End(bool interrupted) {
-
-}
+void DisengageShooter::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool RaiseArm::IsFinished() { return false; }
+bool DisengageShooter::IsFinished() { return false; }

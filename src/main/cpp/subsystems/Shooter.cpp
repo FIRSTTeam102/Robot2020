@@ -6,17 +6,36 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/Shooter.h"
-#include "RobotContainer.h"
 #include "Constants.h"
 
-
-Shooter::Shooter():
-   m_Hood{k_hoodMotor},
-   m_Flywheel{k_flyWheelMotor}
+Shooter::Shooter() : 
+    mFlyEnc{kFlyEncA, kFlyEncB, kReverseFlyEnc, kFlyEncType},
+    mShooter{kFlyMotor}
 {
+    mFlyEnc.SetDistancePerPulse(1/360);
+    mShooter.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 0);
 }
 
 // This method will be called once per scheduler run
-void Shooter::Periodic() {
+void Shooter::Periodic() {}
 
+void Shooter::setSpeed(int speed) { //Takes in RPM
+    targetRPS = speed / 60;
+    targetRP100ms = targetRPS / 10;
+}
+
+void Shooter::startMotor() {
+    mShooter.Set(ControlMode::Velocity, targetRP100ms);
+}
+
+void Shooter::stopMotor() {
+    mShooter.Set(0);
+}
+
+bool Shooter::isReady() {
+    return (mFlyEnc.GetRate() >= targetRPS * 0.9);
+}
+
+int Shooter::getRPM() {
+    return mFlyEnc.GetRate() * 60;
 }

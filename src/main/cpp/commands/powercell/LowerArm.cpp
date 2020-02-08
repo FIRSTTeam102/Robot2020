@@ -7,44 +7,33 @@
 /*
    Lower the Intake Mechanisms arm, so it can start collecting power cells
 */
-#include "commands/LowerArm.h"
-#include "subsystems/IntakeMechanism.h"
+#include "commands/powercell/LowerArm.h"
+#include "subsystems/Intake.h"
 #include "RobotContainer.h"
 #include "Robot.h"
 
-LowerArm::LowerArm(IntakeMechanism* subsystemIntake):
-     mIntakeSubsystem{subsystemIntake}
+LowerArm::LowerArm(Intake* pIntake):
+     mpIntake{pIntake}
  {
   // Use addRequirements() here to declare subsystem dependencies.
-    AddRequirements(subsystemIntake);
+    AddRequirements(pIntake);
  }
 
 // Called when the command is initially scheduled.
 void LowerArm::Initialize() {
-   mIntakeSubsystem->StartRollers();
-   mIntakeSubsystem->lowerIntakeArm();
-
-
-
-
+   mpIntake->startRollers();
+   mpIntake->lowerIntakeArm();
 }
-
-
-
-
-
 
 // Called repeatedly when this Command is scheduled to run
 void LowerArm::Execute() {
-      if (mIntakeSubsystem->ArmisDown()){
-         mIntakeSubsystem->StopIntakeArm();
-      }
-
+   if (mpIntake->isArmDown()){
+      mpIntake->stopIntakeArm();
+   }
 }
 
 // Called once the command ends or is interrupted.
 void LowerArm::End(bool interrupted) {}
-
 
 // Returns true when the command should end.
 bool LowerArm::IsFinished() { return false; }

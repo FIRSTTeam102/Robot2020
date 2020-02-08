@@ -5,20 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/OperatorOverride.h"
+#include "commands/powercell/BallJam.h"
 
-OperatorOverride::OperatorOverride() {
+//BallJam is called in the event a Power cell ball gets jammed in the
+//  shooter mechanisms fly wheel
+BallJam::BallJam() {
   // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.
-void OperatorOverride::Initialize() {}
+void BallJam::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void OperatorOverride::Execute() {}
+void BallJam::Execute() {}
 
 // Called once the command ends or is interrupted.
-void OperatorOverride::End(bool interrupted) {}
+void BallJam::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool OperatorOverride::IsFinished() { return false; }
+bool BallJam::IsFinished() { return false; }
