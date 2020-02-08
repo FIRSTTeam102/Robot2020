@@ -13,8 +13,7 @@
 
 IntakeMechanism::IntakeMechanism():
     m_IntakeArmMotor{k_IntakeMotor, Direction::kBothDirections},
-    m_IntakeRollerMotor{k_IntakeRollerMotor, Directions:: kBothDirections},
-    mArmIsDown{false}
+    m_IntakeRollerMotor{k_IntakeRollerMotor, Directions:: kBothDirections}
  {
 
 }

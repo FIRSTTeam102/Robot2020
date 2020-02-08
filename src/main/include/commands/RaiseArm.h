@@ -9,6 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/IntakeMechanism.h"
 
 /**
  * An example command.
@@ -20,7 +21,7 @@
 class RaiseArm
     : public frc2::CommandHelper<frc2::CommandBase, RaiseArm> {
  public:
-  RaiseArm();
+  RaiseArm(IntakeMechanism* psubsysIntake);
 
   void Initialize() override;
 
@@ -29,4 +30,6 @@ class RaiseArm
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+ private:
+  IntakeMechanism* mpsubsysIntake;
 };

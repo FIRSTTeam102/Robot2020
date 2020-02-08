@@ -30,8 +30,8 @@ class IntakeMechanism : public frc2::SubsystemBase {
  
  private:
   
-  Relay m_IntakeArmMotor;
-  Relay m_IntakeRollerMotor;
+  frc::Relay m_IntakeArmMotor;
+  frc::Relay m_IntakeRollerMotor;
 
  
 

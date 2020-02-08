@@ -8,27 +8,16 @@
 #include "commands/ReadyShooter.h"
 #include "subsystems/Shooter.h"
 
-ReadyShooter::ReadyShooter(Shooter* subsystemShooter) {
-  AddRequirements({subsystemShooter});
-  // Use addRequirements() here to declare subsystem dependencies.
-  mpShooter = subsystemShooter;
+ReadyShooter::ReadyShooter(Shooter* pShooter): mpShooter{pShooter} {
+  //update subsystem dependencies so we know if the shooter is in use
+  AddRequirements(pShooter);
 }
 
 // Called when the command is initially scheduled.
 void ReadyShooter::Initialize() {}
 
-  int SensorDetectsBall;
-  int SensorNoball;
-
-  SensorDetectsBall = 1;
-  SensorNoball = 0;
-}
-
-
-
 // Called repeatedly when this Command is scheduled to run
 void ReadyShooter::Execute() {
-  if ()
 }
 
 // Called once the command ends or is interrupted.

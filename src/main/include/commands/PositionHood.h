@@ -9,6 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/Shooter.h"
 
 /**
  * An example command.
@@ -18,9 +19,9 @@
  * Command will *not* work!
  */
 class PositionHood
-    : public frc2::CommandHelper<frc2::CommandBase, PositionHood> {
+     : public frc2::CommandHelper<frc2::CommandBase, PositionHood> {
  public:
-  PositionHood();
+  PositionHood(Shooter* psubsystemShooter);
 
   void Initialize() override;
 
@@ -29,4 +30,9 @@ class PositionHood
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+ private:
+ //A pointer to the Shooter subsystem, which lives in RobotContainer
+ // this allows the PositionHood Command to ask the shooter subsystem to 
+ // do tasks (execute methods)
+  Shooter* mpShooter;
 };

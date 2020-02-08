@@ -6,9 +6,11 @@
 /*----------------------------------------------------------------------------*/
 
 #include "commands/PositionHood.h"
+#include "subsystems/Shooter.h"
 
-PositionHood::PositionHood() {
+PositionHood::PositionHood(Shooter* psubsystemShooter): mpShooter{psubsystemShooter} {
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(psubsystemShooter);
 }
 
 // Called when the command is initially scheduled.

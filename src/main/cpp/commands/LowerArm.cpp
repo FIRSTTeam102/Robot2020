@@ -4,22 +4,27 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
+   Lower the Intake Mechanisms arm, so it can start collecting power cells
+*/
 #include "commands/LowerArm.h"
+#include "subsystems/IntakeMechanism.h"
+#include "RobotContainer.h"
+#include "Robot.h"
 
-LowerArm::LowerArm() {
+LowerArm::LowerArm(IntakeMechanism* subsystemIntake):
+     mIntakeSubsystem{subsystemIntake}
+ {
   // Use addRequirements() here to declare subsystem dependencies.
-}
+    AddRequirements(subsystemIntake);
+ }
 
 // Called when the command is initially scheduled.
 void LowerArm::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void LowerArm::Execute() {
-  if (armdown != 1)
-  //Arm up 90 degrees
-  armdown = 0;
-return
+   
 }
 
 // Called once the command ends or is interrupted.

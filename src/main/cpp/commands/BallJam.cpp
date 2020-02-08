@@ -7,6 +7,8 @@
 
 #include "commands/BallJam.h"
 
+//BallJam is called in the event a Power cell ball gets jammed in the
+//  shooter mechanisms fly wheel
 BallJam::BallJam() {
   // Use addRequirements() here to declare subsystem dependencies.
 }

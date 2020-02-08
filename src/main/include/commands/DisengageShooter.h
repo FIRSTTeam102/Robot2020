@@ -9,6 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/Shooter.h"
 
 /**
  * An example command.
@@ -17,10 +18,9 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class DisengageShooter
-    : public frc2::CommandHelper<frc2::CommandBase, DisengageShooter> {
+class DisengageShooter: public frc2::CommandHelper<frc2::CommandBase, DisengageShooter> {
  public:
-  DisengageShooter();
+  DisengageShooter(Shooter* subsystemShooter);
 
   void Initialize() override;
 
@@ -29,4 +29,6 @@ class DisengageShooter
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+ private:
+   Shooter* mpShooter;
 };

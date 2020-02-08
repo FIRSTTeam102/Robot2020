@@ -4,43 +4,17 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
+    PickupPowerCells - if the intake arm is not lowered, lower it & start the
+      intake arm motors. If a ball is detected by the indexer, the indexer
+      should take the ball in.
+*/
 #include "commands/PickupPowerCells.h"
-//IOspace?
 
-class 
-
+// NOTE:  Consider using this command inline, rather than writing a subclass.
+// For more information, see:
+// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 PickupPowerCells::PickupPowerCells() {
-  // Use addRequirements() here to declare subsystem dependencies.
+  // Add your commands here, e.g.
+  // AddCommands(FooCommand(), BarCommand());
 }
-
-// Called when the command is initially scheduled.
-void PickupPowerCells::Initialize() {}
-int main()
-{
-  using namespace std;
-
-  int armup;
-  int armdown;
-  armup = 1;
-return
-}
-
-// Called repeatedly when this Command is scheduled to run
-void PickupPowerCells::Execute() {}
-if ((state.Gamepad.wButtons == XINPUT_GAMEPAD_A) != 1) {
-   armup = 1;
-  return
-}
-
-if ((state.Gamepad.wButtons == XINPUT_GAMEPAD_A) != 0) {
-   armdown = 1;
-  return
-}
-
-
-// Called once the command ends or is interrupted.
-void PickupPowerCells::End(bool interrupted) {}
-
-// Returns true when the command should end.
-bool PickupPowerCells::IsFinished() { return false; }
