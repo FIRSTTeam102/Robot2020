@@ -20,15 +20,31 @@ LowerArm::LowerArm(IntakeMechanism* subsystemIntake):
  }
 
 // Called when the command is initially scheduled.
-void LowerArm::Initialize() {}
+void LowerArm::Initialize() {
+   mIntakeSubsystem->StartRollers();
+   mIntakeSubsystem->lowerIntakeArm();
+
+
+
+
+}
+
+
+
+
+
 
 // Called repeatedly when this Command is scheduled to run
 void LowerArm::Execute() {
-   
+      if (mIntakeSubsystem->ArmisDown()){
+         mIntakeSubsystem->StopIntakeArm();
+      }
+
 }
 
 // Called once the command ends or is interrupted.
 void LowerArm::End(bool interrupted) {}
+
 
 // Returns true when the command should end.
 bool LowerArm::IsFinished() { return false; }

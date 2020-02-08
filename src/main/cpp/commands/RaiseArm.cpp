@@ -8,6 +8,7 @@
    Stop the intake mechanisms rollers and raise the arm
 */
 #include "commands/RaiseArm.h"
+#include "subsystems/IntakeMechanism.h"
 
 RaiseArm::RaiseArm(IntakeMechanism* psubsysIntake): mpsubsysIntake{psubsysIntake} {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -15,15 +16,20 @@ RaiseArm::RaiseArm(IntakeMechanism* psubsysIntake): mpsubsysIntake{psubsysIntake
 }
 
 // Called when the command is initially scheduled.
-void RaiseArm::Initialize() {}
+void RaiseArm::Initialize() {
+  mpsubsysIntake->StopRollers();
 
+}
+  
 // Called repeatedly when this Command is scheduled to run
 void RaiseArm::Execute() {
-
+  
 }
 
 // Called once the command ends or is interrupted.
-void RaiseArm::End(bool interrupted) {}
+void RaiseArm::End(bool interrupted) {
+
+}
 
 // Returns true when the command should end.
 bool RaiseArm::IsFinished() { return false; }

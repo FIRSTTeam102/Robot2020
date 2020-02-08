@@ -28,8 +28,12 @@ class IntakeMechanism : public frc2::SubsystemBase {
 
  void lowerIntakeArm();
  void raiseIntakeArm();
+ void StopIntakeArm();
  void StartRollers();
  void StopRollers();
+ void StartReverseRollers();
+ bool ArmisUp(){return(mUpSensor.Get());}
+ bool ArmisDown(){return(mDownSensor.Get());}
  
  
  private:

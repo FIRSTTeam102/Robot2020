@@ -24,6 +24,8 @@
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
+#include "subsystems/IntakeMechanism.h"
+#include "commands/LowerArm.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -59,6 +61,11 @@ class RobotContainer {
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
+  IntakeMechanism mIntakeSubsystem;
+  LowerArm mLowerArmCommand{&mIntakeSubsystem};
+
+
+
 
   void ConfigureButtonBindings();
 

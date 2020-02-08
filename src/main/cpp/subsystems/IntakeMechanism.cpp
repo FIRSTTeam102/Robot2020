@@ -9,6 +9,7 @@
 #include "subsystems/IntakeMechanism.h"
 #include "RobotContainer.h"
 #include "Constants.h"
+#include <frc/DigitalInput.h>
 
 
 IntakeMechanism::IntakeMechanism():
@@ -21,21 +22,28 @@ IntakeMechanism::IntakeMechanism():
 }
 
 void IntakeMechanism::lowerIntakeArm(){
- mIntakeArmMotor.Set (frc::Relay::kOn);
-
+ mIntakeArmMotor.Set (frc::Relay::kForward);
+    
 }
 
 void IntakeMechanism::raiseIntakeArm(){
- mIntakeArmMotor.Set (frc::Relay::kOn);
+ mIntakeArmMotor.Set (frc::Relay::kReverse);
 }
 
 void IntakeMechanism::StartRollers(){
+    mIntakeArmMotor.Set (frc::Relay::kForward);
 
 
 }
 void IntakeMechanism::StopRollers(){
+    mIntakeRollerMotor.Set (frc::Relay::kOff);
+}
+void IntakeMechanism::StartReverseRollers(){
+    mIntakeRollerMotor.Set (frc::Relay::kReverse);
 
 }
-
+void IntakeMechanism::StopIntakeArm(){
+    mIntakeArmMotor.Set (frc::Relay::kOff);
+}
 // This method will be called once per scheduler run
 void IntakeMechanism::Periodic() {}
