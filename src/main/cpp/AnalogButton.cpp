@@ -7,10 +7,8 @@
 
 #include "AnalogButton.h"
 
-AnalogButton::AnalogButton(frc::XboxController* xboxControl, 
+AnalogButton::AnalogButton(frc::XboxController* pXboxControl, 
                            frc::XboxController::JoystickHand stickHand):
-   mpXboxControl{xboxControl},
-   mStickHand {stickHand}
-   {
-       
-   }
+   mpXboxControl{pXboxControl},
+   mStickHand {stickHand} {  
+}

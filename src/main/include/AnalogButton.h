@@ -13,7 +13,7 @@
 
 class AnalogButton : public frc2::Button {
  public:
-  AnalogButton(frc::XboxController* xboxControl, frc::XboxController::JoystickHand stickHand);
+  AnalogButton(frc::XboxController* pXboxControl, frc::XboxController::JoystickHand stickHand);
 
   bool Get() const override {
      return(mpXboxControl->GetTriggerAxis(mStickHand)>=mThreshold);};
