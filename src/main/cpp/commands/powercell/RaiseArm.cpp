@@ -15,16 +15,29 @@ RaiseArm::RaiseArm(Intake* pIntake): mpIntake{pIntake} {
   AddRequirements(pIntake);
 }
 
-// Called when the command is initially scheduled.
+// RaiseArm Initialize: Called when the command is initially scheduled.
+//   stop the intake arm rollers and start to raise the intake arm
 void RaiseArm::Initialize() {
   mpIntake->stopRollers();
 }
   
-// Called repeatedly when this Command is scheduled to run
-void RaiseArm::Execute() {}
+// RaiseArm Execute: Called repeatedly when this Command is scheduled to run
+//   continue to raise the intake arm until it reaches the fully raised position
+void RaiseArm::Execute() {
+  if (!mpIntake->isArmUp()){
+    mpIntake->raiseIntakeArm();
+  }else{
+    mpIntake->stopIntakeArm();
+  }
+}
 
-// Called once the command ends or is interrupted.
-void RaiseArm::End(bool interrupted) {}
+// RaiseArm: Called once the command ends or is interrupted.
+//   if raise arm is cancelled before the arm is all the way up
+//   it would mean lower arm was requested, in which case we want
+//   to stop the arm motors (as opposed to sudden change of direction)
+void RaiseArm::End(bool interrupted) {
+  mpIntake->stopIntakeArm();
+}
 
-// Returns true when the command should end.
-bool RaiseArm::IsFinished() { return false; }
+// RaiseArm IsFinished - Returns true when the command should end.
+bool RaiseArm::IsFinished() { return(mpIntake->isArmUp()); }

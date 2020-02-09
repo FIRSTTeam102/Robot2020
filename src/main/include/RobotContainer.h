@@ -28,6 +28,7 @@
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
+#include "AnalogButton.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -57,11 +58,13 @@ class RobotContainer {
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
   frc2::Button mDriverButtonX{[&] { return mDriverController.GetRawButton(3);}};
   frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
+  AnalogButton mTriggerButtonLeft{&mDriverController,frc::XboxController::kLeftHand};
 
   Intake mIntake;
   Indexer mIndexer;
   Shooter mShooter;
   LowerArm mLowerArmCommand{&mIntake};
+  
 
   ControlPanelManipulator mControlPanel;
   RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};

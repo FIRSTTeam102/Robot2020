@@ -8,6 +8,7 @@
 #include "RobotContainer.h"
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
+#include "AnalogButton.h"
 
 
 RobotContainer::RobotContainer(): 
@@ -16,8 +17,6 @@ RobotContainer::RobotContainer():
   mDriveCommand{&mTankDrive},
   mIntake{}
   {
-
-
   // Initialize all of your commands and subsystems here
   //drive
   // Configure the button bindings
@@ -35,6 +34,14 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverButtonB.WhenPressed(&mPositionCommand, true);
   mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
   mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
+
+  //Create a triggers to activate deactivate the Intake of Power cells
+  // when the driver's trigger is pulled - note these are two different
+  // uses of the word trigger. frc trigger is any event or set of events that
+  // are true and should cause a command to be executed (like the XboxTrigger being 
+  // pressed)
+  
+   
 }
 
 

@@ -15,6 +15,18 @@
   },
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "files.associations": {
-    "*.inc": "cpp"
+    "*.inc": "cpp",
+    "*.tcc": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cmath": "cpp",
+    "complex": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "sstream": "cpp"
   }
 }

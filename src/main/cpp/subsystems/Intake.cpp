@@ -20,27 +20,44 @@ Intake::Intake():
  {
 
 }
-
+//lower the intake arm - if the arm is not
+//   already in the down position, start the arm motor forward
+//   if the arm is already down, make sure the arm motor is not running
 void Intake::lowerIntakeArm() {
-    mIntakeArmMotor.Set(frc::Relay::kForward);
+    if (!isArmDown()){
+      mIntakeArmMotor.Set(frc::Relay::kForward);
+    }
+    else {
+      stopIntakeArm();
+    }
 }
-
+//raise the intake arm - if the arm is not already
+//  in the fully upright position, start the arm motor in reverse
+//  if the arm is already all the way up, make sure the arm motor
+//  is not running.
 void Intake::raiseIntakeArm() {
-    mIntakeArmMotor.Set(frc::Relay::kReverse);
+    if (!isArmUp()){
+      mIntakeArmMotor.Set(frc::Relay::kReverse);
+    }
+    else {
+        stopIntakeArm();
+    }
 }
-
+//stopIntakeArm - stop the intake arm motor by shutting it off
 void Intake::stopIntakeArm(){
     mIntakeArmMotor.Set (frc::Relay::kOff);
 }
-
+//startRollers - start the intake arms rollers, to capture power cells
 void Intake::startRollers() {
     mIntakeArmMotor.Set(frc::Relay::kForward);
 }
-
+//startReversRollers - start the intake arm rollers in reverse - this is to
+//  spit out power cells in the event the power cell intake needs to be
+//  cleared
 void Intake::startReverseRollers(){
     mIntakeRollerMotor.Set(frc::Relay::kReverse);
 }
-
+//stopRollers - stop the intake arm roller motors from running
 void Intake::stopRollers() {
     mIntakeRollerMotor.Set(frc::Relay::kOff);
 }

@@ -19,21 +19,31 @@ LowerArm::LowerArm(Intake* pIntake):
     AddRequirements(pIntake);
  }
 
-// Called when the command is initially scheduled.
+// LowerArm - initialize Called when the command is initially scheduled.
+//    start the intakeArmRollers moving forward and lower the intake arm
+//    so that power cells can be moved toward the indexer
 void LowerArm::Initialize() {
    mpIntake->startRollers();
-   mpIntake->lowerIntakeArm();
 }
 
-// Called repeatedly when this Command is scheduled to run
+// LowerArm - Execute - Called repeatedly when this Command is scheduled to run
+//    when the intake arm hits the fully down position, stop the Intake Arm motors
+//    from moving, but keep the intake arm rollers (which were started in initialize)
+//    running to take in power cells.
 void LowerArm::Execute() {
-   if (mpIntake->isArmDown()){
+   if (!mpIntake->isArmDown()){
+      mpIntake->lowerIntakeArm();
+   }
+   else {
       mpIntake->stopIntakeArm();
    }
 }
 
-// Called once the command ends or is interrupted.
+// Called once the command ends or is interrupted/cancelled.
 void LowerArm::End(bool interrupted) {}
 
-// Returns true when the command should end.
+// LowerArm - is finished - Returns true when the command should end.
+//   NOTE: LowerArm is expected to be executed while a button is pressed.
+//   when the button is released, the command will be cancelled, this
+//   command is not expected to finish on it's own.
 bool LowerArm::IsFinished() { return false; }
