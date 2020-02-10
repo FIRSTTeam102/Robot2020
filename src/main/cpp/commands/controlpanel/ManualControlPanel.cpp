@@ -5,36 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/RotateControlPanel.h"
-#include "subsystems/ControlPanelManipulator.h"
+#include "commands/controlpanel/ManualControlPanel.h"
 
-RotateControlPanel::RotateControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
+ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel) {
   AddRequirements({pControlPanel});
-  AddRequirements({pSubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
   mpControlPanel = pControlPanel;
-  mpSubsystemDrive = pSubsystemDrive;
 }
 
 // Called when the command is initially scheduled.
-void RotateControlPanel::Initialize() {
-  mpControlPanel->resetFinished();
-}
+void ManualControlPanel::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void RotateControlPanel::Execute() {
-  mpControlPanel->rotationControl();
-  mpSubsystemDrive->slowlyDriveForwards();
-  printf("Running Rot\n");
+void ManualControlPanel::Execute() {
+  mpControlPanel->runMotor();
 }
 
 // Called once the command ends or is interrupted.
-void RotateControlPanel::End(bool interrupted) {
-  printf("Rotation complete!\n");
-  mpSubsystemDrive->stop();
+void ManualControlPanel::End(bool interrupted) {
+  mpControlPanel->stopMotor();
 }
 
 // Returns true when the command should end.
-bool RotateControlPanel::IsFinished() {
-  return mpControlPanel->getFinished();
-}
+bool ManualControlPanel::IsFinished() { return false; }
