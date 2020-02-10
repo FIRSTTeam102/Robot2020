@@ -23,6 +23,7 @@ class DriveTrain : public frc2::SubsystemBase {
   void driveWithXboxController();
   void arcadeDrive();
   void toggleDrive();
+  void move(double x, double y);
   void setDriverJoystick(frc::XboxController* pDriverJoystick){
     mpDriverJoystick = pDriverJoystick;
   };

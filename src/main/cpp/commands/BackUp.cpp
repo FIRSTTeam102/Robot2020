@@ -7,18 +7,33 @@
 
 #include "commands/BackUp.h"
 
-BackUp::BackUp() {
+BackUp::BackUp(DriveTrain* pTankDrive):  mpTankDrive(pTankDrive){
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(pTankDrive);
+  ticksPassed = 0;
 }
 
 // Called when the command is initially scheduled.
-void BackUp::Initialize() {}
+void BackUp::Initialize() {
+  printf("test2");
+  mpTankDrive->move(-1.0, -1.0);
+}
 
 // Called repeatedly when this Command is scheduled to run
-void BackUp::Execute() {}
+void BackUp::Execute() {
+  ticksPassed +=1;
+}
 
 // Called once the command ends or is interrupted.
-void BackUp::End(bool interrupted) {}
+void BackUp::End(bool interrupted) {
+  mpTankDrive->move(0, 0);
+}
 
 // Returns true when the command should end.
-bool BackUp::IsFinished() { return false; }
+bool BackUp::IsFinished() { 
+  if(ticksPassed >= 200){
+    return true;
+  }
+  return false; 
+  
+  }

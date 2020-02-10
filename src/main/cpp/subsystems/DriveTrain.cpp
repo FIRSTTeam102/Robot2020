@@ -51,6 +51,10 @@ void DriveTrain::stop(){
     mDrive.TankDrive(0, 0, false);
 }
 
+void DriveTrain::move(double x, double y){
+    mDrive.TankDrive(x, y, false);
+}
+
 void DriveTrain::toggleDrive(){
     printf("On: %d\n", on);
     if (on == true) {
