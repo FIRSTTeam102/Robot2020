@@ -15,7 +15,9 @@ Indexer::Indexer():
     mIntakeSensor{kDIOIntake},
     mBottomSensor{kDIOBottom},
     mTopSensor{kDIOTop},
-    mnumPowerCells{3}
+    mnumPowerCells{3},
+    memptyTimer{0},
+    mpowerCellWasAtIntake{false}
  {
 
 }
@@ -25,7 +27,7 @@ Indexer::Indexer():
 //   the shooter) and the intakeSensor has a ball (so it cannot move the 
 //   conveyor at all).
 bool Indexer::isFullIndexer(){
-    if (mTopSensor.Get() && mIntakeSensor.Get()){
+    if (isPowerCellAtTop() && isPowerCellAtIntake()){
         return(true);
     }
     else {
@@ -40,11 +42,11 @@ bool Indexer::isFullIndexer(){
 //  length) expires.
 bool Indexer::isEmptyIndexer(){
     if (!isPowerCellAtTop() && !isPowerCellAtBottom()){
-        if (mtravelTimer < kMaxPowerCellTravelTime){
-            mtravelTimer++;
+        if (isRunningOnEmpty()){
+            return(true);
         }
         else {
-            return(true);
+            memptyTimer++;
         }
     }
     return(false);
@@ -94,8 +96,17 @@ void Indexer::intakeAPowerCell(){
 }
 //Shoot Power cell - just move the indexer 
 void Indexer::shootPowerCell(){
+    //start the conveyor to pass power cells to the shooter (we assume that
+    //  the shooter is ready).  If there is a powercell in at the top, we
+    //  reset the running on empty timer & decrement the power cell counter until
+    //  it hits zero.
     moveUpIndexer();
-    //how to keep track of counter here?
+    if (isPowerCellAtTop()){
+        resetRunningOnEmpty();
+        if(mnumPowerCells>0){
+            mnumPowerCells--;
+        }
+    }
 }
 // This method will be called once per scheduler run
 void Indexer::Periodic() {}
