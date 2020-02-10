@@ -9,6 +9,8 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/Shooter.h"
+#include "subsystems/Indexer.h"
 
 /**
  * An example command.
@@ -20,7 +22,7 @@
 class ShootPowerCells
     : public frc2::CommandHelper<frc2::CommandBase, ShootPowerCells> {
  public:
-  ShootPowerCells();
+  ShootPowerCells(Shooter* pshootSubsys, Indexer* pindexerSubsys);
 
   void Initialize() override;
 
@@ -29,4 +31,7 @@ class ShootPowerCells
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+ private:
+  Shooter* mpshooterSubsys;
+  Indexer* mpindexerSubsys;
 };
