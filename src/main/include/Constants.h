@@ -47,6 +47,7 @@ int constexpr kIntakeBottomSensor = 10;
 
 //Index Relay
  int constexpr kIndexChannel = 0;
+ int constexpr kMaxPowerCellTravelTime = 100;
 
 //OI Indexes (joysticks/buttons)
 int constexpr kDriverJoystick = 0;

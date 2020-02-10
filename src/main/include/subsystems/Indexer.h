@@ -16,7 +16,20 @@
 class Indexer : public frc2::SubsystemBase {
  public:
   Indexer();
-
+    bool isFullIndexer();
+    bool isEmptyIndexer();
+    int  numLoadedPowerCells() {return(mnumPowerCells);}
+    void movePowerCellsToTop();
+    void movePowerCellsToBottom();
+    void intakeAPowerCell();
+    void shootPowerCell();
+    bool isPowerCellAtTop(){return mTopSensor.Get();}
+    bool isPowerCellAtBottom(){return mBottomSensor.Get();}
+    bool isPowerCellAtIntake(){return mIntakeSensor.Get();}
+    void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
+    void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::kForward);}
+    void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}
+    void resetTravelTimer() {mtravelTimer = 0;}
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -29,4 +42,7 @@ class Indexer : public frc2::SubsystemBase {
   frc::DigitalInput mIntakeSensor;
   frc::DigitalInput mBottomSensor;
   frc::DigitalInput mTopSensor;
+  int mnumPowerCells;
+  int mtravelTimer;
+  bool mpowerCellWasAtIntake;
 };
