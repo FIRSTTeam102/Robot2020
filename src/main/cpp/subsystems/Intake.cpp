@@ -18,7 +18,6 @@ Intake::Intake():
     mUpSensor{kIntakeTopSensor},
     mDownSensor{kIntakeBottomSensor}
  {
-
 }
 //lower the intake arm - if the arm is not
 //   already in the down position, start the arm motor forward
@@ -45,7 +44,7 @@ void Intake::raiseIntakeArm() {
 }
 //stopIntakeArm - stop the intake arm motor by shutting it off
 void Intake::stopIntakeArm(){
-    mIntakeArmMotor.Set (frc::Relay::kOff);
+    mIntakeArmMotor.Set(frc::Relay::kOff);
 }
 //startRollers - start the intake arms rollers, to capture power cells
 void Intake::startRollers() {

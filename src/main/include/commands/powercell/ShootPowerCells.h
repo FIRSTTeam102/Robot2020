@@ -22,7 +22,7 @@
 class ShootPowerCells
     : public frc2::CommandHelper<frc2::CommandBase, ShootPowerCells> {
  public:
-  ShootPowerCells(Shooter* pshootSubsys, Indexer* pindexerSubsys);
+  ShootPowerCells(Shooter* pShooterSubsys, Indexer* pIndexerSubsys);
 
   void Initialize() override;
 
@@ -32,6 +32,6 @@ class ShootPowerCells
 
   bool IsFinished() override;
  private:
-  Shooter* mpshooterSubsys;
-  Indexer* mpindexerSubsys;
+  Shooter* mpShooterSubsys;
+  Indexer* mpIndexerSubsys;
 };
