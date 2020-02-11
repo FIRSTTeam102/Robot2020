@@ -24,10 +24,10 @@ void Lights::setMode(int mode) {
 
     if (mode >= 0 || mode <= 8) {
         strMode[0] = mode + '0';
-        mSP.Write(strMode, 128);
+        mSP.Write(strMode, 64);
         printf("Writing serial- mode %c\n", strMode[0]);
     } else {
-        mSP.Write("0", 8);
+        mSP.Write("0", 64);
         printf("Serial input unknown\n");
     }
 

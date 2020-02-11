@@ -30,8 +30,8 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverButtonA.WhenPressed(&mRotateCommand, false);
   mDriverButtonB.WhenPressed(&mPositionCommand, true);
   mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
-  //mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
-  mDriverButtonY.WhenHeld(&mLightTestCommand, false);
+  mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
+  //mDriverButtonY.WhenHeld(&mLightTestCommand, false);
 }
 
 
