@@ -9,6 +9,8 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/Indexer.h"
+#include "subsystems/Shooter.h"
 
 /**
  * An example command.
@@ -20,7 +22,7 @@
 class BallJam
     : public frc2::CommandHelper<frc2::CommandBase, BallJam> {
  public:
-  BallJam();
+  BallJam(Indexer* pIndexer, Shooter* pShooter);
 
   void Initialize() override;
 
@@ -29,4 +31,7 @@ class BallJam
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+  private:
+  Indexer* mpIndexer;
+  Shooter* mpShooter;
 };

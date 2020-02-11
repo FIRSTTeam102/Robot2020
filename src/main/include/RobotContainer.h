@@ -8,7 +8,7 @@
 #pragma once
 
 #include <frc2/command/Command.h>
-#include <frc/Joystick.h>
+#include <frc/XboxController.h>
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
 
@@ -19,15 +19,17 @@
 #include "subsystems/ControlPanelManipulator.h"
 
 #include "commands/DriveWithXbox.h"
-#include "commands/powercell/ReadyShooter.h"
-#include "commands/powercell/LowerArm.h"
+#include "commands/powercell/BallJam.h"
+#include "commands/powercell/PickupPowerCells.h"
+#include "commands/powercell/PrepShooting.h"
+#include "commands/powercell/RaiseArm.h"
+#include "commands/powercell/Reset.h"
+#include "commands/powercell/ShootPowerCells.h"
 #include "commands/controlpanel/ManualControlPanel.h"
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
-#include "frc/XboxController.h"
-#include <frc2/command/button/JoystickButton.h>
-#include <frc2/command/button/Button.h>
+
 #include "AnalogButton.h"
 
 /**
@@ -51,20 +53,36 @@ class RobotContainer {
  private:
  
   // The robot's subsystems and commands are defined here...
-  DriveTrain mTankDrive;
-  DriveWithXbox mDriveCommand;
   frc::XboxController mDriverController;
   frc2::Button mDriverButtonA{[&] { return mDriverController.GetRawButton(1);}};
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
   frc2::Button mDriverButtonX{[&] { return mDriverController.GetRawButton(3);}};
   frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
-  AnalogButton mTriggerButtonLeft{&mDriverController,frc::XboxController::kLeftHand};
+  AnalogButton mDriverTriggerButtonLeft{&mDriverController,frc::XboxController::kLeftHand};
+  AnalogButton mDriverTriggerButtonRight{&mDriverController,frc::XboxController::kRightHand};
+
+  frc::XboxController mOperatorController;
+  frc2::Button mOperatorButtonA{[&] { return mOperatorController.GetRawButton(1);}};
+  frc2::Button mOperatorButtonB{[&] { return mOperatorController.GetRawButton(2);}};
+  frc2::Button mOperatorButtonX{[&] { return mOperatorController.GetRawButton(3);}};
+  frc2::Button mOperatorButtonY{[&] { return mOperatorController.GetRawButton(4);}};
+  AnalogButton mOperatorTriggerButtonLeft{&mOperatorController,frc::XboxController::kLeftHand};
+  AnalogButton mOperatorTriggerButtonRight{&mOperatorController,frc::XboxController::kRightHand};
+
+  DriveTrain mTankDrive;
+  DriveWithXbox mDriveCommand;
 
   Intake mIntake;
   Indexer mIndexer;
   Shooter mShooter;
-  LowerArm mLowerArmCommand{&mIntake};
-  
+  BallJam mBallJamCommand{&mIndexer, &mShooter};
+  PickupPowerCells mPickupCellsCommand{&mIntake, &mIndexer};
+  PrepShooting mPrepShootingSlow{&mIndexer, &mShooter, 250*360};
+  PrepShooting mPrepShootingMed{&mIndexer, &mShooter, 500*360};
+  PrepShooting mPrepShootingFast{&mIndexer, &mShooter, 1000*360};
+  RaiseArm mRaiseArmCommand{&mIntake};
+  Reset mResetCommand{};
+  ShootPowerCells mShootCommand{&mIndexer, &mShooter};
 
   ControlPanelManipulator mControlPanel;
   RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};

@@ -4,28 +4,24 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/*
-    Disengage Shooter - Stop the Shooter mechanisms fly wheel
-    but leave the hood in whatever position it is already in
-*/
-#include "commands/powercell/DisengageShooter.h"
-#include "subsystems/Shooter.h"
 
-DisengageShooter::DisengageShooter(Shooter* pShooter): mpShooter{pShooter} {
+#include "commands/powercell/AimShooter.h"
+
+AimShooter::AimShooter(Shooter* pShooter, int speed): mpShooter{pShooter}, mSpeed{speed} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pShooter);
+  AddRequirements(mpShooter);
 }
 
 // Called when the command is initially scheduled.
-void DisengageShooter::Initialize() {
-  mpShooter->stopMotor();
+void AimShooter::Initialize() {
+  mpShooter->setSpeed(mSpeed);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DisengageShooter::Execute() {}
+void AimShooter::Execute() {}
 
 // Called once the command ends or is interrupted.
-void DisengageShooter::End(bool interrupted) {}
+void AimShooter::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool DisengageShooter::IsFinished() { return true; }
+bool AimShooter::IsFinished() { return true; }

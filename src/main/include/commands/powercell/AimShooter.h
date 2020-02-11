@@ -10,7 +10,6 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/Shooter.h"
-#include "subsystems/Indexer.h"
 
 /**
  * An example command.
@@ -19,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ShootPowerCells
-    : public frc2::CommandHelper<frc2::CommandBase, ShootPowerCells> {
+class AimShooter
+    : public frc2::CommandHelper<frc2::CommandBase, AimShooter> {
  public:
-  ShootPowerCells(Indexer* pIndexerSubsys, Shooter* pShooterSubsys);
+  AimShooter(Shooter* pShooter, int speed);
 
   void Initialize() override;
 
@@ -31,7 +30,7 @@ class ShootPowerCells
   void End(bool interrupted) override;
 
   bool IsFinished() override;
- private:
-  Indexer* mpIndexerSubsys;
-  Shooter* mpShooterSubsys;
+  private:
+  Shooter* mpShooter;
+  int mSpeed;
 };

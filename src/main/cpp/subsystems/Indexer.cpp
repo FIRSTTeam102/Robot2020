@@ -26,12 +26,7 @@ Indexer::Indexer():
 //   the shooter) and the intakeSensor has a ball (so it cannot move the 
 //   conveyor at all).
 bool Indexer::isFullIndexer(){
-    if (isPowerCellAtTop() && isPowerCellAtIntake()){
-        return(true);
-    }
-    else {
-        return(false);
-    }
+    return (isPowerCellAtTop() && isPowerCellAtIntake());
 }
 //isEmptyIndexer - determine if the indexer is empty. It has no power cells
 //  if none of the sensors register a power cell, we could be in a state where
@@ -94,7 +89,7 @@ void Indexer::intakeAPowerCell(){
     }
 }
 //Shoot Power cell - just move the indexer 
-void Indexer::shootPowerCell(){
+void Indexer::shootPowerCells(){
     //start the conveyor to pass power cells to the shooter (we assume that
     //  the shooter is ready).  If there is a powercell in at the top, we
     //  reset the running on empty timer & decrement the power cell counter until

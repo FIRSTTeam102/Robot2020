@@ -8,15 +8,15 @@
 #pragma once
 
 #include <frc2/command/CommandHelper.h>
-#include <frc2/command/SequentialCommandGroup.h>
-#include "commands/powercell/LowerArm.h"
-#include "commands/powercell/IndexPowerCell.h"
-#include "subsystems/Intake.h"
+#include <frc2/command/ParallelCommandGroup.h>
+#include "commands/powercell/AimShooter.h"
+#include "commands/powercell/PrimeIntake.h"
 #include "subsystems/Indexer.h"
+#include "subsystems/Shooter.h"
 
-class PickupPowerCells
-    : public frc2::CommandHelper<frc2::SequentialCommandGroup,
-                                 PickupPowerCells> {
+class PrepShooting
+    : public frc2::CommandHelper<frc2::ParallelCommandGroup,
+                                 PrepShooting> {
  public:
-  PickupPowerCells(Intake* pIntake, Indexer* pIndexer);
+  PrepShooting(Indexer* pIndexer, Shooter* pShooter, int shooterSpeed);
 };

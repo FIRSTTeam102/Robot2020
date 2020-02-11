@@ -14,7 +14,8 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-PickupPowerCells::PickupPowerCells() {
+PickupPowerCells::PickupPowerCells(Intake* pIntake, Indexer* pIndexer) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
+  AddCommands(LowerArm(pIntake), IndexPowerCell(pIndexer));
 }

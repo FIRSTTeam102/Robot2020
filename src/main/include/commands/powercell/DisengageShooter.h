@@ -30,5 +30,5 @@ class DisengageShooter: public frc2::CommandHelper<frc2::CommandBase, DisengageS
 
   bool IsFinished() override;
  private:
-   Shooter* mpShooter;
+  Shooter* mpShooter;
 };

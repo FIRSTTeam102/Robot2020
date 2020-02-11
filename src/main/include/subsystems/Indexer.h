@@ -23,7 +23,7 @@ class Indexer : public frc2::SubsystemBase {
     void movePowerCellsToTop();
     void movePowerCellsToBottom();
     void intakeAPowerCell();
-    void shootPowerCell();
+    void shootPowerCells();
     bool isPowerCellAtTop(){return mTopSensor.Get();}
     bool isPowerCellAtBottom(){return mBottomSensor.Get();}
     bool isPowerCellAtIntake(){return mIntakeSensor.Get();}

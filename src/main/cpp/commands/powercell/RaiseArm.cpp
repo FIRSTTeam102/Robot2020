@@ -24,11 +24,7 @@ void RaiseArm::Initialize() {
 // RaiseArm Execute: Called repeatedly when this Command is scheduled to run
 //   continue to raise the intake arm until it reaches the fully raised position
 void RaiseArm::Execute() {
-  if (!mpIntake->isArmUp()){
-    mpIntake->raiseIntakeArm();
-  }else{
-    mpIntake->stopIntakeArm();
-  }
+  mpIntake->raiseIntakeArm();
 }
 
 // RaiseArm: Called once the command ends or is interrupted.
@@ -40,4 +36,6 @@ void RaiseArm::End(bool interrupted) {
 }
 
 // RaiseArm IsFinished - Returns true when the command should end.
-bool RaiseArm::IsFinished() { return(mpIntake->isArmUp()); }
+bool RaiseArm::IsFinished() { 
+  return (mpIntake->isArmUp()); 
+}

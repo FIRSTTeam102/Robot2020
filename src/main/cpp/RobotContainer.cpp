@@ -14,6 +14,7 @@
 RobotContainer::RobotContainer(): 
   mTankDrive{}, 
   mDriverController{0},
+  mOperatorController{1},
   mDriveCommand{&mTankDrive},
   mIntake{}
   {

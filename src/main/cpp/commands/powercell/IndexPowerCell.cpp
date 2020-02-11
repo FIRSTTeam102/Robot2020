@@ -5,22 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/powercell/ReadyShooter.h"
-#include "subsystems/Shooter.h"
+#include "commands/powercell/IndexPowerCell.h"
 
-ReadyShooter::ReadyShooter(Shooter* pShooter): mpShooter{pShooter} {
-  //update subsystem dependencies so we know if the shooter is in use
-  AddRequirements(pShooter);
+IndexPowerCell::IndexPowerCell(Indexer* pIndexer): mpIndexer{pIndexer} {
+  // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(pIndexer);
 }
 
 // Called when the command is initially scheduled.
-void ReadyShooter::Initialize() {}
+void IndexPowerCell::Initialize() {
+  mpIndexer->moveUpIndexer();
+}
 
 // Called repeatedly when this Command is scheduled to run
-void ReadyShooter::Execute() {}
+void IndexPowerCell::Execute() {}
 
 // Called once the command ends or is interrupted.
-void ReadyShooter::End(bool interrupted) {}
+void IndexPowerCell::End(bool interrupted) {
+  mpIndexer->stopIndexer();
+}
 
 // Returns true when the command should end.
-bool ReadyShooter::IsFinished() { return false; }
+bool IndexPowerCell::IsFinished() {
+  return (!mpIndexer->isPowerCellAtBottom() && mpIndexer->isPowerCellAtIntake());
+}

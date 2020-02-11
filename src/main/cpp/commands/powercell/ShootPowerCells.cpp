@@ -9,13 +9,13 @@
 #include "subsystems/Shooter.h"
 #include "subsystems/Indexer.h"
 
-ShootPowerCells::ShootPowerCells(Shooter* pShooterSubsys, Indexer* pIndexerSubsys):
-  mpShooterSubsys{pShooterSubsys},
-  mpIndexerSubsys{pIndexerSubsys} 
+ShootPowerCells::ShootPowerCells(Indexer* pIndexerSubsys, Shooter* pShooterSubsys):
+  mpIndexerSubsys{pIndexerSubsys},
+  mpShooterSubsys{pShooterSubsys}
 {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pShooterSubsys);
   AddRequirements(pIndexerSubsys);
+  AddRequirements(pShooterSubsys);
 }
 
 // Called when the command is initially scheduled.
@@ -25,9 +25,9 @@ void ShootPowerCells::Initialize() {}
 //  as long as the shooter is ready to take power cells, the
 //  indexer should send power cells (until cancelled or empty)
 void ShootPowerCells::Execute() {
-   if(mpShooterSubsys->isReady()){
-     mpIndexerSubsys->shootPowerCell();
-   }
+  if(mpShooterSubsys->isReady()){
+    mpIndexerSubsys->shootPowerCells();
+  }
 }
 
 // ShootPowerCells - end Called once the command ends or is interrupted.
