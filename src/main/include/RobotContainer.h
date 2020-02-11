@@ -11,12 +11,13 @@
 
 #include "commands/DriveWithXbox.h"
 #include "subsystems/DriveTrain.h"
-#include "subsystems/Lights.h"
+#include "subsystems/Lights.h" //for lights
 #include "subsystems/ControlPanelManipulator.h"
 #include "commands/RotateControlPanel.h"
 #include "commands/PositionControlPanel.h"
 #include "commands/StopControlPanel.h"
 #include "commands/ManualControlPanel.h"
+#include "commands/LightTest.h"
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
@@ -38,14 +39,13 @@ class RobotContainer {
     return &mDriverController;
   }
   
-
  private:
  
   // The robot's subsystems and commands are defined here...
-  Lights mLights;
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
+  Lights mLightTestSubsys; //for lights
   frc::XboxController mDriverController;
   frc2::Button mDriverButtonA{[&] { return mDriverController.GetRawButton(1);}};
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
@@ -57,7 +57,9 @@ class RobotContainer {
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
+  LightTest mLightTestCommand{&mLightTestSubsys}; //for lights
 
   void ConfigureButtonBindings();
-  Lights mArduinoJBLights;
+
+  Lights* mpLights; //for lights
 };

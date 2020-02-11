@@ -16,7 +16,9 @@ StopControlPanel::StopControlPanel(ControlPanelManipulator *pControlPanel, Drive
 }
 
 // Called when the command is initially scheduled.
-void StopControlPanel::Initialize() {}
+void StopControlPanel::Initialize() {
+  
+}
 
 // Called repeatedly when this Command is scheduled to run
 void StopControlPanel::Execute() {

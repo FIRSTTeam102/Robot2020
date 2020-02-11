@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/Lights.h"
-#define _GLIBCXX_USE_CXX11_ABI 0
+//#define _GLIBCXX_USE_CXX11_ABI 0
 
 
 Lights::Lights() : mSP{9600, frc::SerialPort::kUSB} {
@@ -24,7 +24,7 @@ void Lights::setMode(int mode) {
 
     if (mode >= 0 || mode <= 8) {
         strMode[0] = mode + '0';
-        mSP.Write(strMode, 1);
+        mSP.Write(strMode, 128);
         printf("Writing serial- mode %c\n", strMode[0]);
     } else {
         mSP.Write("0", 8);

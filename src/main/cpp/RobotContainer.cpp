@@ -8,34 +8,34 @@
 #include "RobotContainer.h"
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
+#include "commands/DriveWithXbox.h"
 
 RobotContainer::RobotContainer(): 
   mTankDrive{}, 
   mDriverController{0},
-  mDriveCommand{&mTankDrive, &mLights}
+  mDriveCommand{&mTankDrive}
 {
   // Initialize all of your commands and subsystems here
   //drive
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
-  mTankDrive.setDriverJoystick(&mDriverController);
-
+  //mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
+  //mTankDrive.setDriverJoystick(&mDriverController);
 
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  mDriverButtonA.WhenPressed(&mRotateCommand, true);
+  mDriverButtonA.WhenPressed(&mRotateCommand, false);
   mDriverButtonB.WhenPressed(&mPositionCommand, true);
   mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
-  mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
+  //mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
+  mDriverButtonY.WhenHeld(&mLightTestCommand, false);
 }
 
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
- // return &m_autonomousCommand;
-
+  //return &m_autonomousCommand;
 }
