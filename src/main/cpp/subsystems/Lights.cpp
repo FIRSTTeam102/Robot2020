@@ -14,6 +14,9 @@ Lights::Lights() : mSP{9600, frc::SerialPort::kUSB} {
     mSP.Reset();
 }
 
+// (String)Spell
+// don't mind me, just casting a spell
+
 // This method will be called once per scheduler run
 void Lights::Periodic() {
     //mSP.Write("1", 1);
