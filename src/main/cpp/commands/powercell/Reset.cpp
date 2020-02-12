@@ -31,7 +31,7 @@ void Reset::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool Reset::IsFinished() {
-    if (mpIndexer->isRunningOnEmpty())){
+    if (mpIndexer->isRunningOnEmpty()){
         return true;
     } else{
         return false;

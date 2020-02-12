@@ -22,7 +22,15 @@
 class Reset
     : public frc2::CommandHelper<frc2::CommandBase, Reset> {
  public:
-  Reset();
+  Reset(Intake* pIntake, Indexer* pIndexer);
+
+  void Initialize() override;
+
+  void Execute() override;
+
+  void End(bool interrupted) override;
+
+  bool IsFinished() override;
 
 private:
   Intake* mpIntake;
