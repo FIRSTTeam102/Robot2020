@@ -9,6 +9,8 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/Intake.h"
+#include "subsystems/Indexer.h"
 
 /**
  * An example command.
@@ -22,11 +24,7 @@ class Reset
  public:
   Reset();
 
-  void Initialize() override;
-
-  void Execute() override;
-
-  void End(bool interrupted) override;
-
-  bool IsFinished() override;
+private:
+  Intake* mpIntake;
+  Indexer* mpIndexer;
 };
