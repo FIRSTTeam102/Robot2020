@@ -7,16 +7,29 @@
 
 #pragma once
 
+#include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <frc2/command/ParallelCommandGroup.h>
-#include "commands/powercell/AimShooter.h"
-#include "commands/powercell/PrimeIndexer.h"
 #include "subsystems/Indexer.h"
-#include "subsystems/Shooter.h"
 
-class PrepShooting
-    : public frc2::CommandHelper<frc2::ParallelCommandGroup,
-                                 PrepShooting> {
+/**
+ * An example command.
+ *
+ * <p>Note that this extends CommandHelper, rather extending CommandBase
+ * directly; this is crucially important, or else the decorator functions in
+ * Command will *not* work!
+ */
+class UnPrimeIndexer
+    : public frc2::CommandHelper<frc2::CommandBase, UnPrimeIndexer> {
  public:
-  PrepShooting(Indexer* pIndexer, Shooter* pShooter, int shooterSpeed);
+  UnPrimeIndexer(Indexer* pIndexer);
+
+  void Initialize() override;
+
+  void Execute() override;
+
+  void End(bool interrupted) override;
+
+  bool IsFinished() override;
+  private:
+  Indexer* mpIndexer;
 };

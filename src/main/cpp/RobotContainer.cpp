@@ -35,6 +35,16 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverButtonB.WhenPressed(&mPositionCommand, true);
   mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
   mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
+  mDriverTriggerButtonLeft.WhenPressed(&mPickupCellsCommand, true);
+  mDriverTriggerButtonLeft.WhenReleased(&mRaiseArmCommand, true);
+  mDriverTriggerButtonRight.WhenHeld(&mShootCommand, false);
+
+  mOperatorButtonA.WhenPressed(&mPrepShootingFast, false);
+  mOperatorButtonB.WhenPressed(&mPrepShootingMed, false);
+  mOperatorButtonX.WhenPressed(&mStopShootingCommand, false);
+  mOperatorButtonY.WhenPressed(&mPrepShootingSlow, false);
+  mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
+  mOperatorButtonRB.WhenPressed(&mResetCommand, true);
 
   //Create a triggers to activate deactivate the Intake of Power cells
   // when the driver's trigger is pulled - note these are two different

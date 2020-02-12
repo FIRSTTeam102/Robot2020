@@ -5,25 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/powercell/PrimeIntake.h"
+#include "commands/powercell/PrimeIndexer.h"
 
-PrimeIntake::PrimeIntake(Indexer* pIndexer): mpIndexer{pIndexer} {
+PrimeIndexer::PrimeIndexer(Indexer* pIndexer): mpIndexer{pIndexer} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(pIndexer);
 }
 
 // Called when the command is initially scheduled.
-void PrimeIntake::Initialize() {}
+void PrimeIndexer::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void PrimeIntake::Execute() {
+void PrimeIndexer::Execute() {
   mpIndexer->movePowerCellsToTop();
 }
 
 // Called once the command ends or is interrupted.
-void PrimeIntake::End(bool interrupted) {}
+void PrimeIndexer::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool PrimeIntake::IsFinished() {
+bool PrimeIndexer::IsFinished() {
   return mpIndexer->isPowerCellAtTop();
 }

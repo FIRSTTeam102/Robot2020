@@ -18,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class PrimeIntake
-    : public frc2::CommandHelper<frc2::CommandBase, PrimeIntake> {
+class PrimeIndexer
+    : public frc2::CommandHelper<frc2::CommandBase, PrimeIndexer> {
  public:
-  PrimeIntake(Indexer* pIndexer);
+  PrimeIndexer(Indexer* pIndexer);
 
   void Initialize() override;
 

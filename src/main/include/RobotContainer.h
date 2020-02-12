@@ -25,6 +25,7 @@
 #include "commands/powercell/RaiseArm.h"
 #include "commands/powercell/Reset.h"
 #include "commands/powercell/ShootPowerCells.h"
+#include "commands/powercell/StopShootingPowerCells.h"
 #include "commands/controlpanel/ManualControlPanel.h"
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
@@ -66,8 +67,8 @@ class RobotContainer {
   frc2::Button mOperatorButtonB{[&] { return mOperatorController.GetRawButton(2);}};
   frc2::Button mOperatorButtonX{[&] { return mOperatorController.GetRawButton(3);}};
   frc2::Button mOperatorButtonY{[&] { return mOperatorController.GetRawButton(4);}};
-  AnalogButton mOperatorTriggerButtonLeft{&mOperatorController,frc::XboxController::kLeftHand};
-  AnalogButton mOperatorTriggerButtonRight{&mOperatorController,frc::XboxController::kRightHand};
+  frc2::Button mOperatorButtonLB{[&] { return mOperatorController.GetRawButton(5);}};
+  frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
@@ -81,8 +82,9 @@ class RobotContainer {
   PrepShooting mPrepShootingMed{&mIndexer, &mShooter, 500*360};
   PrepShooting mPrepShootingFast{&mIndexer, &mShooter, 1000*360};
   RaiseArm mRaiseArmCommand{&mIntake};
-  Reset mResetCommand{};
+  Reset mResetCommand{&mIntake, &mIndexer};
   ShootPowerCells mShootCommand{&mIndexer, &mShooter};
+  StopShootingPowerCells mStopShootingCommand{&mIndexer, &mShooter};
 
   ControlPanelManipulator mControlPanel;
   RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};

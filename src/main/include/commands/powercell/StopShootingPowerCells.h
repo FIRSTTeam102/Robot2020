@@ -9,14 +9,14 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/ParallelCommandGroup.h>
-#include "commands/powercell/AimShooter.h"
-#include "commands/powercell/PrimeIndexer.h"
+#include "commands/powercell/DisengageShooter.h"
+#include "commands/powercell/UnPrimeIndexer.h"
 #include "subsystems/Indexer.h"
 #include "subsystems/Shooter.h"
 
-class PrepShooting
+class StopShootingPowerCells
     : public frc2::CommandHelper<frc2::ParallelCommandGroup,
-                                 PrepShooting> {
+                                 StopShootingPowerCells> {
  public:
-  PrepShooting(Indexer* pIndexer, Shooter* pShooter, int shooterSpeed);
+  StopShootingPowerCells(Indexer* pIndexer, Shooter* pShooter);
 };

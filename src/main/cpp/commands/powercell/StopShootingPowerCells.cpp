@@ -5,13 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/powercell/PrepShooting.h"
+#include "commands/powercell/StopShootingPowerCells.h"
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-PrepShooting::PrepShooting(Indexer* pIndexer, Shooter* pShooter, int shooterSpeed) {
+StopShootingPowerCells::StopShootingPowerCells(Indexer* pIndexer, Shooter* pShooter) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  AddCommands(AimShooter(pShooter, shooterSpeed), PrimeIndexer(pIndexer));
+  AddCommands(DisengageShooter(pShooter), UnPrimeIndexer(pIndexer));
 }
