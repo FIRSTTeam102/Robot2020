@@ -33,4 +33,5 @@ class AimShooter
   private:
   Shooter* mpShooter;
   int mSpeed;
+  float rampUpSpeed;
 };

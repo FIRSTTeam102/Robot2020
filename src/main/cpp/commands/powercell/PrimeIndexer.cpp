@@ -21,7 +21,9 @@ void PrimeIndexer::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void PrimeIndexer::End(bool interrupted) {}
+void PrimeIndexer::End(bool interrupted) {
+  mpIndexer->stopIndexer();
+}
 
 // Returns true when the command should end.
 bool PrimeIndexer::IsFinished() {

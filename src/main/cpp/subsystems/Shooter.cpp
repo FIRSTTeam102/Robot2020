@@ -10,10 +10,12 @@
 
 Shooter::Shooter() : 
     mFlyEnc{kFlyEncA, kFlyEncB, kReverseFlyEnc, kFlyEncType},
-    mShooter{kFlyMotor}
+    mShooter1{kFlyMotor1},
+    mShooter2{kFlyMotor2}
 {
     mFlyEnc.SetDistancePerPulse(1/360);
-    mShooter.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 0);
+    mShooter1.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 0);
+    mShooter2.Set(ControlMode::Follower, kFlyMotor1);
 }
 
 // This method will be called once per scheduler run
@@ -25,11 +27,11 @@ void Shooter::setSpeed(int speed) { //Takes in RPM
 }
 
 void Shooter::startMotor() {
-    mShooter.Set(ControlMode::Velocity, targetRP100ms);
+    mShooter1.Set(ControlMode::Velocity, targetRP100ms);
 }
 
 void Shooter::stopMotor() {
-    mShooter.Set(0);
+    mShooter1.Set(0);
 }
 
 bool Shooter::isReady() {

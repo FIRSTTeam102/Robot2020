@@ -14,14 +14,25 @@ AimShooter::AimShooter(Shooter* pShooter, int speed): mpShooter{pShooter}, mSpee
 
 // Called when the command is initially scheduled.
 void AimShooter::Initialize() {
-  mpShooter->setSpeed(mSpeed);
+  rampUpSpeed = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
-void AimShooter::Execute() {}
+void AimShooter::Execute() {
+  rampUpSpeed += 0.02;
+  mpShooter->setSpeed((int)(rampUpSpeed * mSpeed));
+  mpShooter->startMotor();
+}
 
 // Called once the command ends or is interrupted.
-void AimShooter::End(bool interrupted) {}
+void AimShooter::End(bool interrupted) {
+  if (interrupted) {
+    mpShooter->setSpeed(mSpeed);
+    mpShooter->startMotor();
+  }
+}
 
 // Returns true when the command should end.
-bool AimShooter::IsFinished() { return true; }
+bool AimShooter::IsFinished() {
+  return (rampUpSpeed >= 1);
+}

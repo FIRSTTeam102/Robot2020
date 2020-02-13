@@ -27,7 +27,8 @@ class Shooter : public frc2::SubsystemBase {
 
  private:
   frc::Encoder mFlyEnc;
-  WPI_TalonSRX mShooter;
+  WPI_TalonSRX mShooter1;
+  WPI_TalonSRX mShooter2;
   int targetRPS;
   int targetRP100ms;
   // Components (e.g. motor controllers and sensors) should generally be
