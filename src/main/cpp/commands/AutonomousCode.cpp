@@ -16,5 +16,5 @@
 AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Indexer* pIndexer, Shooter* pShooter){
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  AddCommands(AimShooter(&pShooter, 500*360), ShootPowerCells(&pIndexer), BackUp(&pDriveTrain));
+  AddCommands(AimShooter(pShooter, 500*360), ShootPowerCells(pIndexer, pShooter), BackUp(pDriveTrain));
 }
