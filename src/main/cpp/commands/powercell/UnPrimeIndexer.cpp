@@ -5,22 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/powercell/ReadyShooter.h"
-#include "subsystems/Shooter.h"
+#include "commands/powercell/UnPrimeIndexer.h"
 
-ReadyShooter::ReadyShooter(Shooter* pShooter): mpShooter{pShooter} {
-  //update subsystem dependencies so we know if the shooter is in use
-  AddRequirements(pShooter);
+UnPrimeIndexer::UnPrimeIndexer(Indexer* pIndexer): mpIndexer{pIndexer} {
+  // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(pIndexer);
 }
 
 // Called when the command is initially scheduled.
-void ReadyShooter::Initialize() {}
+void UnPrimeIndexer::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void ReadyShooter::Execute() {}
+void UnPrimeIndexer::Execute() {
+  mpIndexer->movePowerCellsToBottom();
+}
 
 // Called once the command ends or is interrupted.
-void ReadyShooter::End(bool interrupted) {}
+void UnPrimeIndexer::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool ReadyShooter::IsFinished() { return false; }
+bool UnPrimeIndexer::IsFinished() {
+  mpIndexer->isPowerCellAtBottom();
+}

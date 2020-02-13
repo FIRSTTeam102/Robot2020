@@ -12,12 +12,10 @@
 #include "RobotContainer.h"
 #include "Robot.h"
 
-LowerArm::LowerArm(Intake* pIntake):
-     mpIntake{pIntake}
- {
+LowerArm::LowerArm(Intake* pIntake): mpIntake{pIntake} {
   // Use addRequirements() here to declare subsystem dependencies.
     AddRequirements(pIntake);
- }
+}
 
 // LowerArm - initialize Called when the command is initially scheduled.
 //    start the intakeArmRollers moving forward and lower the intake arm
@@ -31,19 +29,18 @@ void LowerArm::Initialize() {
 //    from moving, but keep the intake arm rollers (which were started in initialize)
 //    running to take in power cells.
 void LowerArm::Execute() {
-   if (!mpIntake->isArmDown()){
-      mpIntake->lowerIntakeArm();
-   }
-   else {
-      mpIntake->stopIntakeArm();
-   }
+   mpIntake->lowerIntakeArm();
 }
 
 // Called once the command ends or is interrupted/cancelled.
-void LowerArm::End(bool interrupted) {}
+void LowerArm::End(bool interrupted) {
+   mpIntake->stopIntakeArm();
+}
 
 // LowerArm - is finished - Returns true when the command should end.
 //   NOTE: LowerArm is expected to be executed while a button is pressed.
 //   when the button is released, the command will be cancelled, this
 //   command is not expected to finish on it's own.
-bool LowerArm::IsFinished() { return false; }
+bool LowerArm::IsFinished() {
+   return mpIntake->isArmDown();
+}

@@ -5,20 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/powercell/OperatorOverride.h"
+#include "commands/powercell/PrimeIndexer.h"
 
-OperatorOverride::OperatorOverride() {
+PrimeIndexer::PrimeIndexer(Indexer* pIndexer): mpIndexer{pIndexer} {
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(pIndexer);
 }
 
 // Called when the command is initially scheduled.
-void OperatorOverride::Initialize() {}
+void PrimeIndexer::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void OperatorOverride::Execute() {}
+void PrimeIndexer::Execute() {
+  mpIndexer->movePowerCellsToTop();
+}
 
 // Called once the command ends or is interrupted.
-void OperatorOverride::End(bool interrupted) {}
+void PrimeIndexer::End(bool interrupted) {
+  mpIndexer->stopIndexer();
+}
 
 // Returns true when the command should end.
-bool OperatorOverride::IsFinished() { return false; }
+bool PrimeIndexer::IsFinished() {
+  return mpIndexer->isPowerCellAtTop();
+}

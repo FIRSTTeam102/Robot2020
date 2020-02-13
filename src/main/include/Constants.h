@@ -21,15 +21,16 @@
 // Talon SRX motor controllers
 // Drive motor controllers
 int constexpr kTopLeftMotor = 0;
-int constexpr kTopRightMotor = 1;
-int constexpr kBottomLeftMotor = 2;
+int constexpr kTopRightMotor = 2;
+int constexpr kBottomLeftMotor = 1;
 int constexpr kBottomRightMotor = 3;
 
 // Control panel motor controller (TalonSRx)
 int constexpr kControlPanelMotor = 4;
 
 //Shooter Motor Controllers (TalonSRX)
-int constexpr kFlyMotor = 5;
+int constexpr kFlyMotor1 = 5;
+int constexpr kFlyMotor2 = 6;
 
 //Intake Arm & Roller Motor Controllers (SpikeRelay)
 int constexpr kIntakeMotor = 7;

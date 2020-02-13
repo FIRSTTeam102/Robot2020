@@ -7,16 +7,29 @@
 
 #pragma once
 
+#include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <frc2/command/SequentialCommandGroup.h>
-#include "commands/powercell/LowerArm.h"
-#include "commands/powercell/IndexPowerCell.h"
-#include "subsystems/Intake.h"
 #include "subsystems/Indexer.h"
 
-class PickupPowerCells
-    : public frc2::CommandHelper<frc2::SequentialCommandGroup,
-                                 PickupPowerCells> {
+/**
+ * An example command.
+ *
+ * <p>Note that this extends CommandHelper, rather extending CommandBase
+ * directly; this is crucially important, or else the decorator functions in
+ * Command will *not* work!
+ */
+class UnPrimeIndexer
+    : public frc2::CommandHelper<frc2::CommandBase, UnPrimeIndexer> {
  public:
-  PickupPowerCells(Intake* pIntake, Indexer* pIndexer);
+  UnPrimeIndexer(Indexer* pIndexer);
+
+  void Initialize() override;
+
+  void Execute() override;
+
+  void End(bool interrupted) override;
+
+  bool IsFinished() override;
+  private:
+  Indexer* mpIndexer;
 };

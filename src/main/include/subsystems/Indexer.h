@@ -19,19 +19,18 @@ class Indexer : public frc2::SubsystemBase {
   Indexer();
     bool isFullIndexer();
     bool isEmptyIndexer();
-    int  numLoadedPowerCells() {return(mnumPowerCells);}
+    int  numLoadedPowerCells() {return(mNumPowerCells);}
     void movePowerCellsToTop();
     void movePowerCellsToBottom();
-    void intakeAPowerCell();
-    void shootPowerCell();
+    void shootPowerCells();
     bool isPowerCellAtTop(){return mTopSensor.Get();}
     bool isPowerCellAtBottom(){return mBottomSensor.Get();}
     bool isPowerCellAtIntake(){return mIntakeSensor.Get();}
     void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
     void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::kForward);}
     void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}
-    void resetRunningOnEmpty() {memptyTimer = 0;}
-    bool isRunningOnEmpty() {return (memptyTimer>=kMaxPowerCellTravelTime);}
+    void resetRunningOnEmpty() {mEmptyTimer = 0;}
+    bool isRunningOnEmpty() {return (mEmptyTimer>=kMaxPowerCellTravelTime);}
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -44,7 +43,7 @@ class Indexer : public frc2::SubsystemBase {
   frc::DigitalInput mIntakeSensor;
   frc::DigitalInput mBottomSensor;
   frc::DigitalInput mTopSensor;
-  int mnumPowerCells;
-  int memptyTimer;
-  bool mpowerCellWasAtIntake;
+  int mNumPowerCells;
+  int mEmptyTimer;
+  bool mPowerCellWasAtIntake;
 };

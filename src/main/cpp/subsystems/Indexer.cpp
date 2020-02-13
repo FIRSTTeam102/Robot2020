@@ -15,11 +15,10 @@ Indexer::Indexer():
     mIntakeSensor{kDIOIntake},
     mBottomSensor{kDIOBottom},
     mTopSensor{kDIOTop},
-    mnumPowerCells{3},
-    memptyTimer{0},
-    mpowerCellWasAtIntake{false}
+    mNumPowerCells{3},
+    mEmptyTimer{0},
+    mPowerCellWasAtIntake{false}
  {
-
 }
 //isFullIndexer - returns true if the TopSensor,
 //   and IntakeSensor all see a power cell. The Indexer is
@@ -27,12 +26,7 @@ Indexer::Indexer():
 //   the shooter) and the intakeSensor has a ball (so it cannot move the 
 //   conveyor at all).
 bool Indexer::isFullIndexer(){
-    if (isPowerCellAtTop() && isPowerCellAtIntake()){
-        return(true);
-    }
-    else {
-        return(false);
-    }
+    return (isPowerCellAtTop() && isPowerCellAtIntake());
 }
 //isEmptyIndexer - determine if the indexer is empty. It has no power cells
 //  if none of the sensors register a power cell, we could be in a state where
@@ -46,7 +40,7 @@ bool Indexer::isEmptyIndexer(){
             return(true);
         }
         else {
-            memptyTimer++;
+            mEmptyTimer++;
         }
     }
     return(false);
@@ -71,31 +65,8 @@ void Indexer::movePowerCellsToBottom(){
         moveDownIndexer();
     }
 }
-//intakeAPowerCell - if a power cell is in the intake sensor, and the indexer
-//  is not full, move it to the bottom position
-void Indexer::intakeAPowerCell(){
-    //ready to take in a new power cell
-    if (!isFullIndexer() && isPowerCellAtIntake()){
-        mpowerCellWasAtIntake = true;
-        mnumPowerCells++;
-        moveUpIndexer();
-    }
-    //power cell that was at the intake, see if it has made it
-    //  see if it made it past the intake otherwise, keep running
-    //  the indexer because the power cell is in transit to the bottom
-    else if (!isPowerCellAtIntake() && mpowerCellWasAtIntake){
-        //if the new power cell made it to the bottom sensor
-        //  stop the indexer, until a new ball is in the intake
-        //  don't let the intake continually run or the power cells
-        //  will move up to fast, leaving spaces.
-        if (isPowerCellAtBottom()){
-            stopIndexer();
-            mpowerCellWasAtIntake = false;
-        }
-    }
-}
 //Shoot Power cell - just move the indexer 
-void Indexer::shootPowerCell(){
+void Indexer::shootPowerCells(){
     //start the conveyor to pass power cells to the shooter (we assume that
     //  the shooter is ready).  If there is a powercell in at the top, we
     //  reset the running on empty timer & decrement the power cell counter until
@@ -103,8 +74,8 @@ void Indexer::shootPowerCell(){
     moveUpIndexer();
     if (isPowerCellAtTop()){
         resetRunningOnEmpty();
-        if(mnumPowerCells>0){
-            mnumPowerCells--;
+        if(mNumPowerCells>0){
+            mNumPowerCells--;
         }
     }
 }

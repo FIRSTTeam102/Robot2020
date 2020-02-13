@@ -9,8 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/Intake.h"
-#include "subsystems/Indexer.h"
+#include "subsystems/Shooter.h"
 
 /**
  * An example command.
@@ -19,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class Reset
-    : public frc2::CommandHelper<frc2::CommandBase, Reset> {
+class AimShooter
+    : public frc2::CommandHelper<frc2::CommandBase, AimShooter> {
  public:
-  Reset(Intake* pIntake, Indexer* pIndexer);
+  AimShooter(Shooter* pShooter, int speed);
 
   void Initialize() override;
 
@@ -31,8 +30,8 @@ class Reset
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-
-private:
-  Intake* mpIntake;
-  Indexer* mpIndexer;
+  private:
+  Shooter* mpShooter;
+  int mSpeed;
+  float rampUpSpeed;
 };

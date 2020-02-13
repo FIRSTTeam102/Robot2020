@@ -7,18 +7,34 @@
 
 #include "commands/powercell/Reset.h"
 
-Reset::Reset() {
+Reset::Reset(Intake* pIntake, Indexer* pIndexer): mpIntake{pIntake}, mpIndexer{pIndexer} {
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(pIntake);
+  AddRequirements(pIndexer);
 }
 
 // Called when the command is initially scheduled.
-void Reset::Initialize() {}
+void Reset::Initialize() {
+  mpIndexer->movePowerCellsToBottom();
+}
 
 // Called repeatedly when this Command is scheduled to run
-void Reset::Execute() {}
+void Reset::Execute() {
+  mpIntake->lowerIntakeArm();
+  mpIntake->startReverseRollers();
+}
 
 // Called once the command ends or is interrupted.
-void Reset::End(bool interrupted) {}
+void Reset::End(bool interrupted) {
+  mpIntake->stopRollers();
+}
 
 // Returns true when the command should end.
-bool Reset::IsFinished() { return false; }
+bool Reset::IsFinished() {
+    if (mpIndexer->isRunningOnEmpty()){
+        return true;
+    } else{
+        return false;
+    }
+
+}

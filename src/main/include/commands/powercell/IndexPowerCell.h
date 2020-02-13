@@ -9,6 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/Indexer.h"
 
 /**
  * An example command.
@@ -17,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class OperatorOverride
-    : public frc2::CommandHelper<frc2::CommandBase, OperatorOverride> {
+class IndexPowerCell
+    : public frc2::CommandHelper<frc2::CommandBase, IndexPowerCell> {
  public:
-  OperatorOverride();
+  IndexPowerCell(Indexer* pIndexer);
 
   void Initialize() override;
 
@@ -29,4 +30,6 @@ class OperatorOverride
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+  private:
+  Indexer* mpIndexer;
 };

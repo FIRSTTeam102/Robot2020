@@ -31,5 +31,5 @@ class LowerArm
 
   bool IsFinished() override;
   private:
-    Intake* mpIntake;
+  Intake* mpIntake;
 };

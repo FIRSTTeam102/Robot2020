@@ -5,18 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/powercell/PrepShooting.h"
 
-#include <frc2/command/CommandHelper.h>
-#include <frc2/command/SequentialCommandGroup.h>
-#include "commands/powercell/LowerArm.h"
-#include "commands/powercell/IndexPowerCell.h"
-#include "subsystems/Intake.h"
-#include "subsystems/Indexer.h"
-
-class PickupPowerCells
-    : public frc2::CommandHelper<frc2::SequentialCommandGroup,
-                                 PickupPowerCells> {
- public:
-  PickupPowerCells(Intake* pIntake, Indexer* pIndexer);
-};
+// NOTE:  Consider using this command inline, rather than writing a subclass.
+// For more information, see:
+// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
+PrepShooting::PrepShooting(Indexer* pIndexer, Shooter* pShooter, int shooterSpeed) {
+  // Add your commands here, e.g.
+  // AddCommands(FooCommand(), BarCommand());
+  AddCommands(AimShooter(pShooter, shooterSpeed), PrimeIndexer(pIndexer));
+}
