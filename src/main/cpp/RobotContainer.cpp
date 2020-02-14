@@ -7,8 +7,13 @@
 
 #include <RobotContainer.h>
 #include "frc/XboxController.h"
+<<<<<<< HEAD
 #include "frc2/command/button/JoystickButton.h"
 #include "AnalogButton.h"
+=======
+#include <frc2/command/button/JoystickButton.h>
+#include "commands/DriveWithXbox.h"
+>>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
 
 RobotContainer::RobotContainer(): 
   mTankDrive{}, 
@@ -22,18 +27,25 @@ RobotContainer::RobotContainer():
   // Configure the button bindings
   ConfigureButtonBindings();
 
+<<<<<<< HEAD
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
   
+=======
+  //mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
+  //mTankDrive.setDriverJoystick(&mDriverController);
+
+>>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
 }
 
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  mDriverButtonA.WhenPressed(&mRotateCommand, true);
+  mDriverButtonA.WhenPressed(&mRotateCommand, false);
   mDriverButtonB.WhenPressed(&mPositionCommand, true);
   mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
   mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
+<<<<<<< HEAD
   mDriverTriggerButtonLeft.WhenPressed(&mPickupCellsCommand, true);
   mDriverTriggerButtonLeft.WhenReleased(&mRaiseArmCommand, true);
   mDriverTriggerButtonRight.WhenHeld(&mShootCommand, false);
@@ -44,6 +56,10 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonY.WhenPressed(&mPrepShootingSlow, false);
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
+=======
+  //mDriverButtonY.WhenHeld(&mLightTestCommand, false);
+}
+>>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
 
   //Create a triggers to activate deactivate the Intake of Power cells
   // when the driver's trigger is pulled - note these are two different
@@ -64,5 +80,9 @@ Shuffleboard::GetTab("Numbers")
 
 //frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
+<<<<<<< HEAD
  // return &m_autonomousCommand;
+=======
+  //return &m_autonomousCommand;
+>>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
 }

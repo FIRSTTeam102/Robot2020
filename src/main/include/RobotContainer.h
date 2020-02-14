@@ -16,6 +16,7 @@
 //#include <frc/smartdashboard/SendableRegistry.h>
 
 #include "subsystems/DriveTrain.h"
+<<<<<<< HEAD
 #include "subsystems/Intake.h"
 #include "subsystems/Indexer.h"
 #include "subsystems/Shooter.h"
@@ -35,6 +36,18 @@
 #include "commands/controlpanel/StopControlPanel.h"
 
 #include "AnalogButton.h"
+=======
+#include "subsystems/Lights.h" //for lights
+#include "subsystems/ControlPanelManipulator.h"
+#include "commands/RotateControlPanel.h"
+#include "commands/PositionControlPanel.h"
+#include "commands/StopControlPanel.h"
+#include "commands/ManualControlPanel.h"
+#include "commands/LightTest.h"
+#include "frc/XboxController.h"
+#include <frc2/command/button/JoystickButton.h>
+#include <frc2/command/button/Button.h>
+>>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -53,10 +66,16 @@ class RobotContainer {
     return &mDriverController;
   }
   
-
  private:
  
   // The robot's subsystems and commands are defined here...
+<<<<<<< HEAD
+=======
+
+  DriveTrain mTankDrive;
+  DriveWithXbox mDriveCommand;
+  Lights mLightTestSubsys; //for lights
+>>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
   frc::XboxController mDriverController;
   frc2::Button mDriverButtonA{[&] { return mDriverController.GetRawButton(1);}};
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
@@ -94,11 +113,16 @@ class RobotContainer {
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
+  LightTest mLightTestCommand{&mLightTestSubsys}; //for lights
 
 
 
 
   void ConfigureButtonBindings();
 
+<<<<<<< HEAD
   
+=======
+  Lights* mpLights; //for lights
+>>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
 };
