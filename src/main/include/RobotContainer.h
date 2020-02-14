@@ -11,6 +11,9 @@
 #include <frc/XboxController.h>
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/smartdashboard/Sendable.h>
+//#include <frc/smartdashboard/SendableRegistry.h>
 
 #include "subsystems/DriveTrain.h"
 #include "subsystems/Intake.h"

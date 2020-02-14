@@ -5,11 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "RobotContainer.h"
+#include <RobotContainer.h>
 #include "frc/XboxController.h"
-#include <frc2/command/button/JoystickButton.h>
+#include "frc2/command/button/JoystickButton.h"
 #include "AnalogButton.h"
-
 
 RobotContainer::RobotContainer(): 
   mTankDrive{}, 
@@ -51,13 +50,19 @@ void RobotContainer::ConfigureButtonBindings() {
   // uses of the word trigger. frc trigger is any event or set of events that
   // are true and should cause a command to be executed (like the XboxTrigger being 
   // pressed)
-  
-   
-}
 
+//Actual Code:
+frc::SmartDashboard::PutNumber("Cow", 7);
 
-frc2::Command* RobotContainer::GetAutonomousCommand() {
+//Test Code (Use/Select tab)
+ShuffleboardTab& tab = Shuffleboard::GetTab("replace");
+Shuffleboard::SelectTab("replace")
+
+//Test Code (Sending data)
+
+Shuffleboard::GetTab("Numbers")
+
+//frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
  // return &m_autonomousCommand;
-
 }
