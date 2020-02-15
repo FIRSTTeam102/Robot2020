@@ -12,7 +12,7 @@ LightTest::LightTest(Lights* pLights) : mpLights{pLights} {}
 
 // Called when the command is initially scheduled.
 void LightTest::Initialize() {
-  mpLights->setMode(7); //loop pattern on init
+  mpLights->setMode(3); //loop pattern on init
 }
 
 // Called once the command ends or is interrupted.

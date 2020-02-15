@@ -9,12 +9,12 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <subsystems/Lights.h>
+#include <subsystems/Lights.h> //used for light stuffs
 
 class LightTest
     : public frc2::CommandHelper<frc2::CommandBase, LightTest> {
  public:
-  LightTest(Lights* mpLights);
+  LightTest(Lights* mpLights); //pass lights in as param?
 
   void Initialize() override;
 
@@ -24,5 +24,5 @@ class LightTest
 
   bool IsFinished() override;
   private:
-  Lights* mpLights;
+  Lights* mpLights; //used for light stuffs
 };

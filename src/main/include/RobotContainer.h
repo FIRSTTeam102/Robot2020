@@ -56,7 +56,7 @@ class RobotContainer {
   RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
-  ManualControlPanel mManualPanelCommand{&mControlPanel};
+  ManualControlPanel mManualPanelCommand{&mControlPanel, &mLightTestSubsys};
   LightTest mLightTestCommand{&mLightTestSubsys}; //for lights
 
   void ConfigureButtonBindings();

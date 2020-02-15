@@ -10,6 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <subsystems/ControlPanelManipulator.h>
+#include <subsystems/Lights.h> //used for light stuffs
 
 /**
  * An example command.
@@ -21,7 +22,7 @@
 class ManualControlPanel
     : public frc2::CommandHelper<frc2::CommandBase, ManualControlPanel> {
  public:
-  ManualControlPanel(ControlPanelManipulator *pControlPanel);
+  ManualControlPanel(ControlPanelManipulator *pControlPanel, Lights* pLights);
 
   void Initialize() override;
 
@@ -32,4 +33,5 @@ class ManualControlPanel
   bool IsFinished() override;
   private:
   ControlPanelManipulator* mpControlPanel;
+  Lights* mpLights; //used for light stuffs
 };
