@@ -5,25 +5,33 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/powercell/UnPrimeIndexer.h"
+#include "commands/powercell/MoveLinear.h"
 
-UnPrimeIndexer::UnPrimeIndexer(Indexer* pIndexer): mpIndexer{pIndexer} {
+MoveLinear::MoveLinear(DriveTrain* pDriveTrain, int ticks, double speed): mpDriveTrain(pDriveTrain), mTicks(ticks), mSpeed(speed) {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pIndexer);
+  AddRequirements(pDriveTrain);
+  ticksPassed = 0;
 }
 
 // Called when the command is initially scheduled.
-void UnPrimeIndexer::Initialize() {}
+void MoveLinear::Initialize() {
+  mpDriveTrain->move(mSpeed, mSpeed);
+}
 
 // Called repeatedly when this Command is scheduled to run
-void UnPrimeIndexer::Execute() {
-  mpIndexer->movePowerCellsToBottom();
+void MoveLinear::Execute() {
+  ticksPassed += 1;
 }
 
 // Called once the command ends or is interrupted.
-void UnPrimeIndexer::End(bool interrupted) {}
+void MoveLinear::End(bool interrupted) {
+  mpDriveTrain->move(0, 0);
+}
 
 // Returns true when the command should end.
-bool UnPrimeIndexer::IsFinished() {
-  return mpIndexer->isPowerCellAtBottom();
-}
+bool MoveLinear::IsFinished() { 
+  if(ticksPassed >= mTicks){
+    return true;
+  }
+  return false; 
+  }

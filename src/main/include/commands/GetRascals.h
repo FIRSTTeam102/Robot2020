@@ -7,26 +7,16 @@
 
 #pragma once
 
-#include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <subsystems/DriveTrain.h>
-/**
- * An example command.
- *
- * <p>Note that this extends CommandHelper, rather extending CommandBase
- * directly; this is crucially important, or else the decorator functions in
- * Command will *not* work!
- */
-class PositionRobot
-    : public frc2::CommandHelper<frc2::CommandBase, PositionRobot> {
+#include <frc2/command/SequentialCommandGroup.h>
+#include "commands/powercell/MoveLinear.h"
+#include "subsystems/DriveTrain.h"
+#include "commands/powercell/RaiseArm.h"
+#include "commands/powercell/LowerArm.h"
+#include "subsystems/Intake.h"
+class GetRascals //The balls are the rascals
+    : public frc2::CommandHelper<frc2::SequentialCommandGroup,
+                                 GetRascals> {
  public:
-  PositionRobot();
-
-  void Initialize() override;
-
-  void Execute() override;
-
-  void End(bool interrupted) override;
-
-  bool IsFinished() override;
+  GetRascals(DriveTrain* pDriveTrain, Intake* pIntake);
 };
