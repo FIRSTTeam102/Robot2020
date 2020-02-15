@@ -14,19 +14,18 @@ ControlPanelManipulator::ControlPanelManipulator():
 {
     turnCounter = 0;
 	previousColor = 0;
-	//IMPORTANT!!!!!!! ALL VALUES MUST HAVE AT LEAST SLIGHTLY DIFFERENT RED VALUES (check blue vs green)
-	blue.red = 0.13;
-  	blue.green = 0.43;
-  	blue.blue = 0.43;
-  	red.red = 0.56;
-  	red.green = 0.32;
-  	red.blue = 0.11;
-  	yellow.red = 0.33;
-  	yellow.green = 0.56;
-  	yellow.blue = 0.11;
-  	green.red = 0.14;
-  	green.green = 0.60;
-  	green.blue = 0.26;
+	blue.red = kBlueR;
+  	blue.green = kBlueG;
+  	blue.blue = kBlueB;
+  	red.red = kRedR;
+  	red.green = kRedG;
+  	red.blue = kRedB;
+  	yellow.red = kYelR;
+  	yellow.green = kYelG;
+  	yellow.blue = kYelB;
+  	green.red = kGrnR;
+  	green.green = kGrnG;
+  	green.blue = kGrnB;
 	mMatching.AddColorMatch(blue);
 	mMatching.AddColorMatch(red);
 	mMatching.AddColorMatch(yellow);

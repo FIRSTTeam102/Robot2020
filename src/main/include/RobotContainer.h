@@ -12,6 +12,8 @@
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
 
+#include "Constants.h"
+
 #include "subsystems/DriveTrain.h"
 #include "subsystems/Intake.h"
 #include "subsystems/Indexer.h"
@@ -78,9 +80,9 @@ class RobotContainer {
   Shooter mShooter;
   BallJam mBallJamCommand{&mIndexer, &mShooter};
   PickupPowerCells mPickupCellsCommand{&mIntake, &mIndexer};
-  PrepShooting mPrepShootingSlow{&mIndexer, &mShooter, 250*360};
-  PrepShooting mPrepShootingMed{&mIndexer, &mShooter, 500*360};
-  PrepShooting mPrepShootingFast{&mIndexer, &mShooter, 1000*360};
+  PrepShooting mPrepShootingSlow{&mIndexer, &mShooter, kSlowSpeed};
+  PrepShooting mPrepShootingMed{&mIndexer, &mShooter, kMedSpeed};
+  PrepShooting mPrepShootingFast{&mIndexer, &mShooter, kFastSpeed};
   RaiseArm mRaiseArmCommand{&mIntake};
   Reset mResetCommand{&mIntake, &mIndexer};
   ShootPowerCells mShootCommand{&mIndexer, &mShooter};
