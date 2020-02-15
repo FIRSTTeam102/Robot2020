@@ -11,7 +11,7 @@
 
 #include "commands/DriveWithXbox.h"
 #include "subsystems/DriveTrain.h"
-#include "subsystems/Lights.h" //for lights
+#include "subsystems/Lights.h" //used for light stuffs
 #include "subsystems/ControlPanelManipulator.h"
 #include "commands/RotateControlPanel.h"
 #include "commands/PositionControlPanel.h"
@@ -54,12 +54,12 @@ class RobotContainer {
   
   ControlPanelManipulator mControlPanel;
   RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};
-  PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
+  PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive, &mLightTestSubsys};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel, &mLightTestSubsys};
   LightTest mLightTestCommand{&mLightTestSubsys}; //for lights
 
   void ConfigureButtonBindings();
 
-  Lights* mpLights; //for lights
+  Lights* mpLights; //used for light stuffs
 };

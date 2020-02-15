@@ -12,6 +12,7 @@
 #include <subsystems/ControlPanelManipulator.h>
 #include <subsystems/DriveTrain.h>
 #include <frc/DriverStation.h>
+#include <subsystems/Lights.h>
 
 /**
  * An example command.
@@ -23,7 +24,7 @@
 class PositionControlPanel
     : public frc2::CommandHelper<frc2::CommandBase, PositionControlPanel> {
  public:
-  PositionControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive);
+  PositionControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive, Lights* pLights);
 
   void Initialize() override;
 
@@ -36,4 +37,5 @@ class PositionControlPanel
   ControlPanelManipulator* mpControlPanel;
   DriveTrain* mpSubsystemDrive;
   std::string gameData;
+  Lights *mpLights;
 };

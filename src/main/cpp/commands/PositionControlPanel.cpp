@@ -7,7 +7,7 @@
 
 #include "commands/PositionControlPanel.h"
 
-PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
+PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive, Lights *pLights) : mpLights{pLights} {
   AddRequirements({pControlPanel});
   AddRequirements({pSubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
@@ -17,11 +17,13 @@ PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPane
 
 // Called when the command is initially scheduled.
 void PositionControlPanel::Initialize() {
+  mpLights->setMode(8); //for light stuffs
   mpControlPanel->resetFinished();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void PositionControlPanel::Execute() {
+  /*
   if(gameData.length() > 0)
   {
     switch (gameData[0])
@@ -48,6 +50,7 @@ void PositionControlPanel::Execute() {
   }
   mpSubsystemDrive->slowlyDriveForwards();
   printf("Running Pos\n");
+  */
 }
 
 // Called once the command ends or is interrupted.
