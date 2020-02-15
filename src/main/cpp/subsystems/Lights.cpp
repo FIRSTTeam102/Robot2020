@@ -28,10 +28,10 @@ void Lights::setMode(int mode) {
     if (mode >= 0 || mode <= 8) {
         strMode[0] = mode + '0';
         mSP.Write(strMode, 64);
-        printf("Writing serial- mode %c\n", strMode[0]);
+        printf("Writing to Arduino serial with mode %c\n", strMode[0]);
     } else {
         mSP.Write("0", 64);
-        printf("Serial input unknown\n");
+        printf("Unknown/unused serial code used.\n");
     }
 
 }

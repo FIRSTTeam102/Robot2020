@@ -26,7 +26,9 @@ void ManualControlPanel::Execute() {
 // Called once the command ends or is interrupted.
 void ManualControlPanel::End(bool interrupted) {
   mpControlPanel->stopMotor();
-  mpLights->setMode(0); //light stuffs
+  mpLights->setMode(1); //light stuffs
+  printf("command sent to stop lights\n\n\n\n\n");
+
 }
 
 // Returns true when the command should end.
