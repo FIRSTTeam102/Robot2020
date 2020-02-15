@@ -19,6 +19,7 @@ class DriveTrain : public frc2::SubsystemBase {
  public:
   DriveTrain();
   void slowlyDriveForwards();
+  void turn(bool clockwise);
   void stop();
   void driveWithXboxController();
   void arcadeDrive();

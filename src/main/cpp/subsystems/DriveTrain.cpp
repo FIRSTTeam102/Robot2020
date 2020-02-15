@@ -42,7 +42,14 @@ void DriveTrain::arcadeDrive(){
 void DriveTrain::slowlyDriveForwards(){
     mDrive.TankDrive(0.2, 0.2, false);
 }
-
+void DriveTrain::turn(bool clockwise){
+    if(clockwise){
+        mDrive.TankDrive(-1, 1, false);
+    }
+    else {
+        mDrive.TankDrive(1, -1, false);
+    }
+}
 void DriveTrain::stop(){
     mDrive.TankDrive(0, 0, false);
 }
