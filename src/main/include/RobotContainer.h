@@ -53,7 +53,7 @@ class RobotContainer {
   frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
   
   ControlPanelManipulator mControlPanel;
-  RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};
+  RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive, &mLightTestSubsys};
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive, &mLightTestSubsys};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel, &mLightTestSubsys};

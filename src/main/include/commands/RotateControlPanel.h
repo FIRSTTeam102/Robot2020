@@ -11,6 +11,7 @@
 #include <frc2/command/CommandHelper.h>
 #include <subsystems/ControlPanelManipulator.h>
 #include <subsystems/DriveTrain.h>
+#include <subsystems/Lights.h>
 
 /**
  * An example command.
@@ -22,7 +23,7 @@
 class RotateControlPanel
     : public frc2::CommandHelper<frc2::CommandBase, RotateControlPanel> {
  public:
-  RotateControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive);
+  RotateControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive, Lights *pLights);
 
   void Initialize() override;
 
@@ -34,4 +35,5 @@ class RotateControlPanel
   private:
   ControlPanelManipulator* mpControlPanel;
   DriveTrain* mpSubsystemDrive;
+  Lights *mpLights;
 };
