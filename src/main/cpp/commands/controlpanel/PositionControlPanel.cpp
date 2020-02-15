@@ -7,7 +7,7 @@
 
 #include "commands/controlpanel/PositionControlPanel.h"
 
-PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive, Lights *pLights) : mpLights{pLights} {
+PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
   AddRequirements({pControlPanel});
   AddRequirements({pSubsystemDrive});
   // Use addRequirements() here to declare subsystem dependencies.
@@ -17,7 +17,7 @@ PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPane
 
 // Called when the command is initially scheduled.
 void PositionControlPanel::Initialize() {
-  mpLights->setMode(8); //for light stuffs
+  Lights::GetInstance()->setMode(8); //for light stuffs
   mpControlPanel->resetFinished();
 }
 
@@ -56,7 +56,7 @@ void PositionControlPanel::Execute() {
 // Called once the command ends or is interrupted.
 void PositionControlPanel::End(bool interrupted) {
   printf("Position complete!\n");
-  mpLights->setMode(4); //for light stuffs
+  Lights::GetInstance()->setMode(4); //for light stuffs
   mpSubsystemDrive->stop();
 }
 

@@ -23,7 +23,7 @@
 class RotateControlPanel
     : public frc2::CommandHelper<frc2::CommandBase, RotateControlPanel> {
  public:
-  RotateControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive, Lights *pLights);
+  RotateControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive);
 
   void Initialize() override;
 
@@ -35,5 +35,5 @@ class RotateControlPanel
   private:
   ControlPanelManipulator* mpControlPanel;
   DriveTrain* mpSubsystemDrive;
-  Lights *mpLights;
+  //Lights *mpLights;
 };

@@ -70,7 +70,7 @@ class RobotContainer {
   frc2::Button mOperatorButtonLB{[&] { return mOperatorController.GetRawButton(5);}};
   frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
 
-  Lights mLights;
+  //Lights mLights;
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
@@ -89,12 +89,11 @@ class RobotContainer {
   StopShootingPowerCells mStopShootingCommand{&mIndexer, &mShooter};
 
   ControlPanelManipulator mControlPanel;
-  RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive, &mLightTestSubsys};
-  PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive, &mLightTestSubsys};
+  RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};
+  PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
-  ManualControlPanel mManualPanelCommand{&mControlPanel, &mLightTestSubsys};
-  LightTest mLightTestCommand{&mLightTestSubsys}; //for lights
-
+  ManualControlPanel mManualPanelCommand{&mControlPanel};
+  //LightTest mLightTestCommand}; //for lights
 
 
 

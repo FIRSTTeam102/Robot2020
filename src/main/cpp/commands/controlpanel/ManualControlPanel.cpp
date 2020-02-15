@@ -7,7 +7,7 @@
 
 #include "commands/controlpanel/ManualControlPanel.h"
 
-ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel, Lights* pLights) : mpLights{pLights} {
+ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel) {
   AddRequirements({pControlPanel});
   // Use addRequirements() here to declare subsystem dependencies.
   mpControlPanel = pControlPanel;
@@ -15,7 +15,7 @@ ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel, L
 
 // Called when the command is initially scheduled.
 void ManualControlPanel::Initialize() {
-  mpLights->setMode(8); //light stuffs
+  Lights::GetInstance()->setMode(8); //light stuffs
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -26,7 +26,7 @@ void ManualControlPanel::Execute() {
 // Called once the command ends or is interrupted.
 void ManualControlPanel::End(bool interrupted) {
   mpControlPanel->stopMotor();
-  mpLights->setMode(4); //light stuffs
+  Lights::GetInstance()->setMode(4); //light stuffs
   printf("command sent to stop lights\n\n\n\n\n");
 
 }

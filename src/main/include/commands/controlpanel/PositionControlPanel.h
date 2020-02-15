@@ -24,7 +24,7 @@
 class PositionControlPanel
     : public frc2::CommandHelper<frc2::CommandBase, PositionControlPanel> {
  public:
-  PositionControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive, Lights* pLights);
+  PositionControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive);
 
   void Initialize() override;
 
@@ -37,5 +37,4 @@ class PositionControlPanel
   ControlPanelManipulator* mpControlPanel;
   DriveTrain* mpSubsystemDrive;
   std::string gameData;
-  Lights *mpLights;
 };

@@ -5,9 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "subsystems/Lights.h"
+#include <subsystems/Lights.h>
 //#define _GLIBCXX_USE_CXX11_ABI 0
 
+Lights* Lights::mpLightsInstance=NULL;
 
 Lights::Lights() : mSP{9600, frc::SerialPort::kUSB} {
     mSP.DisableTermination();
@@ -21,6 +22,13 @@ Lights::Lights() : mSP{9600, frc::SerialPort::kUSB} {
 void Lights::Periodic() {
     //mSP.Write("1", 1);
 }
+Lights* Lights::GetInstance() {
+    
+    if (!mpLightsInstance) {
+      mpLightsInstance = new Lights;
+    }
+    return mpLightsInstance;
+  }
 
 void Lights::setMode(int mode) {
     //mSP.Write((char*)mode, 1);

@@ -24,11 +24,12 @@ RobotContainer::RobotContainer():
   // Configure the button bindings
   ConfigureButtonBindings();
 
+  //mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
+  //mTankDrive.setDriverJoystick(&mDriverController)
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
   
 }
-
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
@@ -59,4 +60,5 @@ void RobotContainer::ConfigureButtonBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   //return &m_autonomousCommand;
+  return 0;
 }

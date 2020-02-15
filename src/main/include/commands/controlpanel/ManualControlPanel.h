@@ -22,7 +22,7 @@
 class ManualControlPanel
     : public frc2::CommandHelper<frc2::CommandBase, ManualControlPanel> {
  public:
-  ManualControlPanel(ControlPanelManipulator *pControlPanel, Lights* pLights);
+  ManualControlPanel(ControlPanelManipulator *pControlPanel);
 
   void Initialize() override;
 
@@ -33,5 +33,4 @@ class ManualControlPanel
   bool IsFinished() override;
   private:
   ControlPanelManipulator* mpControlPanel;
-  Lights* mpLights; //used for light stuffs
 };
