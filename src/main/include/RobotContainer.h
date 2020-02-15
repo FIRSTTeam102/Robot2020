@@ -44,6 +44,7 @@ class RobotContainer {
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
   frc::XboxController mDriverController;
+  frc::XboxController mOperatorController;
   frc2::Button mDriverButtonA{[&] { return mDriverController.GetRawButton(1);}};
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
   frc2::Button mDriverButtonX{[&] { return mDriverController.GetRawButton(3);}};

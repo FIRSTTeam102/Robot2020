@@ -12,6 +12,7 @@
 RobotContainer::RobotContainer(): 
   mTankDrive{}, 
   mDriverController{0},
+  mOperatorController{1},
   mDriveCommand{&mTankDrive}
 {
   // Initialize all of your commands and subsystems here
@@ -21,6 +22,7 @@ RobotContainer::RobotContainer():
 
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
+  mTankDrive.setDriverJoystick2(&mOperatorController);
 
 
 }

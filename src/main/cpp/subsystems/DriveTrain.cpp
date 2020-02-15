@@ -47,6 +47,17 @@ void DriveTrain::slowlyDriveForwards(){
     mDrive.TankDrive(0.2, 0.2, false);
 }
 
+void DriveTrain::fourMotorDrive(){
+    double speed1 = mpDriverJoystick->GetRawAxis(1);
+    double speed2 = mpDriverJoystick->GetRawAxis(5);
+    double speed3 = mpDriverJoystick2->GetRawAxis(1);
+    double speed4 = mpDriverJoystick2->GetRawAxis(5);
+    mDriveLeft1.Set(speed1);
+    mDriveLeft2.Set(speed2);
+    mDriveRight1.Set(speed3);
+    mDriveRight2.Set(speed4);
+}
+
 void DriveTrain::stop(){
     mDrive.TankDrive(0, 0, false);
 }

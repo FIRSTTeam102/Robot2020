@@ -21,11 +21,15 @@ class DriveTrain : public frc2::SubsystemBase {
   void slowlyDriveForwards();
   void stop();
   void driveWithXboxController();
+  void fourMotorDrive();
   void arcadeDrive();
   void toggleDrive();
   void setDriverJoystick(frc::XboxController* pDriverJoystick){
     mpDriverJoystick = pDriverJoystick;
   };
+  void setDriverJoystick2(frc::XboxController* pDriverJoystick2){
+    mpDriverJoystick2 = pDriverJoystick2;
+  }
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -37,6 +41,7 @@ class DriveTrain : public frc2::SubsystemBase {
  private:
 
   frc::XboxController* mpDriverJoystick;
+  frc::XboxController* mpDriverJoystick2;
 
   WPI_TalonSRX mDriveLeft1;
   WPI_TalonSRX mDriveLeft2;
