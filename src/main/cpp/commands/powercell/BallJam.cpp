@@ -5,31 +5,33 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/ManualControlPanel.h"
+#include "commands/powercell/BallJam.h"
 
-ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel, Lights* pLights) : mpLights{pLights} {
-  AddRequirements({pControlPanel});
+//BallJam is called in the event a Power cell ball gets jammed in the
+//  shooter mechanisms fly wheel
+BallJam::BallJam(Indexer* pIndexer, Shooter* pShooter): mpIndexer{pIndexer}, mpShooter{pShooter} {
   // Use addRequirements() here to declare subsystem dependencies.
-  mpControlPanel = pControlPanel;
+  AddRequirements(pIndexer);
+  AddRequirements(pShooter);
 }
 
 // Called when the command is initially scheduled.
-void ManualControlPanel::Initialize() {
-  mpLights->setMode(8); //light stuffs
+void BallJam::Initialize() {
+  mpShooter->setSpeed(-30*360);
+  mpShooter->startMotor();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ManualControlPanel::Execute() {
-  mpControlPanel->runMotor();
+void BallJam::Execute() {
+  mpIndexer->moveDownIndexer();
 }
 
 // Called once the command ends or is interrupted.
-void ManualControlPanel::End(bool interrupted) {
-  mpControlPanel->stopMotor();
-  mpLights->setMode(4); //light stuffs
-  printf("command sent to stop lights\n\n\n\n\n");
-
+void BallJam::End(bool interrupted) {
+  mpShooter->stopMotor();
 }
 
 // Returns true when the command should end.
-bool ManualControlPanel::IsFinished() { return false; }
+bool BallJam::IsFinished() {
+  return mpIndexer->isPowerCellAtBottom();
+}

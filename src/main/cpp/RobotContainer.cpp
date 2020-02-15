@@ -9,20 +9,26 @@
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
 #include "commands/DriveWithXbox.h"
+#include "AnalogButton.h"
+
 
 RobotContainer::RobotContainer(): 
   mTankDrive{}, 
   mDriverController{0},
-  mDriveCommand{&mTankDrive}
-{
+  mOperatorController{1},
+  mDriveCommand{&mTankDrive},
+  mIntake{}
+  {
   // Initialize all of your commands and subsystems here
   //drive
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  //mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
-  //mTankDrive.setDriverJoystick(&mDriverController);
+  mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
+  mTankDrive.setDriverJoystick(&mDriverController);
+  
 }
+
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
@@ -30,7 +36,24 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverButtonB.WhenPressed(&mPositionCommand, true);
   mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
   mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
-  //mDriverButtonY.WhenHeld(&mLightTestCommand, false);
+  mDriverTriggerButtonLeft.WhenPressed(&mPickupCellsCommand, true);
+  mDriverTriggerButtonLeft.WhenReleased(&mRaiseArmCommand, true);
+  mDriverTriggerButtonRight.WhenHeld(&mShootCommand, false);
+
+  mOperatorButtonA.WhenPressed(&mPrepShootingFast, false);
+  mOperatorButtonB.WhenPressed(&mPrepShootingMed, false);
+  mOperatorButtonX.WhenPressed(&mStopShootingCommand, false);
+  mOperatorButtonY.WhenPressed(&mPrepShootingSlow, false);
+  mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
+  mOperatorButtonRB.WhenPressed(&mResetCommand, true);
+
+  //Create a triggers to activate deactivate the Intake of Power cells
+  // when the driver's trigger is pulled - note these are two different
+  // uses of the word trigger. frc trigger is any event or set of events that
+  // are true and should cause a command to be executed (like the XboxTrigger being 
+  // pressed)
+  
+   
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
