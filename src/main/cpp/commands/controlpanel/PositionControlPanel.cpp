@@ -46,7 +46,7 @@ void PositionControlPanel::Execute() {
   else {
     mpControlPanel->positionControl('Y');
   }
-  mpSubsystemDrive->slowlyDriveForwards();
+  mpSubsystemDrive->move(0.2, 0.2);
   printf("Running Pos\n");
 }
 
