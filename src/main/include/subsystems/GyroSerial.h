@@ -8,49 +8,24 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/SpeedControllerGroup.h>
-#include <ctre/Phoenix.h>
-#include <frc/drive/DifferentialDrive.h>
-#include <frc/XboxController.h>
+#include <frc/SerialPort.h>
+#include "Constants.h"
 
-
-
-class DriveTrain : public frc2::SubsystemBase {
+class GyroSerial : public frc2::SubsystemBase {
  public:
-  DriveTrain();
-  void stop();
-  void driveWithXboxController();
-  void arcadeDrive();
-  void toggleDrive();
-  void move(double x, double y);
-  void setDriverJoystick(frc::XboxController* pDriverJoystick){
-    mpDriverJoystick = pDriverJoystick;
-  };
+  GyroSerial();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic();
-
-
+  int getAngle();
 
  private:
-
-  frc::XboxController* mpDriverJoystick;
-
-  WPI_TalonSRX mDriveLeft1;
-  WPI_TalonSRX mDriveLeft2;
-  WPI_TalonSRX mDriveRight1;
-  WPI_TalonSRX mDriveRight2;
-
-  frc::SpeedControllerGroup mLeft{mDriveLeft1, mDriveLeft2};
-  frc::SpeedControllerGroup mRight{mDriveRight1, mDriveRight2};
-
-  frc::DifferentialDrive mDrive{mLeft, mRight};
- 
-  bool on = false;
-
-
+  frc::SerialPort mSerial;
+  int angle;
+  char rawData[10];
+  bool negativeAngle;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

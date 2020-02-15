@@ -5,36 +5,39 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/controlpanel/RotateControlPanel.h"
-#include "subsystems/ControlPanelManipulator.h"
+#include "commands/TurnDegrees.h"
 
-RotateControlPanel::RotateControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
-  AddRequirements({pControlPanel});
-  AddRequirements({pSubsystemDrive});
+TurnDegrees::TurnDegrees(DriveTrain* pDriveTrain, GyroSerial* pSerial, int degrees): mpDriveTrain{pDriveTrain}, mpSerial{pSerial} {
   // Use addRequirements() here to declare subsystem dependencies.
-  mpControlPanel = pControlPanel;
-  mpSubsystemDrive = pSubsystemDrive;
+  mDegrees = degrees; //Degrees positive for right, negative for left
 }
 
 // Called when the command is initially scheduled.
-void RotateControlPanel::Initialize() {
-  mpControlPanel->resetFinished();
+void TurnDegrees::Initialize() {
+  if (mDegrees > 0) {
+    mpDriveTrain->move(0.5, -0.5);
+  }
+  else {
+    mpDriveTrain->move(-0.5, 0.5);
+  }
 }
 
 // Called repeatedly when this Command is scheduled to run
-void RotateControlPanel::Execute() {
-  mpControlPanel->rotationControl();
-  mpSubsystemDrive->move(0.2, 0.2);
-  printf("Running Rot\n");
+void TurnDegrees::Execute() {
+  readDegs = mpSerial->getAngle();
 }
 
 // Called once the command ends or is interrupted.
-void RotateControlPanel::End(bool interrupted) {
-  printf("Rotation complete!\n");
-  mpSubsystemDrive->stop();
+void TurnDegrees::End(bool interrupted) {
+  mpDriveTrain->stop();
 }
 
 // Returns true when the command should end.
-bool RotateControlPanel::IsFinished() {
-  return mpControlPanel->getFinished();
+bool TurnDegrees::IsFinished() {
+  if (mDegrees > 0) {
+    return (readDegs >= mDegrees);
+  }
+  else {
+    return (readDegs <= mDegrees);
+  }
 }

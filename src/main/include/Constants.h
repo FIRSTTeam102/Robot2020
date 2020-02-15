@@ -7,6 +7,7 @@
 #pragma once
 
 #include <frc/Encoder.h>
+#include <frc/SerialPort.h>
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -59,3 +60,6 @@ int constexpr kFlyEncA = 0;
 int constexpr kFlyEncB = 1;
 bool constexpr kReverseFlyEnc = false;
 frc::Encoder::EncodingType constexpr kFlyEncType = frc::Encoder::EncodingType::k4X;
+
+//Serial indexes
+frc::SerialPort::Port constexpr kGyroSerial = frc::SerialPort::kOnboard;
