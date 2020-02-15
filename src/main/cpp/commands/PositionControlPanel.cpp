@@ -56,7 +56,7 @@ void PositionControlPanel::Execute() {
 // Called once the command ends or is interrupted.
 void PositionControlPanel::End(bool interrupted) {
   printf("Position complete!\n");
-  mpLights->setMode(0); //for light stuffs
+  mpLights->setMode(4); //for light stuffs
   mpSubsystemDrive->stop();
 }
 
