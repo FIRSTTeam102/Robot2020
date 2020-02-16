@@ -8,11 +8,44 @@
 #include "Robot.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardWidget.h>
 #include <frc2/command/CommandScheduler.h>
-#include <rev/ColorMatch.h>
 
+frc::SendableChooser<int> mAutoPos;
+frc::SendableChooser<bool> mAutoShoot;
+frc::SendableChooser<int> mAutoMovement;
+frc::SendableChooser<bool> mAutoShoot2;
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+  mAutoPos.AddOption("Position 1 (Far left)", 1);
+  mAutoPos.AddOption("Position 2 (Middle)", 2);
+  mAutoPos.AddOption("Position 3 (Far right)", 3);
+
+  mAutoShoot.AddOption("Shoot", true);
+  mAutoShoot.AddOption("Don't Shoot", false);
+
+  mAutoMovement.AddOption("Pick up (pos 3 only)", 1);
+  mAutoMovement.AddOption("Back up", 2);
+  mAutoMovement.AddOption("Stay", 3);
+
+  mAutoShoot2.AddOption("Shoot trench balls", true);
+  mAutoShoot2.AddOption("Don't shoot trench balls", false);
+
+  frc::Shuffleboard::GetTab("Auto")
+    .Add(mAutoPos)
+    .WithWidget(&frc::BuiltInWidgets::kComboBoxChooser);
+  frc::Shuffleboard::GetTab("Auto")
+    .Add(mAutoShoot)
+    .WithWidget(&frc::BuiltInWidgets::kSplitButtonChooser);
+  frc::Shuffleboard::GetTab("Auto")
+    .Add(mAutoMovement)
+    .WithWidget(&frc::BuiltInWidgets::kComboBoxChooser);
+  frc::Shuffleboard::GetTab("Auto")
+    .Add(mAutoShoot2)
+    .WithWidget(&frc::BuiltInWidgets::kSplitButtonChooser);
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -38,7 +71,7 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  m_autonomousCommand = m_container.GetAutonomousCommand();
+  m_autonomousCommand = m_container.GetAutonomousCommand(mAutoPos);
 
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Schedule();

@@ -17,6 +17,7 @@
 #include "subsystems/Indexer.h"
 #include "subsystems/Shooter.h"
 #include "subsystems/ControlPanelManipulator.h"
+#include "subsystems/GyroSerial.h"
 
 #include "commands/DriveWithXbox.h"
 #include "commands/powercell/BallJam.h"
@@ -30,6 +31,7 @@
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
+#include "commands/AutonomousCode.h"
 
 #include "AnalogButton.h"
 
@@ -92,8 +94,8 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
-
-
+  GyroSerial mSerial;
+  AutonomousCode mAutoComand{&mTankDrive, &mIndexer, &mShooter, &mSerial, 3};
 
   void ConfigureButtonBindings();
 

@@ -13,10 +13,12 @@
 #include "subsystems/DriveTrain.h"
 #include "commands/powercell/RaiseArm.h"
 #include "commands/powercell/LowerArm.h"
+#include "commands/TurnDegrees.h"
 #include "subsystems/Intake.h"
+#include "subsystems/GyroSerial.h"
 class GetRascals //The balls are the rascals
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  GetRascals> {
  public:
-  GetRascals(DriveTrain* pDriveTrain, Intake* pIntake);
+  GetRascals(DriveTrain* pDriveTrain, Intake* pIntake, GyroSerial* pSerial);
 };

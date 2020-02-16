@@ -16,9 +16,11 @@
 #include "subsystems/DriveTrain.h"
 #include "subsystems/Indexer.h"
 #include "subsystems/Shooter.h"
+#include "subsystems/GyroSerial.h"
+
 class AutonomousCode
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                   AutonomousCode> {
  public:
-  AutonomousCode(DriveTrain* pDriveTrain, Indexer* pIndexer, Shooter* pShooter);
+  AutonomousCode(DriveTrain* pDriveTrain, Indexer* pIndexer, Shooter* pShooter, GyroSerial* pSerial, int slot);
 };

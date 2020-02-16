@@ -13,8 +13,14 @@
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 
-AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Indexer* pIndexer, Shooter* pShooter){
+AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Indexer* pIndexer, Shooter* pShooter, kGyroSerial* pSerial, int slot){
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  AddCommands(AimShooter(pShooter, 500*360), ShootPowerCells(pIndexer, pShooter), BackUp(pDriveTrain));
+  AddCommands(AimShooter(pShooter, 500*360), ShootPowerCells(pIndexer, pShooter));
+  if (slot == 3) {
+    AddCommands(GetRascals(pDriveTrain, pIndexer, pSerial));
+  }
+  else {
+    AddCommands(BackUp(pDriveTrain));
+  }
 }
