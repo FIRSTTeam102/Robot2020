@@ -5,29 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-//Autonomous stage 1
-#include "commands/PrepFlyWheel.h"
+//Autonomous stage 3
+#include "commands/auto/BackUp.h"
 
-PrepFlyWheel::PrepFlyWheel(Shooter* pShooter): mpShooter(pShooter) {
-  AddRequirements(pShooter);
+BackUp::BackUp(DriveTrain* pTankDrive):  mpTankDrive(pTankDrive){
+  // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(pTankDrive);
+  ticksPassed = 0;
 }
 
 // Called when the command is initially scheduled.
-void PrepFlyWheel::Initialize() {
-  mpShooter->startMotor();
+void BackUp::Initialize() {
+  printf("test2");
+  mpTankDrive->move(-1.0, -1.0);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void PrepFlyWheel::Execute() {}
+void BackUp::Execute() {
+  ticksPassed +=1;
+}
 
 // Called once the command ends or is interrupted.
-void PrepFlyWheel::End(bool interrupted) {
+void BackUp::End(bool interrupted) {
+  mpTankDrive->move(0, 0);
 }
 
 // Returns true when the command should end.
-bool PrepFlyWheel::IsFinished() { 
-  if(mpShooter->isReady()){
+bool BackUp::IsFinished() { 
+  if(ticksPassed >= 200){ //Drives robot backwards for 200 ticks. 200 in this case might need to be changed if the robot does not drive far enough or drives too far
     return true;
   }
   return false; 
+  
   }

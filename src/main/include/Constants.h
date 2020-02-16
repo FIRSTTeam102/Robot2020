@@ -6,12 +6,9 @@
 /*----------------------------------------------------------------------------*/
 #pragma once
 
-<<<<<<< HEAD
 #include <frc/Encoder.h>
 #include <frc/SerialPort.h>
 
-=======
->>>>>>> PowerCellMechanism
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -62,12 +59,16 @@ int constexpr kOperatorJoystick = 1;
 frc::SerialPort::Port constexpr kGyroSerial = frc::SerialPort::kOnboard;
 
 //Calibrated values
+//Auto calibration
+float constexpr kAutoMoveTicks = 3 * 50; //3 sec * 50 ticks/sec
+
 //Shooter Speeds
 float constexpr kSlowSpeed = 0.4;
 float constexpr kMedSpeed = 0.6;
 float constexpr kFastSpeed = 0.85;
 float constexpr kSlowAuto = 0.4;
-float constexpr kFastAuto = 0.7;
+float constexpr kMedAuto = 0.55;
+float constexpr kFastAuto = 0.75;
 
 //Color values
 float constexpr kBlueR = 0.13;

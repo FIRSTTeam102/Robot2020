@@ -33,7 +33,7 @@
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
-#include "commands/AutonomousCode.h"
+#include "commands/auto/AutonomousCode.h"
 
 #include "AnalogButton.h"
 
@@ -48,7 +48,7 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::Command* GetAutonomousCommand();
+  frc2::Command* GetAutonomousCommand(int slot, bool shoot, int move, bool shoot2);
 
   frc::XboxController* GetDriverJoystick(){
     return &mDriverController;
@@ -97,8 +97,6 @@ class RobotContainer {
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
   GyroSerial mSerial;
-
-  AutonomousCode mAutoStayFar{&mTankDrive, &mIntake, &mIndexer, &mShooter, &mSerial, };
 
   void ConfigureButtonBindings();
 

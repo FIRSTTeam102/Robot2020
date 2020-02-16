@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/powercell/MoveLinear.h"
+#include "commands/auto/MoveLinear.h"
 
 MoveLinear::MoveLinear(DriveTrain* pDriveTrain, int ticks, double speed): mpDriveTrain(pDriveTrain), mTicks(ticks), mSpeed(speed) {
   // Use addRequirements() here to declare subsystem dependencies.

@@ -26,9 +26,9 @@ void Robot::RobotInit() {
   mAutoShoot.AddOption("Shoot", true);
   mAutoShoot.AddOption("Don't Shoot", false);
 
-  mAutoMovement.AddOption("Pick up (pos 3 only)", 1);
+  mAutoMovement.AddOption("Pick up (trench only)", 1);
   mAutoMovement.AddOption("Back up", 2);
-  mAutoMovement.AddOption("Stay", 3);
+  mAutoMovement.AddOption("Delayed back up", 3);
 
   mAutoShoot2.AddOption("Shoot trench balls", true);
   mAutoShoot2.AddOption("Don't shoot trench balls", false);
@@ -71,7 +71,7 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  m_autonomousCommand = m_container.GetAutonomousCommand();
+  m_autonomousCommand = m_container.GetAutonomousCommand(mAutoPos.GetSelected(), mAutoShoot.GetSelected(), mAutoMovement.GetSelected(), mAutoShoot2.GetSelected());
 
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Schedule();

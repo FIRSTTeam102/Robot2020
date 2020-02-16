@@ -9,10 +9,12 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
-#include "commands/PrepFlyWheel.h"
-#include "commands/ProgressIndexer.h"
-#include "commands/BackUp.h"
-#include "commands/GetRascals.h"
+#include <frc/DriverStation.h>
+
+#include "commands/auto/BackUp.h"
+#include "commands/auto/GetRascals.h"
+#include "commands/powercell/AimShooter.h"
+#include "commands/powercell/ShootPowerCells.h"
 
 #include "subsystems/DriveTrain.h"
 #include "subsystems/Intake.h"
@@ -24,7 +26,7 @@ class AutonomousCode
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                   AutonomousCode> {
  public:
-  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, GyroSerial* pSerial, int slot, bool shoot, int move, bool shoot2, float shootSpeed);
+  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, GyroSerial* pSerial, int slot, bool shoot, int move, bool shoot2);
  private:
-  frc::DriverStation fmsInfo;
+  float shootSpeed;
 };

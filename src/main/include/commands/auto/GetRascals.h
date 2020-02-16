@@ -9,11 +9,11 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
-#include "commands/powercell/MoveLinear.h"
-#include "subsystems/DriveTrain.h"
+#include "commands/auto/MoveLinear.h"
+#include "commands/auto/TurnDegrees.h"
 #include "commands/powercell/RaiseArm.h"
 #include "commands/powercell/LowerArm.h"
-#include "commands/TurnDegrees.h"
+#include "subsystems/DriveTrain.h"
 #include "subsystems/Intake.h"
 #include "subsystems/GyroSerial.h"
 class GetRascals //The balls are the rascals

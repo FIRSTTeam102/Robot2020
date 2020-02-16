@@ -9,8 +9,10 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <subsystems/Shooter.h>
-#include <subsystems/Indexer.h>
+#include <frc/SerialPort.h>
+#include "subsystems/DriveTrain.h"
+#include "subsystems/GyroSerial.h"
+
 /**
  * An example command.
  *
@@ -18,10 +20,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ProgressIndexer
-    : public frc2::CommandHelper<frc2::CommandBase, ProgressIndexer> {
+class TurnDegrees
+    : public frc2::CommandHelper<frc2::CommandBase, TurnDegrees> {
  public:
-  explicit ProgressIndexer(Shooter* pShooter, Indexer* pIndexer);
+  TurnDegrees(DriveTrain* pDriveTrain, GyroSerial* pSerial, int degrees);
 
   void Initialize() override;
 
@@ -30,9 +32,10 @@ class ProgressIndexer
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-  private:
-  Shooter* mpShooter;
-  Indexer* mpIndexer;
-  int ticksPassed;
-  bool hasSeenBall;
+ private:
+  int mDegrees;
+  int readDegs;
+  int startDegs;
+  GyroSerial* mpSerial;
+  DriveTrain* mpDriveTrain;
 };

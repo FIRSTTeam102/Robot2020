@@ -56,8 +56,8 @@ void RobotContainer::ConfigureButtonBindings() {
 }
 
 
-frc2::Command* RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand(int slot, bool shoot, int move, bool shoot2) {
   // An example command will be run in autonomous
  // return &m_autonomousCommand;
-  return &mAutoComand;
+  return new AutonomousCode(&mTankDrive, &mIntake, &mIndexer, &mShooter, &mSerial, slot, shoot, move, shoot2);
 }
