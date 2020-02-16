@@ -9,11 +9,12 @@
 #include "commands/powercell/AimShooter.h"
 #include "commands/powercell/ShootPowerCells.h"
 #include "commands/BackUp.h"
+#include <frc/DriverStation.h>
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 
-AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, GyroSerial* pSerial, int slot, bool shoot, int move, bool shoot2){
+AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, GyroSerial* pSerial, int slot, bool shoot, int move, bool shoot2, float shootSpeed){
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   if (shoot) {
@@ -27,5 +28,10 @@ AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer
   }
   else if (move == 2) {
     AddCommands(BackUp(pDriveTrain));
+  }
+  else {
+    if (fmsInfo.GetMatchTime() < 1.5) {
+      AddCommands(BackUp(pDriveTrain));
+    }
   }
 }

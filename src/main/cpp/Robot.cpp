@@ -19,9 +19,9 @@ frc::SendableChooser<int> mAutoMovement;
 frc::SendableChooser<bool> mAutoShoot2;
 
 void Robot::RobotInit() {
-  mAutoPos.AddOption("Position 1 (Far left)", 1);
-  mAutoPos.AddOption("Position 2 (Middle)", 2);
-  mAutoPos.AddOption("Position 3 (Far right)", 3);
+  mAutoPos.AddOption("In front of target", 1);
+  mAutoPos.AddOption("In front of trench", 2);
+  mAutoPos.AddOption("Far away", 3);
 
   mAutoShoot.AddOption("Shoot", true);
   mAutoShoot.AddOption("Don't Shoot", false);

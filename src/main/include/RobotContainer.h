@@ -98,7 +98,7 @@ class RobotContainer {
 
   GyroSerial mSerial;
 
-  AutonomousCode mStayFarSlot{&mTankDrive, &mIntake, &mIndexer, &mShooter, &mSerial, 1};
+  AutonomousCode mAutoStayFar{&mTankDrive, &mIntake, &mIndexer, &mShooter, &mSerial, };
 
   void ConfigureButtonBindings();
 
