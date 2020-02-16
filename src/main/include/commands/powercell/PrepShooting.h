@@ -18,5 +18,5 @@ class PrepShooting
     : public frc2::CommandHelper<frc2::ParallelCommandGroup,
                                  PrepShooting> {
  public:
-  PrepShooting(Indexer* pIndexer, Shooter* pShooter, int shooterSpeed);
+  PrepShooting(Indexer* pIndexer, Shooter* pShooter, float shooterSpeed);
 };

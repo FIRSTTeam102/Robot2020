@@ -6,9 +6,12 @@
 /*----------------------------------------------------------------------------*/
 #pragma once
 
+<<<<<<< HEAD
 #include <frc/Encoder.h>
 #include <frc/SerialPort.h>
 
+=======
+>>>>>>> PowerCellMechanism
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -43,23 +46,39 @@ int constexpr kIntakeBottomSensor = 10;
 
 //Digital IO channels
 //Indexer Distance Sensors (Digital Input)
- int constexpr kDIOIntake = 0;
- int constexpr kDIOBottom = 1;
- int constexpr kDIOTop = 2;
+int constexpr kDIOIntake = 0;
+int constexpr kDIOBottom = 1;
+int constexpr kDIOTop = 2;
 
 //Index Relay
- int constexpr kIndexChannel = 0;
- int constexpr kMaxPowerCellTravelTime = 100;
+int constexpr kIndexChannel = 0;
+int constexpr kMaxPowerCellTravelTime = 100;
 
 //OI Indexes (joysticks/buttons)
 int constexpr kDriverJoystick = 0;
 int constexpr kOperatorJoystick = 1;
 
-//Flywheel encoder indexes
-int constexpr kFlyEncA = 0;
-int constexpr kFlyEncB = 1;
-bool constexpr kReverseFlyEnc = false;
-frc::Encoder::EncodingType constexpr kFlyEncType = frc::Encoder::EncodingType::k4X;
-
 //Serial indexes
 frc::SerialPort::Port constexpr kGyroSerial = frc::SerialPort::kOnboard;
+
+//Calibrated values
+//Shooter Speeds
+float constexpr kSlowSpeed = 0.4;
+float constexpr kMedSpeed = 0.6;
+float constexpr kFastSpeed = 0.85;
+float constexpr kSlowAuto = 0.4;
+float constexpr kFastAuto = 0.7;
+
+//Color values
+float constexpr kBlueR = 0.13;
+float constexpr kBlueG = 0.43;
+float constexpr kBlueB = 0.43;
+float constexpr kRedR = 0.56;
+float constexpr kRedG = 0.32;
+float constexpr kRedB = 0.11;
+float constexpr kYelR = 0.33;
+float constexpr kYelG = 0.56;
+float constexpr kYelB = 0.11;
+float constexpr kGrnR = 0.14;
+float constexpr kGrnG = 0.60;
+float constexpr kGrnB = 0.26;

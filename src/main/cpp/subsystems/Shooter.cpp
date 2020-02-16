@@ -9,35 +9,29 @@
 #include "Constants.h"
 
 Shooter::Shooter() : 
-    mFlyEnc{kFlyEncA, kFlyEncB, kReverseFlyEnc, kFlyEncType},
     mShooter1{kFlyMotor1},
     mShooter2{kFlyMotor2}
 {
-    mFlyEnc.SetDistancePerPulse(1/360);
-    mShooter1.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 0);
     mShooter2.Set(ControlMode::Follower, kFlyMotor1);
 }
 
 // This method will be called once per scheduler run
 void Shooter::Periodic() {}
 
-void Shooter::setSpeed(int speed) { //Takes in RPM
-    targetRPS = speed / 60;
-    targetRP100ms = targetRPS / 10;
+void Shooter::setSpeed(float speed) {
+    mSpeed = speed;
 }
 
 void Shooter::startMotor() {
-    mShooter1.Set(ControlMode::Velocity, targetRP100ms);
+    mShooter1.Set(mSpeed);
+    mIsStarted = true;
 }
 
 void Shooter::stopMotor() {
     mShooter1.Set(0);
+    mIsStarted = false;
 }
 
-bool Shooter::isReady() {
-    return (mFlyEnc.GetRate() >= targetRPS * 0.9);
-}
-
-int Shooter::getRPM() {
-    return mFlyEnc.GetRate() * 60;
+bool Shooter::isRunning() {
+    return mIsStarted;
 }
