@@ -95,7 +95,7 @@ class RobotContainer {
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
   GyroSerial mSerial;
-  AutonomousCode mAutoComand{&mTankDrive, &mIndexer, &mShooter, &mSerial, 3};
+  AutonomousCode mAutoComand{&mTankDrive, &mIntake, &mIndexer, &mShooter, &mSerial, 3};
 
   void ConfigureButtonBindings();
 

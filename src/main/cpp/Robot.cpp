@@ -35,16 +35,16 @@ void Robot::RobotInit() {
 
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoPos)
-    .WithWidget(&frc::BuiltInWidgets::kComboBoxChooser);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoShoot)
-    .WithWidget(&frc::BuiltInWidgets::kSplitButtonChooser);
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser);
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoMovement)
-    .WithWidget(&frc::BuiltInWidgets::kComboBoxChooser);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoShoot2)
-    .WithWidget(&frc::BuiltInWidgets::kSplitButtonChooser);
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser);
 }
 
 /**
@@ -71,7 +71,7 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  m_autonomousCommand = m_container.GetAutonomousCommand(mAutoPos);
+  m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Schedule();
