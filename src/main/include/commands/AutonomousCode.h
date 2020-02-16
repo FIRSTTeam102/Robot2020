@@ -24,5 +24,5 @@ class AutonomousCode
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                   AutonomousCode> {
  public:
-  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, GyroSerial* pSerial, int slot);
+  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, GyroSerial* pSerial, int slot, bool shoot, int move, bool shoot2);
 };
