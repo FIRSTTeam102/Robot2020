@@ -19,32 +19,36 @@ frc::SendableChooser<int> mAutoMovement;
 frc::SendableChooser<bool> mAutoShoot2;
 
 void Robot::RobotInit() {
+  mAutoPos.SetName("Starting Position");
   mAutoPos.AddOption("In front of target", 1);
   mAutoPos.AddOption("In front of trench", 2);
   mAutoPos.AddOption("Far away", 3);
 
+  mAutoShoot.SetName("Initial shot?");
   mAutoShoot.AddOption("Shoot", true);
   mAutoShoot.AddOption("Don't Shoot", false);
 
+  mAutoMovement.SetName("Movement");
   mAutoMovement.AddOption("Pick up (trench only)", 1);
   mAutoMovement.AddOption("Back up", 2);
   mAutoMovement.AddOption("Delayed back up", 3);
 
+  mAutoShoot2.SetName("Shoot again?");
   mAutoShoot2.AddOption("Shoot trench balls", true);
   mAutoShoot2.AddOption("Don't shoot trench balls", false);
 
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoPos)
-    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithPosition(2, 0).WithSize(2, 1);
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoShoot)
-    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser);
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithPosition(1, 1).WithSize(3, 1);;
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoMovement)
-    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithPosition(4, 0).WithSize(2, 1);;
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoShoot2)
-    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser);
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithPosition(4, 1).WithSize(3, 1);;
 }
 
 /**
