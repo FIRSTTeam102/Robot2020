@@ -17,7 +17,7 @@ PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPane
 
 // Called when the command is initially scheduled.
 void PositionControlPanel::Initialize() {
-  Lights::GetInstance()->setMode(8); //for light stuffs
+  Lights::GetInstance()->setMode(kLights_rainbow_bounce); //for light stuffs
   mpControlPanel->resetFinished();
 }
 
@@ -56,7 +56,7 @@ void PositionControlPanel::Execute() {
 // Called once the command ends or is interrupted.
 void PositionControlPanel::End(bool interrupted) {
   printf("Position complete!\n");
-  Lights::GetInstance()->setMode(4); //for light stuffs
+  Lights::GetInstance()->setMode(kLights_enabled); //for light stuffs
   mpSubsystemDrive->stop();
 }
 

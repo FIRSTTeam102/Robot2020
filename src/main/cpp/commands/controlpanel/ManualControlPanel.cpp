@@ -15,7 +15,7 @@ ManualControlPanel::ManualControlPanel(ControlPanelManipulator *pControlPanel) {
 
 // Called when the command is initially scheduled.
 void ManualControlPanel::Initialize() {
-  Lights::GetInstance()->setMode(8); //light stuffs
+  Lights::GetInstance()->setMode(kLights_rainbow_bounce); //light stuffs
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -26,7 +26,7 @@ void ManualControlPanel::Execute() {
 // Called once the command ends or is interrupted.
 void ManualControlPanel::End(bool interrupted) {
   mpControlPanel->stopMotor();
-  Lights::GetInstance()->setMode(4); //light stuffs
+  Lights::GetInstance()->setMode(kLights_enabled); //light stuffs
   printf("command sent to stop lights\n\n\n\n\n");
 
 }

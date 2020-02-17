@@ -19,7 +19,7 @@ RotateControlPanel::RotateControlPanel(ControlPanelManipulator *pControlPanel, D
 // Called when the command is initially scheduled.
 void RotateControlPanel::Initialize() {
   mpControlPanel->resetFinished();
-  Lights::GetInstance()->setMode(8); //for light stuffs
+  Lights::GetInstance()->setMode(kLights_rainbow_bounce); //for light stuffs
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -32,6 +32,7 @@ void RotateControlPanel::Execute() {
 // Called once the command ends or is interrupted.
 void RotateControlPanel::End(bool interrupted) {
   printf("Rotation complete!\n");
+  Lights::GetInstance()->setMode(kLights_enabled); //for light stuffs
   mpSubsystemDrive->stop();
 }
 
