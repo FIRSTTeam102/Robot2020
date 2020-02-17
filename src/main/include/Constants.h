@@ -58,3 +58,14 @@ int constexpr kFlyEncA = 0;
 int constexpr kFlyEncB = 1;
 bool constexpr kReverseFlyEnc = false;
 frc::Encoder::EncodingType constexpr kFlyEncType = frc::Encoder::EncodingType::k4X;
+
+//Light codes:
+int constexpr kLights_off = 0;
+int constexpr kLights_auto = 1;
+int constexpr kLights_shoot = 2;
+int constexpr kLights_disabled = 3;
+int constexpr kLights_enabled = 4;
+int constexpr kLights_green_loop = 5;
+int constexpr kLights_rainbow_loop = 6;
+int constexpr kLights_fire = 7;
+int constexpr kLights_rainbow_bounce = 8;
