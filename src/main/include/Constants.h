@@ -16,14 +16,14 @@
  * they are needed.
  */
 
-// Talon SRX motor controllers
+// Talon SRX motor controllers (CAN Bus)
 // Drive motor controllers
 int constexpr kTopLeftMotor = 0;
 int constexpr kTopRightMotor = 2;
 int constexpr kBottomLeftMotor = 1;
 int constexpr kBottomRightMotor = 3;
 
-// Control panel motor controller (TalonSRx)
+// Control panel motor controller (TalonSRX)
 int constexpr kControlPanelMotor = 4;
 
 //Shooter Motor Controllers (TalonSRX)
@@ -35,7 +35,6 @@ int constexpr kIntakeMotor = 7;
 int constexpr kIntakeRollerMotor = 8;
 int constexpr kIntakeTopSensor = 9;
 int constexpr kIntakeBottomSensor = 10;
-
 
 
 //Digital IO channels
@@ -51,6 +50,12 @@ int constexpr kMaxPowerCellTravelTime = 100;
 //OI Indexes (joysticks/buttons)
 int constexpr kDriverJoystick = 0;
 int constexpr kOperatorJoystick = 1;
+
+
+//PWM Channels
+//Servos
+int constexpr kControlPanelServo = 1;
+
 
 //Calibrated values
 //Shooter Speeds
@@ -73,3 +78,7 @@ float constexpr kYelB = 0.11;
 float constexpr kGrnR = 0.14;
 float constexpr kGrnG = 0.60;
 float constexpr kGrnB = 0.26;
+
+//Servo positions
+float constexpr kControlPanelServoOut = 0.5;
+float constexpr kControlPanelServoIn = -0.5;

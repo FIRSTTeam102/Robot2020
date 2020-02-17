@@ -8,6 +8,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <frc/Servo.h>
 #include <ctre/Phoenix.h>
 #include "Constants.h"
 #include <rev/ColorSensorV3.h>
@@ -24,6 +25,8 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
   void resetFinished();
   void stopMotor();
   void runMotor();
+  void deployManipulator();
+  void retractManipulator();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -33,6 +36,7 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
   char getReadColor(); //Returns R for red, G for green, B for blue, Y for yellow, or X for other
   bool hasMovedColors();
   WPI_TalonSRX mControlMotor;
+  frc::Servo mDeployServo;
   char previousColor;
   char prevColors[5] = { 0 };
   char currentColor;
