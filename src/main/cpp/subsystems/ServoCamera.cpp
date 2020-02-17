@@ -43,6 +43,7 @@ void ServoCamera::controlServoWithJoystick(){
     if(bottomServoPosition >= 1 && horizontalPower > 0){
         return;
     }
-    topServo.Set(topServoPosition - verticlePower);
+    //topServo.Set(topServoPosition - verticlePower);
     bottomServo.Set(bottomServoPosition + horizontalPower);
+    printf("%f\n", bottomServoPosition+horizontalPower);
 }
