@@ -80,5 +80,5 @@ float constexpr kGrnG = 0.60;
 float constexpr kGrnB = 0.26;
 
 //Servo positions
-float constexpr kControlPanelServoOut = 0.5;
-float constexpr kControlPanelServoIn = -0.5;
+float constexpr kControlPanelServoOut = 1;
+float constexpr kControlPanelServoIn = 0.25;
