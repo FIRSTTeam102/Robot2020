@@ -12,6 +12,8 @@
 #include "commands/DriveWithXbox.h"
 #include "subsystems/DriveTrain.h"
 #include "subsystems/ControlPanelManipulator.h"
+#include "subsystems/SerialNano.h"
+#include "subsystems/SerialUno.h"
 #include "commands/RotateControlPanel.h"
 #include "commands/PositionControlPanel.h"
 #include "commands/StopControlPanel.h"
@@ -54,6 +56,9 @@ class RobotContainer {
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
+
+  SerialNano mSerialNano;
+  SerialUno mSerialUno;
 
   void ConfigureButtonBindings();
 };
