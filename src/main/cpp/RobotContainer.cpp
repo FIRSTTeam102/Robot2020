@@ -35,6 +35,8 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverButtonB.WhenPressed(&mPrepShootingMed, false);
   mDriverButtonX.WhenPressed(&mStopShootingCommand, false);
   mDriverButtonY.WhenPressed(&mPrepShootingSlow, false);
+  mOperatorButtonLB.WhenHeld(&mSlowLeftCommand, true);
+  mOperatorButtonRB.WhenHeld(&mSlowRightCommand, true);
   mDriverTriggerButtonLeft.WhenPressed(&mPickupCellsCommand, true);
   mDriverTriggerButtonLeft.WhenReleased(&mRaiseArmCommand, true);
   mDriverTriggerButtonRight.WhenHeld(&mShootCommand, false);

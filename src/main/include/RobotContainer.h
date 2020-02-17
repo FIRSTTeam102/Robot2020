@@ -21,6 +21,7 @@
 #include "subsystems/ControlPanelManipulator.h"
 
 #include "commands/DriveWithXbox.h"
+#include "commands/SlowTurn.h"
 #include "commands/powercell/BallJam.h"
 #include "commands/powercell/PickupPowerCells.h"
 #include "commands/powercell/PrepShooting.h"
@@ -74,6 +75,9 @@ class RobotContainer {
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
+
+  SlowTurn mSlowLeftCommand{&mTankDrive, true};
+  SlowTurn mSlowRightCommand{&mTankDrive, false};
 
   Intake mIntake;
   Indexer mIndexer;
