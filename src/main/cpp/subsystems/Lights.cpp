@@ -10,8 +10,8 @@
 
 Lights* Lights::mpLightsInstance=NULL;
 
-Lights::Lights() : mSP{9600, frc::SerialPort::kUSB} {
-    mSP.DisableTermination();
+Lights::Lights() : mSP{115200, frc::SerialPort::kUSB} {
+    mSP.EnableTermination();
     mSP.Reset();
 }
 
