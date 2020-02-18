@@ -17,7 +17,8 @@ RobotContainer::RobotContainer():
   mDriverController{0},
   mOperatorController{1},
   mDriveCommand{&mTankDrive},
-  mIntake{}
+  mIntake{},
+  mPixyCam{}
   {
   // Initialize all of your commands and subsystems here
   //drive
@@ -28,6 +29,7 @@ RobotContainer::RobotContainer():
   //mTankDrive.setDriverJoystick(&mDriverController)
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
+  
   
 }
 
@@ -47,6 +49,7 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonY.WhenPressed(&mPrepShootingSlow, false);
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
+  
 
   //Create a triggers to activate deactivate the Intake of Power cells
   // when the driver's trigger is pulled - note these are two different

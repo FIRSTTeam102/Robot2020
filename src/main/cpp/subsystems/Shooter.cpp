@@ -12,6 +12,7 @@ Shooter::Shooter() :
     mFlyEnc{kFlyEncA, kFlyEncB, kReverseFlyEnc, kFlyEncType},
     mShooter{kFlyMotor}
 {
+    mFlyEnc.Reset();
     mFlyEnc.SetDistancePerPulse(1/360);
     mShooter.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 0);
 }

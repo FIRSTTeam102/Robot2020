@@ -18,6 +18,7 @@
 #include "subsystems/Shooter.h"
 #include "subsystems/ControlPanelManipulator.h"
 #include "subsystems/Lights.h"
+#include "subsystems/PixyCam.h"
 
 #include "commands/DriveWithXbox.h"
 #include "commands/powercell/BallJam.h"
@@ -93,6 +94,7 @@ class RobotContainer {
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
+  PixyCam mPixyCam;
   //LightTest mLightTestCommand}; //for lights
 
 
