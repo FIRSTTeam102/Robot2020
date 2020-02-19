@@ -22,8 +22,11 @@
 // Drive motor controllers
 int constexpr kTopLeftMotor = 0;
 int constexpr kTopRightMotor = 1;
-int constexpr kBottomLeftMotor = 2;
+int constexpr kBottomLeftMotor = 222;
 int constexpr kBottomRightMotor = 3;
+
+//Climb Motor Controller
+int constexpr kClimbMotor = 2;
 
 // Control panel motor controller (TalonSRx)
 int constexpr kControlPanelMotor = 4;

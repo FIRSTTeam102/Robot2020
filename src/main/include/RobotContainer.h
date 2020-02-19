@@ -17,7 +17,7 @@
 #include "subsystems/Indexer.h"
 #include "subsystems/Shooter.h"
 #include "subsystems/ControlPanelManipulator.h"
-
+#include "subsystems/Climber.h"
 #include "commands/DriveWithXbox.h"
 #include "commands/powercell/BallJam.h"
 #include "commands/powercell/PickupPowerCells.h"
@@ -61,6 +61,9 @@ class RobotContainer {
   frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
   AnalogButton mDriverTriggerButtonLeft{&mDriverController,frc::XboxController::kLeftHand};
   AnalogButton mDriverTriggerButtonRight{&mDriverController,frc::XboxController::kRightHand};
+
+  Climber mClimber;
+  frc::XboxController mClimberJoystick;
 
   frc::XboxController mOperatorController;
   frc2::Button mOperatorButtonA{[&] { return mOperatorController.GetRawButton(1);}};
