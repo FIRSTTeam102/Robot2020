@@ -8,11 +8,68 @@
 #include "Robot.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardWidget.h>
+#include <frc/shuffleboard/SendableCameraWrapper.h>
 #include <frc2/command/CommandScheduler.h>
+#include <cameraserver/CameraServer.h>
 #include <rev/ColorMatch.h>
 
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+  //Create autonomous command choices
+  //Create Chooser for Autonomouse starting position
+  
+  mAutoPos.AddOption("In front of target", 1);
+  mAutoPos.AddOption("In front of trench", 2);
+  mAutoPos.AddOption("Far away", 3);
+
+  //create chooser to take the shot or not at autonomous start
+  
+  mAutoShoot.AddOption("Shoot", true);
+  mAutoShoot.AddOption("Don't Shoot", false);
+
+  //create chooser for desired autonomous movement off the line
+  
+  mAutoMovement.AddOption("Pick up (trench only)", 1);
+  mAutoMovement.AddOption("Back up", 2);
+  mAutoMovement.AddOption("Delayed back up", 3);
+
+  //create chooser - if trench balls were picked up, shoot them?
+  
+  mAutoShoot2.AddOption("Shoot trench balls", true);
+  mAutoShoot2.AddOption("Don't shoot trench balls", false);
+
+  //create the autonomous command tab on the shuffleboard and add each
+  // choosers widget, building the auto menu
+  frc::Shuffleboard::GetTab("Auto")
+    .Add("Starting Position",mAutoPos)
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithPosition(8, 1).WithSize(2, 1);
+  
+  frc::Shuffleboard::GetTab("Auto")
+    .Add("Initial Shot?",mAutoShoot)
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithPosition(8, 2).WithSize(2, 1);
+  
+  frc::Shuffleboard::GetTab("Auto")
+    .Add("Movement",mAutoMovement)
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithPosition(8, 3).WithSize(2, 1);
+  
+  frc::Shuffleboard::GetTab("Auto")
+    .Add("Shoot Again?",mAutoShoot2)
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithPosition(8, 4).WithSize(2, 1);
+  
+  //create the default camera stream tab
+  /*
+  cs::VideoSink currVideo = frc::CameraServer::GetServer();
+  frc::SendableCameraWrapper cameraWrap = frc::SendableCameraWrapper(currVideo);
+  frc::Shuffleboard::GetTab("Camera")
+    .Add("Current Camera",cameraWrap)
+    .WithWidget(frc::BuiltInWidgets::kCameraStream)
+    .WithSize (4,5)
+    .WithPosition (2,1);
+   */
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use

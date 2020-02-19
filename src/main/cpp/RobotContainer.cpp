@@ -19,12 +19,18 @@ RobotContainer::RobotContainer():
   {
   // Initialize all of your commands and subsystems here
   //drive
+  
+  mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
+  mTankDrive.setDriverJoystick(&mDriverController);
+
+  mCamera1 = frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
+  mCamera2 = frc::CameraServer::GetInstance()->StartAutomaticCapture(1);
+  mCamera3 = frc::CameraServer::GetInstance()->StartAutomaticCapture(2);
+  frc::CameraServer::GetInstance()->GetServer().SetSource(mCamera1);
+
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
-  mTankDrive.setDriverJoystick(&mDriverController);
-  
 }
 
 
@@ -45,24 +51,10 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
 
-  //Create a triggers to activate deactivate the Intake of Power cells
-  // when the driver's trigger is pulled - note these are two different
-  // uses of the word trigger. frc trigger is any event or set of events that
-  // are true and should cause a command to be executed (like the XboxTrigger being 
-  // pressed)
+  
+}
 
-//Actual Code:
-frc::SmartDashboard::PutNumber("Cow", 7);
-
-//Test Code (Use/Select tab)
-ShuffleboardTab& tab = Shuffleboard::GetTab("replace");
-Shuffleboard::SelectTab("replace")
-
-//Test Code (Sending data)
-
-Shuffleboard::GetTab("Numbers")
-
-//frc2::Command* RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
- // return &m_autonomousCommand;
+   return NULL;
 }
