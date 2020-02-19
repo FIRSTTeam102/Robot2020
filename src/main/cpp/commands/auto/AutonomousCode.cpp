@@ -11,6 +11,7 @@
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 
 AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, int slot, bool shoot, int move, bool shoot2){
+  printf("Running auto\n");
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   if (slot == 2 || slot == 3) {
