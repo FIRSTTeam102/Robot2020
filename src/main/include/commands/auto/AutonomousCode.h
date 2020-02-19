@@ -20,13 +20,12 @@
 #include "subsystems/Intake.h"
 #include "subsystems/Indexer.h"
 #include "subsystems/Shooter.h"
-#include "subsystems/GyroSerial.h"
 
 class AutonomousCode
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                   AutonomousCode> {
  public:
-  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, GyroSerial* pSerial, int slot, bool shoot, int move, bool shoot2);
+  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, int slot, bool shoot, int move, bool shoot2);
  private:
   float shootSpeed;
 };

@@ -9,23 +9,34 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/SerialPort.h>
-#include "Constants.h"
 
-class GyroSerial : public frc2::SubsystemBase {
- public:
-  GyroSerial();
+#define _GLIBCXX_USE_CXX11_ABI 1
 
+
+
+class Lights : public frc2::SubsystemBase {
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
+private:
+  Lights();
+  static Lights *mpLightsInstance;
+public: 
+  static Lights* GetInstance();   
   void Periodic();
-  int getAngle();
+  void setMode(int mode);
+  int getGyroAngle();
 
  private:
-  frc::SerialPort mSerial;
-  int angle;
-  char rawData[10];
-  bool negativeAngle;
+  
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+
+  frc::SerialPort mSP;
+  char strMode[1];
+  char readBuffer[25];
+  int gyroVal;
+  bool negativeGyro;
 };
+
+//Lights::GetInstance()->setMode(int Mode);

@@ -19,7 +19,7 @@
 #include "subsystems/Indexer.h"
 #include "subsystems/Shooter.h"
 #include "subsystems/ControlPanelManipulator.h"
-#include "subsystems/GyroSerial.h"
+#include "subsystems/Lights.h"
 
 #include "commands/DriveWithXbox.h"
 #include "commands/powercell/BallJam.h"
@@ -74,6 +74,8 @@ class RobotContainer {
   frc2::Button mOperatorButtonLB{[&] { return mOperatorController.GetRawButton(5);}};
   frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
 
+  //Lights mLights;
+
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
 
@@ -95,8 +97,6 @@ class RobotContainer {
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
-
-  GyroSerial mSerial;
 
   void ConfigureButtonBindings();
 

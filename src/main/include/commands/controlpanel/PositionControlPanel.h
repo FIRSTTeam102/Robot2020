@@ -12,6 +12,7 @@
 #include <subsystems/ControlPanelManipulator.h>
 #include <subsystems/DriveTrain.h>
 #include <frc/DriverStation.h>
+#include <subsystems/Lights.h>
 
 /**
  * An example command.

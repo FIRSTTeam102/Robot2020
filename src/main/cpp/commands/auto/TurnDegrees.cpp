@@ -7,7 +7,7 @@
 
 #include "commands/auto/TurnDegrees.h"
 
-TurnDegrees::TurnDegrees(DriveTrain* pDriveTrain, GyroSerial* pSerial, int degrees): mpDriveTrain{pDriveTrain}, mpSerial{pSerial} {
+TurnDegrees::TurnDegrees(DriveTrain* pDriveTrain, int degrees): mpDriveTrain{pDriveTrain} {
   // Use addRequirements() here to declare subsystem dependencies.
   mDegrees = degrees; //Degrees positive for right, negative for left
 }
@@ -20,12 +20,12 @@ void TurnDegrees::Initialize() {
   else {
     mpDriveTrain->move(-0.5, 0.5);
   }
-  startDegs = mpSerial->getAngle();
+  startDegs = Lights::GetInstance()->getGyroAngle();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TurnDegrees::Execute() {
-  readDegs = mpSerial->getAngle() - startDegs;
+  readDegs = Lights::GetInstance()->getGyroAngle() - startDegs;
 }
 
 // Called once the command ends or is interrupted.

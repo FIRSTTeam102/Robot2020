@@ -11,7 +11,7 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc/SerialPort.h>
 #include "subsystems/DriveTrain.h"
-#include "subsystems/GyroSerial.h"
+#include "subsystems/Lights.h"
 
 /**
  * An example command.
@@ -23,7 +23,7 @@
 class TurnDegrees
     : public frc2::CommandHelper<frc2::CommandBase, TurnDegrees> {
  public:
-  TurnDegrees(DriveTrain* pDriveTrain, GyroSerial* pSerial, int degrees);
+  TurnDegrees(DriveTrain* pDriveTrain, int degrees);
 
   void Initialize() override;
 
@@ -36,6 +36,5 @@ class TurnDegrees
   int mDegrees;
   int readDegs;
   int startDegs;
-  GyroSerial* mpSerial;
   DriveTrain* mpDriveTrain;
 };

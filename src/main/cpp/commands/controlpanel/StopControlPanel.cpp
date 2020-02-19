@@ -20,6 +20,7 @@ void StopControlPanel::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void StopControlPanel::Execute() {
+  Lights::GetInstance()->setMode(kLights_enabled); //for light stuffs
   mpControlPanel->stopMotor();
   mpSubsystemDrive->stop();
 }

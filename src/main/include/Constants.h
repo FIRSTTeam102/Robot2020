@@ -55,9 +55,6 @@ int constexpr kMaxPowerCellTravelTime = 100;
 int constexpr kDriverJoystick = 0;
 int constexpr kOperatorJoystick = 1;
 
-//Serial indexes
-frc::SerialPort::Port constexpr kGyroSerial = frc::SerialPort::kOnboard;
-
 //Calibrated values
 //Auto calibration
 float constexpr kAutoMoveTicks = 3 * 50; //3 sec * 50 ticks/sec
@@ -83,3 +80,14 @@ float constexpr kYelB = 0.11;
 float constexpr kGrnR = 0.14;
 float constexpr kGrnG = 0.60;
 float constexpr kGrnB = 0.26;
+
+//Light codes:
+int constexpr kLights_off = 0;
+int constexpr kLights_auto = 1;
+int constexpr kLights_shoot = 2;
+int constexpr kLights_disabled = 3;
+int constexpr kLights_enabled = 4;
+int constexpr kLights_green_loop = 5;
+int constexpr kLights_rainbow_loop = 6;
+int constexpr kLights_fire = 7;
+int constexpr kLights_rainbow_bounce = 8;

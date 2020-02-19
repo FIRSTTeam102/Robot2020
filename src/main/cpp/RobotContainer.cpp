@@ -8,6 +8,7 @@
 #include "RobotContainer.h"
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
+#include "commands/DriveWithXbox.h"
 #include "AnalogButton.h"
 
 
@@ -23,11 +24,12 @@ RobotContainer::RobotContainer():
   // Configure the button bindings
   ConfigureButtonBindings();
 
+  //mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
+  //mTankDrive.setDriverJoystick(&mDriverController)
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
   
 }
-
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
@@ -59,5 +61,5 @@ void RobotContainer::ConfigureButtonBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand(int slot, bool shoot, int move, bool shoot2) {
   // An example command will be run in autonomous
  // return &m_autonomousCommand;
-  return new AutonomousCode(&mTankDrive, &mIntake, &mIndexer, &mShooter, &mSerial, slot, shoot, move, shoot2);
+  return new AutonomousCode(&mTankDrive, &mIntake, &mIndexer, &mShooter, slot, shoot, move, shoot2);
 }

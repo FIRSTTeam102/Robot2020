@@ -11,6 +11,7 @@
 #include <frc2/command/CommandHelper.h>
 #include <subsystems/ControlPanelManipulator.h>
 #include <subsystems/DriveTrain.h>
+#include <subsystems/Lights.h>
 
 /**
  * An example command.
@@ -34,4 +35,5 @@ class RotateControlPanel
   private:
   ControlPanelManipulator* mpControlPanel;
   DriveTrain* mpSubsystemDrive;
+  //Lights *mpLights;
 };

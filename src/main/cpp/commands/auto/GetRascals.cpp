@@ -14,10 +14,10 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-GetRascals::GetRascals(DriveTrain* pDriveTrain, Intake* pIntake, GyroSerial* pSerial) {
+GetRascals::GetRascals(DriveTrain* pDriveTrain, Intake* pIntake) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  AddCommands(TurnDegrees(pDriveTrain, pSerial, 28),
+  AddCommands(TurnDegrees(pDriveTrain, 28),
   LowerArm(pIntake),
   MoveLinear(pDriveTrain, kAutoMoveTicks, -1),
   RaiseArm(pIntake));
