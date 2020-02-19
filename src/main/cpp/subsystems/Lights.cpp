@@ -22,13 +22,14 @@ Lights::Lights() : mSP{115200, frc::SerialPort::kUSB} {
 void Lights::Periodic() {
     //mSP.Write("1", 1);
 }
+
 Lights* Lights::GetInstance() {
     
     if (!mpLightsInstance) {
       mpLightsInstance = new Lights;
     }
     return mpLightsInstance;
-  }
+}
 
 void Lights::setMode(int mode) {
     //mSP.Write((char*)mode, 1);
@@ -42,4 +43,10 @@ void Lights::setMode(int mode) {
         printf("Unknown/unused serial code used.\n");
     }
 
+}
+
+int Lights::getGyroAngle() {
+    while (mSP.getBytesToRead() >= 1) {
+        mSP.Read(readBuffer, 25);
+    }
 }

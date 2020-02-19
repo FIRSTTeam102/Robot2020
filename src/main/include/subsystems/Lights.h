@@ -25,6 +25,7 @@ public:
   static Lights* GetInstance();   
   void Periodic();
   void setMode(int mode);
+  int getGyroAngle();
 
  private:
   
@@ -33,6 +34,7 @@ public:
 
   frc::SerialPort mSP;
   char strMode[1];
+  char readBuffer[25];
 };
 
 //Lights::GetInstance()->setMode(int Mode);
