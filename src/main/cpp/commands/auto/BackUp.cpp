@@ -27,14 +27,10 @@ void BackUp::Execute() {
 
 // Called once the command ends or is interrupted.
 void BackUp::End(bool interrupted) {
-  mpTankDrive->move(0, 0);
+  mpTankDrive->stop();
 }
 
 // Returns true when the command should end.
-bool BackUp::IsFinished() { 
-  if(ticksPassed >= 200){ //Drives robot backwards for 200 ticks. 200 in this case might need to be changed if the robot does not drive far enough or drives too far
-    return true;
-  }
-  return false; 
-  
-  }
+bool BackUp::IsFinished() {
+  return (ticksPassed >= 200); //Drives robot backwards for 200 ticks. 200 in this case might need to be changed if the robot does not drive far enough or drives too far
+}

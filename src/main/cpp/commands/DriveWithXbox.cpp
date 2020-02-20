@@ -25,7 +25,7 @@ void DriveWithXbox::Initialize() {}
 void DriveWithXbox::Execute() {
 
   mpTankDrive->driveWithXboxController();
-  printf("running drive!");
+  printf("running drive!\n");
 
 }
 

@@ -25,7 +25,12 @@ class AutonomousCode
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                   AutonomousCode> {
  public:
-  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, int slot, bool shoot, int move, bool shoot2);
+  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter);
+  void setAutoConfig(int slot, bool shoot, int move, bool shoot2);
  private:
+  int mSlot;
+  bool mShoot;
+  int mMove;
+  bool mShoot2;
   float shootSpeed;
 };

@@ -98,6 +98,8 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
+  AutonomousCode mAutoCommand{&mTankDrive, &mIntake, &mIndexer, &mShooter};
+
   void ConfigureButtonBindings();
 
   

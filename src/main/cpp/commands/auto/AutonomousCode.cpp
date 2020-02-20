@@ -10,31 +10,31 @@
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 
-AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, int slot, bool shoot, int move, bool shoot2){
+AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter){
   printf("Running auto\n");
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  if (slot == 2 || slot == 3) {
+  if (mSlot == 2 || mSlot == 3) {
     shootSpeed = kMedAuto;
   }
   else {
     shootSpeed = kSlowAuto;
   }
-  if (shoot) { //Shoot initial cells
+  if (mShoot) { //Shoot initial cells
     printf("Shooting\n");
     AddCommands(AimShooter(pShooter, shootSpeed), ShootPowerCells(pIndexer, pShooter));
   }
-  if (shoot && slot == 2 && move == 1) { //Shot old balls, near trench, going to pick up trench balls
+  if (mShoot && mSlot == 2 && mMove == 1) { //Shot old balls, near trench, going to pick up trench balls
     printf("Going to trench\n");
     AddCommands(GetRascals(pDriveTrain, pIntake));
-    if (shoot2) { //Shoot again
+    if (mShoot2) { //Shoot again
       printf("Shooting from trench\n");
       AddCommands(TurnDegrees(pDriveTrain, -11.5), AimShooter(pShooter, kFastAuto), ShootPowerCells(pIndexer, pShooter));
     }
   }
-  else if (move == 2) { //Back up the whole time
+  else if (mMove == 2) { //Back up the whole time
     printf("Backing up\n");
-    AddCommands(BackUp(pDriveTrain));
+    //AddCommands(BackUp(pDriveTrain));
   }
   else { //Wait until very end to back up
     printf("Waiting\n");
@@ -43,4 +43,12 @@ AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer
       AddCommands(BackUp(pDriveTrain));
     }
   }
+}
+
+void AutonomousCode::setAutoConfig(int slot, bool shoot, int move, bool shoot2) {
+  mSlot = slot;
+  mShoot = shoot;
+  mMove = move;
+  mShoot2 = shoot2;
+  printf("Auto config completed: %d, %d, %d, %d\n", mSlot, mShoot, mMove, mShoot2);
 }
