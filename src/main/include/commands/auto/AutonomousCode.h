@@ -27,7 +27,12 @@ class AutonomousCode
  public:
   AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter);
   void setAutoConfig(int slot, bool shoot, int move, bool shoot2);
+  void Execute() override;
  private:
+  DriveTrain* mpDriveTrain;
+  Intake* mpIntake;
+  Indexer* mpIndexer;
+  Shooter* mpShooter;
   int mSlot;
   bool mShoot;
   int mMove;

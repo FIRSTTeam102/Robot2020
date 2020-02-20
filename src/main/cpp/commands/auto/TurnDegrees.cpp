@@ -14,18 +14,19 @@ TurnDegrees::TurnDegrees(DriveTrain* pDriveTrain, int degrees): mpDriveTrain{pDr
 
 // Called when the command is initially scheduled.
 void TurnDegrees::Initialize() {
-  if (mDegrees > 0) {
-    mpDriveTrain->move(0.5, -0.5);
-  }
-  else {
-    mpDriveTrain->move(-0.5, 0.5);
-  }
   startDegs = Lights::GetInstance()->getGyroAngle();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TurnDegrees::Execute() {
   readDegs = Lights::GetInstance()->getGyroAngle() - startDegs;
+  if (mDegrees > 0) {
+    mpDriveTrain->move(0.5, -0.5);
+  }
+  else {
+    mpDriveTrain->move(-0.5, 0.5);
+  }
+  printf("Start: %d\tCurrent: %d\tTarget: %d\n",startDegs, readDegs, mDegrees);
 }
 
 // Called once the command ends or is interrupted.

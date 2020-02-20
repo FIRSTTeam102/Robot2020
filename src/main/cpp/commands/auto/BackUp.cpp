@@ -11,18 +11,19 @@
 BackUp::BackUp(DriveTrain* pTankDrive):  mpTankDrive(pTankDrive){
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(pTankDrive);
-  ticksPassed = 0;
+  //ticksPassed = 0;
 }
 
 // Called when the command is initially scheduled.
 void BackUp::Initialize() {
   printf("test2");
-  mpTankDrive->move(-1.0, -1.0);
+  ticksPassed = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void BackUp::Execute() {
   ticksPassed +=1;
+  mpTankDrive->move(-1.0, -1.0);
 }
 
 // Called once the command ends or is interrupted.
@@ -33,4 +34,5 @@ void BackUp::End(bool interrupted) {
 // Returns true when the command should end.
 bool BackUp::IsFinished() {
   return (ticksPassed >= 200); //Drives robot backwards for 200 ticks. 200 in this case might need to be changed if the robot does not drive far enough or drives too far
+  //return false;
 }

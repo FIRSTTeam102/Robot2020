@@ -24,7 +24,7 @@ RobotContainer::RobotContainer():
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  //mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
+  mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
   
 }

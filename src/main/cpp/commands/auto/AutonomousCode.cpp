@@ -10,7 +10,10 @@
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 
-AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter){
+AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter): mpDriveTrain{pDriveTrain}, mpIntake{pIntake}, mpIndexer{pIndexer}, mpShooter{pShooter} {
+}
+
+void AutonomousCode::Execute() {
   printf("Running auto\n");
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
@@ -22,25 +25,26 @@ AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer
   }
   if (mShoot) { //Shoot initial cells
     printf("Shooting\n");
-    AddCommands(AimShooter(pShooter, shootSpeed), ShootPowerCells(pIndexer, pShooter));
+    AddCommands(AimShooter(mpShooter, shootSpeed), ShootPowerCells(mpIndexer, mpShooter));
   }
-  if (mShoot && mSlot == 2 && mMove == 1) { //Shot old balls, near trench, going to pick up trench balls
+  //if (mShoot && mSlot == 2 && mMove == 1) { //Shot old balls, near trench, going to pick up trench balls
+  if (mSlot == 2 && mMove == 1) { //Not necessarily shot old balls, near trench, going to pick up trench balls
     printf("Going to trench\n");
-    AddCommands(GetRascals(pDriveTrain, pIntake));
+    AddCommands(GetRascals(mpDriveTrain, mpIntake));
     if (mShoot2) { //Shoot again
       printf("Shooting from trench\n");
-      AddCommands(TurnDegrees(pDriveTrain, -11.5), AimShooter(pShooter, kFastAuto), ShootPowerCells(pIndexer, pShooter));
+      AddCommands(TurnDegrees(mpDriveTrain, -11.5), AimShooter(mpShooter, kFastAuto), ShootPowerCells(mpIndexer, mpShooter));
     }
   }
   else if (mMove == 2) { //Back up the whole time
     printf("Backing up\n");
-    //AddCommands(BackUp(pDriveTrain));
+    AddCommands(BackUp(mpDriveTrain));
   }
   else { //Wait until very end to back up
     printf("Waiting\n");
     if (frc::DriverStation::GetInstance().GetMatchTime() < 1.5) {
       printf("Backing up\n");
-      AddCommands(BackUp(pDriveTrain));
+      AddCommands(BackUp(mpDriveTrain));
     }
   }
 }
