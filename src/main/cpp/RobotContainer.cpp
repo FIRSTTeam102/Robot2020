@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 #include <RobotContainer.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/SendableCameraWrapper.h>
 #include "frc/XboxController.h"
 #include "frc2/command/button/JoystickButton.h"
 #include "AnalogButton.h"
@@ -27,6 +29,14 @@ RobotContainer::RobotContainer():
   mCamera2 = frc::CameraServer::GetInstance()->StartAutomaticCapture(1);
   mCamera3 = frc::CameraServer::GetInstance()->StartAutomaticCapture(2);
   frc::CameraServer::GetInstance()->GetServer().SetSource(mCamera1);
+
+   //Create the default camera stream tab
+  
+    frc::Shuffleboard::GetTab("Auto")
+    .Add("Camera Stream",mCamera1)
+    .WithWidget(frc::BuiltInWidgets::kCameraStream)
+    .WithSize (4,5)
+    .WithPosition (2,1);
 
   // Configure the button bindings
   ConfigureButtonBindings();
@@ -50,8 +60,8 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonY.WhenPressed(&mPrepShootingSlow, false);
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
-
-  
+  mOperatorBackBackwards.WhenPressed(&mPrevCamCommand, true);
+  mOperatorStartForward.WhenPressed(&mNextCamCommand, true);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

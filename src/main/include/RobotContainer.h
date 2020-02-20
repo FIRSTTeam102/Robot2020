@@ -76,6 +76,8 @@ class RobotContainer {
   frc2::Button mOperatorButtonY{[&] { return mOperatorController.GetRawButton(4);}};
   frc2::Button mOperatorButtonLB{[&] { return mOperatorController.GetRawButton(5);}};
   frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
+  frc2::Button mOperatorBackBackwards{[&] { return mOperatorController.GetRawButton(7);}};
+  frc2::Button mOperatorStartForward{[&] { return mOperatorController.GetRawButton(8);}};
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;

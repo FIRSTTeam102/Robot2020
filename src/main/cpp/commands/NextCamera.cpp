@@ -5,6 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <frc/shuffleboard/Shuffleboard.h>
 #include "commands/NextCamera.h"
 
 NextCamera::NextCamera(cs::UsbCamera* Camera1, cs::UsbCamera* Camera2, cs::UsbCamera* Camera3) 
@@ -24,6 +25,8 @@ void NextCamera::Initialize() {
 void NextCamera::Execute() {
   if (mCameraSource == 1) {
     frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera2);
+    frc::Shuffleboard::GetTab("Auto")
+    .Add("Current Camera", mCamera2);
     mCameraSource = 2;
    }
    else if (mCameraSource == 2) {

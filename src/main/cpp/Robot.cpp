@@ -11,7 +11,6 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/shuffleboard/ShuffleboardWidget.h>
-#include <frc/shuffleboard/SendableCameraWrapper.h>
 #include <frc2/command/CommandScheduler.h>
 #include <cameraserver/CameraServer.h>
 #include <rev/ColorMatch.h>
@@ -45,30 +44,19 @@ void Robot::RobotInit() {
   // choosers widget, building the auto menu
   frc::Shuffleboard::GetTab("Auto")
     .Add("Starting Position",mAutoPos)
-    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithPosition(8, 1).WithSize(2, 1);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(2, 1).WithPosition(8, 1);
   
   frc::Shuffleboard::GetTab("Auto")
     .Add("Initial Shot?",mAutoShoot)
-    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithPosition(8, 2).WithSize(2, 1);
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithSize(2, 1).WithPosition(8, 3);
   
   frc::Shuffleboard::GetTab("Auto")
     .Add("Movement",mAutoMovement)
-    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithPosition(8, 3).WithSize(2, 1);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(2, 1).WithPosition(8, 2);
   
   frc::Shuffleboard::GetTab("Auto")
     .Add("Shoot Again?",mAutoShoot2)
-    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithPosition(8, 4).WithSize(2, 1);
-  
-  //create the default camera stream tab
-  /*
-  cs::VideoSink currVideo = frc::CameraServer::GetServer();
-  frc::SendableCameraWrapper cameraWrap = frc::SendableCameraWrapper(currVideo);
-  frc::Shuffleboard::GetTab("Camera")
-    .Add("Current Camera",cameraWrap)
-    .WithWidget(frc::BuiltInWidgets::kCameraStream)
-    .WithSize (4,5)
-    .WithPosition (2,1);
-   */
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithSize(3, 1).WithPosition(7, 4);
 }
 
 /**
