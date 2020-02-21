@@ -18,13 +18,16 @@ Climber::Climber():
 void Climber::Periodic() {
 
 }
-void Climber::climb(){
+void Climber::climb() {
     double axis = mpClimberJoystick->GetRawAxis(1);
-    if(axis >= 0.5){
+    if(axis >= 0.5) {
         climbMotor.Set(frc::Relay::kForward);
     }
-    if(axis <= -0.5){
+    else if(axis <= -0.5) {
         climbMotor.Set(frc::Relay::kReverse);
+    }
+    else {
+        climbMotor.Set(frc::Relay::kOff);
     }
 }
 
