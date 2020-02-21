@@ -22,11 +22,8 @@
 // Drive motor controllers
 int constexpr kTopLeftMotor = 0;
 int constexpr kTopRightMotor = 1;
-int constexpr kBottomLeftMotor = 222;
+int constexpr kBottomLeftMotor = 2;
 int constexpr kBottomRightMotor = 3;
-
-//Climb Motor Controller
-int constexpr kClimbMotor = 2;
 
 // Control panel motor controller (TalonSRx)
 int constexpr kControlPanelMotor = 4;
@@ -34,11 +31,12 @@ int constexpr kControlPanelMotor = 4;
 //Shooter Motor Controllers (TalonSRX)
 int constexpr kFlyMotor = 5;
 
+//Climb Motor Controller
+int constexpr kClimbMotor = 6;
+
 //Intake Arm & Roller Motor Controllers (SpikeRelay)
 int constexpr kIntakeMotor = 7;
 int constexpr kIntakeRollerMotor = 8;
-int constexpr kIntakeTopSensor = 9;
-int constexpr kIntakeBottomSensor = 10;
 
 
 
@@ -55,6 +53,12 @@ int constexpr kIntakeBottomSensor = 10;
 //OI Indexes (joysticks/buttons)
 int constexpr kDriverJoystick = 0;
 int constexpr kOperatorJoystick = 1;
+
+//Limit Switches
+int constexpr kTopClimbLimit = 0;
+int constexpr kBotClimbLimit = 1;
+int constexpr kIntakeTopSensor = 2;
+int constexpr kIntakeBottomSensor = 3;
 
 //Flywheel encoder indexes
 int constexpr kFlyEncA = 0;
