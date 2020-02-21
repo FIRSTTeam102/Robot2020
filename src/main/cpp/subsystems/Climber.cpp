@@ -9,7 +9,9 @@
 #include "RobotContainer.h"
 #include "Constants.h"
 Climber::Climber():
-    mClimbMotor{kClimbMotor}
+    mClimbMotor{kClimbMotor},
+    mTopLimitSwitch{kTopClimbLimit},
+    mBotLimitSwitch{kBotClimbLimit}
 {
 
 }
