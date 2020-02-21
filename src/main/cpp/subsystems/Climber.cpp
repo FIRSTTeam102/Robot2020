@@ -22,19 +22,11 @@ void Climber::Periodic() {
 }
 void Climber::climb() {
     double axis = mpClimberJoystick->GetRawAxis(1);
-<<<<<<< HEAD
     if(axis >= 0.5) {
         climbMotor.Set(frc::Relay::kForward);
     }
     else if(axis <= -0.5) {
         climbMotor.Set(frc::Relay::kReverse);
-=======
-    if (axis >= 0.5 && !isClimbUp()){
-        mClimbMotor.Set(frc::Relay::kForward);
-    }
-    if (axis <= -0.5 && !isClimbDown()){
-        mClimbMotor.Set(frc::Relay::kReverse);
->>>>>>> 52a67e2e6decfec5028a484b3b5ddcbb9eb97e16
     }
     else {
         climbMotor.Set(frc::Relay::kOff);
