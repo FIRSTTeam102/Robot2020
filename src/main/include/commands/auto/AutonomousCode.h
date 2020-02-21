@@ -25,9 +25,9 @@ class AutonomousCode
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                   AutonomousCode> {
  public:
-  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter);
-  void setAutoConfig(int slot, bool shoot, int move, bool shoot2);
-  void Execute() override;
+  AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, int slot, bool shoot, int move, bool shoot2);
+  //void setAutoConfig(int slot, bool shoot, int move, bool shoot2);
+  //void Initialize() override;
  private:
   DriveTrain* mpDriveTrain;
   Intake* mpIntake;

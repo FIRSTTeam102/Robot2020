@@ -14,12 +14,11 @@ MoveLinear::MoveLinear(DriveTrain* pDriveTrain, int ticks, double speed): mpDriv
 }
 
 // Called when the command is initially scheduled.
-void MoveLinear::Initialize() {
-  mpDriveTrain->move(mSpeed, mSpeed);
-}
+void MoveLinear::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void MoveLinear::Execute() {
+  mpDriveTrain->move(mSpeed, mSpeed);
   ticksPassed += 1;
 }
 

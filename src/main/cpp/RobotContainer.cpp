@@ -59,7 +59,7 @@ void RobotContainer::ConfigureButtonBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand(int slot, bool shoot, int move, bool shoot2) {
   // An example command will be run in autonomous
  // return &m_autonomousCommand;
-  mAutoCommand.setAutoConfig(slot, shoot, move, shoot2);
-  return &mAutoCommand;
-  //return new AutonomousCode(&mTankDrive, &mIntake, &mIndexer, &mShooter, slot, shoot, move, shoot2);
+  //mAutoCommand.setAutoConfig(slot, shoot, move, shoot2);
+  //return &mAutoCommand;
+  return new AutonomousCode(&mTankDrive, &mIntake, &mIndexer, &mShooter, slot, shoot, move, shoot2);
 }

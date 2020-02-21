@@ -26,7 +26,7 @@ void TurnDegrees::Execute() {
   else {
     mpDriveTrain->move(-0.5, 0.5);
   }
-  printf("Start: %d\tCurrent: %d\tTarget: %d\n",startDegs, readDegs, mDegrees);
+  printf("Start: %d\tCurrent: %d\tOffset: %d\tTarget: %d\n",startDegs, Lights::GetInstance()->getGyroAngle(), readDegs, mDegrees);
 }
 
 // Called once the command ends or is interrupted.

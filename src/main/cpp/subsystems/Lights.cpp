@@ -21,6 +21,7 @@ Lights::Lights() : mSP{115200, frc::SerialPort::kUSB} {
 // This method will be called once per scheduler run
 void Lights::Periodic() {
     //mSP.Write("1", 1);
+    //printf("Gyro Angle: \n", getGyroAngle());
 }
 
 Lights* Lights::GetInstance() {
@@ -48,19 +49,23 @@ void Lights::setMode(int mode) {
 int Lights::getGyroAngle() {
     gyroVal = 0;
     negativeGyro = false;
+    for (int i = 0; i < 25; i++) {
+        readBuffer[i] = 0;
+    }
     while (mSP.GetBytesReceived() >= 1) {
         mSP.Read(readBuffer, 25);
     }
+    //printf("%s\n", readBuffer);
     for (int i = 0; i < 25 && readBuffer[i] != 0; i++) {
         if (readBuffer[i] == '-') {
             negativeGyro = true;
         }
         else if (readBuffer[i] == '.') {
-            return gyroVal;
+            return gyroVal - (gyroVal * negativeGyro * 2);
         }
         else if (readBuffer[i] >= '0' && readBuffer[i] <= '9') {
             gyroVal *= 10;
-            gyroVal += readBuffer[i];
+            gyroVal += readBuffer[i] - '0';
         }
     }
 }

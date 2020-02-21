@@ -10,10 +10,42 @@
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 
-AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter): mpDriveTrain{pDriveTrain}, mpIntake{pIntake}, mpIndexer{pIndexer}, mpShooter{pShooter} {
+AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, int slot, bool shoot, int move, bool shoot2): mpDriveTrain{pDriveTrain}, mpIntake{pIntake}, mpIndexer{pIndexer}, mpShooter{pShooter} {printf("Running auto\n");
+  // Add your commands here, e.g.
+  // AddCommands(FooCommand(), BarCommand());
+  if (slot == 2 || slot == 3) {
+    shootSpeed = kMedAuto;
+  }
+  else {
+    shootSpeed = kSlowAuto;
+  }
+  if (shoot) { //Shoot initial cells
+    printf("Shooting\n");
+    AddCommands(AimShooter(mpShooter, shootSpeed), ShootPowerCells(mpIndexer, mpShooter));
+  }
+  //if (mShoot && mSlot == 2 && mMove == 1) { //Shot old balls, near trench, going to pick up trench balls
+  if (slot == 2 && move == 1) { //Not necessarily shot old balls, near trench, going to pick up trench balls
+    printf("Going to trench\n");
+    AddCommands(GetRascals(mpDriveTrain, mpIntake));
+    if (shoot2) { //Shoot again
+      printf("Shooting from trench\n");
+      AddCommands(TurnDegrees(mpDriveTrain, -11.5), AimShooter(mpShooter, kFastAuto), ShootPowerCells(mpIndexer, mpShooter));
+    }
+  }
+  else if (move == 2) { //Back up the whole time
+    printf("Backing up\n");
+    AddCommands(BackUp(mpDriveTrain));
+  }
+  else { //Wait until very end to back up
+    printf("Waiting\n");
+    if (frc::DriverStation::GetInstance().GetMatchTime() < 1.5) {
+      printf("Backing up\n");
+      AddCommands(BackUp(mpDriveTrain));
+    }
+  }
 }
 
-void AutonomousCode::Execute() {
+/*void AutonomousCode::Initialize() {
   printf("Running auto\n");
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
@@ -30,7 +62,7 @@ void AutonomousCode::Execute() {
   //if (mShoot && mSlot == 2 && mMove == 1) { //Shot old balls, near trench, going to pick up trench balls
   if (mSlot == 2 && mMove == 1) { //Not necessarily shot old balls, near trench, going to pick up trench balls
     printf("Going to trench\n");
-    AddCommands(GetRascals(mpDriveTrain, mpIntake));
+    //AddCommands(GetRascals(mpDriveTrain, mpIntake));
     if (mShoot2) { //Shoot again
       printf("Shooting from trench\n");
       AddCommands(TurnDegrees(mpDriveTrain, -11.5), AimShooter(mpShooter, kFastAuto), ShootPowerCells(mpIndexer, mpShooter));
@@ -47,12 +79,12 @@ void AutonomousCode::Execute() {
       AddCommands(BackUp(mpDriveTrain));
     }
   }
-}
+}*/
 
-void AutonomousCode::setAutoConfig(int slot, bool shoot, int move, bool shoot2) {
+/*void AutonomousCode::setAutoConfig(int slot, bool shoot, int move, bool shoot2) {
   mSlot = slot;
   mShoot = shoot;
   mMove = move;
   mShoot2 = shoot2;
   printf("Auto config completed: %d, %d, %d, %d\n", mSlot, mShoot, mMove, mShoot2);
-}
+}*/
