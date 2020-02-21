@@ -9,7 +9,7 @@
 #include "RobotContainer.h"
 #include "Constants.h"
 Climber::Climber():
-    climbMotor{kClimbMotor}
+    mClimbMotor{kClimbMotor}
 {
 
 }
@@ -20,11 +20,11 @@ void Climber::Periodic() {
 }
 void Climber::climb(){
     double axis = mpClimberJoystick->GetRawAxis(1);
-    if(axis >= 0.5){
-        climbMotor.Set(frc::Relay::kForward);
+    if (axis >= 0.5 && !isClimbUp()){
+        mClimbMotor.Set(frc::Relay::kForward);
     }
-    if(axis <= -0.5){
-        climbMotor.Set(frc::Relay::kReverse);
+    if (axis <= -0.5 && !isClimbDown()){
+        mClimbMotor.Set(frc::Relay::kReverse);
     }
 }
 
