@@ -41,5 +41,6 @@ void ShootPowerCells::End(bool interrupted) {
 // shoot power cells - is finished - Returns true when the command should end.
 //    if the indexer is empty, stop trying to shoot power cells.
 bool ShootPowerCells::IsFinished() { 
-  return (mpIndexerSubsys->isEmptyIndexer()); 
+  //return (mpIndexerSubsys->isEmptyIndexer()); 
+  return false;
 }

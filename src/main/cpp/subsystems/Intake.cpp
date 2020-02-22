@@ -48,13 +48,14 @@ void Intake::stopIntakeArm(){
 }
 //startRollers - start the intake arms rollers, to capture power cells
 void Intake::startRollers() {
-    mIntakeArmMotor.Set(frc::Relay::kForward);
+    printf("Rollers should be moving\n");
+    mIntakeRollerMotor.Set(frc::Relay::kReverse);
 }
 //startReversRollers - start the intake arm rollers in reverse - this is to
 //  spit out power cells in the event the power cell intake needs to be
 //  cleared
 void Intake::startReverseRollers(){
-    mIntakeRollerMotor.Set(frc::Relay::kReverse);
+    mIntakeRollerMotor.Set(frc::Relay::kForward);
 }
 //stopRollers - stop the intake arm roller motors from running
 void Intake::stopRollers() {

@@ -21,7 +21,7 @@
 class AimShooter
     : public frc2::CommandHelper<frc2::CommandBase, AimShooter> {
  public:
-  AimShooter(Shooter* pShooter, int speed);
+  AimShooter(Shooter* pShooter, float speed);
 
   void Initialize() override;
 
@@ -32,6 +32,6 @@ class AimShooter
   bool IsFinished() override;
   private:
   Shooter* mpShooter;
-  int mSpeed;
+  float mSpeed;
   float rampUpSpeed;
 };

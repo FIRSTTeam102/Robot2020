@@ -19,6 +19,7 @@ RaiseArm::RaiseArm(Intake* pIntake): mpIntake{pIntake} {
 //   stop the intake arm rollers and start to raise the intake arm
 void RaiseArm::Initialize() {
   mpIntake->stopRollers();
+  printf("Stopping rollers\n");
 }
   
 // RaiseArm Execute: Called repeatedly when this Command is scheduled to run
@@ -37,5 +38,6 @@ void RaiseArm::End(bool interrupted) {
 
 // RaiseArm IsFinished - Returns true when the command should end.
 bool RaiseArm::IsFinished() { 
-  return (mpIntake->isArmUp()); 
+  //return (mpIntake->isArmUp()); 
+  return true;
 }

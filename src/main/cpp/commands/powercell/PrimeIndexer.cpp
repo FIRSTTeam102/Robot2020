@@ -27,5 +27,6 @@ void PrimeIndexer::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool PrimeIndexer::IsFinished() {
-  return mpIndexer->isPowerCellAtTop();
+  //return mpIndexer->isPowerCellAtTop();
+  return true;
 }

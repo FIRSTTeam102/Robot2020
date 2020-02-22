@@ -21,6 +21,7 @@ LowerArm::LowerArm(Intake* pIntake): mpIntake{pIntake} {
 //    start the intakeArmRollers moving forward and lower the intake arm
 //    so that power cells can be moved toward the indexer
 void LowerArm::Initialize() {
+   printf("Starting rollers\n");
    mpIntake->startRollers();
 }
 
@@ -30,6 +31,8 @@ void LowerArm::Initialize() {
 //    running to take in power cells.
 void LowerArm::Execute() {
    mpIntake->lowerIntakeArm();
+   printf("Starting rollers\n");
+   mpIntake->startRollers();
 }
 
 // Called once the command ends or is interrupted/cancelled.
@@ -42,5 +45,6 @@ void LowerArm::End(bool interrupted) {
 //   when the button is released, the command will be cancelled, this
 //   command is not expected to finish on it's own.
 bool LowerArm::IsFinished() {
-   return mpIntake->isArmDown();
+   //return mpIntake->isArmDown();
+   return false;
 }

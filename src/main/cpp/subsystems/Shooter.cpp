@@ -13,6 +13,8 @@ Shooter::Shooter() :
     mShooter2{kFlyMotor2}
 {
     mShooter2.Set(ControlMode::Follower, kFlyMotor1);
+    mShooter1.SetInverted(true);
+    mShooter2.SetInverted(true);
 }
 
 // This method will be called once per scheduler run
@@ -23,11 +25,13 @@ void Shooter::setSpeed(float speed) {
 }
 
 void Shooter::startMotor() {
+    printf("Set motor to %f\n", mSpeed);
     mShooter1.Set(mSpeed);
     mIsStarted = true;
 }
 
 void Shooter::stopMotor() {
+    printf("Stopping motor\n");
     mShooter1.Set(0);
     mIsStarted = false;
 }
