@@ -10,8 +10,12 @@
 #include <frc2/command/Command.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/shuffleboard/SendableCameraWrapper.h>
+#include <frc/smartdashboard/SendableChooser.h>
 
 #include "RobotContainer.h"
+#include "subsystems/Intake.h"
+#include "subsystems/Indexer.h"
+#include "subsystems/Shooter.h"
 
 class Robot : public frc::TimedRobot {
  public:

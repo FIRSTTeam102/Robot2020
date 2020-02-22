@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <frcUserProgram/shuffleboard/ShuffleBoard.h>
+#include <frc/shuffleboard/ShuffleBoard.h>
 #include "commands/NextCamera.h"
 
 NextCamera::NextCamera(cs::UsbCamera* Camera1, cs::UsbCamera* Camera2, cs::UsbCamera* Camera3) 

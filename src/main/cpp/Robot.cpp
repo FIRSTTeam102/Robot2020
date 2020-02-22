@@ -6,9 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
-#include "Intake.h"
-#include "Indexer.h"
-#include "Shooter.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/smartdashboard/SendableChooser.h>
