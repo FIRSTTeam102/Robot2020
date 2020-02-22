@@ -36,7 +36,6 @@
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
-#include 
 #include "AnalogButton.h"
 
 /**
@@ -70,9 +69,8 @@ class RobotContainer {
   frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
   AnalogButton mDriverTriggerButtonLeft{&mDriverController,frc::XboxController::kLeftHand};
   AnalogButton mDriverTriggerButtonRight{&mDriverController,frc::XboxController::kRightHand};
-  frc2::POVButtonDown mDriverButtonPov{[&] { return mDriverController.Get
-  AnalogButton mDriverTriggerButtonLeft{&mDriverController,frc::XboxController::kLeftHand};
-  AnalogButton mDriverTriggerButtonRight{&mDriverController,frc::XboxController::kRightHand};
+  //frc2::POVButton mDriverButtonPovUp{mDriverController,0};
+  //frc2::POVButton mDriverButtonPovDown{mDriverController,180};
 
   frc::XboxController mOperatorController;
   frc2::Button mOperatorButtonA{[&] { return mOperatorController.GetRawButton(1);}};
