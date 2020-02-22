@@ -8,6 +8,8 @@
 #pragma once
 #include <frc/TimedRobot.h>
 #include <frc2/command/Command.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/shuffleboard/SendableCameraWrapper.h>
 
 #include "RobotContainer.h"
 
@@ -33,4 +35,13 @@ class Robot : public frc::TimedRobot {
   frc2::Command* m_autonomousCommand = nullptr;
 
   RobotContainer m_container;
+  frc::SendableChooser<int> mAutoPos;
+  frc::SendableChooser<bool> mAutoShoot;
+  frc::SendableChooser<int> mAutoMovement;
+  frc::SendableChooser<bool> mAutoShoot2;
+  frc::SendableChooser<int> mIntake;
+  frc::SendableChooser<int> mIndexer;
+  frc::SendableChooser<int> mShooter;
+
+ // frc::SendableHelper<SendableCameraWrapper> mCameraWrap;
 };

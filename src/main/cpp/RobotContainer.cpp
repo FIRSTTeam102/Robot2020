@@ -6,14 +6,11 @@
 /*----------------------------------------------------------------------------*/
 
 #include <RobotContainer.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/SendableCameraWrapper.h>
 #include "frc/XboxController.h"
-<<<<<<< HEAD
 #include "frc2/command/button/JoystickButton.h"
 #include "AnalogButton.h"
-=======
-#include <frc2/command/button/JoystickButton.h>
-#include "commands/DriveWithXbox.h"
->>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
 
 RobotContainer::RobotContainer(): 
   mTankDrive{}, 
@@ -27,15 +24,28 @@ RobotContainer::RobotContainer():
   // Configure the button bindings
   ConfigureButtonBindings();
 
-<<<<<<< HEAD
+
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
+
+  mCamera1 = frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
+  mCamera2 = frc::CameraServer::GetInstance()->StartAutomaticCapture(1);
+  mCamera3 = frc::CameraServer::GetInstance()->StartAutomaticCapture(2);
+  frc::CameraServer::GetInstance()->GetServer().SetSource(mCamera1);
+
+   //Create the default camera stream tab
   
-=======
   //mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   //mTankDrive.setDriverJoystick(&mDriverController);
 
->>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
+    frc::Shuffleboard::GetTab("Auto")
+    .Add("Camera Stream",mCamera1)
+    .WithWidget(frc::BuiltInWidgets::kCameraStream)
+    .WithSize (4,5)
+    .WithPosition (1,0);
+
+  // Configure the button bindings
+  ConfigureButtonBindings();
 }
 
 
@@ -45,7 +55,7 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverButtonB.WhenPressed(&mPositionCommand, true);
   mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
   mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
-<<<<<<< HEAD
+
   mDriverTriggerButtonLeft.WhenPressed(&mPickupCellsCommand, true);
   mDriverTriggerButtonLeft.WhenReleased(&mRaiseArmCommand, true);
   mDriverTriggerButtonRight.WhenHeld(&mShootCommand, false);
@@ -56,33 +66,16 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonY.WhenPressed(&mPrepShootingSlow, false);
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
-=======
-  //mDriverButtonY.WhenHeld(&mLightTestCommand, false);
+
+  mOperatorBackBackwards.WhenPressed(&mPrevCamCommand, true);
+  mOperatorStartForward.WhenPressed(&mNextCamCommand, true);
 }
->>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
 
-  //Create a triggers to activate deactivate the Intake of Power cells
-  // when the driver's trigger is pulled - note these are two different
-  // uses of the word trigger. frc trigger is any event or set of events that
-  // are true and should cause a command to be executed (like the XboxTrigger being 
-  // pressed)
 
-//Actual Code:
-frc::SmartDashboard::PutNumber("Cow", 7);
-
-//Test Code (Use/Select tab)
-ShuffleboardTab& tab = Shuffleboard::GetTab("replace");
-Shuffleboard::SelectTab("replace")
-
-//Test Code (Sending data)
-
-Shuffleboard::GetTab("Numbers")
-
-//frc2::Command* RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-<<<<<<< HEAD
  // return &m_autonomousCommand;
-=======
+
   //return &m_autonomousCommand;
->>>>>>> 1f83a5de1c7e7df1076b0af91ee5dd23224b5300
+   return NULL;
 }

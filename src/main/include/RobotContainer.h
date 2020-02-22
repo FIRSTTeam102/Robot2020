@@ -35,6 +35,10 @@
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
 
+#include "commands/NextCamera.h"
+#include "commands/PreviousCamera.h"
+
+
 #include "AnalogButton.h"
 =======
 #include "subsystems/Lights.h" //for lights
@@ -91,6 +95,8 @@ class RobotContainer {
   frc2::Button mOperatorButtonY{[&] { return mOperatorController.GetRawButton(4);}};
   frc2::Button mOperatorButtonLB{[&] { return mOperatorController.GetRawButton(5);}};
   frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
+  frc2::Button mOperatorBackBackwards{[&] { return mOperatorController.GetRawButton(7);}};
+  frc2::Button mOperatorStartForward{[&] { return mOperatorController.GetRawButton(8);}};
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
@@ -115,7 +121,11 @@ class RobotContainer {
   ManualControlPanel mManualPanelCommand{&mControlPanel};
   LightTest mLightTestCommand{&mLightTestSubsys}; //for lights
 
-
+  cs::UsbCamera mCamera1;
+  cs::UsbCamera mCamera2;
+  cs::UsbCamera mCamera3;
+  NextCamera mNextCamCommand{&mCamera1, &mCamera2, &mCamera3};
+  PreviousCamera mPrevCamCommand{&mCamera1, &mCamera2, &mCamera3};
 
 
   void ConfigureButtonBindings();
