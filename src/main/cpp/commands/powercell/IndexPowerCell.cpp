@@ -14,13 +14,15 @@ IndexPowerCell::IndexPowerCell(Indexer* pIndexer): mpIndexer{pIndexer} {
 
 // Called when the command is initially scheduled.
 void IndexPowerCell::Initialize() {
-  if (!mpIndexer->isFullIndexer()){
-    mpIndexer->moveUpIndexer();
-  }
+
 }
 
 // Called repeatedly when this Command is scheduled to run
-void IndexPowerCell::Execute() {}
+void IndexPowerCell::Execute() {
+    if (!mpIndexer->isFullIndexer() && mpIndexer->isPowerCellAtIntake()){
+    mpIndexer->moveUpIndexer();
+  }
+}
 
 // Called once the command ends or is interrupted.
 void IndexPowerCell::End(bool interrupted) {
