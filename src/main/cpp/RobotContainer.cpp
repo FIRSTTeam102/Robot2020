@@ -36,7 +36,7 @@ RobotContainer::RobotContainer():
     .Add("Camera Stream",mCamera1)
     .WithWidget(frc::BuiltInWidgets::kCameraStream)
     .WithSize (4,5)
-    .WithPosition (2,1);
+    .WithPosition (1,0);
 
   // Configure the button bindings
   ConfigureButtonBindings();

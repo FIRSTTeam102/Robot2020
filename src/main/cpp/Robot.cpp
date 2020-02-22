@@ -40,23 +40,55 @@ void Robot::RobotInit() {
   mAutoShoot2.AddOption("Shoot trench balls", true);
   mAutoShoot2.AddOption("Don't shoot trench balls", false);
 
+  //create chooser - Intake Test?
+
+  mIntake.AddOption("Raise Arm", 1);
+  mIntake.AddOption("Lower Arm", 2);
+  mIntake.AddOption("Rollers Forward", 3);
+  mIntake.AddOption("Rollers Reverse (Chacha real smooth)", 4);
+  mIntake.AddOption("Stop Rollers", 5);
+
+  //create chooser - Indexer Test?
+
+  mIndexer.AddOption("Move Power Cells to Top", 1);
+  mIndexer.AddOption("Move Power Cells to Bottom", 2);
+
+  //create chooser - Shooter Test?
+
+  mShooter.AddOption("Start Flywheel", 1);
+  mShooter.AddOption("Stop Flywheel", 2);
+
   //create the autonomous command tab on the shuffleboard and add each
   // choosers widget, building the auto menu
   frc::Shuffleboard::GetTab("Auto")
     .Add("Starting Position",mAutoPos)
-    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(2, 1).WithPosition(8, 1);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(2, 1).WithPosition(7, 0);
   
   frc::Shuffleboard::GetTab("Auto")
     .Add("Initial Shot?",mAutoShoot)
-    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithSize(2, 1).WithPosition(8, 3);
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithSize(2, 1).WithPosition(7, 2);
   
   frc::Shuffleboard::GetTab("Auto")
     .Add("Movement",mAutoMovement)
-    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(2, 1).WithPosition(8, 2);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(2, 1).WithPosition(7, 1);
   
   frc::Shuffleboard::GetTab("Auto")
     .Add("Shoot Again?",mAutoShoot2)
-    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithSize(3, 1).WithPosition(7, 4);
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithSize(3, 1).WithPosition(7, 3);
+  
+  //Tab Test
+  frc::Shuffleboard::GetTab("TestRobot")
+    .Add("Intake Test Bin?",mIntake)
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(3, 1).WithPosition(1, 1);
+
+  frc::Shuffleboard::GetTab("TestRobot")
+    .Add("Indexer Test Bin?",mIndexer)
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(3, 1).WithPosition(1, 2);
+
+  frc::Shuffleboard::GetTab("TestRobot")
+    .Add("Shooter Bin?",mShooter)
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(3, 1).WithPosition(1, 3);
+
 }
 
 /**

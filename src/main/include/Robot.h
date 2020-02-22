@@ -39,5 +39,9 @@ class Robot : public frc::TimedRobot {
   frc::SendableChooser<bool> mAutoShoot;
   frc::SendableChooser<int> mAutoMovement;
   frc::SendableChooser<bool> mAutoShoot2;
+  frc::SendableChooser<int> mIntake;
+  frc::SendableChooser<int> mIndexer;
+  frc::SendableChooser<int> mShooter;
+
  // frc::SendableHelper<SendableCameraWrapper> mCameraWrap;
 };
