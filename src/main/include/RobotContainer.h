@@ -54,6 +54,11 @@ class RobotContainer {
  private:
  
   // The robot's subsystems and commands are defined here...
+
+  CameraServo m_ServoCamera;
+  frc::Joystick servoJoystick;
+  MoveCameraServo m_ServoCommand{&m_CameraServo};
+
   frc::XboxController mDriverController;
   frc2::Button mDriverButtonA{[&] { return mDriverController.GetRawButton(1);}};
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
