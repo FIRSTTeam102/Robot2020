@@ -7,6 +7,8 @@
 
 #pragma once
 
+
+
 #include <frc2/command/Command.h>
 #include <frc/XboxController.h>
 #include <frc2/command/button/JoystickButton.h>
@@ -31,7 +33,7 @@
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
 
-#include "AnalogButton.h"
+//#include "AnalogButton.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -55,7 +57,7 @@ class RobotContainer {
  
   // The robot's subsystems and commands are defined here...
 
-  CameraServo m_ServoCamera;
+  CameraServo m_CameraServo;
   frc::Joystick servoJoystick;
   MoveCameraServo m_ServoCommand{&m_CameraServo};
 

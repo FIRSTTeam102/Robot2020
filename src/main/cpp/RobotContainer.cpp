@@ -8,7 +8,7 @@
 #include "RobotContainer.h"
 #include "frc/XboxController.h"
 #include <frc2/command/button/JoystickButton.h>
-#include "AnalogButton.h"
+//#include "AnalogButton.h"
 
 
 RobotContainer::RobotContainer(): 
@@ -36,9 +36,9 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverButtonB.WhenPressed(&mPositionCommand, true);
   mDriverButtonX.WhenHeld(&mStopPanelCommand, false);
   mDriverButtonY.WhenHeld(&mManualPanelCommand, true);
-  mDriverTriggerButtonLeft.WhenPressed(&mPickupCellsCommand, true);
-  mDriverTriggerButtonLeft.WhenReleased(&mRaiseArmCommand, true);
-  mDriverTriggerButtonRight.WhenHeld(&mShootCommand, false);
+  //mDriverTriggerButtonLeft.WhenPressed(&mPickupCellsCommand, true);
+  //mDriverTriggerButtonLeft.WhenReleased(&mRaiseArmCommand, true);
+  //mDriverTriggerButtonRight.WhenHeld(&mShootCommand, false);
    
 
   mOperatorButtonA.WhenPressed(&mPrepShootingFast, false);
