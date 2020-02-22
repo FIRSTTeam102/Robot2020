@@ -38,9 +38,9 @@ void DriveTrain::driveWithXboxController(){
 
 void DriveTrain::arcadeDrive(){
     double speed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
-    double rotation = mpDriverJoystick->GetRawAxis(4); //Cap: 697rpm
+    double rotation = mpDriverJoystick->GetRawAxis(0); //Cap: 697rpm
 
-    mDrive.ArcadeDrive(speed,rotation);
+    mDrive.ArcadeDrive(-speed,rotation);
 }
 
 void DriveTrain::slowlyDriveForwards(){
