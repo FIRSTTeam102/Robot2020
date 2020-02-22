@@ -31,10 +31,10 @@ int constexpr kFlyMotor1 = 5;
 int constexpr kFlyMotor2 = 6;
 
 //Intake Arm & Roller Motor Controllers (SpikeRelay)
-int constexpr kIntakeMotor = 7;
-int constexpr kIntakeRollerMotor = 8;
-int constexpr kIntakeTopSensor = 9;
-int constexpr kIntakeBottomSensor = 10;
+int constexpr kIntakeMotor = 0;
+int constexpr kIntakeRollerMotor = 1;
+int constexpr kIntakeTopSensor = 2;
+int constexpr kIntakeBottomSensor = 3;
 
 
 //Digital IO channels
@@ -54,7 +54,7 @@ int constexpr kOperatorJoystick = 1;
 
 //PWM Channels
 //Servos
-int constexpr kControlPanelServo = 1;
+int constexpr kControlPanelServo = 4;
 
 
 //Calibrated values
