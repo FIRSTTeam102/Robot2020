@@ -25,7 +25,7 @@ public:
   static Lights* GetInstance();   
   void Periodic();
   void setMode(int mode);
-  int getGyroAngle();
+  //int getGyroAngle();
 
  private:
   

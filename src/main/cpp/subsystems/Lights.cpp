@@ -44,9 +44,10 @@ void Lights::setMode(int mode) {
     }
 
 }
-
+/*
 int Lights::getGyroAngle() {
     while (mSP.getBytesToRead() >= 1) {
         mSP.Read(readBuffer, 25);
     }
 }
+*/
