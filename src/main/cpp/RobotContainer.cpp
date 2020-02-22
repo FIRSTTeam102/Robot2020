@@ -16,7 +16,8 @@ RobotContainer::RobotContainer():
   mDriverController{0},
   mOperatorController{1},
   mDriveCommand{&mTankDrive},
-  mIntake{}
+  mIntake{},
+  servoJoystick{3}
   {
   // Initialize all of your commands and subsystems here
   //drive
@@ -25,7 +26,8 @@ RobotContainer::RobotContainer():
 
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
-  
+  m_CameraServo.SetDefaultCommand(std::move(m_ServoCommand));
+  m_CameraServo.setServoJoystick(&servoJoystick);
   
 }
 

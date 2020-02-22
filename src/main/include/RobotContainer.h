@@ -59,7 +59,7 @@ class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   CameraServo m_CameraServo;
-  frc::Joystick* servoJoystick;
+  frc::Joystick servoJoystick;
   MoveCameraServo m_ServoCommand{&m_CameraServo};
 
   frc::XboxController mDriverController;

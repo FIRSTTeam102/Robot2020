@@ -8,7 +8,7 @@
 #include "subsystems/CameraServo.h"
 #include <frc/Servo.h>
 CameraServo::CameraServo():
-    cameraServo{1}
+    cameraServo{2}
 {
 
 }
