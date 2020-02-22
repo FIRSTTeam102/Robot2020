@@ -59,8 +59,7 @@ class RobotContainer {
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
   frc2::Button mDriverButtonX{[&] { return mDriverController.GetRawButton(3);}};
   frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
-  AnalogButton mDriverTriggerButtonLeft{&mDriverController,frc::XboxController::kLeftHand};
-  AnalogButton mDriverTriggerButtonRight{&mDriverController,frc::XboxController::kRightHand};
+ 
 
   frc::XboxController mOperatorController;
   frc2::Button mOperatorButtonA{[&] { return mOperatorController.GetRawButton(1);}};
