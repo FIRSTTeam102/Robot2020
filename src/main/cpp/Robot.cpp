@@ -6,6 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
+#include "Intake.h"
+#include "Indexer.h"
+#include "Shooter.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/smartdashboard/SendableChooser.h>
@@ -41,22 +44,52 @@ void Robot::RobotInit() {
   mAutoShoot2.AddOption("Don't shoot trench balls", false);
 
   //create chooser - Intake Test?
-
-  mIntake.AddOption("Raise Arm", 1);
-  mIntake.AddOption("Lower Arm", 2);
-  mIntake.AddOption("Rollers Forward", 3);
-  mIntake.AddOption("Rollers Reverse (Chacha real smooth)", 4);
-  mIntake.AddOption("Stop Rollers", 5);
+enum IntakeChooser { 1, 2, 3, 4, 5 };
+frc::SendableChooser<IntakeChooser> mIntakeTest;
+  mIntakeTest.AddOption("Raise Arm", IntakeChooser::1);
+  mIntakeTest.AddOption("Lower Arm", IntakeChooser::2);
+  mIntakeTest.AddOption("Rollers Forward", IntakeChooser::3);
+  mIntakeTest.AddOption("Rollers Reverse (Chacha real smooth)", IntakeChooser::4);
+  mIntakeTest.AddOption("Stop Rollers", IntakeChooser::5);
+IntakeChooser IntakeOptions = mIntakeTest.GetSelected();
+switch (IntakeOptions) {
+  case 1:
+    mpIntake->raiseIntakeArm();
+  case 2:
+    mpIntake->lowerIntakeArm();
+  case 3:
+    mpIntake->startRollers();
+  case 4:
+    mpIntake->startReverseRollers();
+  case 5:
+    mpIntake->stopRollers();
+}
 
   //create chooser - Indexer Test?
-
-  mIndexer.AddOption("Move Power Cells to Top", 1);
-  mIndexer.AddOption("Move Power Cells to Bottom", 2);
+enum IndexerChooser { 1, 2 };
+frc::SendableChooser<IndexerChooser> mIndexerTest;
+  mIndexerTest.AddOption("Move Power Cells to Top", 1);
+  mIndexerTest.AddOption("Move Power Cells to Bottom", 2);
+IndexerChooser IndexerOptions = mIndexerTest.GetSelected();
+switch (IndexerOptions) {
+  case 1:
+    mpIndexer->movePowerCellsToTop();
+  case 2:
+    mpIndexer->movePowerCellsToBottom();
+}
 
   //create chooser - Shooter Test?
-
-  mShooter.AddOption("Start Flywheel", 1);
-  mShooter.AddOption("Stop Flywheel", 2);
+enum ShooterChooser { 1, 2 };
+frc::SendableChooser<ShooterChooser> mShooterTest;
+  mShooterTest.AddOption("Start Flywheel", 1);
+  mShooterTest.AddOption("Stop Flywheel", 2);
+ShooterChooser ShooterOptions = mShooterTest.GetSelected();
+switch (ShooterOptions) {
+  case 1:
+    mpShooter->startMotor();
+  case 2:
+    mpShooter->stopMotor();
+}
 
   //create the autonomous command tab on the shuffleboard and add each
   // choosers widget, building the auto menu
@@ -78,15 +111,15 @@ void Robot::RobotInit() {
   
   //Tab Test
   frc::Shuffleboard::GetTab("TestRobot")
-    .Add("Intake Test Bin?",mIntake)
+    .Add("Intake Test Bin?",mIntakeTest)
     .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(3, 1).WithPosition(1, 1);
 
   frc::Shuffleboard::GetTab("TestRobot")
-    .Add("Indexer Test Bin?",mIndexer)
+    .Add("Indexer Test Bin?",mIndexerTest)
     .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(3, 1).WithPosition(1, 2);
 
   frc::Shuffleboard::GetTab("TestRobot")
-    .Add("Shooter Bin?",mShooter)
+    .Add("Shooter Bin?",mShooterTest)
     .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithSize(3, 1).WithPosition(1, 3);
 
 }
