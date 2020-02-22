@@ -14,7 +14,9 @@ IndexPowerCell::IndexPowerCell(Indexer* pIndexer): mpIndexer{pIndexer} {
 
 // Called when the command is initially scheduled.
 void IndexPowerCell::Initialize() {
-  mpIndexer->moveUpIndexer();
+  if (!mpIndexer->isFullIndexer()){
+    mpIndexer->moveUpIndexer();
+  }
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -27,5 +29,11 @@ void IndexPowerCell::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool IndexPowerCell::IsFinished() {
-  return (!mpIndexer->isPowerCellAtBottom() && mpIndexer->isPowerCellAtIntake());
+  if (mpIndexer->isFullIndexer()){ 
+    return true;
+  }
+  if (mpIndexer->isPowerCellAtBottom() && !mpIndexer->isPowerCellAtIntake()){
+    return(true);
+  }
+  return(false);
 }
