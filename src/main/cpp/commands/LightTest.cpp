@@ -5,6 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/* Listing of names:
+ *  
+ * #  <list>  --> <used for...>, <color desc.>
+ * 1  blues   --> Auto, blue
+ * 2  yellows --> Shooting, yellow
+ * 3  reds    --> Disabled, orange (used to be red)
+ * 4  oranges --> Default, orange
+ * 5  greens  --> Ready to shoot, green (may have been reassigned to shooting)
+ * 6  colors  --> Climbing, rainbow
+ * 7  fire    --> Fire
+ * 8  rygb    --> Rotation/Position control, rainbow
+ */
+
 #include "commands/LightTest.h"
 
 
