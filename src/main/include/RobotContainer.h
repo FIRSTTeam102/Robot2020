@@ -21,8 +21,9 @@
 #include "subsystems/Shooter.h"
 #include "subsystems/ControlPanelManipulator.h"
 
-#include "commands/DriveWithXbox.h"
-#include "commands/SlowTurn.h"
+#include "commands/drive/DriveWithXbox.h"
+#include "commands/drive/SlowTurn.h"
+#include "commands/drive/FlipDrive.h"
 #include "commands/powercell/BallJam.h"
 #include "commands/powercell/PickupPowerCells.h"
 #include "commands/powercell/PrepShooting.h"
@@ -68,6 +69,8 @@ class RobotContainer {
   frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
   frc2::Button mDriverButtonLB{[&] { return mDriverController.GetRawButton(5);}};
   frc2::Button mDriverButtonRB{[&] { return mDriverController.GetRawButton(6);}};
+  frc2::Button mDriverButtonLMenu{[&] { return mDriverController.GetRawButton(7);}};
+  frc2::Button mDriverButtonRMenu{[&] { return mDriverController.GetRawButton(8);}};
   frc2::Button mDriverLT{[&] { return mDriverController.GetRawAxis(2);}};
   frc2::Button mDriverRT{[&] { return mDriverController.GetRawAxis(3);}};
   frc2::Button mDriverUpDPad{[&] { return (mDriverController.GetPOV() == 0);}};
@@ -80,12 +83,18 @@ class RobotContainer {
   frc2::Button mOperatorButtonY{[&] { return mOperatorController.GetRawButton(4);}};
   frc2::Button mOperatorButtonLB{[&] { return mOperatorController.GetRawButton(5);}};
   frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
+  frc2::Button mOperatorButtonLMenu{[&] { return mOperatorController.GetRawButton(7);}};
+  frc2::Button mOperatorButtonRMenu{[&] { return mOperatorController.GetRawButton(8);}};
+  frc2::Button mOperatorLT{[&] { return mOperatorController.GetRawAxis(2);}};
+  frc2::Button mOperatorRT{[&] { return mOperatorController.GetRawAxis(3);}};
+  frc2::Button mOperatorUpDPad{[&] { return (mOperatorController.GetPOV() == 0);}};
+  frc2::Button mOperatorDownDPad{[&] { return (mOperatorController.GetPOV() == 180);}};
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
-
   SlowTurn mSlowLeftCommand{&mTankDrive, true};
   SlowTurn mSlowRightCommand{&mTankDrive, false};
+  FlipDrive mFlipDriveCommand{&mTankDrive};
 
   Intake mIntake;
   Indexer mIndexer;

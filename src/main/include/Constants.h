@@ -54,12 +54,13 @@ int constexpr kOperatorJoystick = 1;
 
 //PWM Channels
 //Servos
-int constexpr kControlPanelServo = 4;
+int constexpr kControlPanelManipServo = 0;
+int constexpr kControlPanelColorServo = 1;
 
 
 //Calibrated values
 //Shooter Speeds
-float constexpr kSlowSpeed = 0.4;
+float constexpr kSlowSpeed = 0.1;
 float constexpr kMedSpeed = 0.6;
 float constexpr kFastSpeed = 0.85;
 float constexpr kSlowAuto = 0.4;
@@ -80,7 +81,7 @@ float constexpr kGrnG = 0.60;
 float constexpr kGrnB = 0.26;
 
 //Servo positions
-float constexpr kControlPanelManipServoOut = 0.0;
-float constexpr kControlPanelManipServoIn = 0.65;
-float constexpr kControlPanelColorServoOut = 0.0;
-float constexpr kControlPanelColorServoIn = 0.5;
+float constexpr kControlPanelManipServoOut = 0.65;
+float constexpr kControlPanelManipServoIn = 0.0;
+float constexpr kControlPanelColorServoOut = 0.5;
+float constexpr kControlPanelColorServoIn = 0.0;

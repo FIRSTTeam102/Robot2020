@@ -27,6 +27,7 @@ class DriveTrain : public frc2::SubsystemBase {
   void setDriverJoystick(frc::XboxController* pDriverJoystick){
     mpDriverJoystick = pDriverJoystick;
   };
+  bool flipDrive();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -50,6 +51,7 @@ class DriveTrain : public frc2::SubsystemBase {
   frc::DifferentialDrive mDrive{mLeft, mRight};
  
   bool on = false;
+  bool inverted = false;
 
 
   // Components (e.g. motor controllers and sensors) should generally be

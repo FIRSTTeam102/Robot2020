@@ -5,31 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/SlowTurn.h"
+#include "commands/drive/FlipDrive.h"
 
-SlowTurn::SlowTurn(DriveTrain* pDriveTrain, bool clockwise): mpDriveTrain{pDriveTrain} {
+FlipDrive::FlipDrive(DriveTrain* pDriveTrain): mpDriveTrain{pDriveTrain} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pDriveTrain);
-  mClockwise = clockwise;
 }
 
 // Called when the command is initially scheduled.
-void SlowTurn::Initialize() {
-  if (mClockwise) {
-    mpDriveTrain->move(0.2, -0.2);
-  }
-  else {
-    mpDriveTrain->move(-0.2, 0.2);
-  }
+void FlipDrive::Initialize() {
+  mpDriveTrain->flipDrive();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void SlowTurn::Execute() {}
+void FlipDrive::Execute() {}
 
 // Called once the command ends or is interrupted.
-void SlowTurn::End(bool interrupted) {
-  mpDriveTrain->stop();
-}
+void FlipDrive::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool SlowTurn::IsFinished() { return false; }
+bool FlipDrive::IsFinished() { return true; }

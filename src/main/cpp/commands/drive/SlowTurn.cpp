@@ -5,32 +5,31 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DriveWithXbox.h"
-#include "subsystems/DriveTrain.h"
-#include "RobotContainer.h"
-#include "Robot.h"
+#include "commands/drive/SlowTurn.h"
 
-DriveWithXbox::DriveWithXbox(DriveTrain* pTankDrive): mpTankDrive(pTankDrive)
- {
+SlowTurn::SlowTurn(DriveTrain* pDriveTrain, bool clockwise): mpDriveTrain{pDriveTrain} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pTankDrive);
-
+  AddRequirements(pDriveTrain);
+  mClockwise = clockwise;
 }
 
 // Called when the command is initially scheduled.
-void DriveWithXbox::Initialize() {}
-
-
-// Called repeatedly when this Command is scheduled to run
-void DriveWithXbox::Execute() {
-
-  mpTankDrive->driveWithXboxController();
-  printf("running drive!");
-
+void SlowTurn::Initialize() {
+  if (mClockwise) {
+    mpDriveTrain->move(0.2, -0.2);
+  }
+  else {
+    mpDriveTrain->move(-0.2, 0.2);
+  }
 }
 
+// Called repeatedly when this Command is scheduled to run
+void SlowTurn::Execute() {}
+
 // Called once the command ends or is interrupted.
-void DriveWithXbox::End(bool interrupted) {}
+void SlowTurn::End(bool interrupted) {
+  mpDriveTrain->stop();
+}
 
 // Returns true when the command should end.
-bool DriveWithXbox::IsFinished() { return false; }
+bool SlowTurn::IsFinished() { return false; }

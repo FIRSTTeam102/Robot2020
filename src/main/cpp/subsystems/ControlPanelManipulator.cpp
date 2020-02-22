@@ -10,7 +10,8 @@
 ControlPanelManipulator::ControlPanelManipulator():
     //controlMotor{controlPanelMotorIndex},
 	mControlMotor{kControlPanelMotor},
-	mDeployServo{kControlPanelServo},
+	mDeployManipServo{kControlPanelManipServo},
+	mDeployColorServo{kControlPanelColorServo},
 	mColorSensor{frc::I2C::Port::kOnboard}
 {
     turnCounter = 0;
@@ -150,13 +151,15 @@ bool ControlPanelManipulator::getFinished() {
 }
 
 void ControlPanelManipulator::deployManipulator() {
-	mDeployServo.Set(kControlPanelManipServoOut);
-	mDeployServo.Set(kControlPanelColorServoOut);
+	mDeployManipServo.Set(kControlPanelManipServoOut);
+	mDeployColorServo.Set(kControlPanelColorServoOut);
+	printf("Deployed!\n");
 }
 
 void ControlPanelManipulator::retractManipulator() {
-	mDeployServo.Set(kControlPanelManipServoIn);
-	mDeployServo.Set(kControlPanelColorServoOut);
+	mDeployManipServo.Set(kControlPanelManipServoIn);
+	mDeployColorServo.Set(kControlPanelColorServoIn);
+	printf("Retracted!\n");
 }
 
 // This method will be called once per scheduler run

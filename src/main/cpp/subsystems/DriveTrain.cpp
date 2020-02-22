@@ -26,17 +26,24 @@ void DriveTrain::driveWithXboxController(){
     
     double leftSpeed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
     double rightSpeed = mpDriverJoystick->GetRawAxis(5); //Cap: 697rpm
-    
-    mDrive.TankDrive(-leftSpeed,-rightSpeed,true);
-    printf("Driving: %f, %f\n", leftSpeed, rightSpeed);
-
+    if (!inverted) {
+        mDrive.TankDrive(-leftSpeed,-rightSpeed,true);
+    }
+    else {
+        mDrive.TankDrive(rightSpeed, leftSpeed, true);
+    }
+    //printf("Driving: %f, %f\n", leftSpeed, rightSpeed);
 }
 
 void DriveTrain::arcadeDrive(){
     double speed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
-    double rotation = mpDriverJoystick->GetRawAxis(4); //Cap: 697rpm
-
-    mDrive.ArcadeDrive(speed,rotation);
+    double rotation = mpDriverJoystick->GetRawAxis(0); //Cap: 697rpm
+    if (!inverted) {
+        mDrive.ArcadeDrive(-speed, rotation, true);
+    }
+    else {
+        mDrive.ArcadeDrive(speed, -rotation, true);
+    }
 }
 
 void DriveTrain::slowlyDriveForwards(){
@@ -67,4 +74,14 @@ void DriveTrain::toggleDrive(){
             on = true;
         }
     }
+}
+
+bool DriveTrain::flipDrive() {
+    if (inverted) {
+        inverted = false;
+    }
+    else {
+        inverted = true;
+    }
+    return inverted;
 }
