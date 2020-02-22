@@ -150,11 +150,13 @@ bool ControlPanelManipulator::getFinished() {
 }
 
 void ControlPanelManipulator::deployManipulator() {
-	mDeployServo.Set(kControlPanelServoOut);
+	mDeployServo.Set(kControlPanelManipServoOut);
+	mDeployServo.Set(kControlPanelColorServoOut);
 }
 
 void ControlPanelManipulator::retractManipulator() {
-	mDeployServo.Set(kControlPanelServoIn);
+	mDeployServo.Set(kControlPanelManipServoIn);
+	mDeployServo.Set(kControlPanelColorServoOut);
 }
 
 // This method will be called once per scheduler run

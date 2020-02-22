@@ -36,8 +36,6 @@
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
 
-#include "AnalogButton.h"
-
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -67,8 +65,12 @@ class RobotContainer {
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
   frc2::Button mDriverButtonX{[&] { return mDriverController.GetRawButton(3);}};
   frc2::Button mDriverButtonY{[&] { return mDriverController.GetRawButton(4);}};
-  AnalogButton mDriverTriggerButtonLeft{&mDriverController,frc::XboxController::kLeftHand};
-  AnalogButton mDriverTriggerButtonRight{&mDriverController,frc::XboxController::kRightHand};
+  frc2::Button mDriverButtonLB{[&] { return mDriverController.GetRawButton(5);}};
+  frc2::Button mDriverButtonRB{[&] { return mDriverController.GetRawButton(6);}};
+  frc2::Button mDriverLT{[&] { return mDriverController.GetRawAxis(2);}};
+  frc2::Button mDriverRT{[&] { return mDriverController.GetRawAxis(3);}};
+  frc2::Button mDriverUpDPad{[&] { return (mDriverController.GetPOV() == 0);}};
+  frc2::Button mDriverDownDPad{[&] { return (mDriverController.GetPOV() == 180);}};
 
   frc::XboxController mOperatorController;
   frc2::Button mOperatorButtonA{[&] { return mOperatorController.GetRawButton(1);}};
