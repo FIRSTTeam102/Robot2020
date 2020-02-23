@@ -72,12 +72,13 @@ void Indexer::shootPowerCells(){
     //  reset the running on empty timer & decrement the power cell counter until
     //  it hits zero.
     moveUpIndexer();
-    if (isPowerCellAtTop()){
+    printf("Moving indexer\n");
+    /*if (isPowerCellAtTop()){
         resetRunningOnEmpty();
         if(mNumPowerCells>0){
             mNumPowerCells--;
         }
-    }
+    }*/
 }
 // This method will be called once per scheduler run
 void Indexer::Periodic() {}

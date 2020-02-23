@@ -50,6 +50,7 @@ void Intake::stopIntakeArm(){
 void Intake::startRollers() {
     printf("Rollers should be moving\n");
     mIntakeRollerMotor.Set(frc::Relay::kReverse);
+    printf("Status: %d", mIntakeRollerMotor.IsAlive());
 }
 //startReversRollers - start the intake arm rollers in reverse - this is to
 //  spit out power cells in the event the power cell intake needs to be
