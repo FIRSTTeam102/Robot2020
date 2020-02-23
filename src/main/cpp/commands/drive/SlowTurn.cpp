@@ -14,17 +14,16 @@ SlowTurn::SlowTurn(DriveTrain* pDriveTrain, bool clockwise): mpDriveTrain{pDrive
 }
 
 // Called when the command is initially scheduled.
-void SlowTurn::Initialize() {
+void SlowTurn::Initialize() {}
+
+// Called repeatedly when this Command is scheduled to run
+void SlowTurn::Execute() {
   if (mClockwise) {
     mpDriveTrain->move(0.2, -0.2);
   }
   else {
     mpDriveTrain->move(-0.2, 0.2);
-  }
-}
-
-// Called repeatedly when this Command is scheduled to run
-void SlowTurn::Execute() {}
+  }}
 
 // Called once the command ends or is interrupted.
 void SlowTurn::End(bool interrupted) {
