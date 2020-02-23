@@ -22,7 +22,7 @@ void AimShooter::Execute() {
   rampUpSpeed += 0.02;
   mpShooter->setSpeed(rampUpSpeed * mSpeed);
   mpShooter->startMotor();
-  printf("RAMP UP PERCENT: %f", rampUpSpeed);
+  printf("RAMP UP PERCENT: %f\n", rampUpSpeed);
 }
 
 // Called once the command ends or is interrupted.

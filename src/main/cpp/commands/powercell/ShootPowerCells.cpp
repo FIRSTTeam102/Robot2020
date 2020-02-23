@@ -25,8 +25,9 @@ void ShootPowerCells::Initialize() {}
 //  as long as the shooter is ready to take power cells, the
 //  indexer should send power cells (until cancelled or empty)
 void ShootPowerCells::Execute() {
-  printf("PEW\n");
+  printf("Pew?\n");
   if(mpShooterSubsys->isRunning()){
+    printf("PEW\n");
     mpIndexerSubsys->shootPowerCells();
   }
 }
