@@ -7,7 +7,7 @@
 
 #include "commands/powercell/AimShooter.h"
 
-AimShooter::AimShooter(Shooter* pShooter, int speed): mpShooter{pShooter}, mSpeed{speed} {
+AimShooter::AimShooter(Shooter* pShooter, float speed): mpShooter{pShooter}, mSpeed{speed} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(mpShooter);
 }
@@ -15,12 +15,14 @@ AimShooter::AimShooter(Shooter* pShooter, int speed): mpShooter{pShooter}, mSpee
 // Called when the command is initially scheduled.
 void AimShooter::Initialize() {
   rampUpSpeed = 0;
+  printf("Aiming shooter\n");
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AimShooter::Execute() {
   rampUpSpeed += 0.02;
-  mpShooter->setSpeed((int)(rampUpSpeed * mSpeed));
+  printf("Speed percent: %f\n", rampUpSpeed);
+  mpShooter->setSpeed(rampUpSpeed * mSpeed);
   mpShooter->startMotor();
 }
 
