@@ -21,7 +21,9 @@ void UnPrimeIndexer::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void UnPrimeIndexer::End(bool interrupted) {}
+void UnPrimeIndexer::End(bool interrupted) {
+  mpIndexer->stopIndexer();
+}
 
 // Returns true when the command should end.
 bool UnPrimeIndexer::IsFinished() {

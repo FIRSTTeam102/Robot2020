@@ -21,9 +21,9 @@ void AimShooter::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void AimShooter::Execute() {
   rampUpSpeed += 0.02;
-  printf("Speed percent: %f\n", rampUpSpeed);
   mpShooter->setSpeed(rampUpSpeed * mSpeed);
   mpShooter->startMotor();
+  printf("RAMP UP PERCENT: %f\n", rampUpSpeed);
 }
 
 // Called once the command ends or is interrupted.

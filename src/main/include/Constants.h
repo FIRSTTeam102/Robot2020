@@ -34,9 +34,8 @@ int constexpr kFlyMotor2 = 6;
 int constexpr kIntakeMotor = 0;
 int constexpr kIntakeRollerMotor = 1;
 
-//Indexer Motor Controllers (SpikeRelay)
+//Index Relay (SpikeRelay)
 int constexpr kIndexChannel = 2;
-
 
 //Digital IO channels
 //Indexer Distance Sensors (Digital Input)

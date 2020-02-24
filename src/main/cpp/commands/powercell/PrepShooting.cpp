@@ -13,6 +13,5 @@
 PrepShooting::PrepShooting(Indexer* pIndexer, Shooter* pShooter, float shooterSpeed) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  printf("Prepare to pew pew\n");
-  AddCommands(AimShooter(pShooter, shooterSpeed), PrimeIndexer(pIndexer));
+  AddCommands(AimShooter(pShooter, shooterSpeed)/*, PrimeIndexer(pIndexer)*/);
 }

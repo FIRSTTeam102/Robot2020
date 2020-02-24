@@ -30,8 +30,8 @@ RobotContainer::RobotContainer():
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  mDriverButtonA.WhenPressed(&mPrepShootingFast, false);
-  mDriverButtonB.WhenPressed(&mPrepShootingMed, false);
+  mDriverButtonA.WhenPressed(&mPrepShootingFast, true);
+  mDriverButtonB.WhenPressed(&mPrepShootingMed, true);
   mDriverButtonX.WhenPressed(&mStopShootingCommand, false);
   mDriverButtonY.WhenPressed(&mPrepShootingSlow, true);
   mDriverButtonLB.WhenHeld(&mSlowLeftCommand, true);
