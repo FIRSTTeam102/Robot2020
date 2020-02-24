@@ -33,8 +33,9 @@ int constexpr kFlyMotor2 = 6;
 //Intake Arm & Roller Motor Controllers (SpikeRelay)
 int constexpr kIntakeMotor = 0;
 int constexpr kIntakeRollerMotor = 1;
-int constexpr kIntakeTopSensor = 2;
-int constexpr kIntakeBottomSensor = 3;
+
+//Indexer Motor Controllers (SpikeRelay)
+int constexpr kIndexChannel = 2;
 
 
 //Digital IO channels
@@ -43,9 +44,9 @@ int constexpr kDIOIntake = 0;
 int constexpr kDIOBottom = 1;
 int constexpr kDIOTop = 2;
 
-//Index Relay
-int constexpr kIndexChannel = 0;
-int constexpr kMaxPowerCellTravelTime = 100;
+//Intake Limit Switches
+int constexpr kIntakeTopSensor = 3;
+int constexpr kIntakeBottomSensor = 4;
 
 //OI Indexes (joysticks/buttons)
 int constexpr kDriverJoystick = 0;
@@ -65,6 +66,9 @@ float constexpr kMedSpeed = 0.6;
 float constexpr kFastSpeed = 0.85;
 float constexpr kSlowAuto = 0.4;
 float constexpr kFastAuto = 0.7;
+
+//Indexer Constants
+int constexpr kMaxPowerCellTravelTime = 100;
 
 //Color values
 float constexpr kBlueR = 0.13;
