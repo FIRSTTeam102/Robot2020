@@ -13,6 +13,8 @@ Shooter::Shooter() :
     mShooter2{kFlyMotor2}
 {
     mShooter2.Set(ControlMode::Follower, kFlyMotor1);
+    mShooter1.SetInverted(true);
+    mShooter2.SetInverted(true);
 }
 
 // This method will be called once per scheduler run
