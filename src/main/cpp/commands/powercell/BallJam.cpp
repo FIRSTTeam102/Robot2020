@@ -17,7 +17,7 @@ BallJam::BallJam(Indexer* pIndexer, Shooter* pShooter): mpIndexer{pIndexer}, mpS
 
 // Called when the command is initially scheduled.
 void BallJam::Initialize() {
-  mpShooter->setSpeed(-30*360);
+  mpShooter->setSpeed(-0.2);
   mpShooter->startMotor();
 }
 

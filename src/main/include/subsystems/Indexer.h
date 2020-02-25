@@ -23,8 +23,8 @@ class Indexer : public frc2::SubsystemBase {
     void movePowerCellsToTop();
     void movePowerCellsToBottom();
     void shootPowerCells();
-    bool isPowerCellAtTop(){return mTopSensor.Get();}
-    bool isPowerCellAtBottom(){return mBottomSensor.Get();}
+    bool isPowerCellAtTop(){return (mTopSensor.Get() + 1) % 2;}
+    bool isPowerCellAtBottom(){return (mBottomSensor.Get() + 1) % 2;}
     bool isPowerCellAtIntake(){return mIntakeSensor.Get();}
     void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
     void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::Value::kForward);}
