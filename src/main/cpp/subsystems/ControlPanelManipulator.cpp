@@ -14,6 +14,8 @@ ControlPanelManipulator::ControlPanelManipulator():
 	mDeployColorServo{kControlPanelColorServo},
 	mColorSensor{frc::I2C::Port::kOnboard}
 {
+	mDeployManipServo.SetRawBounds(2000, 1950, 1500, 1050, 1000);
+    mDeployColorServo.SetRawBounds(2000, 1950, 1500, 1050, 1000);
     turnCounter = 0;
 	previousColor = 0;
 	blue.red = kBlueR;
