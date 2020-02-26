@@ -60,7 +60,7 @@ int constexpr kControlPanelColorServo = 1;
 
 //Calibrated values
 //Shooter Speeds
-float constexpr kSlowSpeed = 0.1;
+float constexpr kSlowSpeed = 0.2;
 float constexpr kMedSpeed = 0.6;
 float constexpr kFastSpeed = 0.85;
 float constexpr kSlowAuto = 0.4;
@@ -95,5 +95,5 @@ float constexpr kControlPanelColorServoIn = 1.0;
 //Ball moves 19"/s
 //Timeout = (gap + 7" - 2") / 19" = (gap + 5") / 19"       7" for ball, sensor is 2" in already
 //Need a timeout so they are indexed far enough
-float constexpr kIndexerGap = 2.0;
+float constexpr kIndexerGap = 1.0;
 float constexpr kBottomIndexerTimeout = (kIndexerGap + 5) / 19;
