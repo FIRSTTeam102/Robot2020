@@ -31,5 +31,6 @@ class IndexPowerCell
 
   bool IsFinished() override;
   private:
+  bool hasIndexed;
   Indexer* mpIndexer;
 };

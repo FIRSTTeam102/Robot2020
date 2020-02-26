@@ -80,4 +80,6 @@ void Indexer::shootPowerCells(){
     }
 }
 // This method will be called once per scheduler run
-void Indexer::Periodic() {}
+void Indexer::Periodic() {
+    //printf("Intake: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
+}

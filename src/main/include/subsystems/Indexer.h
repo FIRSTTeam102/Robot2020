@@ -23,9 +23,9 @@ class Indexer : public frc2::SubsystemBase {
     void movePowerCellsToTop();
     void movePowerCellsToBottom();
     void shootPowerCells();
-    bool isPowerCellAtTop(){return (mTopSensor.Get() + 1) % 2;}
-    bool isPowerCellAtBottom(){return (mBottomSensor.Get() + 1) % 2;}
-    bool isPowerCellAtIntake(){return mIntakeSensor.Get();}
+    bool isPowerCellAtTop(){return mTopSensor.Get();}
+    bool isPowerCellAtBottom(){return mBottomSensor.Get();}
+    bool isPowerCellAtIntake(){return (mIntakeSensor.Get() + 1) % 2;}
     void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
     void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::Value::kForward);}
     void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}

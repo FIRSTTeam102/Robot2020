@@ -14,15 +14,17 @@ IndexPowerCell::IndexPowerCell(Indexer* pIndexer): mpIndexer{pIndexer} {
 
 // Called when the command is initially scheduled.
 void IndexPowerCell::Initialize() {
-
+  printf("Indexing power cells\n");
+  hasIndexed = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void IndexPowerCell::Execute() {
-    printf("indexing execute\n");
-    if (!mpIndexer->isFullIndexer() && mpIndexer->isPowerCellAtIntake()){
-      printf("starting indexer motor\n");
-      mpIndexer->moveUpIndexer();
+  printf("indexing execute\n");
+  if (!mpIndexer->isFullIndexer() && mpIndexer->isPowerCellAtIntake()){
+    printf("starting indexer motor\n");
+    mpIndexer->moveUpIndexer();
+    hasIndexed = true;
   }
 }
 
@@ -38,9 +40,13 @@ bool IndexPowerCell::IsFinished() {
     printf("indexer full\n");
     return true;
   }
+  if (hasIndexed == false) {
+    printf("Has not run yet\n");
+    return false;
+  }
   if (mpIndexer->isPowerCellAtBottom() && !mpIndexer->isPowerCellAtIntake()){
     printf("indexer - pc at bottom but not at intake - done\n");
-    return(true);
+    return true;
   }
   printf("index pc - not finished\n");
   return(false);
