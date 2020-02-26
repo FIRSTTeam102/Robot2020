@@ -13,6 +13,9 @@
 #include "Constants.h"
 
 //Spins 760 rpms (diameter 1.5"), bottom sensor ~2" in
+//Band moves 60"/s
+//Ball moves 19"/s
+//Timeout = gap + 7" - 2" = gap + 5"       7" for ball, sensor is 2" in already
 //Need a timeout so they are indexed far enough
 
 class Indexer : public frc2::SubsystemBase {
@@ -25,8 +28,9 @@ class Indexer : public frc2::SubsystemBase {
     void movePowerCellsToBottom();
     void shootPowerCells();
     bool isPowerCellAtTop(){return mTopSensor.Get();}
-    bool isPowerCellAtBottom(){return mBottomSensor.Get();}
+    bool isPowerCellAtBottom();
     bool isPowerCellAtIntake(){return (mIntakeSensor.Get() + 1) % 2;}
+    bool rawPowerCellAtBottom(){return mBottomSensor.Get();}
     void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
     void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::Value::kForward);}
     void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}
@@ -46,5 +50,7 @@ class Indexer : public frc2::SubsystemBase {
   frc::DigitalInput mTopSensor;
   int mNumPowerCells;
   int mEmptyTimer;
+  int mBottomTimer;
   bool mPowerCellWasAtIntake;
+  bool mPowerCellWasAtBottom;
 };

@@ -88,3 +88,12 @@ float constexpr kControlPanelManipServoOut = 0.0;
 float constexpr kControlPanelManipServoIn = 1.0;
 float constexpr kControlPanelColorServoOut = 0.0;
 float constexpr kControlPanelColorServoIn = 1.0;
+
+//Indexer bottom sensor timeout
+//Spins 760 rpms (diameter 1.5"), bottom sensor ~2" in
+//Band moves 60"/s
+//Ball moves 19"/s
+//Timeout = (gap + 7" - 2") / 19" = (gap + 5") / 19"       7" for ball, sensor is 2" in already
+//Need a timeout so they are indexed far enough
+float constexpr kIndexerGap = 2.0;
+float constexpr kBottomIndexerTimeout = (kIndexerGap + 5) / 19;

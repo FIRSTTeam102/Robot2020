@@ -79,7 +79,29 @@ void Indexer::shootPowerCells(){
         }
     }
 }
+
+//Check if ball has been at bottom sensor for long enough
+bool Indexer::isPowerCellAtBottom(){
+    if (mBottomTimer > kBottomIndexerTimeout * 50) {
+        mPowerCellWasAtBottom = false;
+        mBottomTimer = 0;
+        return true;
+    }
+    return false;
+}
+
+
 // This method will be called once per scheduler run
 void Indexer::Periodic() {
+    if (rawPowerCellAtBottom()) {
+        mPowerCellWasAtBottom = true;
+    }
+    if (mPowerCellWasAtBottom && mBottomTimer < 100) { //Max 2 seconds
+        mBottomTimer += 1;
+    }
+    if (mBottomTimer >= 100) {
+        mPowerCellWasAtBottom = false;
+        mBottomTimer = 0;
+    }
     //printf("Intake: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
 }
