@@ -8,28 +8,42 @@
 #include "subsystems/Climber.h"
 #include "RobotContainer.h"
 #include "Constants.h"
+
 Climber::Climber():
-    mClimbMotor{kClimbMotor},
+    mClimbUpMotor{kClimbUpMotor},
+    mClimbDownMotor{kClimbDwnMotor},
     mTopLimitSwitch{kTopClimbLimit},
     mBotLimitSwitch{kBotClimbLimit}
 {
 
 }
-
-// This method will be called once per scheduler run
-void Climber::Periodic() {
+//stop all climber motors
+void Climber::StopClimb(){
+    mClimbUpMotor.Set(0);
+    mClimbDownMotor.Set(0);
 
 }
-void Climber::climb() {
-    double axis = mpClimberJoystick->GetRawAxis(1);
-    if(axis >= 0.5) {
-        climbMotor.Set(frc::Relay::kForward);
+
+//raise the climber
+void Climber::ClimberUp(){
+    if (!isClimbUp()){
+        mClimbUpMotor.Set(kClimberUpSpeed);
     }
-    else if(axis <= -0.5) {
-        climbMotor.Set(frc::Relay::kReverse);
+    else{
+        StopClimb();
+    }
+}
+//lift the robot and bring the climber down
+void Climber::ClimberDown(){
+    if (!isClimbDown()){
+        mClimbDownMotor.Set(kClimberDownSpeed);
+        mClimbUpMotor.Set(kTakeUpPulleySlackSpeed);
     }
     else {
-        climbMotor.Set(frc::Relay::kOff);
+        StopClimb();
     }
 }
+// This method will be called once per scheduler run
+void Climber::Periodic()  {
 
+}

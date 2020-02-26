@@ -9,7 +9,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/XboxController.h>
-#include <frc/Relay.h>
+#include <ctre/Phoenix.h>
 #include <frc/DigitalInput.h>
 
 class Climber : public frc2::SubsystemBase {
@@ -19,19 +19,21 @@ class Climber : public frc2::SubsystemBase {
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void climb();
+  void StopClimb();
+  void ClimberUp();
+  void ClimberDown();
+  
   void Periodic();
-  void setClimberJoystick(frc::XboxController* pClimberJoystick){
-    mpClimberJoystick = pClimberJoystick;
-  };
+
   bool isClimbUp() { return(mTopLimitSwitch.Get()); }
   bool isClimbDown() { return(mBotLimitSwitch.Get()); }
 
  private:
-  frc::Relay mClimbMotor;
-  frc::XboxController* mpClimberJoystick;
+ // Components (e.g. motor controllers and sensors) should generally be
+  // declared private and exposed only through public methods.
+  WPI_TalonSRX mClimbUpMotor;
+  WPI_TalonSRX mClimbDownMotor;
   frc::DigitalInput mTopLimitSwitch;
   frc::DigitalInput mBotLimitSwitch;
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+  
 };
