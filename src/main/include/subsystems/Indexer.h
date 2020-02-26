@@ -12,7 +12,8 @@
 #include <frc/DigitalInput.h>
 #include "Constants.h"
 
-
+//Spins 760 rpms (diameter 1.5"), bottom sensor ~2" in
+//Need a timeout so they are indexed far enough
 
 class Indexer : public frc2::SubsystemBase {
  public:
