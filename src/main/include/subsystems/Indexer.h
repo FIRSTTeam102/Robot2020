@@ -50,7 +50,7 @@ class Indexer : public frc2::SubsystemBase {
   frc::DigitalInput mTopSensor;
   int mNumPowerCells;
   int mEmptyTimer;
-  int mBottomTimer;
+  double mBottomTimer;
   bool mPowerCellWasAtIntake;
   bool mPowerCellWasAtBottom;
 };

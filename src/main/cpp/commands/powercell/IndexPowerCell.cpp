@@ -26,6 +26,12 @@ void IndexPowerCell::Execute() {
     mpIndexer->moveUpIndexer();
     hasIndexed = true;
   }
+  if (hasIndexed == true && (mpIndexer->isFullIndexer() || (mpIndexer->isPowerCellAtBottom() && !mpIndexer->isPowerCellAtIntake()))) {
+    mpIndexer->stopIndexer();
+    printf("Stopping indexer\n");
+    hasIndexed = false;
+  }
+  printf("index pc - not finished\n");
 }
 
 // Called once the command ends or is interrupted.
@@ -36,7 +42,7 @@ void IndexPowerCell::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool IndexPowerCell::IsFinished() {
-  if (mpIndexer->isFullIndexer()){ 
+  /*if (mpIndexer->isFullIndexer()){ 
     printf("indexer full\n");
     return true;
   }
@@ -49,5 +55,6 @@ bool IndexPowerCell::IsFinished() {
     return true;
   }
   printf("index pc - not finished\n");
-  return(false);
+  return(false);*/
+  return false;
 }

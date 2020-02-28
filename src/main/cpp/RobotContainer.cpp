@@ -25,6 +25,8 @@ RobotContainer::RobotContainer():
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
   
+  mIndexer.SetDefaultCommand(std::move(mIndexCommand));
+  
 }
 
 

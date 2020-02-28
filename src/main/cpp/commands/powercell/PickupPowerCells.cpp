@@ -18,5 +18,5 @@ PickupPowerCells::PickupPowerCells(Intake* pIntake, Indexer* pIndexer) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   printf("Picking up power cells\n");
-  AddCommands(LowerArm(pIntake), IndexPowerCell(pIndexer));
+  AddCommands(LowerArm(pIntake)/*, IndexPowerCell(pIndexer)*/);
 }

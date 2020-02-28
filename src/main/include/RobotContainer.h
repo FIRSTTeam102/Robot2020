@@ -98,6 +98,7 @@ class RobotContainer {
   Indexer mIndexer;
   Shooter mShooter;
   BallJam mBallJamCommand{&mIndexer, &mShooter};
+  IndexPowerCell mIndexCommand{&mIndexer};
   PickupPowerCells mPickupCellsCommand{&mIntake, &mIndexer};
   PrepShooting mPrepShootingSlow{&mIndexer, &mShooter, kSlowSpeed};
   PrepShooting mPrepShootingMed{&mIndexer, &mShooter, kMedSpeed};
