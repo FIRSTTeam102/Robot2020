@@ -30,10 +30,10 @@ RobotContainer::RobotContainer():
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  mDriverButtonA.WhenPressed(&mPrepShootingFast, true);
-  mDriverButtonB.WhenPressed(&mPrepShootingMed, true);
-  mDriverButtonX.WhenPressed(&mStopShootingCommand, false);
-  mDriverButtonY.WhenPressed(&mPrepShootingSlow, true);
+  mDriverButtonA.WhenPressed(&mFlipDriveCommand, true);//(&mPrepShootingFast, true);
+  mDriverButtonB.WhenPressed(&mPositionCommand, true);//(&mPrepShootingMed, true);
+  mDriverButtonX.WhenPressed(&mRotateCommand, true);//(&mStopShootingCommand, false);
+  mDriverButtonY.WhenPressed(&mManualPanelCommand, true);//(&mPrepShootingSlow, true);
   mDriverButtonLB.WhenHeld(&mSlowLeftCommand, true);
   mDriverButtonRB.WhenHeld(&mSlowRightCommand, true);
   mDriverButtonRMenu.WhenPressed(&mFlipDriveCommand, false);
@@ -43,11 +43,13 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverUpDPad.WhenPressed(&mDeployManipulatorCommand, false);
   mDriverDownDPad.WhenPressed(&mRetractManipulatorCommand, false);
 
-  mOperatorButtonA.WhenPressed(&mRotateCommand, true);
-  mOperatorButtonB.WhenPressed(&mPositionCommand, true);
-  mOperatorButtonX.WhenHeld(&mStopPanelCommand, false);
-  mOperatorButtonY.WhenHeld(&mManualPanelCommand, true);
+  mOperatorButtonA.WhenPressed(&mPrepShootingFast, true);//(&mRotateCommand, true);
+  mOperatorButtonB.WhenPressed(&mPrepShootingMed, true);//(&mPositionCommand, true);
+  mOperatorButtonX.WhenHeld(&mStopShootingCommand, false);//(&mStopPanelCommand, false);
+  mOperatorButtonY.WhenPressed(&mPrepShootingSlow, true);//(&mManualPanelCommand, true);
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
+  //above has not been changed; the thing it should be changed
+  //to is not a command yet
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
 
   //Create a triggers to activate deactivate the Intake of Power cells
