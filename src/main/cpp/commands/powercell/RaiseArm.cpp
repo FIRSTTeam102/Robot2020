@@ -10,7 +10,7 @@
 #include "commands/powercell/RaiseArm.h"
 #include "subsystems/Intake.h"
 
-RaiseArm::RaiseArm(Intake* pIntake): mpIntake{pIntake} {
+RaiseArm::RaiseArm(Intake* pIntake, Indexer* pIndexer): mpIntake{pIntake}, mpIndexer{pIndexer} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(pIntake);
 }
@@ -19,6 +19,7 @@ RaiseArm::RaiseArm(Intake* pIntake): mpIntake{pIntake} {
 //   stop the intake arm rollers and start to raise the intake arm
 void RaiseArm::Initialize() {
   mpIntake->stopRollers();
+  mpIndexer->disable();
 }
   
 // RaiseArm Execute: Called repeatedly when this Command is scheduled to run

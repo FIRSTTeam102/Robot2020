@@ -39,7 +39,7 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverButtonLB.WhenHeld(&mSlowLeftCommand, true);
   mDriverButtonRB.WhenHeld(&mSlowRightCommand, true);
   mDriverButtonRMenu.WhenPressed(&mFlipDriveCommand, false);
-  mDriverLT.WhenPressed(&mPickupCellsCommand, true);
+  mDriverLT.WhenPressed(&mLowerArmCommand, true);
   mDriverLT.WhenReleased(&mRaiseArmCommand, true);
   mDriverRT.WhenHeld(&mShootCommand, false);
   mDriverUpDPad.WhenPressed(&mDeployManipulatorCommand, false);

@@ -10,6 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/Intake.h"
+#include "subsystems/Indexer.h"
 
 /**
  * An example command.
@@ -21,7 +22,7 @@
 class RaiseArm
     : public frc2::CommandHelper<frc2::CommandBase, RaiseArm> {
  public:
-  RaiseArm(Intake* pIntake);
+  RaiseArm(Intake* pIntake, Indexer* pIndexer);
 
   void Initialize() override;
 
@@ -32,4 +33,5 @@ class RaiseArm
   bool IsFinished() override;
  private:
   Intake* mpIntake;
+  Indexer* mpIndexer;
 };

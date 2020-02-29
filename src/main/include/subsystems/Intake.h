@@ -24,8 +24,8 @@ class Intake : public frc2::SubsystemBase {
   void startRollers();
   void startReverseRollers();
   void stopRollers();
-  bool isArmUp() { return(mUpSensor.Get() + 1) % 2; }
-  bool isArmDown() { return(mDownSensor.Get() + 1) % 2; }
+  bool isArmUp() { return !mUpSensor.Get(); }
+  bool isArmDown() { return !mDownSensor.Get(); }
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

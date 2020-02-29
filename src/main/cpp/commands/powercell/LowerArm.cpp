@@ -12,7 +12,7 @@
 #include "RobotContainer.h"
 #include "Robot.h"
 
-LowerArm::LowerArm(Intake* pIntake): mpIntake{pIntake} {
+LowerArm::LowerArm(Intake* pIntake, Indexer* pIndexer): mpIntake{pIntake}, mpIndexer{pIndexer} {
   // Use addRequirements() here to declare subsystem dependencies.
     AddRequirements(pIntake);
 }
@@ -22,6 +22,7 @@ LowerArm::LowerArm(Intake* pIntake): mpIntake{pIntake} {
 //    so that power cells can be moved toward the indexer
 void LowerArm::Initialize() {
    mpIntake->startRollers();
+   mpIndexer->enable();
 }
 
 // LowerArm - Execute - Called repeatedly when this Command is scheduled to run

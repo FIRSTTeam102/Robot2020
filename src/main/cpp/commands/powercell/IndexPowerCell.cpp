@@ -21,7 +21,7 @@ void IndexPowerCell::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void IndexPowerCell::Execute() {
   printf("indexing execute\n");
-  if (!mpIndexer->isFullIndexer() && mpIndexer->isPowerCellAtIntake()){
+  if (!mpIndexer->isFullIndexer() && mpIndexer->isPowerCellAtIntake() && mpIndexer->isEnabled()){
     printf("starting indexer motor\n");
     mpIndexer->moveUpIndexer();
     hasIndexed = true;
