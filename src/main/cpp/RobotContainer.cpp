@@ -26,7 +26,7 @@ RobotContainer::RobotContainer():
   mTankDrive.setDriverJoystick(&mDriverController);
   
   mIndexer.SetDefaultCommand(std::move(mIndexCommand));
-  
+  mChangeFlyWheelSpeedCommand.setXboxController(&mDriverController);
 }
 
 
@@ -44,7 +44,10 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverRT.WhenHeld(&mShootCommand, false);
   mDriverUpDPad.WhenPressed(&mDeployManipulatorCommand, false);
   mDriverDownDPad.WhenPressed(&mRetractManipulatorCommand, false);
-
+  //
+  mDriverUpDPad.WhenPressed(&mChangeFlyWheelSpeedCommand, true);
+  mDriverDownDPad.WhenPressed(&mChangeFlyWheelSpeedCommand, true);
+  //
   mOperatorButtonA.WhenPressed(&mRotateCommand, true);
   mOperatorButtonB.WhenPressed(&mPositionCommand, true);
   mOperatorButtonX.WhenHeld(&mStopPanelCommand, false);

@@ -10,7 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/Shooter.h"
-
+#include <frc/XboxController.h>
 /**
  * An example command.
  *
@@ -22,15 +22,20 @@ class ChangeFlyWheelSpeed
     : public frc2::CommandHelper<frc2::CommandBase, ChangeFlyWheelSpeed> {
  public:
   ChangeFlyWheelSpeed(Shooter* pShooter);
-  void changeSpeed(double likt);
-  
+
   void Initialize() override;
 
   void Execute() override;
 
   void End(bool interrupted) override;
 
+  void setXboxController(frc::XboxController* pXboxController){
+    mpXboxController = pXboxController;
+  };
+
   bool IsFinished() override;
   private:
-  Shooter* mpShooter;
+   frc::XboxController* mpXboxController;
+   Shooter* mpShooter;
+   bool halt = true;
 };

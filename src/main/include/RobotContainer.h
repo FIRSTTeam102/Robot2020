@@ -36,7 +36,7 @@
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
-
+#include "commands/ChangeFlyWheelSpeed.h"
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -103,6 +103,7 @@ class RobotContainer {
   PrepShooting mPrepShootingSlow{&mIndexer, &mShooter, kSlowSpeed};
   PrepShooting mPrepShootingMed{&mIndexer, &mShooter, kMedSpeed};
   PrepShooting mPrepShootingFast{&mIndexer, &mShooter, kFastSpeed};
+  ChangeFlyWheelSpeed mChangeFlyWheelSpeedCommand{&mShooter};
   RaiseArm mRaiseArmCommand{&mIntake};
   Reset mResetCommand{&mIntake, &mIndexer};
   ShootPowerCells mShootCommand{&mIndexer, &mShooter};

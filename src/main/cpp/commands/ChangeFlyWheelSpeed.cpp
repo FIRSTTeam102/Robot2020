@@ -16,14 +16,22 @@ ChangeFlyWheelSpeed::ChangeFlyWheelSpeed(Shooter* pShooter): mpShooter{pShooter}
 void ChangeFlyWheelSpeed::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void ChangeFlyWheelSpeed::Execute() {}
+void ChangeFlyWheelSpeed::Execute() {
+  if(mpXboxController->GetPOV() == 0 && mpShooter->getSpeed() < 1){
+    mpShooter->setSpeed(mpShooter->getSpeed() + 0.1);
+  }
+  else if(mpXboxController->GetPOV() == 180 && mpShooter->getSpeed() > 0){
+    mpShooter->setSpeed(mpShooter->getSpeed() - 0.1);
+  }
+
+  printf("%f", mpShooter->getSpeed());
+
+}
 
 // Called once the command ends or is interrupted.
 void ChangeFlyWheelSpeed::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool ChangeFlyWheelSpeed::IsFinished() { return false; }
-
-void ChangeFlyWheelSpeed::changeSpeed(double likt){
-  mpShooter->setSpeed(mpShooter->getSpeed() + likt);
+bool ChangeFlyWheelSpeed::IsFinished() {
+  return true;
 }
