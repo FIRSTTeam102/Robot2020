@@ -8,6 +8,7 @@
 #include "RobotContainer.h"
 #include "Constants.h"
 #include "subsystems/Indexer.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 
 
 Indexer::Indexer():
@@ -19,6 +20,17 @@ Indexer::Indexer():
     mEmptyTimer{0},
     mPowerCellWasAtIntake{false}
  {
+     frc::Shuffleboard::GetTab("TestRobot")
+    .Add("Intake Sensor",mIntakeSensor.Get())
+    .WithWidget(frc::BuiltInWidgets::kBooleanBox).WithSize(3, 1).WithPosition(2, 1);
+
+    frc::Shuffleboard::GetTab("TestRobot")
+    .Add("Intake Bottom Sensor",mBottomSensor.Get())
+    .WithWidget(frc::BuiltInWidgets::kBooleanBox).WithSize(3, 1).WithPosition(2, 2);
+
+    frc::Shuffleboard::GetTab("TestRobot")
+    .Add("Intake Top Sensor",mTopSensor.Get())
+    .WithWidget(frc::BuiltInWidgets::kBooleanBox).WithSize(3, 1).WithPosition(2, 3);
 }
 //isFullIndexer - returns true if the TopSensor,
 //   and IntakeSensor all see a power cell. The Indexer is
