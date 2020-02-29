@@ -31,6 +31,8 @@
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
 
+#include "commands/Climb.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -103,7 +105,8 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
-  Climber mClimber; 
+  Climber mClimber{&mOperatorController}; 
+  Climb mClimbCommand{&mClimber};
 
 
   void ConfigureButtonBindings();

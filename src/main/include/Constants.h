@@ -35,9 +35,7 @@ int constexpr kFlyMotor = 5;
 // up raises the climb system, down retracts it & lifts the robot
 int constexpr kClimbUpMotor = 6;
 int constexpr kClimbDwnMotor = 9;
-double constexpr kClimberUpSpeed = 0.5;
-double constexpr kClimberDownSpeed = 0.1;
-double constexpr kTakeUpPulleySlackSpeed = 0.01;
+double constexpr kTakeUpSlackPercent = 0.3;
 
 //Intake Arm & Roller Motor Controllers (SpikeRelay)
 int constexpr kIntakeMotor = 7;
@@ -58,6 +56,7 @@ int constexpr kIntakeRollerMotor = 8;
 //OI Indexes (joysticks/buttons)
 int constexpr kDriverJoystick = 0;
 int constexpr kOperatorJoystick = 1;
+int constexpr kOperatorLeftYAxis = 1;
 
 //Limit Switches
 int constexpr kTopClimbLimit = 0;

@@ -17,7 +17,7 @@ RobotContainer::RobotContainer():
   mOperatorController{1},
   mDriveCommand{&mTankDrive},
   mIntake{}
-  {
+{
   // Initialize all of your commands and subsystems here
   //drive
   // Configure the button bindings
@@ -25,6 +25,8 @@ RobotContainer::RobotContainer():
 
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
+
+  mClimber.SetDefaultCommand(std::move(mClimbCommand));
   
 }
 

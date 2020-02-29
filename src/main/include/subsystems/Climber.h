@@ -14,19 +14,29 @@
 
 class Climber : public frc2::SubsystemBase {
  public:
-  Climber();
+  Climber(frc::XboxController* pOperatorJoystick);
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void StopClimb();
-  void ClimberUp();
-  void ClimberDown();
+  void Climb();
+  
   
   void Periodic();
+  
+//magnetic limit switches are reversed, isClimbUp means !isClimbUp
+  bool isClimbUp() { return(!mTopLimitSwitch.Get()); }
+  bool isClimbDown() { return(!mBotLimitSwitch.Get()); }
 
-  bool isClimbUp() { return(mTopLimitSwitch.Get()); }
-  bool isClimbDown() { return(mBotLimitSwitch.Get()); }
+  double ClimbSpeed(){
+    double speed =mpOperatorJoystick->GetRawAxis(kOperatorLeftYAxis);
+    if(-0.01<speed<0.01){
+      speed = 0;
+    }
+    return speed;
+  }
+
 
  private:
  // Components (e.g. motor controllers and sensors) should generally be
@@ -35,5 +45,6 @@ class Climber : public frc2::SubsystemBase {
   WPI_TalonSRX mClimbDownMotor;
   frc::DigitalInput mTopLimitSwitch;
   frc::DigitalInput mBotLimitSwitch;
+  frc::XboxController* mpOperatorJoystick;
   
 };

@@ -9,7 +9,8 @@
 #include "RobotContainer.h"
 #include "Constants.h"
 
-Climber::Climber():
+Climber::Climber(frc::XboxController* pOperatorJoystick): 
+    mpOperatorJoystick{pOperatorJoystick},
     mClimbUpMotor{kClimbUpMotor},
     mClimbDownMotor{kClimbDwnMotor},
     mTopLimitSwitch{kTopClimbLimit},
@@ -25,21 +26,17 @@ void Climber::StopClimb(){
 }
 
 //raise the climber
-void Climber::ClimberUp(){
-    if (!isClimbUp()){
-        mClimbUpMotor.Set(kClimberUpSpeed);
+void Climber::Climb(){
+    
+    if(ClimbSpeed()>0 && !isClimbUp()){
+        mClimbUpMotor.Set(ClimbSpeed());
+        mClimbDownMotor.Set(0);
+    }
+    else if(ClimbSpeed()<0 && !isClimbDown()){
+        mClimbDownMotor.Set(ClimbSpeed());
+        mClimbUpMotor.Set(ClimbSpeed()*kTakeUpSlackPercent);
     }
     else{
-        StopClimb();
-    }
-}
-//lift the robot and bring the climber down
-void Climber::ClimberDown(){
-    if (!isClimbDown()){
-        mClimbDownMotor.Set(kClimberDownSpeed);
-        mClimbUpMotor.Set(kTakeUpPulleySlackSpeed);
-    }
-    else {
         StopClimb();
     }
 }
