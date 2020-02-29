@@ -18,42 +18,47 @@ PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPane
 // Called when the command is initially scheduled.
 void PositionControlPanel::Initialize() {
   mpControlPanel->resetFinished();
+  mpControlPanel->deployManipulator();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void PositionControlPanel::Execute() {
-  if(gameData.length() > 0)
-  {
-    switch (gameData[0])
+  if (mpControlPanel->isDeployedManipulator()){
+    if(gameData.length() > 0)
     {
-    case 'B' :
-      mpControlPanel->positionControl('R');
-      break;
-    case 'G' :
+      switch (gameData[0])
+      {
+        case 'B' :
+        mpControlPanel->positionControl('R');
+        break;
+      case 'G' :
+        mpControlPanel->positionControl('Y');
+        break;
+      case 'R' :
+        mpControlPanel->positionControl('B');
+        break;
+      case 'Y' :
+        mpControlPanel->positionControl('G');
+        break;
+      default :
+        printf("BAD GAME DATA\n");
+        break;
+      }
+    } 
+    else {
       mpControlPanel->positionControl('Y');
-      break;
-    case 'R' :
-      mpControlPanel->positionControl('B');
-      break;
-    case 'Y' :
-      mpControlPanel->positionControl('G');
-      break;
-    default :
-      printf("BAD GAME DATA\n");
-      break;
     }
+      mpSubsystemDrive->slowlyDriveForwards();
+      printf("Running Pos\n");
   }
-  else {
-    mpControlPanel->positionControl('Y');
-  }
-  mpSubsystemDrive->slowlyDriveForwards();
-  printf("Running Pos\n");
+
 }
 
 // Called once the command ends or is interrupted.
 void PositionControlPanel::End(bool interrupted) {
   printf("Position complete!\n");
   mpSubsystemDrive->stop();
+  mpControlPanel->retractManipulator();
 }
 
 // Returns true when the command should end.

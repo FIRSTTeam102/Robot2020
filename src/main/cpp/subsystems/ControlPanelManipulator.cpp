@@ -157,6 +157,12 @@ void ControlPanelManipulator::deployManipulator() {
 	mDeployColorServo.Set(kControlPanelColorServoOut);
 	printf("Deployed!\n");
 }
+//check if the control panel manipulator has been fully deployed
+bool ControlPanelManipulator::isDeployedManipulator(){
+	if (mDeployManipServo.GetPosition() < kControlPanelManipServoOut)
+		return false;
+	else return true;
+}
 
 void ControlPanelManipulator::retractManipulator() {
 	mDeployManipServo.Set(kControlPanelManipServoIn);
