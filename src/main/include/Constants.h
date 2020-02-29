@@ -61,10 +61,10 @@ int constexpr kControlPanelColorServo = 1;
 //Calibrated values
 //Shooter Speeds
 float constexpr kSlowSpeed = 0.2;
-float constexpr kMedSpeed = 0.6;
-float constexpr kFastSpeed = 0.85;
-float constexpr kSlowAuto = 0.4;
-float constexpr kFastAuto = 0.7;
+float constexpr kMedSpeed = 0.58;
+float constexpr kFastSpeed = 0.63;
+float constexpr kSlowAuto = 0.63;
+float constexpr kFastAuto = 0.63;
 
 //Indexer Constants
 int constexpr kMaxPowerCellTravelTime = 100;
