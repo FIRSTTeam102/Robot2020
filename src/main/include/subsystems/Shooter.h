@@ -15,6 +15,7 @@ class Shooter : public frc2::SubsystemBase {
  public:
   Shooter();
   void setSpeed(float speed);
+  double getSpeed();
   void startMotor();
   void stopMotor();
   bool isRunning();

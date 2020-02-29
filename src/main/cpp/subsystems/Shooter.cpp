@@ -20,8 +20,13 @@ Shooter::Shooter() :
 // This method will be called once per scheduler run
 void Shooter::Periodic() {}
 
+
 void Shooter::setSpeed(float speed) {
     mSpeed = speed;
+}
+
+double Shooter::getSpeed(){
+    return mSpeed;
 }
 
 void Shooter::startMotor() {

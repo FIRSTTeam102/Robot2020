@@ -9,9 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <frc2/command/button/POVButton.h>
-
-
+#include "subsystems/Shooter.h"
 
 /**
  * An example command.
@@ -20,11 +18,12 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ManualShooterSpeed
-    : public frc2::CommandHelper<frc2::CommandBase, ManualShooterSpeed> {
+class ChangeFlyWheelSpeed
+    : public frc2::CommandHelper<frc2::CommandBase, ChangeFlyWheelSpeed> {
  public:
-  ManualShooterSpeed();
-
+  ChangeFlyWheelSpeed(Shooter* pShooter);
+  void changeSpeed(double likt);
+  
   void Initialize() override;
 
   void Execute() override;
@@ -32,4 +31,6 @@ class ManualShooterSpeed
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+  private:
+  Shooter* mpShooter;
 };
