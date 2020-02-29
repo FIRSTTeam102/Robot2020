@@ -16,14 +16,16 @@ DriveTrain::DriveTrain():
     mDriveRight1{kTopRightMotor}, 
     mDriveRight2{kBottomRightMotor}
  {
-
+    mDriveLeft1.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+    mDriveLeft2.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+    mDriveRight1.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+    mDriveRight2.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
 }
 
 // This method will be called once per scheduler run
 void DriveTrain::Periodic() {}
 
 void DriveTrain::driveWithXboxController(){
-    
     double leftSpeed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
     double rightSpeed = mpDriverJoystick->GetRawAxis(5); //Cap: 697rpm
     if (!inverted) {

@@ -104,5 +104,5 @@ void Indexer::Periodic() {
         mPowerCellWasAtBottom = false;
         mBottomTimer = 0;
     }
-    //printf("Intake: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
+    printf("Intake flipped: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
 }
