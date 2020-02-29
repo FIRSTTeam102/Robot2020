@@ -16,6 +16,7 @@ ControlPanelManipulator::ControlPanelManipulator():
 {
 	mDeployManipServo.SetRawBounds(2000, 1950, 1500, 1050, 1000);
     mDeployColorServo.SetRawBounds(2000, 1950, 1500, 1050, 1000);
+	mControlMotor.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);
     turnCounter = 0;
 	previousColor = 0;
 	blue.red = kBlueR;
