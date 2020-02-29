@@ -28,5 +28,6 @@
     "cwchar": "cpp",
     "cwctype": "cpp",
     "sstream": "cpp"
-  }
+  },
+  "java.dependency.packagePresentation": "flat"
 }

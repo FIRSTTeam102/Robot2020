@@ -37,6 +37,8 @@
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
+#include "commands/Climb.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -84,8 +86,8 @@ class RobotContainer {
   frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
   frc2::Button mOperatorButtonLMenu{[&] { return mOperatorController.GetRawButton(7);}};
   frc2::Button mOperatorButtonRMenu{[&] { return mOperatorController.GetRawButton(8);}};
-  frc2::Button mOperatorLT{[&] { return mOperatorController.GetRawAxis(2);}};
-  frc2::Button mOperatorRT{[&] { return mOperatorController.GetRawAxis(3);}};
+  frc2::Button mOperatorLT{[&] { return mOperatorController.GetRawAxis(2) > 0.5;}};
+  frc2::Button mOperatorRT{[&] { return mOperatorController.GetRawAxis(3) > 0.5;}};
   frc2::Button mOperatorUpDPad{[&] { return (mOperatorController.GetPOV() == 0);}};
   frc2::Button mOperatorDownDPad{[&] { return (mOperatorController.GetPOV() == 180);}};
 
@@ -117,7 +119,8 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
-
+  Climber mClimber{&mOperatorController}; 
+  Climb mClimbCommand{&mClimber};
 
 
   void ConfigureButtonBindings();
