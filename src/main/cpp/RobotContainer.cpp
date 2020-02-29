@@ -31,25 +31,26 @@ RobotContainer::RobotContainer():
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
   mDriverButtonA.WhenPressed(&mFlipDriveCommand, true);//(&mPrepShootingFast, true);
-  mDriverButtonB.WhenPressed(&mPositionCommand, true);//(&mPrepShootingMed, true);
-  mDriverButtonX.WhenPressed(&mRotateCommand, true);//(&mStopShootingCommand, false);
-  mDriverButtonY.WhenPressed(&mManualPanelCommand, true);//(&mPrepShootingSlow, true);
+  mDriverButtonB.WhenHeld(&mPositionCommand, true);//(&mPrepShootingMed, true);
+  mDriverButtonX.WhenHeld(&mRotateCommand, true);//(&mStopShootingCommand, false);
+  mDriverButtonY.WhenHeld(&mManualPanelCommand, true);//(&mPrepShootingSlow, true);
   mDriverButtonLB.WhenHeld(&mSlowLeftCommand, true);
   mDriverButtonRB.WhenHeld(&mSlowRightCommand, true);
-  mDriverButtonRMenu.WhenPressed(&mFlipDriveCommand, false);
+  //mDriverButtonRMenu.WhenPressed(&mFlipDriveCommand, false);
   mDriverLT.WhenPressed(&mPickupCellsCommand, true);
   mDriverLT.WhenReleased(&mRaiseArmCommand, true);
   mDriverRT.WhenHeld(&mShootCommand, false);
-  mDriverUpDPad.WhenPressed(&mDeployManipulatorCommand, false);
-  mDriverDownDPad.WhenPressed(&mRetractManipulatorCommand, false);
+  //mDriverUpDPad.WhenPressed(&mDeployManipulatorCommand, false);
+  //mDriverDownDPad.WhenPressed(&mRetractManipulatorCommand, false);
 
-  mOperatorButtonA.WhenPressed(&mPrepShootingFast, true);//(&mRotateCommand, true);
+  mOperatorButtonA.WhenPressed(&mPrepShootingSlow, true);//(&mRotateCommand, true);
   mOperatorButtonB.WhenPressed(&mPrepShootingMed, true);//(&mPositionCommand, true);
   mOperatorButtonX.WhenHeld(&mStopShootingCommand, false);//(&mStopPanelCommand, false);
-  mOperatorButtonY.WhenPressed(&mPrepShootingSlow, true);//(&mManualPanelCommand, true);
+  mOperatorButtonY.WhenPressed(&mPrepShootingFast, true);//(&mManualPanelCommand, true);
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
-  //above has not been changed; the thing it should be changed
-  //to is not a command yet
+  //must be added- mOperatorButtonLMenu(toggle danger buttons)
+  //must be added- mOperatorButtonRMenu(switch camera command)
+
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
 
   //Create a triggers to activate deactivate the Intake of Power cells
