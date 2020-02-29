@@ -7,6 +7,7 @@
 
 #include "subsystems/Shooter.h"
 #include "Constants.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 Shooter::Shooter() : 
     mShooter1{kFlyMotor1},
@@ -15,13 +16,15 @@ Shooter::Shooter() :
     mShooter2.Set(ControlMode::Follower, kFlyMotor1);
     mShooter1.SetInverted(true);
     mShooter2.SetInverted(true);
+    frc::SmartDashboard::PutNumber("Flywheel Speed", 0.0);
 }
 
 // This method will be called once per scheduler run
 void Shooter::Periodic() {}
 
 void Shooter::setSpeed(float speed) {
-    mSpeed = speed;
+    //mSpeed = speed;
+    mSpeed = frc::SmartDashboard::GetNumber("Flywheel Speed", 0.0);
 }
 
 void Shooter::startMotor() {
