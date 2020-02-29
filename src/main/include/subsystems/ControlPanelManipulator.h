@@ -26,6 +26,7 @@ class ControlPanelManipulator : public frc2::SubsystemBase {
   void stopMotor();
   void runMotor();
   void deployManipulator();
+  bool isDeployedManipulator();
   void retractManipulator();
   /**
    * Will be called periodically whenever the CommandScheduler runs.
