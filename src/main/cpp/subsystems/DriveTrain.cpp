@@ -25,7 +25,7 @@ DriveTrain::DriveTrain():
 // This method will be called once per scheduler run
 void DriveTrain::Periodic() {}
 
-void DriveTrain::driveWithXboxController(){
+void DriveTrain::tankDrive(){
     
     double leftSpeed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
     double rightSpeed = mpDriverJoystick->GetRawAxis(5); //Cap: 697rpm
