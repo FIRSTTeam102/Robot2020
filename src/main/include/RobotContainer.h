@@ -91,8 +91,8 @@ class RobotContainer {
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;
-  SlowTurn mSlowLeftCommand{&mTankDrive, true};
-  SlowTurn mSlowRightCommand{&mTankDrive, false};
+  SlowTurn mSlowLeftCommand{&mTankDrive, false};
+  SlowTurn mSlowRightCommand{&mTankDrive, true};
   FlipDrive mFlipDriveCommand{&mTankDrive};
 
   Intake mIntake;
