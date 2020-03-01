@@ -20,6 +20,14 @@ Indexer::Indexer():
     mEmptyTimer{0},
     mPowerCellWasAtIntake{false}
  {
+
+    frc::Shuffleboard::GetTab("Driver Info")
+    .Add("Powercell Full",isFullIndexer())
+    .WithWidget(frc::BuiltInWidgets::kBooleanBox).WithSize(3, 1).WithPosition(2, 1);
+
+    frc::Shuffleboard::GetTab("Driver Info")
+    .Add("Number of Power Cells",mNumPowerCells);
+    
      frc::Shuffleboard::GetTab("TestRobot")
     .Add("Intake Sensor",mIntakeSensor.Get())
     .WithWidget(frc::BuiltInWidgets::kBooleanBox).WithSize(3, 1).WithPosition(2, 1);
