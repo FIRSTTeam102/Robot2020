@@ -27,7 +27,7 @@ void ManualControlPanel::Execute() {
 void ManualControlPanel::End(bool interrupted) {
   mpControlPanel->stopMotor();
   Lights::GetInstance()->setMode(kLights_enabled); //light stuffs
-  printf("command sent to stop lights\n\n\n\n\n");
+  //printf("command sent to stop lights\n\n\n\n\n");
 
 }
 

@@ -10,12 +10,8 @@
 ControlPanelManipulator::ControlPanelManipulator():
     //controlMotor{controlPanelMotorIndex},
 	mControlMotor{kControlPanelMotor},
-	mDeployManipServo{kControlPanelManipServo},
-	mDeployColorServo{kControlPanelColorServo},
 	mColorSensor{frc::I2C::Port::kOnboard}
 {
-	mDeployManipServo.SetRawBounds(2000, 1950, 1500, 1050, 1000);
-    mDeployColorServo.SetRawBounds(2000, 1950, 1500, 1050, 1000);
 	mControlMotor.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);
     turnCounter = 0;
 	previousColor = 0;
@@ -151,24 +147,6 @@ char ControlPanelManipulator::getReadColor() {
 
 bool ControlPanelManipulator::getFinished() {
 	return finished;
-}
-
-void ControlPanelManipulator::deployManipulator() {
-	mDeployManipServo.Set(kControlPanelManipServoOut);
-	mDeployColorServo.Set(kControlPanelColorServoOut);
-	printf("Deployed!\n");
-}
-//check if the control panel manipulator has been fully deployed
-bool ControlPanelManipulator::isDeployedManipulator(){
-	if (mDeployManipServo.GetPosition() < kControlPanelManipServoOut)
-		return false;
-	else return true;
-}
-
-void ControlPanelManipulator::retractManipulator() {
-	mDeployManipServo.Set(kControlPanelManipServoIn);
-	mDeployColorServo.Set(kControlPanelColorServoIn);
-	printf("Retracted!\n");
 }
 
 // This method will be called once per scheduler run

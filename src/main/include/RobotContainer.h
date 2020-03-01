@@ -32,8 +32,6 @@
 #include "commands/powercell/Reset.h"
 #include "commands/powercell/ShootPowerCells.h"
 #include "commands/powercell/StopShootingPowerCells.h"
-#include "commands/controlpanel/DeployManipulator.h"
-#include "commands/controlpanel/RetractManipulator.h"
 #include "commands/controlpanel/ManualControlPanel.h"
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
@@ -116,8 +114,6 @@ class RobotContainer {
   StopShootingPowerCells mStopShootingCommand{&mIndexer, &mShooter};
 
   ControlPanelManipulator mControlPanel;
-  DeployManipulator mDeployManipulatorCommand{&mControlPanel};
-  RetractManipulator mRetractManipulatorCommand{&mControlPanel};
   RotateControlPanel mRotateCommand{&mControlPanel, &mTankDrive};
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};

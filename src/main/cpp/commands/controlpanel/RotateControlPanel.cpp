@@ -34,7 +34,6 @@ void RotateControlPanel::End(bool interrupted) {
   printf("Rotation complete!\n");
   Lights::GetInstance()->setMode(kLights_enabled); //for light stuffs
   mpSubsystemDrive->stop();
-  mpControlPanel->retractManipulator();
 }
 
 // Returns true when the command should end.

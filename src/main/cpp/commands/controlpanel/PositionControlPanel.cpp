@@ -19,7 +19,6 @@ PositionControlPanel::PositionControlPanel(ControlPanelManipulator *pControlPane
 void PositionControlPanel::Initialize() {
   Lights::GetInstance()->setMode(kLights_rainbow_bounce); //for light stuffs
   mpControlPanel->resetFinished();
-  mpControlPanel->deployManipulator();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -58,7 +57,6 @@ void PositionControlPanel::End(bool interrupted) {
   printf("Position complete!\n");
   Lights::GetInstance()->setMode(kLights_enabled); //for light stuffs
   mpSubsystemDrive->stop();
-  mpControlPanel->retractManipulator();
 }
 
 // Returns true when the command should end.

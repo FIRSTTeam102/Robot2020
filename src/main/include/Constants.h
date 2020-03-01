@@ -102,12 +102,6 @@ float constexpr kGrnR = 0.14;
 float constexpr kGrnG = 0.60;
 float constexpr kGrnB = 0.26;
 
-//Servo positions
-float constexpr kControlPanelManipServoOut = 0.0;
-float constexpr kControlPanelManipServoIn = 1.0;
-float constexpr kControlPanelColorServoOut = 0.0;
-float constexpr kControlPanelColorServoIn = 1.0;
-
 //Indexer bottom sensor timeout
 //Spins 760 rpms (diameter 1.5"), bottom sensor ~2" in
 //Band moves 60"/s

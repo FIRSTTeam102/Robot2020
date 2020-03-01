@@ -41,8 +41,6 @@ void RobotContainer::ConfigureButtonBindings() {
   mDriverLT.WhenPressed(&mLowerArmCommand, true);
   mDriverLT.WhenReleased(&mRaiseArmCommand, true);
   mDriverRT.WhenHeld(&mShootCommand, false);
-  mDriverUpDPad.WhenPressed(&mDeployManipulatorCommand, false);
-  mDriverDownDPad.WhenPressed(&mRetractManipulatorCommand, false);
 
   mOperatorButtonA.WhenPressed(&mRotateCommand, true);
   mOperatorButtonB.WhenPressed(&mPositionCommand, true);
@@ -50,9 +48,6 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonY.WhenHeld(&mManualPanelCommand, true);
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
-
-  
-   
 }
 
 
