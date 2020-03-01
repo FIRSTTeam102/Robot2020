@@ -10,13 +10,14 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Servo.h>
 #include <frc/Joystick.h>
+#include "Constants.h"
 
 class CameraServo : public frc2::SubsystemBase {
  public:
   CameraServo();
     void controlServoWithJoystick();
-    void setServoJoystick(frc::Joystick* servoJoystick){
-    p_servoJoystick = servoJoystick;
+    void setServoJoystick(frc::Joystick* pServoJoystick){
+    mpServoJoystick = pServoJoystick;
   };
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -24,8 +25,8 @@ class CameraServo : public frc2::SubsystemBase {
   void Periodic();
 
  private:
-  frc::Servo cameraServo;
-  frc::Joystick* p_servoJoystick;
+  frc::Servo mCameraServo;
+  frc::Joystick* mpServoJoystick;
   double horizontalPower;
   double cameraServoPosition;
   // Components (e.g. motor controllers and sensors) should generally be

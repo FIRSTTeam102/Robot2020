@@ -21,7 +21,7 @@
 class MoveCameraServo
     : public frc2::CommandHelper<frc2::CommandBase, MoveCameraServo> {
  public:
-  MoveCameraServo(CameraServo *m_CameraServo);
+  MoveCameraServo(CameraServo *pCameraServo);
 
   void Initialize() override;
 
@@ -32,6 +32,6 @@ class MoveCameraServo
   bool IsFinished() override;
 
   private:
-  CameraServo* p_CameraServo;
-  frc::Joystick* p_servoJoystick;
+  CameraServo* mpCameraServo;
+  frc::Joystick* mpServoJoystick;
 };

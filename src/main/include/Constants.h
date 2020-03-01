@@ -39,6 +39,9 @@ int constexpr kIntakeTopSensor = 9;
 int constexpr kIntakeBottomSensor = 10;
 
 
+//PWM Signals
+int constexpr kCameraServoIndex = 0;
+
 
 //Digital IO channels
 //Indexer Distance Sensors (Digital Input)
