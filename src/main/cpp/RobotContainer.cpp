@@ -27,6 +27,8 @@ RobotContainer::RobotContainer():
   
   mIndexer.SetDefaultCommand(std::move(mIndexCommand));
   
+  mCameraServo.SetDefaultCommand(std::move(mServoCommand));
+  mCameraServo.setServoJoystick(&mOperatorController);
 }
 
 void RobotContainer::ConfigureButtonBindings() {

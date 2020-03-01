@@ -7,6 +7,8 @@
 
 #pragma once
 
+
+
 #include <frc2/command/Command.h>
 #include <frc/XboxController.h>
 #include <frc2/command/button/JoystickButton.h>
@@ -38,6 +40,7 @@
 #include "commands/controlpanel/StopControlPanel.h"
 #include "commands/auto/AutonomousCode.h"
 #include "commands/Climb.h"
+#include "commands/MoveCameraServo.h"
 
 
 /**
@@ -61,6 +64,10 @@ class RobotContainer {
  private:
  
   // The robot's subsystems and commands are defined here...
+
+  CameraServo mCameraServo;
+  MoveCameraServo mServoCommand{&mCameraServo};
+
   frc::XboxController mDriverController;
   frc2::Button mDriverButtonA{[&] { return mDriverController.GetRawButton(1);}};
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
@@ -74,6 +81,7 @@ class RobotContainer {
   frc2::Button mDriverRT{[&] { return (mDriverController.GetRawAxis(3) > 0.5);}};
   frc2::Button mDriverUpDPad{[&] { return (mDriverController.GetPOV() == 0);}};
   frc2::Button mDriverDownDPad{[&] { return (mDriverController.GetPOV() == 180);}};
+  
   frc::XboxController mOperatorController;
   frc2::Button mOperatorButtonA{[&] { return mOperatorController.GetRawButton(1);}};
   frc2::Button mOperatorButtonB{[&] { return mOperatorController.GetRawButton(2);}};
