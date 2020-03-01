@@ -13,23 +13,17 @@
 AutonomousCode::AutonomousCode(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer, Shooter* pShooter, int slot, bool shoot, int move, bool shoot2): mpDriveTrain{pDriveTrain}, mpIntake{pIntake}, mpIndexer{pIndexer}, mpShooter{pShooter} {printf("Running auto\n");
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  if (slot == 2 || slot == 3) {
-    shootSpeed = kMedAuto;
-  }
-  else {
-    shootSpeed = kSlowAuto;
-  }
   if (shoot) { //Shoot initial cells
     printf("Shooting\n");
-    AddCommands(AimShooter(mpShooter, shootSpeed), ShootPowerCells(mpIndexer, mpShooter));
+    AddCommands(AimShooter(mpShooter, kFastSpeed), ShootPowerCells(mpIndexer, mpShooter));
   }
   //if (mShoot && mSlot == 2 && mMove == 1) { //Shot old balls, near trench, going to pick up trench balls
   if (slot == 2 && move == 1) { //Not necessarily shot old balls, near trench, going to pick up trench balls
     printf("Going to trench\n");
-    AddCommands(GetRascals(mpDriveTrain, mpIntake));
+    AddCommands(GetRascals(mpDriveTrain, mpIntake, mpIndexer));
     if (shoot2) { //Shoot again
       printf("Shooting from trench\n");
-      AddCommands(TurnDegrees(mpDriveTrain, -11.5), AimShooter(mpShooter, kFastAuto), ShootPowerCells(mpIndexer, mpShooter));
+      AddCommands(TurnDegrees(mpDriveTrain, -11.5), AimShooter(mpShooter, kMedSpeed), ShootPowerCells(mpIndexer, mpShooter));
     }
   }
   else if (move == 2) { //Back up the whole time

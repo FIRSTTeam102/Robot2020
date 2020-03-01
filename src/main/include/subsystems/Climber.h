@@ -29,9 +29,9 @@ class Climber : public frc2::SubsystemBase {
   bool isClimbUp() { return(!mTopLimitSwitch.Get()); }
   bool isClimbDown() { return(!mBotLimitSwitch.Get()); }
 
-  double ClimbSpeed(){
-    double speed =mpOperatorJoystick->GetRawAxis(kOperatorLeftYAxis);
-    if(-0.01<speed<0.01){
+  double ClimbSpeed() {
+    double speed = mpOperatorJoystick->GetRawAxis(1);
+    if (-0.01 < speed && speed < 0.01){
       speed = 0;
     }
     return speed;

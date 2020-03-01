@@ -53,9 +53,6 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand(int slot, bool shoot, int move, bool shoot2);
 
-  frc2::Command* GetDeployManipulatorCommand() { return &mDeployManipulatorCommand; };
-  frc2::Command* GetRetractManipulatorCommand() { return &mRetractManipulatorCommand; };
-
   frc::XboxController* GetDriverJoystick(){
     return &mDriverController;
   }
@@ -124,6 +121,4 @@ class RobotContainer {
 
 
   void ConfigureButtonBindings();
-
-  
 };

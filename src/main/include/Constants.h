@@ -56,22 +56,14 @@ int constexpr kDIOTop = 2;
 int constexpr kIntakeTopSensor = 3;
 int constexpr kIntakeBottomSensor = 4;
 
+//Climb Limit Switches
+int constexpr kTopClimbLimit = 5;
+int constexpr kBotClimbLimit = 6;
+
+
 //OI Indexes (joysticks/buttons)
 int constexpr kDriverJoystick = 0;
 int constexpr kOperatorJoystick = 1;
-int constexpr kOperatorLeftYAxis = 1;
-
-//Limit Switches
-int constexpr kTopClimbLimit = 0;
-int constexpr kBotClimbLimit = 1;
-int constexpr kIntakeTopSensor = 2;
-int constexpr kIntakeBottomSensor = 3;
-
-
-//PWM Channels
-//Servos
-int constexpr kControlPanelManipServo = 0;
-int constexpr kControlPanelColorServo = 1;
 
 
 //Calibrated values
@@ -82,8 +74,6 @@ float constexpr kAutoMoveTicks = 3 * 50; //3 sec * 50 ticks/sec
 float constexpr kSlowSpeed = 0.2;
 float constexpr kMedSpeed = 0.58;
 float constexpr kFastSpeed = 0.63;
-float constexpr kSlowAuto = 0.63;
-float constexpr kFastAuto = 0.63;
 
 //Indexer Constants
 int constexpr kMaxPowerCellTravelTime = 100;
