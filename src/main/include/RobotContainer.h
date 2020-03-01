@@ -19,6 +19,7 @@
 #include "subsystems/Indexer.h"
 #include "subsystems/Shooter.h"
 #include "subsystems/ControlPanelManipulator.h"
+#include "subsystems/Lights.h"
 
 #include "commands/drive/DriveWithXbox.h"
 #include "commands/drive/SlowTurn.h"
@@ -37,6 +38,7 @@
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
+#include "commands/auto/AutonomousCode.h"
 #include "commands/Climb.h"
 
 
@@ -51,7 +53,7 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::Command* GetAutonomousCommand();
+  frc2::Command* GetAutonomousCommand(int slot, bool shoot, int move, bool shoot2);
 
   frc2::Command* GetDeployManipulatorCommand() { return &mDeployManipulatorCommand; };
   frc2::Command* GetRetractManipulatorCommand() { return &mRetractManipulatorCommand; };
@@ -90,6 +92,8 @@ class RobotContainer {
   frc2::Button mOperatorRT{[&] { return mOperatorController.GetRawAxis(3) > 0.5;}};
   frc2::Button mOperatorUpDPad{[&] { return (mOperatorController.GetPOV() == 0);}};
   frc2::Button mOperatorDownDPad{[&] { return (mOperatorController.GetPOV() == 180);}};
+
+  //Lights mLights;
 
   DriveTrain mTankDrive;
   DriveWithXbox mDriveCommand;

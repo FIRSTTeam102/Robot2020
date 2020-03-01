@@ -49,16 +49,13 @@ void DriveTrain::arcadeDrive(){
     }
 }
 
-void DriveTrain::slowlyDriveForwards(){
-    mDrive.TankDrive(0.2, 0.2, false);
-}
-
 void DriveTrain::stop(){
     mDrive.TankDrive(0, 0, false);
 }
 
 void DriveTrain::move(double left, double right){
     mDrive.TankDrive(left, right, false);
+    //printf("Moving: %f, %f\n", left, right);
 }
 
 void DriveTrain::toggleDrive(){

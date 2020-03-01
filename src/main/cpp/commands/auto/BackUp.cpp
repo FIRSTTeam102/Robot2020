@@ -5,28 +5,34 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/controlpanel/StopControlPanel.h"
+//Autonomous stage 3
+#include "commands/auto/BackUp.h"
 
-StopControlPanel::StopControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
-  AddRequirements({pControlPanel});
-  AddRequirements({pSubsystemDrive});
+BackUp::BackUp(DriveTrain* pTankDrive):  mpTankDrive(pTankDrive){
   // Use addRequirements() here to declare subsystem dependencies.
-  mpControlPanel = pControlPanel;
-  mpSubsystemDrive = pSubsystemDrive;
+  AddRequirements(pTankDrive);
+  //ticksPassed = 0;
 }
 
 // Called when the command is initially scheduled.
-void StopControlPanel::Initialize() {}
+void BackUp::Initialize() {
+  printf("test2");
+  ticksPassed = 0;
+}
 
 // Called repeatedly when this Command is scheduled to run
-void StopControlPanel::Execute() {
-  Lights::GetInstance()->setMode(kLights_enabled); //for light stuffs
-  mpControlPanel->stopMotor();
-  mpSubsystemDrive->stop();
+void BackUp::Execute() {
+  ticksPassed +=1;
+  mpTankDrive->move(-1.0, -1.0);
 }
 
 // Called once the command ends or is interrupted.
-void StopControlPanel::End(bool interrupted) {}
+void BackUp::End(bool interrupted) {
+  mpTankDrive->stop();
+}
 
 // Returns true when the command should end.
-bool StopControlPanel::IsFinished() { return false; }
+bool BackUp::IsFinished() {
+  return (ticksPassed >= 200); //Drives robot backwards for 200 ticks. 200 in this case might need to be changed if the robot does not drive far enough or drives too far
+  //return false;
+}

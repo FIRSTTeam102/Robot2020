@@ -5,28 +5,32 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/controlpanel/StopControlPanel.h"
+#include "commands/auto/MoveLinear.h"
 
-StopControlPanel::StopControlPanel(ControlPanelManipulator *pControlPanel, DriveTrain *pSubsystemDrive) {
-  AddRequirements({pControlPanel});
-  AddRequirements({pSubsystemDrive});
+MoveLinear::MoveLinear(DriveTrain* pDriveTrain, int ticks, double speed): mpDriveTrain(pDriveTrain), mTicks(ticks), mSpeed(speed) {
   // Use addRequirements() here to declare subsystem dependencies.
-  mpControlPanel = pControlPanel;
-  mpSubsystemDrive = pSubsystemDrive;
+  AddRequirements(pDriveTrain);
+  ticksPassed = 0;
 }
 
 // Called when the command is initially scheduled.
-void StopControlPanel::Initialize() {}
+void MoveLinear::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void StopControlPanel::Execute() {
-  Lights::GetInstance()->setMode(kLights_enabled); //for light stuffs
-  mpControlPanel->stopMotor();
-  mpSubsystemDrive->stop();
+void MoveLinear::Execute() {
+  mpDriveTrain->move(mSpeed, mSpeed);
+  ticksPassed += 1;
 }
 
 // Called once the command ends or is interrupted.
-void StopControlPanel::End(bool interrupted) {}
+void MoveLinear::End(bool interrupted) {
+  mpDriveTrain->move(0, 0);
+}
 
 // Returns true when the command should end.
-bool StopControlPanel::IsFinished() { return false; }
+bool MoveLinear::IsFinished() { 
+  if(ticksPassed >= mTicks){
+    return true;
+  }
+  return false; 
+  }

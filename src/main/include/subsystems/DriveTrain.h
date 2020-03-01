@@ -18,12 +18,12 @@
 class DriveTrain : public frc2::SubsystemBase {
  public:
   DriveTrain();
-  void slowlyDriveForwards();
   void stop();
   void move(double left, double right);
   void tankDrive();
   void arcadeDrive();
   void toggleDrive();
+  void move(double x, double y);
   void setDriverJoystick(frc::XboxController* pDriverJoystick){
     mpDriverJoystick = pDriverJoystick;
   };

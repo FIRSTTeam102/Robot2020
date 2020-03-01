@@ -6,6 +6,9 @@
 /*----------------------------------------------------------------------------*/
 #pragma once
 
+#include <frc/Encoder.h>
+#include <frc/SerialPort.h>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -72,6 +75,9 @@ int constexpr kControlPanelColorServo = 1;
 
 
 //Calibrated values
+//Auto calibration
+float constexpr kAutoMoveTicks = 3 * 50; //3 sec * 50 ticks/sec
+
 //Shooter Speeds
 float constexpr kSlowSpeed = 0.2;
 float constexpr kMedSpeed = 0.58;
@@ -110,3 +116,14 @@ float constexpr kControlPanelColorServoIn = 1.0;
 //Need a timeout so they are indexed far enough
 double constexpr kIndexerGap = 2;
 double constexpr kBottomIndexerTimeout = (kIndexerGap + 0) / 19;
+
+//Light codes:
+int constexpr kLights_off = 0;
+int constexpr kLights_auto = 1;
+int constexpr kLights_shoot = 2;
+int constexpr kLights_disabled = 3;
+int constexpr kLights_enabled = 4;
+int constexpr kLights_green_loop = 5;
+int constexpr kLights_rainbow_loop = 6;
+int constexpr kLights_fire = 7;
+int constexpr kLights_rainbow_bounce = 8;

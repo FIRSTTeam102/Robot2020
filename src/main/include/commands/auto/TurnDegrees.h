@@ -9,9 +9,9 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <subsystems/ControlPanelManipulator.h>
-#include <subsystems/DriveTrain.h>
-#include <subsystems/Lights.h>
+#include <frc/SerialPort.h>
+#include "subsystems/DriveTrain.h"
+#include "subsystems/Lights.h"
 
 /**
  * An example command.
@@ -20,10 +20,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class RotateControlPanel
-    : public frc2::CommandHelper<frc2::CommandBase, RotateControlPanel> {
+class TurnDegrees
+    : public frc2::CommandHelper<frc2::CommandBase, TurnDegrees> {
  public:
-  RotateControlPanel(ControlPanelManipulator* pControlPanel, DriveTrain* pSubsystemDrive);
+  TurnDegrees(DriveTrain* pDriveTrain, int degrees);
 
   void Initialize() override;
 
@@ -32,8 +32,9 @@ class RotateControlPanel
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-  private:
-  ControlPanelManipulator* mpControlPanel;
-  DriveTrain* mpSubsystemDrive;
-  //Lights *mpLights;
+ private:
+  int mDegrees;
+  int readDegs;
+  int startDegs;
+  DriveTrain* mpDriveTrain;
 };

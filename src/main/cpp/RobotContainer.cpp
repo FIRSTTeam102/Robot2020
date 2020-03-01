@@ -6,8 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 #include "RobotContainer.h"
-#include "frc/XboxController.h"
-#include <frc2/command/button/JoystickButton.h>
 
 
 RobotContainer::RobotContainer(): 
@@ -30,7 +28,6 @@ RobotContainer::RobotContainer():
   mIndexer.SetDefaultCommand(std::move(mIndexCommand));
   
 }
-
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
@@ -59,8 +56,10 @@ void RobotContainer::ConfigureButtonBindings() {
 }
 
 
-frc2::Command* RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand(int slot, bool shoot, int move, bool shoot2) {
   // An example command will be run in autonomous
-  return NULL;
-
+ // return &m_autonomousCommand;
+  //mAutoCommand.setAutoConfig(slot, shoot, move, shoot2);
+  //return &mAutoCommand;
+  return new AutonomousCode(&mTankDrive, &mIntake, &mIndexer, &mShooter, slot, shoot, move, shoot2);
 }
