@@ -31,23 +31,28 @@ RobotContainer::RobotContainer():
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  mDriverButtonA.WhenPressed(&mPrepShootingFast, true);
-  mDriverButtonB.WhenPressed(&mPrepShootingMed, true);
-  mDriverButtonX.WhenPressed(&mStopShootingCommand, false);
-  mDriverButtonY.WhenPressed(&mPrepShootingSlow, true);
+  mDriverButtonA.WhenPressed(&mFlipDriveCommand, true);//(&mPrepShootingFast, true);
+  mDriverButtonB.WhenHeld(&mPositionCommand, true);//(&mPrepShootingMed, true);
+  mDriverButtonX.WhenHeld(&mRotateCommand, true);//(&mStopShootingCommand, false);
+  mDriverButtonY.WhenHeld(&mManualPanelCommand, false);//(&mPrepShootingSlow, true);
   mDriverButtonLB.WhenHeld(&mSlowLeftCommand, true);
   mDriverButtonRB.WhenHeld(&mSlowRightCommand, true);
-  mDriverButtonRMenu.WhenPressed(&mFlipDriveCommand, false);
+  //mDriverButtonRMenu.WhenPressed(&mFlipDriveCommand, false);
   mDriverLT.WhenPressed(&mLowerArmCommand, true);
   mDriverLT.WhenReleased(&mRaiseArmCommand, true);
   mDriverRT.WhenHeld(&mShootCommand, false);
+  //mDriverUpDPad.WhenPressed(&mDeployManipulatorCommand, false);
+  //mDriverDownDPad.WhenPressed(&mRetractManipulatorCommand, false);
 
-  mOperatorButtonA.WhenPressed(&mRotateCommand, true);
-  mOperatorButtonB.WhenPressed(&mPositionCommand, true);
-  mOperatorButtonX.WhenHeld(&mStopPanelCommand, false);
-  mOperatorButtonY.WhenHeld(&mManualPanelCommand, true);
+  //mOperatorButtonA.WhenPressed(&mPrepShootingSlow, true);//(&mRotateCommand, true);
+  mOperatorButtonB.WhenPressed(&mPrepShootingMed, true);//(&mPositionCommand, true);
+  mOperatorButtonX.WhenHeld(&mStopShootingCommand, false);//(&mStopPanelCommand, false);
+  mOperatorButtonY.WhenPressed(&mPrepShootingFast, true);//(&mManualPanelCommand, true);
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
+  //must be added- mOperatorButtonLMenu(toggle danger buttons)
+  //must be added- mOperatorButtonRMenu(switch camera command)
+
 }
 
 
