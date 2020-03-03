@@ -5,6 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <frc/shuffleboard/Shuffleboard.h>
 #include "commands/powercell/PrepShooting.h"
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
@@ -13,5 +14,17 @@
 PrepShooting::PrepShooting(Indexer* pIndexer, Shooter* pShooter, float shooterSpeed) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
+  
+  //update the shuffle board driver info: Fly Wheel Speed Zone
+  char shootRange[10];
+  if (shooterSpeed == kSlowSpeed) { strcpy(shootRange,"Close");} 
+  else if (shooterSpeed == kMedSpeed) {strcpy(shootRange,"Medium");}
+  else if (shooterSpeed == kFastSpeed) {strcpy(shootRange,"Far");}
+  else strcpy(shootRange,"Unknown");
+  
+  frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Fly Wheel Speed Zone",shootRange);
+  frc::Shuffleboard::Update();
+
   AddCommands(AimShooter(pShooter, shooterSpeed), PrimeIndexer(pIndexer));
 }

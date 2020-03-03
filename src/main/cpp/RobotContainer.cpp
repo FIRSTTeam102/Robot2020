@@ -5,6 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/SendableCameraWrapper.h>
 #include "RobotContainer.h"
 
 
@@ -29,6 +31,12 @@ RobotContainer::RobotContainer():
   
   mCameraServo.SetDefaultCommand(std::move(mServoCommand));
   mCameraServo.setServoJoystick(&mOperatorController);
+
+  frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Camera Stream",mCamera1)
+    .WithWidget(frc::BuiltInWidgets::kCameraStream)
+    .WithSize (10,10)
+    .WithPosition (4,0);
 }
 
 void RobotContainer::ConfigureButtonBindings() {

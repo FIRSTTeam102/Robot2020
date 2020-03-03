@@ -41,6 +41,8 @@
 #include "commands/auto/AutonomousCode.h"
 #include "commands/Climb.h"
 #include "commands/MoveCameraServo.h"
+#include "commands/NextCamera.h"
+#include "commands/PreviousCamera.h"
 
 
 /**
@@ -127,6 +129,11 @@ class RobotContainer {
   Climber mClimber{&mOperatorController}; 
   Climb mClimbCommand{&mClimber};
 
+  cs::UsbCamera mCamera1;
+  cs::UsbCamera mCamera2;
+  cs::UsbCamera mCamera3;
+  NextCamera mNextCamCommand{&mCamera1, &mCamera2, &mCamera3};
+  PreviousCamera mPrevCamCommand{&mCamera1, &mCamera2, &mCamera3};
 
   void ConfigureButtonBindings();
 };

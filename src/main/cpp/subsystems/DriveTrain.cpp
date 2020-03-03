@@ -5,6 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <frc/shuffleboard/Shuffleboard.h>
 #include "subsystems/DriveTrain.h"
 #include "RobotContainer.h"
 #include "Constants.h"
@@ -20,6 +21,12 @@ DriveTrain::DriveTrain():
     mDriveLeft2.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
     mDriveRight1.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
     mDriveRight2.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Drive Front",inverted)
+    .WithWidget(frc::BuiltInWidgets::kBooleanBox)
+    .WithPosition (1,0);
+
 }
 
 // This method will be called once per scheduler run

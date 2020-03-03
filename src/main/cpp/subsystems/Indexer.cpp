@@ -18,7 +18,8 @@ Indexer::Indexer():
     mTopSensor{kDIOTop},
     mNumPowerCells{3},
     mEmptyTimer{0},
-    mPowerCellWasAtIntake{false}
+    mPowerCellWasAtIntake{false},
+    mBottomTimer{0}
  {
      frc::Shuffleboard::GetTab("TestRobot")
     .Add("Intake Sensor",mIntakeSensor.Get())
@@ -31,6 +32,20 @@ Indexer::Indexer():
     frc::Shuffleboard::GetTab("TestRobot")
     .Add("Intake Top Sensor",mTopSensor.Get())
     .WithWidget(frc::BuiltInWidgets::kBooleanBox).WithSize(3, 1).WithPosition(2, 3);
+
+    //Indexer Driver Info 
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Indexer Full",isFullIndexer())
+    .WithWidget(frc::BuiltInWidgets::kBooleanBox)
+    .WithPosition(3,1);
+
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Indexer Delay",mBottomTimer)
+    .WithPosition(3,2);
+
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Number of Power Cells",mNumPowerCells)
+    .WithPosition(3,3);
 }
 //isFullIndexer - returns true if the TopSensor,
 //   and IntakeSensor all see a power cell. The Indexer is

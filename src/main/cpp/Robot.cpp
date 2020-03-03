@@ -39,16 +39,22 @@ void Robot::RobotInit() {
 
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoPos)
-    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithPosition(2, 0).WithSize(2, 1);
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser)
+    .WithPosition(2, 0).WithSize(2, 1);
+
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoShoot)
-    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithPosition(1, 1).WithSize(3, 1);;
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser)
+    .WithPosition(1, 1).WithSize(3, 1);
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoMovement)
-    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser).WithPosition(4, 0).WithSize(2, 1);;
+    .WithWidget(frc::BuiltInWidgets::kComboBoxChooser)
+    .WithPosition(4, 0).WithSize(2, 1);
   frc::Shuffleboard::GetTab("Auto")
     .Add(mAutoShoot2)
-    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser).WithPosition(4, 1).WithSize(3, 1);;
+    .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser)
+    .WithPosition(4, 1).WithSize(3, 1);
+  
 }
 
 /**

@@ -5,6 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <frc/shuffleboard/Shuffleboard.h>
 #include "subsystems/Shooter.h"
 #include "Constants.h"
 
@@ -15,6 +16,10 @@ Shooter::Shooter() :
     mShooter2.Set(ControlMode::Follower, kFlyMotor1);
     mShooter1.SetInverted(true);
     mShooter2.SetInverted(true);
+
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Fly Wheel Speed Zone","Stopped")
+    .WithPosition (2,1);
 }
 
 // This method will be called once per scheduler run
