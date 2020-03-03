@@ -61,7 +61,9 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
   //must be added- mOperatorButtonLMenu(toggle danger buttons)
-  //must be added- mOperatorButtonRMenu(switch camera command)
+
+  //mOperatorButtonLMenu.WhenPressed(&mPrevCamCommand, true);
+  mOperatorButtonRMenu.WhenPressed(&mNextCamCommand, true);
 
 }
 

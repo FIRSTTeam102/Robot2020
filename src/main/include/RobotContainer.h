@@ -93,6 +93,7 @@ class RobotContainer {
   frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
   frc2::Button mOperatorButtonLMenu{[&] { return mOperatorController.GetRawButton(7);}};
   frc2::Button mOperatorButtonRMenu{[&] { return mOperatorController.GetRawButton(8);}};
+
   frc2::Button mOperatorLT{[&] { return mOperatorController.GetRawAxis(2) > 0.5;}};
   frc2::Button mOperatorRT{[&] { return mOperatorController.GetRawAxis(3) > 0.5;}};
   frc2::Button mOperatorUpDPad{[&] { return (mOperatorController.GetPOV() == 0);}};
