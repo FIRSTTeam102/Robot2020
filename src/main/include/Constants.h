@@ -95,5 +95,5 @@ float constexpr kControlPanelColorServoIn = 1.0;
 //Ball moves 19"/s
 //Timeout = (gap + 7" - 2") / 19" = (gap + 5") / 19"       7" for ball, sensor is 2" in already
 //Need a timeout so they are indexed far enough
-double constexpr kIndexerGap = 2;
+double constexpr kIndexerGap = 3.5;
 double constexpr kBottomIndexerTimeout = (kIndexerGap + 0) / 19;
