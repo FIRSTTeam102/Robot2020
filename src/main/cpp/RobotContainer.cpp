@@ -10,12 +10,7 @@
 #include "RobotContainer.h"
 
 
-RobotContainer::RobotContainer(): 
-  mTankDrive{}, 
-  mDriverController{0},
-  mOperatorController{1},
-  mDriveCommand{&mTankDrive},
-  mIntake{}
+RobotContainer::RobotContainer()
 {
   // Initialize all of your commands and subsystems here
   //drive

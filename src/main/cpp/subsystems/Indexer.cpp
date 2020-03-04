@@ -18,8 +18,10 @@ Indexer::Indexer():
     mTopSensor{kDIOTop},
     mNumPowerCells{3},
     mEmptyTimer{0},
+    mBottomTimer{0},
     mPowerCellWasAtIntake{false},
-    mBottomTimer{0}
+    mPowerCellWasAtBottom{false},
+    enabled{true}
  {
      frc::Shuffleboard::GetTab("TestRobot")
     .Add("Intake Sensor",mIntakeSensor.Get())

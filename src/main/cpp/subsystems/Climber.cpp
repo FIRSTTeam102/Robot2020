@@ -10,11 +10,11 @@
 #include "Constants.h"
 
 Climber::Climber(frc::XboxController* pOperatorJoystick): 
-    mpOperatorJoystick{pOperatorJoystick},
     mClimbUpMotor{kClimbUpMotor},
     mClimbDownMotor{kClimbDwnMotor},
     mTopLimitSwitch{kTopClimbLimit},
-    mBotLimitSwitch{kBotClimbLimit}
+    mBotLimitSwitch{kBotClimbLimit},
+    mpOperatorJoystick{pOperatorJoystick}
 {
 
 }
