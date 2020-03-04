@@ -15,16 +15,19 @@ PrepShooting::PrepShooting(Indexer* pIndexer, Shooter* pShooter, float shooterSp
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   
-  //update the shuffle board driver info: Fly Wheel Speed Zone
-  char shootRange[10];
-  if (shooterSpeed == kSlowSpeed) { strcpy(shootRange,"Close");} 
-  else if (shooterSpeed == kMedSpeed) {strcpy(shootRange,"Medium");}
-  else if (shooterSpeed == kFastSpeed) {strcpy(shootRange,"Far");}
-  else strcpy(shootRange,"Unknown");
   
-  frc::Shuffleboard::GetTab("Drive Info")
-    .Add("Fly Wheel Speed Zone",shootRange);
-  frc::Shuffleboard::Update();
-
   AddCommands(AimShooter(pShooter, shooterSpeed), PrimeIndexer(pIndexer));
+
+  //update the shuffle board driver info: Fly Wheel Speed
+  std::string shootRange = "";
+  if (shooterSpeed == kSlowSpeed) { shootRange = "Close";} 
+  else if (shooterSpeed == kMedSpeed) {shootRange = "Medium";}
+  else if (shooterSpeed == kFastSpeed) {shootRange = "Far";}
+  else shootRange = "Unknown";
+
+  nt::NetworkTableInstance ntInst = nt::NetworkTableInstance::GetDefault();
+  auto shuffleTable = ntInst.GetTable("Shuffleboard/Drive Info");
+  nt::NetworkTableEntry shootRangeEntry = shuffleTable->GetEntry("Fly wheel Speed");
+  shootRangeEntry.SetString(shootRange);
+
 }

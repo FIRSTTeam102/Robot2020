@@ -11,6 +11,9 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/shuffleboard/ShuffleboardWidget.h>
+#include <networktables/NetworkTable.h>
+#include <networktables/NetworkTableInstance.h>
+#include <networktables/NetworkTableEntry.h>
 #include <frc2/command/CommandScheduler.h>
 
 frc::SendableChooser<int> mAutoPos;
@@ -54,7 +57,11 @@ void Robot::RobotInit() {
     .Add(mAutoShoot2)
     .WithWidget(frc::BuiltInWidgets::kSplitButtonChooser)
     .WithPosition(4, 1).WithSize(3, 1);
-  
+
+  //put game specific data on the shuffleboard - start of match = ""  
+  frc::Shuffleboard::GetTab("Drive Info")
+    .Add("CP FMS Color","No Data")
+    .WithPosition(3,3); 
 }
 
 /**
@@ -65,7 +72,39 @@ void Robot::RobotInit() {
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
+void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run();
+
+  std::string  driveMsg = "";
+  std::string gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+  if(gameData.length() > 0)
+  {
+    switch (gameData[0])
+    {
+    case 'B' :
+      driveMsg = "Blue";
+      break;
+    case 'G' :
+      driveMsg = "Green";
+      break;
+    case 'R' :
+      driveMsg = "Red";
+      break;
+    case 'Y' :
+      driveMsg = "Yellow";
+      break;
+    default :
+      printf("NO DATA\n");
+      break;
+    }
+  }
+  //Update the network table entry for the drive info tab
+  nt::NetworkTableInstance ntInst = nt::NetworkTableInstance::GetDefault();
+  auto shuffleTable = ntInst.GetTable("Shuffleboard/Drive Info");
+  nt::NetworkTableEntry gameSpecMsgEntry = shuffleTable->GetEntry("CP FMS Color");
+  gameSpecMsgEntry.SetString(driveMsg);
+  
+ 
+ }
 
 /**
  * This function is called once each time the robot enters Disabled mode. You
