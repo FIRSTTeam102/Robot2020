@@ -68,7 +68,7 @@ class RobotContainer {
   CameraServo mCameraServo;
   MoveCameraServo mServoCommand{&mCameraServo};
 
-  frc::XboxController mDriverController;
+  frc::XboxController mDriverController{0};
   frc2::Button mDriverButtonA{[&] { return mDriverController.GetRawButton(1);}};
   frc2::Button mDriverButtonB{[&] { return mDriverController.GetRawButton(2);}};
   frc2::Button mDriverButtonX{[&] { return mDriverController.GetRawButton(3);}};
@@ -82,7 +82,7 @@ class RobotContainer {
   frc2::Button mDriverUpDPad{[&] { return (mDriverController.GetPOV() == 0);}};
   frc2::Button mDriverDownDPad{[&] { return (mDriverController.GetPOV() == 180);}};
   
-  frc::XboxController mOperatorController;
+  frc::XboxController mOperatorController{1};
   frc2::Button mOperatorButtonA{[&] { return mOperatorController.GetRawButton(1);}};
   frc2::Button mOperatorButtonB{[&] { return mOperatorController.GetRawButton(2);}};
   frc2::Button mOperatorButtonX{[&] { return mOperatorController.GetRawButton(3);}};
@@ -99,7 +99,7 @@ class RobotContainer {
   //Lights mLights;
 
   DriveTrain mTankDrive;
-  DriveWithXbox mDriveCommand;
+  DriveWithXbox mDriveCommand{&mTankDrive};
   SlowTurn mSlowLeftCommand{&mTankDrive, false};
   SlowTurn mSlowRightCommand{&mTankDrive, true};
   FlipDrive mFlipDriveCommand{&mTankDrive};
