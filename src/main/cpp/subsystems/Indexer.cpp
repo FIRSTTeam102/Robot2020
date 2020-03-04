@@ -44,7 +44,7 @@ Indexer::Indexer():
     .WithPosition(3,2);
 
     frc::Shuffleboard::GetTab("Drive Info")
-    .Add("Number of Power Cells",mNumPowerCells)
+    .Add("# Power Cells",mNumPowerCells)
     .WithPosition(3,3);
 }
 //isFullIndexer - returns true if the TopSensor,

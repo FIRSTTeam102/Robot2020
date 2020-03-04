@@ -14,8 +14,7 @@
 PrepShooting::PrepShooting(Indexer* pIndexer, Shooter* pShooter, float shooterSpeed) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  
-  
+
   AddCommands(AimShooter(pShooter, shooterSpeed), PrimeIndexer(pIndexer));
 
   //update the shuffle board driver info: Fly Wheel Speed
