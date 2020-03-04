@@ -23,7 +23,7 @@ PrepShooting::PrepShooting(Indexer* pIndexer, Shooter* pShooter, float shooterSp
   else strcpy(shootRange,"Unknown");
   
   frc::Shuffleboard::GetTab("Drive Info")
-    .Add("Fly Wheel Speed Zone",shootRange);
+    .Add("Fly Wheel Speed",shootRange);
   frc::Shuffleboard::Update();
 
   AddCommands(AimShooter(pShooter, shooterSpeed), PrimeIndexer(pIndexer));

@@ -18,7 +18,7 @@ Shooter::Shooter() :
     mShooter2.SetInverted(true);
 
     frc::Shuffleboard::GetTab("Drive Info")
-    .Add("Fly Wheel Speed Zone","Stopped")
+    .Add("Fly Wheel Speed","Stopped")
     .WithPosition (2,1);
 }
 
