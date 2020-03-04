@@ -10,12 +10,7 @@
 #include <frc2/command/button/JoystickButton.h>
 
 
-RobotContainer::RobotContainer(): 
-  mTankDrive{}, 
-  mDriverController{0},
-  mOperatorController{1},
-  mDriveCommand{&mTankDrive},
-  mIntake{}
+RobotContainer::RobotContainer()
   {
   // Initialize all of your commands and subsystems here
   //drive
@@ -65,5 +60,5 @@ void RobotContainer::ConfigureButtonBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
  // return &m_autonomousCommand;
-
+  return NULL;
 }
