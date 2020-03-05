@@ -21,7 +21,7 @@ Indexer::Indexer():
     mBottomTimer{0},
     mPowerCellWasAtIntake{false},
     mPowerCellWasAtBottom{false},
-    enabled{true}
+    enabled{false}
  {
      frc::Shuffleboard::GetTab("TestRobot")
     .Add("Intake Sensor",mIntakeSensor.Get())
