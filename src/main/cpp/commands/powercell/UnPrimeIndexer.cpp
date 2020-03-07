@@ -17,7 +17,8 @@ void UnPrimeIndexer::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void UnPrimeIndexer::Execute() {
-  mpIndexer->movePowerCellsToBottom();
+  //mpIndexer->movePowerCellsToBottom();
+  mpIndexer->moveDownIndexer();
 }
 
 // Called once the command ends or is interrupted.

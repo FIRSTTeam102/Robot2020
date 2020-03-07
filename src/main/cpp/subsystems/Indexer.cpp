@@ -105,10 +105,11 @@ void Indexer::shootPowerCells(){
 
 //Check if ball has been at bottom sensor for long enough
 bool Indexer::isPowerCellAtBottom(){
-    if (mBottomTimer > kBottomIndexerTimeout * 50.0) {
+    if (mBottomTimer > 8.0 /*kBottomIndexerTimeout * 50.0*/) {
         mPowerCellWasAtBottom = false;
         mBottomTimer = 0;
         return true;
+        printf("Gucci gang\n");
     }
     printf("Bottom timer: %f out of %f\n", mBottomTimer, kBottomIndexerTimeout * 50);
     return false;
@@ -118,6 +119,8 @@ bool Indexer::isPowerCellAtBottom(){
 // This method will be called once per scheduler run
 void Indexer::Periodic() {
     if (rawPowerCellAtBottom()) {
+        
+        printf("SAW AT BOTTOM!!!!!!\n");
         mPowerCellWasAtBottom = true;
     }
     if (mPowerCellWasAtBottom && mBottomTimer < 100) { //Max 2 seconds
@@ -126,6 +129,7 @@ void Indexer::Periodic() {
     if (mBottomTimer >= 100) {
         mPowerCellWasAtBottom = false;
         mBottomTimer = 0;
+        printf("Overloaded\n");
     }
-    printf("Intake: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
+    //printf("Intake: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
 }
