@@ -68,5 +68,5 @@ int Lights::getGyroAngle() {
             gyroVal += readBuffer[i] - '0';
         }
     }
-    return (gyroVal - (gyroVal * negativeGyro *2));
+    return (gyroVal - (gyroVal * negativeGyro * 2));
 }

@@ -5,6 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <frc/shuffleboard/Shuffleboard.h>
 #include "commands/powercell/PrepShooting.h"
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
@@ -13,5 +14,19 @@
 PrepShooting::PrepShooting(Indexer* pIndexer, Shooter* pShooter, float shooterSpeed) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
+
   AddCommands(AimShooter(pShooter, shooterSpeed), PrimeIndexer(pIndexer));
+
+  //update the shuffle board driver info: Fly Wheel Speed
+  std::string shootRange = "";
+  if (shooterSpeed == kSlowSpeed) { shootRange = "Close";} 
+  else if (shooterSpeed == kMedSpeed) {shootRange = "Medium";}
+  else if (shooterSpeed == kFastSpeed) {shootRange = "Far";}
+  else shootRange = "Unknown";
+
+  nt::NetworkTableInstance ntInst = nt::NetworkTableInstance::GetDefault();
+  auto shuffleTable = ntInst.GetTable("Shuffleboard/Drive Info");
+  nt::NetworkTableEntry shootRangeEntry = shuffleTable->GetEntry("Fly wheel Speed");
+  shootRangeEntry.SetString(shootRange);
+
 }

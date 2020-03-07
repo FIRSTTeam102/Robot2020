@@ -43,6 +43,8 @@
 #include "commands/auto/AutonomousCode.h"
 #include "commands/Climb.h"
 #include "commands/MoveCameraServo.h"
+#include "commands/NextCamera.h"
+#include "commands/PreviousCamera.h"
 
 #include "commands/NextCamera.h"
 
@@ -95,6 +97,7 @@ class RobotContainer {
   frc2::Button mOperatorButtonRB{[&] { return mOperatorController.GetRawButton(6);}};
   frc2::Button mOperatorButtonLMenu{[&] { return mOperatorController.GetRawButton(7);}};
   frc2::Button mOperatorButtonRMenu{[&] { return mOperatorController.GetRawButton(8);}};
+
   frc2::Button mOperatorLT{[&] { return mOperatorController.GetRawAxis(2) > 0.5;}};
   frc2::Button mOperatorRT{[&] { return mOperatorController.GetRawAxis(3) > 0.5;}};
   frc2::Button mOperatorUpDPad{[&] { return (mOperatorController.GetPOV() == 0);}};
@@ -134,6 +137,11 @@ class RobotContainer {
   Climber mClimber{&mOperatorController}; 
   Climb mClimbCommand{&mClimber};
 
+  cs::UsbCamera mCamera1;
+  cs::UsbCamera mCamera2;
+  //cs::UsbCamera mCamera3;
+  NextCamera mNextCamCommand{&mCamera1, &mCamera2/*, &mCamera3*/};
+  PreviousCamera mPrevCamCommand{&mCamera1, &mCamera2/*, &mCamera3*/};
 
   void ConfigureButtonBindings();
 };

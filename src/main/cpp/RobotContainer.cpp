@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 #include <frc/shuffleboard/Shuffleboard.h>
 
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/SendableCameraWrapper.h>
 #include "RobotContainer.h"
 
 
@@ -35,6 +37,15 @@ RobotContainer::RobotContainer()
   
   mCameraServo.SetDefaultCommand(std::move(mServoCommand));
   mCameraServo.setServoJoystick(&mOperatorController);
+
+  
+  frc::CameraServer::GetInstance()->GetServer().SetSource(mCamera1);
+
+  frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Camera Stream",mCamera1)
+    .WithWidget(frc::BuiltInWidgets::kCameraStream)
+    .WithSize (10,10)
+    .WithPosition (4,0);
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -59,6 +70,8 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
   //must be added- mOperatorButtonLMenu(toggle danger buttons)
+
+  //mOperatorButtonLMenu.WhenPressed(&mPrevCamCommand, true);
   mOperatorButtonRMenu.WhenPressed(&mNextCamCommand, true);
 
 }

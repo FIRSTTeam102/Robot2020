@@ -18,7 +18,7 @@ Indexer::Indexer():
     mTopSensor{kDIOTop},
     mNumPowerCells{3},
     mEmptyTimer{0},
-    mBottomTimer{0},
+    //mBottomTimer{0},
     mPowerCellWasAtIntake{false},
     mPowerCellWasAtBottom{false},
     enabled{false}
@@ -34,6 +34,20 @@ Indexer::Indexer():
     frc::Shuffleboard::GetTab("TestRobot")
     .Add("Intake Top Sensor",mTopSensor.Get())
     .WithWidget(frc::BuiltInWidgets::kBooleanBox).WithSize(3, 1).WithPosition(2, 3);
+
+    //Indexer Driver Info 
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Indexer Full",isFullIndexer())
+    .WithWidget(frc::BuiltInWidgets::kBooleanBox)
+    .WithPosition(3,1);
+
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Indexer Delay",kBottomIndexerTimeout)
+    .WithPosition(3,2);
+
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("# Power Cells",mNumPowerCells)
+    .WithPosition(3,3);
 }
 //isFullIndexer - returns true if the TopSensor,
 //   and IntakeSensor all see a power cell. The Indexer is
@@ -97,12 +111,13 @@ void Indexer::shootPowerCells(){
 
 //Check if ball has been at bottom sensor for long enough
 bool Indexer::isPowerCellAtBottom(){
-    if (mBottomTimer > kBottomIndexerTimeout * 50.0) {
+    if (mIndexTimer.Get() > kBottomIndexerTimeout) {
         mPowerCellWasAtBottom = false;
-        mBottomTimer = 0;
+        //mBottomTimer = 0;
+        mIndexTimer.Stop();
         return true;
     }
-    printf("Bottom timer: %f out of %f\n", mBottomTimer, kBottomIndexerTimeout * 50);
+    printf("Bottom timer: %f out of %f\n", mIndexTimer.Get(), kBottomIndexerTimeout);
     return false;
 }
 
@@ -111,13 +126,15 @@ bool Indexer::isPowerCellAtBottom(){
 void Indexer::Periodic() {
     if (rawPowerCellAtBottom()) {
         mPowerCellWasAtBottom = true;
+        mIndexTimer.Reset();
+        mIndexTimer.Start();
     }
-    if (mPowerCellWasAtBottom && mBottomTimer < 100) { //Max 2 seconds
+    /*if (mPowerCellWasAtBottom && mIndexTimer.Get() < 2) { //Max 2 seconds
         mBottomTimer += 1;
     }
     if (mBottomTimer >= 100) {
         mPowerCellWasAtBottom = false;
         mBottomTimer = 0;
-    }
+    }*/
     //printf("Intake: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
 }

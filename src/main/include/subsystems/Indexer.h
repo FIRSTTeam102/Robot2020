@@ -10,6 +10,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Relay.h>
 #include <frc/DigitalInput.h>
+#include <frc/Timer.h>
 #include "Constants.h"
 
 //Spins 760 rpms (diameter 1.5"), bottom sensor ~2" in
@@ -26,11 +27,11 @@ class Indexer : public frc2::SubsystemBase {
     int  numLoadedPowerCells() {return(mNumPowerCells);}
     void movePowerCellsToTop();
     void movePowerCellsToBottom();
-    void shootPowerCells();
+    void shootPowerCells();    
+
     bool isPowerCellAtBottom();
-    
-    //the intake and top sensors are positive when a power cell is present
-    // the bottom is false
+    //top and intake sensors are positive when ball is present
+    //  bottom sensor is false when ball present
     bool isPowerCellAtTop(){return mTopSensor.Get();}
     bool isPowerCellAtIntake(){return mIntakeSensor.Get();}
     bool rawPowerCellAtBottom(){return !mBottomSensor.Get();}
@@ -54,6 +55,7 @@ class Indexer : public frc2::SubsystemBase {
   frc::DigitalInput mIntakeSensor;
   frc::DigitalInput mBottomSensor;
   frc::DigitalInput mTopSensor;
+  frc::Timer mIndexTimer;
   int mNumPowerCells;
   int mEmptyTimer;
   double mBottomTimer;

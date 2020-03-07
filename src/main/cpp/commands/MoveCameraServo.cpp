@@ -17,7 +17,7 @@ void MoveCameraServo::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void MoveCameraServo::Execute() {
-  printf("Servo command called\n");
+  //printf("Command called\n");
   mpCameraServo->controlServoWithJoystick();
 }
 

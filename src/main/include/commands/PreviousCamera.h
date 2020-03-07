@@ -18,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class NextCamera
-    : public frc2::CommandHelper<frc2::CommandBase, NextCamera> {
+class PreviousCamera
+    : public frc2::CommandHelper<frc2::CommandBase, PreviousCamera> {
  public:
-  NextCamera(cs::UsbCamera* Camera1, cs::UsbCamera* Camera2/*, cs::UsbCamera* Camera3*/);
+  PreviousCamera(cs::UsbCamera *Camera1,cs::UsbCamera *Camera2/*, cs::UsbCamera *Camera3*/);
 
   void Initialize() override;
 
@@ -30,11 +30,9 @@ class NextCamera
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-
  private:
-  
-  cs::UsbCamera* mCamera1;
-  cs::UsbCamera* mCamera2;
-  //cs::UsbCamera* mCamera3;
+  cs::UsbCamera *mCamera1;
+  cs::UsbCamera *mCamera2;
+  //cs::UsbCamera *mCamera3;
   int mCameraSource;
 };
