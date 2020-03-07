@@ -45,7 +45,7 @@ void ControlPanelManipulator::stopMotor() {
 }
 
 void ControlPanelManipulator::runMotor() {
-	mControlMotor.Set(1);
+	mControlMotor.Set(0.75);
 }
 
 /* turns to a color specified by "targetColor" */

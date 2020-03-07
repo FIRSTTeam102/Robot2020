@@ -35,8 +35,8 @@ int constexpr kFlyMotor2 = 6;
 
 //Climb Motor Controllers (TalonSRX)
 // up raises the climb system, down retracts it & lifts the robot
-int constexpr kClimbUpMotor = 6;
-int constexpr kClimbDwnMotor = 9;
+int constexpr kClimbUpMotor = 7;
+int constexpr kClimbDwnMotor = 8;
 double constexpr kTakeUpSlackPercent = 0.3;
 
 //Intake Arm & Roller Motor Controllers (SpikeRelay)
