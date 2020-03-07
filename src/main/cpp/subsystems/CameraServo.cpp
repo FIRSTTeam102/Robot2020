@@ -8,20 +8,35 @@
 #include "subsystems/CameraServo.h"
 #include <frc/Servo.h>
 CameraServo::CameraServo():
-    mCameraServo{kCameraServoIndex}
+    mCameraServoX{kCameraServoXIndex}, mCameraServoY{kCameraServoYIndex}
 {
-
+    cameraServoXPosition = 0.5;
+    cameraServoYPosition= 0.5;
 }
 
 // This method will be called once per scheduler run
 void CameraServo::Periodic() {}
-void CameraServo::controlServoWithJoystick(){
-    horizontalPower = (mpServoJoystick->GetRawAxis(0)/50);
-    if(cameraServoPosition <= 0 && horizontalPower > 0){ //Prevents servo position from exceeding range
+void CameraServo::controlServoWithJoystick()
+{
+    
+    horizontalPower = mpServoJoystick->GetRawAxis(4);
+    horizontalPower = horizontalPower/5;
+    verticalPower = mpServoJoystick->GetRawAxis(5);
+    verticalPower = verticalPower/5;
+    if(cameraServoXPosition >= 1 && horizontalPower > 0){ //Prevents servo position from exceeding range
         return;
     }
-    if(cameraServoPosition >= 1 && horizontalPower < 0){
+    else if(cameraServoXPosition <= 0 && horizontalPower < 0){
+       return;
+    }
+    else mCameraServoX.Set(cameraServoXPosition + horizontalPower);
+
+
+    if(cameraServoYPosition >= 1 && verticalPower > 0){ //Prevents servo position from exceeding range
         return;
     }
-    mCameraServo.Set(cameraServoPosition + horizontalPower );
+    else if(cameraServoYPosition <= 0 && verticalPower < 0){
+       return;
+    }
+    else mCameraServoY.Set(cameraServoXPosition + verticalPower );
 }

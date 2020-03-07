@@ -48,7 +48,8 @@ int constexpr kIndexChannel = 2;
 
 
 //PWM Signals
-int constexpr kCameraServoIndex = 0;
+int constexpr kCameraServoXIndex = 0;
+int constexpr kCameraServoYIndex = 1;
 
 
 //Digital IO channels

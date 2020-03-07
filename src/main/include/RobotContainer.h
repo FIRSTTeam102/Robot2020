@@ -13,6 +13,8 @@
 #include <frc/XboxController.h>
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Button.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <cameraserver/CameraServer.h>
 
 #include "Constants.h"
 
@@ -41,6 +43,8 @@
 #include "commands/auto/AutonomousCode.h"
 #include "commands/Climb.h"
 #include "commands/MoveCameraServo.h"
+
+#include "commands/NextCamera.h"
 
 
 /**
@@ -124,6 +128,9 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
+  cs::UsbCamera mCamera1;
+  cs::UsbCamera mCamera2;
+  NextCamera mNextCamCommand{&mCamera1, &mCamera2};
   Climber mClimber{&mOperatorController}; 
   Climb mClimbCommand{&mClimber};
 

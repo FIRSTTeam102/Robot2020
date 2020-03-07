@@ -4,6 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+#include <frc/shuffleboard/Shuffleboard.h>
 
 #include "RobotContainer.h"
 
@@ -17,6 +18,16 @@ RobotContainer::RobotContainer()
 
   mTankDrive.SetDefaultCommand(std::move(mDriveCommand));
   mTankDrive.setDriverJoystick(&mDriverController);
+
+  mCamera1 = frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
+  mCamera2 = frc::CameraServer::GetInstance()->StartAutomaticCapture(1);
+  frc::CameraServer::GetInstance()->GetServer().SetSource(mCamera1);
+
+    frc::Shuffleboard::GetTab("Drive Info")
+    .Add("Camera Stream",mCamera1)
+    .WithWidget(frc::BuiltInWidgets::kCameraStream)
+    .WithSize (4,3)
+    .WithPosition (4,0);
 
   mClimber.SetDefaultCommand(std::move(mClimbCommand));
   
@@ -48,7 +59,7 @@ void RobotContainer::ConfigureButtonBindings() {
   mOperatorButtonLB.WhenPressed(&mBallJamCommand, true);
   mOperatorButtonRB.WhenPressed(&mResetCommand, true);
   //must be added- mOperatorButtonLMenu(toggle danger buttons)
-  //must be added- mOperatorButtonRMenu(switch camera command)
+  mOperatorButtonRMenu.WhenPressed(&mNextCamCommand, true);
 
 }
 

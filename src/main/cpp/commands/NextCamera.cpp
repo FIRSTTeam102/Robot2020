@@ -5,24 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/MoveCameraServo.h"
+#include <frc/shuffleboard/Shuffleboard.h>
+#include "commands/NextCamera.h"
 
-MoveCameraServo::MoveCameraServo(CameraServo *pCameraServo): mpCameraServo{pCameraServo} {
+NextCamera::NextCamera(cs::UsbCamera* Camera1, cs::UsbCamera* Camera2)
+  : mCamera1{Camera1},
+    mCamera2{Camera2},
+    mCameraSource{1} 
+ {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pCameraServo);
 }
 
 // Called when the command is initially scheduled.
-void MoveCameraServo::Initialize() {}
+void NextCamera::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void MoveCameraServo::Execute() {
-  printf("Servo command called\n");
-  mpCameraServo->controlServoWithJoystick();
+void NextCamera::Execute() {
+  if (mCameraSource == 1) {
+    frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera2);
+    mCameraSource = 2;
+    printf ("Camera 2 \n");
+  }
+  else {
+    frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera1);
+    mCameraSource = 1;
+    printf ("Camera 1 \n");
+  }
 }
 
 // Called once the command ends or is interrupted.
-void MoveCameraServo::End(bool interrupted) {}
+void NextCamera::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool MoveCameraServo::IsFinished() { return false; }
+bool NextCamera::IsFinished() { return true; }

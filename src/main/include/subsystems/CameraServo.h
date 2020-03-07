@@ -16,6 +16,7 @@ class CameraServo : public frc2::SubsystemBase {
  public:
   CameraServo();
     void controlServoWithJoystick();
+  
     void setServoJoystick(frc::XboxController* pServoJoystick){
     mpServoJoystick = pServoJoystick;
   };
@@ -25,10 +26,13 @@ class CameraServo : public frc2::SubsystemBase {
   void Periodic();
 
  private:
-  frc::Servo mCameraServo;
+  frc::Servo mCameraServoX;
+  frc::Servo mCameraServoY;
   frc::XboxController* mpServoJoystick;
   double horizontalPower;
-  double cameraServoPosition;
+  double verticalPower;
+  double cameraServoXPosition;
+  double cameraServoYPosition;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
