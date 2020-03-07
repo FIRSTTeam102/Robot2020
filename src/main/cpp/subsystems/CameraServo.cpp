@@ -11,32 +11,51 @@ CameraServo::CameraServo():
     mCameraServoX{kCameraServoXIndex}, mCameraServoY{kCameraServoYIndex}
 {
     cameraServoXPosition = 0.5;
+    
+    mCameraServoX.Set(cameraServoXPosition);
     cameraServoYPosition= 0.5;
+    mCameraServoY.Set(cameraServoYPosition);
 }
 
 // This method will be called once per scheduler run
 void CameraServo::Periodic() {}
 void CameraServo::controlServoWithJoystick()
 {
+    //get the raw joystick x & y value
+
+    double joyStickX = mpServoJoystick->GetRawAxis(4); 
+    double joyStickY = mpServoJoystick->GetRawAxis(5);
+    double currServoXPos = mCameraServoX.Get();
+    double currServoYPos = mCameraServoY.Get();
     
-    horizontalPower = mpServoJoystick->GetRawAxis(4);
-    horizontalPower = horizontalPower/5;
-    verticalPower = mpServoJoystick->GetRawAxis(5);
-    verticalPower = verticalPower/5;
+    if  (joyStickX >= -0.5 && joyStickX <= 0.5){
+        //we might not really want a change
+        joyStickX = 0;
+    }
+    if (joyStickY >= -0.5 && joyStickY <= 0.5){
+        //we might not really want a change - not touching the joystick
+        joyStickY = 0;
+    }
+    horizontalPower = joyStickX/50;
+    verticalPower = joyStickY/50;
     if(cameraServoXPosition >= 1 && horizontalPower > 0){ //Prevents servo position from exceeding range
-        return;
+       //do nothing on the horizontal move
     }
     else if(cameraServoXPosition <= 0 && horizontalPower < 0){
-       return;
+       //do nothing on the horizontal move
     }
-    else mCameraServoX.Set(cameraServoXPosition + horizontalPower);
-
+    else {
+        //the servo new position = old position + horizontalPower
+      mCameraServoX.Set(currServoXPos + horizontalPower);
+    }
 
     if(cameraServoYPosition >= 1 && verticalPower > 0){ //Prevents servo position from exceeding range
-        return;
+      //do nothing on the vertical
     }
     else if(cameraServoYPosition <= 0 && verticalPower < 0){
-       return;
+       //do nothing on the vertical
     }
-    else mCameraServoY.Set(cameraServoXPosition + verticalPower );
+    else {
+        mCameraServoY.Set(currServoYPos + verticalPower );
+    }
 }
