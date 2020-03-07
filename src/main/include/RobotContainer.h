@@ -131,17 +131,15 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
-  cs::UsbCamera mCamera1;
-  cs::UsbCamera mCamera2;
-  NextCamera mNextCamCommand{&mCamera1, &mCamera2};
+  
   Climber mClimber{&mOperatorController}; 
   Climb mClimbCommand{&mClimber};
 
   cs::UsbCamera mCamera1;
   cs::UsbCamera mCamera2;
   //cs::UsbCamera mCamera3;
-  NextCamera mNextCamCommand{&mCamera1, &mCamera2/*, &mCamera3*/};
-  PreviousCamera mPrevCamCommand{&mCamera1, &mCamera2/*, &mCamera3*/};
+  NextCamera mNextCamCommand{&mCamera1, &mCamera2};
+  PreviousCamera mPrevCamCommand{&mCamera1, &mCamera2};
 
   void ConfigureButtonBindings();
 };
