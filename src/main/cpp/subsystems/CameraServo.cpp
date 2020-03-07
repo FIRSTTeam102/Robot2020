@@ -46,7 +46,7 @@ void CameraServo::controlServoWithJoystick()
     }
     else {
         //the servo new position = old position + horizontalPower
-      mCameraServoX.Set(currServoXPos + horizontalPower);
+      mCameraServoX.Set(currServoXPos - horizontalPower);
     }
 
     if(cameraServoYPosition >= 1 && verticalPower > 0){ //Prevents servo position from exceeding range
@@ -56,6 +56,6 @@ void CameraServo::controlServoWithJoystick()
        //do nothing on the vertical
     }
     else {
-        mCameraServoY.Set(currServoYPos + verticalPower );
+        mCameraServoY.Set(currServoYPos - verticalPower );
     }
 }
