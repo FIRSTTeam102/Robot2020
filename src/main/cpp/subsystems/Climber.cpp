@@ -16,7 +16,10 @@ Climber::Climber(frc::XboxController* pOperatorJoystick):
     mBotLimitSwitch{kBotClimbLimit},
     mpOperatorJoystick{pOperatorJoystick}
 {
-
+    mClimbUpMotor.SetInverted(true);
+    mClimbDownMotor.SetInverted(true);
+    mClimbUpMotor.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+    mClimbDownMotor.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
 }
 //stop all climber motors
 void Climber::StopClimb(){
@@ -28,11 +31,13 @@ void Climber::StopClimb(){
 //raise the climber
 void Climber::Climb(){
     
-    if(ClimbSpeed()>0 && !isClimbUp()){
-        mClimbUpMotor.Set(ClimbSpeed());
-        mClimbDownMotor.Set(0);
+    if(ClimbSpeed()>0/* && !isClimbUp()*/){
+        //mClimbUpMotor.Set(ClimbSpeed());
+        //mClimbDownMotor.Set(0);
+        //mClimbUpMotor.Set(-ClimbSpeed());
+        mClimbDownMotor.Set(ClimbSpeed()); //For unraveling winch
     }
-    else if(ClimbSpeed()<0 && !isClimbDown()){
+    else if(ClimbSpeed()<0/* && !isClimbDown()*/){
         mClimbDownMotor.Set(ClimbSpeed());
         mClimbUpMotor.Set(ClimbSpeed()*kTakeUpSlackPercent);
     }
