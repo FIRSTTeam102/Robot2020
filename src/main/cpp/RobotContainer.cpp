@@ -27,6 +27,9 @@ RobotContainer::RobotContainer()
   mCameraServo.SetDefaultCommand(std::move(mServoCommand));
   mCameraServo.setServoJoystick(&mOperatorController);
 
+  
+  frc::CameraServer::GetInstance()->GetServer().SetSource(mCamera1);
+
   frc::Shuffleboard::GetTab("Drive Info")
     .Add("Camera Stream",mCamera1)
     .WithWidget(frc::BuiltInWidgets::kCameraStream)

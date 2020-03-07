@@ -7,10 +7,10 @@
 
 #include "commands/PreviousCamera.h"
 
-PreviousCamera::PreviousCamera(cs::UsbCamera *Camera1, cs::UsbCamera *Camera2, cs::UsbCamera *Camera3) 
+PreviousCamera::PreviousCamera(cs::UsbCamera *Camera1, cs::UsbCamera *Camera2/*, cs::UsbCamera *Camera3*/) 
      : mCamera1{Camera1},
        mCamera2{Camera2},
-       mCamera3{Camera3},
+       //mCamera3{Camera3},
        mCameraSource{1}
 {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -24,24 +24,30 @@ void PreviousCamera::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PreviousCamera::Execute() {
-  if (mCameraSource == 1) {
+  /*if (mCameraSource == 1) {
     frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera3);
-    
     mCameraSource = 3;
   }
   else if (mCameraSource == 2)
-  {
-    
-    frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera1);
-    
+  {  
+    frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera1); 
     mCameraSource = 1;
   }
   else {
     frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera2);
     
     mCameraSource = 2;
+  }*/
+  if (mCameraSource == 1) {
+    frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera2);
+    //frc::Shuffleboard::GetTab("Auto")
+    //.Add("Current Camera", mCamera2);
+    mCameraSource = 2;
   }
-  
+  else {
+    frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera1);
+     mCameraSource = 1;
+  }
 }
 
 // Called once the command ends or is interrupted.

@@ -10,6 +10,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Relay.h>
 #include <frc/DigitalInput.h>
+#include <frc/Timer.h>
 #include "Constants.h"
 
 //Spins 760 rpms (diameter 1.5"), bottom sensor ~2" in
@@ -54,6 +55,7 @@ class Indexer : public frc2::SubsystemBase {
   frc::DigitalInput mIntakeSensor;
   frc::DigitalInput mBottomSensor;
   frc::DigitalInput mTopSensor;
+  frc::Timer mIndexTimer;
   int mNumPowerCells;
   int mEmptyTimer;
   double mBottomTimer;

@@ -21,7 +21,7 @@
 class PreviousCamera
     : public frc2::CommandHelper<frc2::CommandBase, PreviousCamera> {
  public:
-  PreviousCamera(cs::UsbCamera *Camera1,cs::UsbCamera *Camera2, cs::UsbCamera *Camera3);
+  PreviousCamera(cs::UsbCamera *Camera1,cs::UsbCamera *Camera2/*, cs::UsbCamera *Camera3*/);
 
   void Initialize() override;
 
@@ -33,6 +33,6 @@ class PreviousCamera
  private:
   cs::UsbCamera *mCamera1;
   cs::UsbCamera *mCamera2;
-  cs::UsbCamera *mCamera3;
+  //cs::UsbCamera *mCamera3;
   int mCameraSource;
 };

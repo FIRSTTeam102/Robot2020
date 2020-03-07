@@ -62,7 +62,7 @@ void DriveTrain::stop(){
 
 void DriveTrain::move(double left, double right){
     mDrive.TankDrive(left, right, false);
-    //printf("Moving: %f, %f\n", left, right);
+    printf("Moving: %f, %f\n", left, right);
 }
 
 void DriveTrain::toggleDrive(){

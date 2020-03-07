@@ -132,9 +132,9 @@ class RobotContainer {
 
   cs::UsbCamera mCamera1;
   cs::UsbCamera mCamera2;
-  cs::UsbCamera mCamera3;
-  NextCamera mNextCamCommand{&mCamera1, &mCamera2, &mCamera3};
-  PreviousCamera mPrevCamCommand{&mCamera1, &mCamera2, &mCamera3};
+  //cs::UsbCamera mCamera3;
+  NextCamera mNextCamCommand{&mCamera1, &mCamera2/*, &mCamera3*/};
+  PreviousCamera mPrevCamCommand{&mCamera1, &mCamera2/*, &mCamera3*/};
 
   void ConfigureButtonBindings();
 };

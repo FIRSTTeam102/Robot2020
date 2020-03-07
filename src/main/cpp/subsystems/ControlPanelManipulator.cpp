@@ -52,7 +52,7 @@ void ControlPanelManipulator::runMotor() {
 void ControlPanelManipulator::positionControl(char targetColor) { //land on color after 3 rotations
 	currentColor = getReadColor();
 	if (targetColor != currentColor || !hasMovedColors()) { //if not on target color
-		mControlMotor.Set(1); //spin motor?
+		mControlMotor.Set(-0.5); //spin motor?
 		//Stage previous colors (used to be in the middle)
 		/*for (int i = 3; i >= 0; i--) {
 			prevColors[i+1] = prevColors[i];
@@ -77,7 +77,7 @@ void ControlPanelManipulator::rotationControl() { //rotate 3 times
 		previousColor = currentColor;
 	}
 	if (turnCounter < 24) { //8 colors per rotation (x3)
-		mControlMotor.Set(1);
+		mControlMotor.Set(-0.85);
 	}
 	else { //turnCounter starts at 0; if rotated >= 3 times
 		mControlMotor.Set(0); //stop motor

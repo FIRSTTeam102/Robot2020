@@ -8,10 +8,10 @@
 #include <frc/shuffleboard/ShuffleBoard.h>
 #include "commands/NextCamera.h"
 
-NextCamera::NextCamera(cs::UsbCamera* Camera1, cs::UsbCamera* Camera2, cs::UsbCamera* Camera3) 
+NextCamera::NextCamera(cs::UsbCamera* Camera1, cs::UsbCamera* Camera2/*, cs::UsbCamera* Camera3*/) 
    : mCamera1{Camera1},
     mCamera2{Camera2},
-    mCamera3{Camera3},
+    //mCamera3{Camera3},
     mCameraSource{1}
 {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -23,16 +23,17 @@ void NextCamera::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void NextCamera::Execute() {
+  printf("Next camera\n");
   if (mCameraSource == 1) {
     frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera2);
-    frc::Shuffleboard::GetTab("Auto")
-    .Add("Current Camera", mCamera2);
+    //frc::Shuffleboard::GetTab("Auto")
+    //.Add("Current Camera", mCamera2);
     mCameraSource = 2;
    }
-   else if (mCameraSource == 2) {
+   /*else if (mCameraSource == 2) {
     frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera3);
      mCameraSource = 3;
-   }
+   }*/
    else {
     frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera1);
      mCameraSource = 1;
