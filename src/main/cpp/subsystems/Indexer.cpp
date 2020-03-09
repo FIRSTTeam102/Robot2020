@@ -11,7 +11,7 @@
 #include <frc/shuffleboard/Shuffleboard.h>
 
 
-Indexer::Indexer():
+Indexer::Indexer():0
     mIndexerConveyer{kIndexChannel,frc::Relay::kBothDirections},
     mIntakeSensor{kDIOIntake},
     mBottomSensor{kDIOBottom},
