@@ -34,7 +34,7 @@ class Indexer : public frc2::SubsystemBase {
     //  bottom sensor is false when ball present
     bool isPowerCellAtTop(){return mTopSensor.Get();}
     bool isPowerCellAtIntake(){return !mIntakeSensor.Get();}
-    bool rawPowerCellAtBottom(){return !mBottomSensor.Get();}
+    bool rawPowerCellAtBottom(){return mBottomSensor.Get();}
     void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
     void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::Value::kForward);}
     void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}
