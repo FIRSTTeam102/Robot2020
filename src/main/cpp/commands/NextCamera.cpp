@@ -21,6 +21,7 @@ void NextCamera::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void NextCamera::Execute() {
+  printf("Current camera: %d    ", mCameraSource);
   if (mCameraSource == 1) {
     frc::CameraServer::GetInstance()->GetServer().SetSource(*mCamera2);
     mCameraSource = 2;

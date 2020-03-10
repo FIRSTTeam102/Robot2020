@@ -8,10 +8,9 @@
 #include "subsystems/CameraServo.h"
 #include <frc/Servo.h>
 CameraServo::CameraServo():
-    mCameraServoX{kCameraServoXIndex}, mCameraServoY{kCameraServoYIndex}
+    mCameraServoX{2}, mCameraServoY{kCameraServoYIndex}
 {
     cameraServoXPosition = 0.5;
-    
     mCameraServoX.Set(cameraServoXPosition);
     cameraServoYPosition= 0.5;
     mCameraServoY.Set(cameraServoYPosition);
@@ -25,28 +24,34 @@ void CameraServo::controlServoWithJoystick()
 
     double joyStickX = mpServoJoystick->GetRawAxis(4); 
     double joyStickY = mpServoJoystick->GetRawAxis(5);
+    //printf("Joystick: %f, %f\n", joyStickX, joyStickY);
     double currServoXPos = mCameraServoX.Get();
     double currServoYPos = mCameraServoY.Get();
     
     if  (joyStickX >= -0.5 && joyStickX <= 0.5){
         //we might not really want a change
         joyStickX = 0;
+        //printf("X Deadband triggered\n");
     }
     if (joyStickY >= -0.5 && joyStickY <= 0.5){
         //we might not really want a change - not touching the joystick
         joyStickY = 0;
+        //printf("Y Deadband triggered\n");
     }
     horizontalPower = joyStickX/50;
     verticalPower = joyStickY/50;
     if(cameraServoXPosition >= 1 && horizontalPower > 0){ //Prevents servo position from exceeding range
        //do nothing on the horizontal move
+       //printf("X too high\n");
     }
     else if(cameraServoXPosition <= 0 && horizontalPower < 0){
        //do nothing on the horizontal move
+       //printf("X too low\n");
     }
     else {
         //the servo new position = old position + horizontalPower
       mCameraServoX.Set(currServoXPos - horizontalPower);
+      //printf("Moving X to %f\n", currServoXPos - horizontalPower);
     }
 
     if(cameraServoYPosition >= 1 && verticalPower > 0){ //Prevents servo position from exceeding range
@@ -58,4 +63,5 @@ void CameraServo::controlServoWithJoystick()
     else {
         mCameraServoY.Set(currServoYPos - verticalPower );
     }
+    //printf("Position set to: (%f, %f)\n", cameraServoXPosition, cameraServoYPosition);
 }
