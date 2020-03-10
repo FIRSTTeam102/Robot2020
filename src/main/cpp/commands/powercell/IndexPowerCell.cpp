@@ -25,7 +25,7 @@ void IndexPowerCell::Execute() {
     mpIndexer->moveUpIndexer();
     hasIndexed = true;
   }
-  if (hasIndexed == true && (mpIndexer->isFullIndexer() || (mpIndexer->isPowerCellAtBottom() && !mpIndexer->isPowerCellAtIntake()))) {
+  if (hasIndexed == true && (mpIndexer->isFullIndexer() || (mpIndexer->isPowerCellAtBottom()/* && !mpIndexer->isPowerCellAtIntake()*/))) {
     mpIndexer->stopIndexer();
     printf("Stopping indexer\n");
     hasIndexed = false;

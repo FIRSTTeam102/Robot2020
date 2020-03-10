@@ -27,11 +27,12 @@ class Indexer : public frc2::SubsystemBase {
     void movePowerCellsToTop();
     void movePowerCellsToBottom();
     void shootPowerCells();
-    bool isPowerCellAtTop(){return mTopSensor.Get();}
     bool isPowerCellAtBottom();
-    //bool isPowerCellAtIntake(){return (!mIntakeSensor.Get()}
+    //bool isPowerCelltAtIntake(){return (!mIntakeSensor.Get()}
+    //Intake sensor & Top sensor true when power cell & bottom is false when power cell
+    bool isPowerCellAtTop(){return mTopSensor.Get();}
     bool isPowerCellAtIntake(){return !mIntakeSensor.Get();}
-    bool rawPowerCellAtBottom(){return mBottomSensor.Get();}
+    bool rawPowerCellAtBottom(){return !mBottomSensor.Get();}
     void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
     void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::Value::kForward);}
     void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}
