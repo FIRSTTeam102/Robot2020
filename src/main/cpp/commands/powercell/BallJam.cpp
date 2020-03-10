@@ -28,10 +28,11 @@ void BallJam::Execute() {
 
 // Called once the command ends or is interrupted.
 void BallJam::End(bool interrupted) {
+  mpIndexer->stopIndexer();
   mpShooter->stopMotor();
 }
 
 // Returns true when the command should end.
 bool BallJam::IsFinished() {
-  return mpIndexer->isPowerCellAtBottom();
+  return (mpIndexer->rawPowerCellAtBottom() || mpIndexer->isEmptyIndexer());
 }

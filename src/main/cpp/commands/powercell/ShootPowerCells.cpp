@@ -25,11 +25,13 @@ void ShootPowerCells::Initialize() {}
 //  as long as the shooter is ready to take power cells, the
 //  indexer should send power cells (until cancelled or empty)
 void ShootPowerCells::Execute() {
-  printf("Pew?\n");
+  /*printf("Pew?\n");
   if(mpShooterSubsys->isRunning()){
     printf("PEW\n");
     mpIndexerSubsys->shootPowerCells();
-  }
+  }*/
+  printf("Shooting\n");
+  mpIndexerSubsys->shootPowerCells();
 }
 
 // ShootPowerCells - end Called once the command ends or is interrupted.
@@ -43,5 +45,6 @@ void ShootPowerCells::End(bool interrupted) {
 // shoot power cells - is finished - Returns true when the command should end.
 //    if the indexer is empty, stop trying to shoot power cells.
 bool ShootPowerCells::IsFinished() { 
-  return (mpIndexerSubsys->isEmptyIndexer()); 
+  //return (mpIndexerSubsys->isEmptyIndexer()); 
+  return false;
 }
