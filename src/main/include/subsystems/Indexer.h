@@ -11,6 +11,7 @@
 #include <frc/Relay.h>
 #include <frc/DigitalInput.h>
 #include <frc/Timer.h>
+#include <frc/Talon.h>
 #include "Constants.h"
 
 //Spins 760 rpms (diameter 1.5"), bottom sensor ~2" in
@@ -35,9 +36,12 @@ class Indexer : public frc2::SubsystemBase {
     bool isPowerCellAtTop(){return mTopSensor.Get();}
     bool isPowerCellAtIntake(){return !mIntakeSensor.Get();}
     bool rawPowerCellAtBottom(){return mBottomSensor.Get();}
-    void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
-    void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::Value::kForward);}
-    void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}
+    //void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
+    //void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::Value::kForward);}
+    //void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}
+    void stopIndexer(){mIndexerConveyer.Set(0);}
+    void moveUpIndexer(){mIndexerConveyer.Set(0.5);}
+    void moveDownIndexer(){mIndexerConveyer.Set(-0.5);}
     void resetRunningOnEmpty() {mEmptyTimer = 0;}
     bool isRunningOnEmpty() {return (mEmptyTimer>=kMaxPowerCellTravelTime);}
     void enable() {enabled = true;}
@@ -51,7 +55,8 @@ class Indexer : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  frc::Relay mIndexerConveyer;
+  //frc::Relay mIndexerConveyer;
+  frc::Talon mIndexerConveyer;
   frc::DigitalInput mIntakeSensor;
   frc::DigitalInput mBottomSensor;
   frc::DigitalInput mTopSensor;
