@@ -9,7 +9,7 @@
 #include "Constants.h"
 #include "subsystems/Indexer.h"
 #include <frc/shuffleboard/Shuffleboard.h>
-
+#include <frc/smartdashboard/SmartDashboard.h>
 
 Indexer::Indexer():
     mIndexerConveyer{kIndexChannel,frc::Relay::kBothDirections},
@@ -140,4 +140,7 @@ void Indexer::Periodic() {
     }*/
     //printf("Intake: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
     //printf("Timer: %f\n", mIndexTimer.Get());
+    frc::SmartDashboard::PutBoolean("Intake Sensor", mIntakeSensor.Get());
+    frc::SmartDashboard::PutBoolean("Index Top Sensor", mTopSensor.Get());
+    frc::SmartDashboard::PutBoolean("Index Bot Sensor", mBottomSensor.Get());
 }

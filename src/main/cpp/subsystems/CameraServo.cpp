@@ -8,7 +8,7 @@
 #include "subsystems/CameraServo.h"
 #include <frc/Servo.h>
 CameraServo::CameraServo():
-    mCameraServoX{2}, mCameraServoY{kCameraServoYIndex}
+    mCameraServoX{kCameraServoXIndex}, mCameraServoY{kCameraServoYIndex}
 {
     cameraServoXPosition = 0.5;
     mCameraServoX.Set(cameraServoXPosition);

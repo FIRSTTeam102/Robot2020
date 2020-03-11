@@ -20,14 +20,14 @@ void IndexPowerCell::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void IndexPowerCell::Execute() {
-  printf("Power cell at intake? %d\n", mpIndexer->isPowerCellAtIntake());
+  printf("Power cell at intake? %d       Enabled? %d      Full? %d\n", mpIndexer->isPowerCellAtIntake(), mpIndexer->isEnabled(), mpIndexer->isFullIndexer());
   if (!mpIndexer->isFullIndexer() && mpIndexer->isPowerCellAtIntake() && mpIndexer->isEnabled()){
     printf("Begin indexing motor\n");
     mpIndexer->moveUpIndexer();
     hasIndexed = true;
   }
   //if (hasIndexed == true && (mpIndexer->isFullIndexer() || (mpIndexer->isPowerCellAtBottom() && !mpIndexer->isPowerCellAtIntake()))) {
-  if ((hasIndexed == true && mpIndexer->isPowerCellAtBottom()) || mpIndexer->isEmptyIndexer()) {
+  if ((hasIndexed == true && mpIndexer->isPowerCellAtBottom()) || mpIndexer->isFullIndexer()) {
     mpIndexer->stopIndexer();
     printf("Stopping indexer\n");
     hasIndexed = false;

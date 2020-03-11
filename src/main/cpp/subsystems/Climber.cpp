@@ -32,10 +32,10 @@ void Climber::StopClimb(){
 void Climber::Climb(){
     
     if(ClimbSpeed()>0/* && !isClimbUp()*/){
-        //mClimbUpMotor.Set(ClimbSpeed());
-        //mClimbDownMotor.Set(0);
+        mClimbUpMotor.Set(ClimbSpeed());
+        mClimbDownMotor.Set(0);
         //mClimbUpMotor.Set(-ClimbSpeed());
-        mClimbDownMotor.Set(ClimbSpeed()); //For unraveling winch
+        //mClimbDownMotor.Set(ClimbSpeed()); //For unraveling winch
     }
     else if(ClimbSpeed()<0/* && !isClimbDown()*/){
         mClimbDownMotor.Set(ClimbSpeed());
