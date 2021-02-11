@@ -24,6 +24,7 @@
 #include "subsystems/Shooter.h"
 #include "subsystems/ControlPanelManipulator.h"
 #include "subsystems/Lights.h"
+#include "subsystems/LM.h"
 
 #include "commands/drive/DriveWithXbox.h"
 #include "commands/drive/SlowTurn.h"
@@ -45,6 +46,7 @@
 #include "commands/MoveCameraServo.h"
 #include "commands/NextCamera.h"
 #include "commands/PreviousCamera.h"
+#include "commands/LMYawToTarget.h"
 
 #include "commands/NextCamera.h"
 
@@ -130,6 +132,8 @@ class RobotContainer {
   PositionControlPanel mPositionCommand{&mControlPanel, &mTankDrive};
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
+  LM mLM;
+  LMYawToTarget mLMYawToTarget{&mLM, &mTankDrive};
 
   
   Climber mClimber{&mOperatorController}; 
