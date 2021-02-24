@@ -11,6 +11,7 @@
 #include <frc/Relay.h>
 #include <frc/DigitalInput.h>
 #include "Constants.h"
+#include <ctre/Phoenix.h>
 
 //Spins 760 rpms (diameter 1.5"), bottom sensor ~2" in
 //Band moves 60"/s
@@ -32,9 +33,12 @@ class Indexer : public frc2::SubsystemBase {
     //bool isPowerCellAtIntake(){return (!mIntakeSensor.Get()}
     bool isPowerCellAtIntake(){return !mIntakeSensor.Get();}
     bool rawPowerCellAtBottom(){return mBottomSensor.Get();}
-    void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
+    /*void stopIndexer(){mIndexerConveyer.Set(frc::Relay::kOff);}
     void moveUpIndexer() {mIndexerConveyer.Set(frc::Relay::Value::kForward);}
-    void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}
+    void moveDownIndexer() {mIndexerConveyer.Set(frc::Relay::kReverse);}*/
+    void stopIndexer(){mIndexerConveyer.Set(0);}
+    void moveUpIndexer() {mIndexerConveyer.Set(0.5);}
+    void moveDownIndexer() {mIndexerConveyer.Set(-0.5);}
     void resetRunningOnEmpty() {mEmptyTimer = 0;}
     bool isRunningOnEmpty() {return (mEmptyTimer>=kMaxPowerCellTravelTime);}
     void enable() {enabled = true;}
@@ -48,7 +52,8 @@ class Indexer : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  frc::Relay mIndexerConveyer;
+  //frc::Relay mIndexerConveyer;
+  WPI_TalonSRX mIndexerConveyer;
   frc::DigitalInput mIntakeSensor;
   frc::DigitalInput mBottomSensor;
   frc::DigitalInput mTopSensor;

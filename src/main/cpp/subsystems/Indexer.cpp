@@ -11,7 +11,8 @@
 
 
 Indexer::Indexer():
-    mIndexerConveyer{kIndexChannel,frc::Relay::kBothDirections},
+    //mIndexerConveyer{kIndexChannel,frc::Relay::kBothDirections},
+    mIndexerConveyer{kIndexChannel},
     mIntakeSensor{kDIOIntake},
     mBottomSensor{kDIOBottom},
     mTopSensor{kDIOTop},

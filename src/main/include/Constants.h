@@ -35,7 +35,8 @@ int constexpr kIntakeMotor = 0;
 int constexpr kIntakeRollerMotor = 1;
 
 //Index Relay (SpikeRelay)
-int constexpr kIndexChannel = 2;
+//int constexpr kIndexChannel = 2;
+int constexpr kIndexChannel = 8;
 
 //Digital IO channels
 //Indexer Distance Sensors (Digital Input)
