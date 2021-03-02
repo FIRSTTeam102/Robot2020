@@ -11,12 +11,15 @@
 
 Shooter::Shooter() : 
     mShooter1{kFlyMotor1},
-    mShooter2{kFlyMotor2}
+    mShooter2{kFlyMotor2},
+    mServo{2}
 {
     mShooter2.Set(ControlMode::Follower, kFlyMotor1);
     mShooter1.SetInverted(true);
     mShooter2.SetInverted(true);
     frc::SmartDashboard::PutNumber("Flywheel Speed", 0.0);
+    frc::SmartDashboard::PutNumber("Servo Pos", 0.0);
+    mServo.Set(0);
 }
 
 // This method will be called once per scheduler run
@@ -25,6 +28,7 @@ void Shooter::Periodic() {}
 void Shooter::setSpeed(float speed) {
     //mSpeed = speed;
     mSpeed = frc::SmartDashboard::GetNumber("Flywheel Speed", 0.0);
+    mServo.Set(frc::SmartDashboard::GetNumber("Servo Pos", 0.0));
 }
 
 void Shooter::startMotor() {

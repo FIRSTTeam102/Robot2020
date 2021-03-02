@@ -10,6 +10,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Encoder.h>
 #include <ctre/Phoenix.h>
+#include <frc/Servo.h>
 
 class Shooter : public frc2::SubsystemBase {
  public:
@@ -27,6 +28,7 @@ class Shooter : public frc2::SubsystemBase {
  private:
   WPI_TalonSRX mShooter1;
   WPI_TalonSRX mShooter2;
+  frc::Servo mServo;
   float mSpeed;
   bool mIsStarted;
   // Components (e.g. motor controllers and sensors) should generally be
